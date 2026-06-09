@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wireframe — Vida en la PUCP · PUCP</title>
+<style>
+  :root{
+    --page:#ffffff;
+    --t0:#fafafa;
+    --t1:#f1f1f1;
+    --t2:#e6e6e6;
+    --t3:#d6d6d6;
+    --t4:#c2c2c2;
+    --line:#cfcfcf;
+    --line-strong:#a8a8a8;
+    --ink:#2b2b2b;
+    --ink-soft:#6c6c6c;
+    --nav:#3a3a3a;
+    --nav-util:#efefef;
+    --accent:#555555;
+    --accent-soft:#dcdcdc;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--page);font-family:'Segoe UI',Arial,sans-serif;color:var(--ink);}
+  .wrap{max-width:1200px;margin:0 auto;}
+  /* ---------- TOP NAV ---------- */
+  .util{background:var(--nav-util);border-bottom:1px solid var(--line);}
+  .util .wrap{display:flex;align-items:center;justify-content:space-between;padding:9px 26px;font-size:13px;color:var(--ink-soft);}
+  .util .profiles{display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
+  .util .profiles span{white-space:nowrap;}
+  .util .sep{color:var(--line-strong);}
+  .util .right{display:flex;align-items:center;gap:14px;}
+  .util .becas{font-weight:700;color:var(--ink);text-decoration:underline;letter-spacing:.5px;}
+  .util .ico{width:30px;height:24px;border:1px solid var(--line-strong);border-radius:5px;background:#fff;}
+  .nav{background:var(--nav);}
+  .nav .wrap{display:flex;align-items:center;gap:22px;padding:14px 26px;}
+  .logo{display:flex;align-items:center;gap:10px;color:#fff;font-weight:800;letter-spacing:1px;font-size:21px;flex:none;}
+  .nav ul{display:flex;gap:20px;list-style:none;margin:0;padding:0;flex:1;flex-wrap:wrap;align-items:center;}
+  .nav li{color:#d8d8d8;font-size:14.5px;white-space:nowrap;}
+  .nav li.active{color:#fff;font-weight:700;border-bottom:2px solid #fff;padding-bottom:4px;}
+  .search{background:#fff;color:var(--ink-soft);border-radius:8px;padding:11px 26px;font-size:14px;min-width:150px;text-align:center;flex:none;}
+  .crumb{padding:14px 26px 4px;color:var(--ink-soft);font-size:12.5px;}
+  /* ---------- BODY ---------- */
+  main{padding:8px 26px 60px;}
+  .sec{background:var(--t1);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+  .sec.alt{background:var(--t0);}
+  .sec.star{border-left:5px solid var(--accent);background:#ededed;}
+  .sec h2{margin:0 0 6px;font-size:17px;display:flex;align-items:center;gap:9px;color:var(--ink);}
+  .num{display:inline-flex;width:26px;height:26px;border-radius:6px;background:var(--t4);color:var(--ink);align-items:center;justify-content:center;font-size:13px;font-weight:700;flex:none;}
+  .star .num{background:var(--accent);color:#fff;}
+  .st{color:var(--accent);font-size:14px;}
+  .desc{color:var(--ink-soft);font-size:13px;margin:0 0 12px;}
+  .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+  .ph{background:var(--t2);border:1px dashed var(--line-strong);border-radius:7px;}
+  .banner{height:140px;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);font-size:13px;font-weight:600;
+           background:repeating-linear-gradient(45deg,var(--t2),var(--t2) 12px,var(--t1) 12px,var(--t1) 24px);border-radius:8px;margin-bottom:12px;}
+  /* rectángulos a todo el ancho: flex:1 */
+  .card{flex:1;min-width:0;height:96px;}
+  .card.sm{height:80px;}
+  .bar{height:16px;background:var(--t3);border-radius:4px;}
+  .lines{display:flex;flex-direction:column;gap:9px;}
+  .cta{background:var(--accent);color:#fff;font-weight:700;font-size:13.5px;padding:11px 20px;border-radius:7px;display:inline-block;flex:none;}
+  .cta.ghost{background:#fff;color:var(--ink);border:1.5px solid var(--accent);}
+  .tabs{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap;}
+  .tab{padding:9px 16px;border:1px solid var(--line);border-radius:6px 6px 0 0;background:#fff;color:var(--ink-soft);font-size:13px;}
+  .tab.on{background:var(--accent-soft);color:var(--ink);font-weight:700;border-bottom:2px solid var(--accent);}
+  .panel{border:1px dashed var(--line-strong);border-radius:0 7px 7px 7px;background:#fff;height:90px;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);font-size:12.5px;text-align:center;padding:0 14px;}
+  .grid{display:flex;gap:10px;flex-wrap:nowrap;}
+  .cell{flex:1;min-width:0;height:74px;background:var(--t2);border:1px dashed var(--line-strong);border-radius:7px;display:flex;align-items:center;justify-content:center;color:var(--ink);font-size:12px;text-align:center;padding:6px;font-weight:600;}
+  .contact{color:var(--ink);font-size:13px;line-height:1.7;}
+  .legend{max-width:1200px;margin:0 auto;padding:0 26px 50px;color:var(--ink-soft);font-size:12.5px;line-height:1.7;}
+  .legend b{color:var(--ink);}
+</style>
+</head>
+<body>
+
+  <!-- ===== UTILITY BAR ===== -->
+  <div class="util">
+    <div class="wrap">
+      <div class="profiles">
+        <span>Postulante</span><span class="sep">|</span>
+        <span>Pregrado · Posgrado</span><span class="sep">|</span>
+        <span>Egresado</span><span class="sep">|</span>
+        <span>Empresa</span><span class="sep">|</span>
+        <span>Estudiante</span><span class="sep">|</span>
+        <span>Profesor</span><span class="sep">|</span>
+        <span>Administrativo</span>
+      </div>
+      <div class="right">
+        <span class="becas">BECAS</span>
+        <span class="ico"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MAIN NAV ===== -->
+  <div class="nav">
+    <div class="wrap">
+      <div class="logo">
+        <svg width="36" height="36" viewBox="0 0 40 40" aria-hidden="true">
+          <circle cx="20" cy="20" r="18" fill="none" stroke="#fff" stroke-width="2"/>
+          <path d="M9 24 q11 6 22 0 l-3 5 h-16 z" fill="#fff"/>
+          <path d="M20 8 l7 13 h-14 z" fill="#fff"/>
+        </svg>
+        PUCP
+      </div>
+      <ul>
+        <li>Descubre la PUCP</li>
+        <li>Carreras y Programas</li>
+        <li>Admisión</li>
+        <li class="active">Vida en la PUCP</li>
+        <li>Internacionalización</li>
+        <li>Empleabilidad</li>
+      </ul>
+      <div class="search">Buscador</div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="crumb">Inicio › <b>Vida en la PUCP</b></div>
+  </div>
+
+  <!-- ===== BODY ===== -->
+  <main class="wrap">
+
+    <!-- 1 ★ contenido propio -->
+    <section class="sec star">
+      <h2><span class="num">1</span> Banner vivencial <span class="st">★</span></h2>
+      <p class="desc">Contenido propio — hay que producirlo. La vida universitaria ocurre dentro y fuera del aula.</p>
+      <div class="banner">"Vive la PUCP" — [ video real del campus: estudiantes, jardines, cafeterías, deporte, cultura ]</div>
+      <div class="row"><span class="cta">Descubre el campus ▸</span><span class="cta ghost">Tour virtual 360°</span></div>
+    </section>
+
+    <!-- 2 ★ contenido propio -->
+    <section class="sec star">
+      <h2><span class="num">2</span> Espacios del campus <span class="st">★</span></h2>
+      <p class="desc">Contenido propio — videos + interactivo. Espacios emblemáticos y cotidianos: los lugares informales tienen mayor valor emocional que mostrar solo aulas. Tour 360° = lo más pedido (40%).</p>
+      <div class="panel" style="height:110px;border-radius:7px;margin-bottom:10px;">[ Mapa interactivo del campus / tour 360° — video corto por espacio al seleccionar ]</div>
+      <div class="grid">
+        <div class="cell">Rotonda de Generales Letras</div>
+        <div class="cell">Jardines de Humanidades</div>
+        <div class="cell">Pileta del pabellón Z</div>
+        <div class="cell">Primer piso de GG.CC.</div>
+        <div class="cell">Mesas por Digimundo</div>
+        <div class="cell">Mesas junto al Diodo</div>
+      </div>
+    </section>
+
+    <!-- 3 -->
+    <section class="sec">
+      <h2><span class="num">3</span> Salud y bienestar (DAES)</h2>
+      <p class="desc">Resumen + enlace a daes.pucp.edu.pe — acompañamiento integral al estudiante.</p>
+      <div class="grid">
+        <div class="cell">Atención médica en campus</div>
+        <div class="cell">Apoyo psicológico</div>
+        <div class="cell">Bienestar social</div>
+      </div>
+      <div class="row" style="margin-top:12px;"><span class="cta">Reserva tu cita ▸</span><span class="cta ghost">Conoce la DAES</span></div>
+    </section>
+
+    <!-- 4 -->
+    <section class="sec alt">
+      <h2><span class="num">4</span> Campus activo — Deporte y vida activa (DAES)</h2>
+      <p class="desc">Resumen + enlace a Deportes DAES e Interfacultades — el campus como espacio activo.</p>
+      <div class="grid">
+        <div class="cell">Polideportivo</div>
+        <div class="cell">Gimnasio PUCP</div>
+        <div class="cell">Selecciones deportivas</div>
+        <div class="cell">Interfacultades</div>
+      </div>
+      <div class="row" style="margin-top:12px;"><span class="cta">Conoce Deportes PUCP ▸</span></div>
+    </section>
+
+    <!-- 5 -->
+    <section class="sec">
+      <h2><span class="num">5</span> Cultura y experiencias (Cultura)</h2>
+      <p class="desc">Resumen + enlace a DACU, CCPUCP y Cultura PUCP. Lo más destacado del estudio: agenda cultural, talleres y museos/colecciones.</p>
+      <div class="tabs">
+        <span class="tab on">Agenda cultural</span>
+        <span class="tab">Talleres culturales</span>
+        <span class="tab">Museos y colecciones</span>
+      </div>
+      <div class="panel">[ Contenido de la pestaña seleccionada: próximas actividades · oferta de talleres · mapa de museos y colecciones ]</div>
+      <div class="grid" style="margin-top:12px;">
+        <div class="cell">Elencos: CEMDUC · Coros · Tuna</div>
+        <div class="cell">Cine CCPUCP</div>
+        <div class="cell">Teatro</div>
+        <div class="cell">Galería y exposiciones</div>
+      </div>
+      <div class="row" style="margin-top:12px;"><span class="cta">Explora Cultura PUCP ▸</span></div>
+    </section>
+
+    <!-- 6 -->
+    <section class="sec alt">
+      <h2><span class="num">6</span> Comunidad y participación (DARS)</h2>
+      <p class="desc">Resumen + enlace a dars.pucp.edu.pe — impacto social desde la experiencia universitaria. Destacados según lo más visitado (GA): voluntariado, proyectos y convocatorias del Fondo RSU.</p>
+      <div class="grid">
+        <div class="cell">Voluntariado RSU</div>
+        <div class="cell">Fondo RSU — convocatorias</div>
+        <div class="cell">Proyectos (Barrio PUCP)</div>
+        <div class="cell">Noticias y eventos</div>
+      </div>
+      <div class="row" style="margin-top:12px;"><span class="cta">Súmate al voluntariado ▸</span><span class="cta ghost">Qué es la RSU</span></div>
+    </section>
+
+    <!-- 7 -->
+    <section class="sec">
+      <h2><span class="num">7</span> Agenda viva — esta semana en campus</h2>
+      <p class="desc">Embebido de agenda.pucp.edu.pe — actividades académicas, culturales, deportivas y estudiantiles.</p>
+      <div class="tabs">
+        <span class="tab on">Hoy</span>
+        <span class="tab">Esta semana</span>
+        <span class="tab">Próxima semana</span>
+      </div>
+      <div class="panel">[ Listado de eventos con fecha · hora · lugar — filtros por tipo de evento y área temática ]</div>
+      <div class="row" style="margin-top:12px;"><span class="cta ghost">Ver toda la agenda ▸</span></div>
+    </section>
+
+    <!-- 8 -->
+    <section class="sec alt">
+      <h2><span class="num">8</span> Campus sostenible</h2>
+      <p class="desc">Resumen + enlace a Clima de Cambios — sostenibilidad desde la experiencia del campus y la participación de la comunidad.</p>
+      <div class="row"><span class="ph card sm"></span><span class="ph card sm"></span><span class="cta ghost">Visita Clima de Cambios ▸</span></div>
+    </section>
+
+    <!-- 9 -->
+    <section class="sec">
+      <h2><span class="num">9</span> Mi Campus PUCP</h2>
+      <p class="desc">Feed embebido de @micampuspucp (Instagram) — lo que ocurre en el campus más allá de las clases, contado por la propia comunidad.</p>
+      <div class="row"><span class="ph card"></span><span class="ph card"></span><span class="ph card"></span><span class="ph card"></span></div>
+      <div class="row" style="margin-top:10px;">
+        <span class="cta">Síguenos: @micampuspucp ▸</span>
+        <div class="cell" style="flex:none;height:auto;padding:10px 14px;font-weight:400;">
+          <span class="contact">RRSS PUCP: Instagram · TikTok · YouTube · Facebook · LinkedIn · Spotify</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="legend">
+    <b>Wireframe de baja fidelidad</b> · escala de grises · ★ = contenido propio, vive en el home (hay que producirlo) ·
+    sin ★ = resumen + enlace al subdominio y/o embebido ·
+    contenido nutrido con datos reales de daes / cultura / centrocultural / dars / agenda .pucp.edu.pe y el doc de enlaces de Vida Universitaria.<br>
+    <b>Argumentación del orden:</b> lidera lo vivencial (hero, espacios icónicos y tour 360° — lo más pedido: 40%) ·
+    Deporte, Cultura y Agenda van arriba: son lo más consumido según Google Analytics ·
+    Bienestar y comunidad dan tranquilidad también a padres y familias.
+  </div>
+
+</body>
+</html>
