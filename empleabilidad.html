@@ -46,7 +46,7 @@
   .crumb{padding:14px 26px 4px;color:var(--ink-soft);font-size:12.5px;}
   /* ---------- BODY ---------- */
   main{padding:8px 26px 60px;}
-  .sec{background:var(--t1);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+  .sec{position:relative;background:var(--t1);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
   .sec.alt{background:var(--t0);}
   .sec.star{border-left:5px solid var(--accent);background:#ededed;}
   .sec h2{margin:0 0 6px;font-size:17px;display:flex;align-items:center;gap:9px;color:var(--ink);flex-wrap:wrap;}
@@ -75,6 +75,38 @@
   .contact{color:var(--ink);font-size:13px;line-height:1.7;}
   .legend{max-width:1200px;margin:0 auto;padding:0 26px 50px;color:var(--ink-soft);font-size:12.5px;line-height:1.7;}
   .legend b{color:var(--ink);}
+  /* ---------- HERRAMIENTAS DE REVISIÓN ---------- */
+  .toolbar{position:fixed;bottom:18px;right:18px;z-index:100;display:flex;gap:8px;align-items:center;
+           background:#fff;border:1px solid var(--line-strong);border-radius:10px;padding:9px 12px;box-shadow:0 4px 18px rgba(0,0,0,.18);}
+  .toolbar button{font:inherit;font-size:12.5px;font-weight:700;border:1px solid var(--line-strong);background:var(--t1);color:var(--ink);
+                  border-radius:6px;padding:7px 12px;cursor:pointer;white-space:nowrap;}
+  .toolbar button:hover{background:var(--accent-soft);}
+  .toolbar button.on{background:var(--accent);color:#fff;border-color:var(--accent);}
+  .toolbar .hint{font-size:11px;color:var(--ink-soft);max-width:150px;line-height:1.3;}
+  .sec-tools{position:absolute;top:10px;right:10px;display:flex;gap:5px;z-index:5;}
+  .sec-tools button{font:inherit;font-size:12px;font-weight:700;width:28px;height:28px;border:1px solid var(--line-strong);
+                    background:#fff;color:var(--ink);border-radius:6px;cursor:pointer;padding:0;line-height:1;}
+  .sec-tools button:hover{background:var(--accent-soft);}
+  .sec-tools .c-btn{width:auto;padding:0 8px;}
+  .sec-tools .c-btn.has{background:var(--accent);color:#fff;border-color:var(--accent);}
+  body.editing .sec-body{outline:1.5px dashed var(--accent);outline-offset:6px;border-radius:6px;}
+  body.editing .sec-body:focus-within{outline-style:solid;background:rgba(255,255,255,.4);}
+  .sec-comments{display:none;margin-top:14px;border-top:1px dashed var(--line-strong);padding-top:12px;}
+  .sec-comments.open{display:block;}
+  .sec-comments .c-item{background:#fff;border:1px solid var(--line);border-radius:7px;padding:8px 10px;margin-bottom:7px;
+                        font-size:12.5px;display:flex;gap:10px;align-items:flex-start;justify-content:space-between;}
+  .sec-comments .c-meta{color:var(--ink-soft);font-size:11px;display:block;margin-top:3px;}
+  .sec-comments .c-del{border:none;background:none;color:var(--ink-soft);cursor:pointer;font-size:13px;padding:0 2px;flex:none;}
+  .sec-comments .c-del:hover{color:#a33;}
+  .sec-comments form{display:flex;gap:7px;flex-wrap:wrap;}
+  .sec-comments input,.sec-comments textarea{font:inherit;font-size:12.5px;border:1px solid var(--line-strong);border-radius:6px;padding:7px 9px;}
+  .sec-comments input{width:140px;}
+  .sec-comments textarea{flex:1;min-width:220px;resize:vertical;min-height:36px;}
+  .sec-comments form button{font:inherit;font-size:12.5px;font-weight:700;background:var(--accent);color:#fff;border:none;border-radius:6px;padding:7px 14px;cursor:pointer;}
+  .toast{position:fixed;bottom:78px;right:18px;z-index:101;background:var(--nav);color:#fff;font-size:12.5px;border-radius:7px;padding:9px 14px;
+         opacity:0;transition:opacity .25s;pointer-events:none;}
+  .toast.show{opacity:1;}
+  @media print{.toolbar,.sec-tools,.toast{display:none!important;}}
 </style>
 </head>
 <body>
@@ -137,18 +169,19 @@
   </div>
 
   <!-- ===== BODY ===== -->
-  <main class="wrap">
+  <main class="wrap" id="zones">
 
-    <!-- 1 -->
-    <section class="sec star">
+    <section class="sec star" id="z-banner" data-title="Banner con prueba social">
+      <div class="sec-body">
       <h2><span class="num">1</span> Banner con prueba social <span class="st">★</span></h2>
       <p class="desc">Dato impactante como apertura — fuente Encuesta de Egresados.</p>
       <div class="banner">"7 de cada 10 egresados consiguen empleo antes de graduarse" — [ foto real: egresados en su lugar de trabajo ]</div>
       <div class="row"><span class="cta">Ver ofertas activas ▸</span><span class="contact" style="color:var(--ink-soft);font-size:12px;">→ lleva al Sistema de Oportunidades Laborales PUCP (Symplicity)</span></div>
+      </div>
     </section>
 
-    <!-- 2 -->
-    <section class="sec alt">
+    <section class="sec alt" id="z-cifras" data-title="Cifras impactantes + Alumni en el mundo">
+      <div class="sec-body">
       <h2><span class="num">2</span> Cifras impactantes + Alumni en el mundo <span class="tag">⚠ en riesgo — AEG no responde, quizá no habrá cifras de alumni</span></h2>
       <p class="desc">Mapa interactivo + indicadores estratégicos. Plan B si no llega la data de AEG: solo indicadores propios de la Oficina de Empleabilidad.</p>
       <div class="panel" style="height:110px;border-radius:7px;margin-bottom:10px;">[ Mapa mundi interactivo — alumni por país ]</div>
@@ -158,23 +191,12 @@
         <div class="cell">Ofertas activas en bolsa</div>
         <div class="cell">Alumni en el mundo (AEG)</div>
       </div>
-    </section>
-
-    <!-- 3 -->
-    <section class="sec">
-      <h2><span class="num">3</span> Egresados por sector <span class="tag">data pendiente — se retira si no se consigue</span></h2>
-      <p class="desc">Cuántos egresados trabajan en cada sector + cargo más común.</p>
-      <div class="grid">
-        <div class="cell tall">Sector 1<div class="bar" style="width:70%;height:10px;"></div></div>
-        <div class="cell tall">Sector 2<div class="bar" style="width:55%;height:10px;"></div></div>
-        <div class="cell tall">Sector 3<div class="bar" style="width:45%;height:10px;"></div></div>
-        <div class="cell tall">Sector 4<div class="bar" style="width:30%;height:10px;"></div></div>
       </div>
     </section>
 
-    <!-- 4 -->
-    <section class="sec alt">
-      <h2><span class="num">4</span> Tu camino al primer empleo + servicios de apoyo <span class="tag">etapas por validar con Of. de Empleabilidad</span></h2>
+    <section class="sec alt" id="z-camino" data-title="Tu camino al primer empleo">
+      <div class="sec-body">
+      <h2><span class="num">3</span> Tu camino al primer empleo + servicios de apoyo <span class="tag">etapas por validar con Of. de Empleabilidad</span></h2>
       <p class="desc">Acompañamiento progresivo durante la etapa formativa; los servicios varían según ciclo, avance y necesidades. La Oficina propondrá qué servicio corresponde a cada momento.</p>
       <div class="grid">
         <div class="cell tall">Año 1-2<span style="font-weight:400;font-size:11px;">Career assessment · habilidades blandas</span></div>
@@ -182,23 +204,25 @@
         <div class="cell tall">Año 4<span style="font-weight:400;font-size:11px;">Mentorías 1:1 · asesoría de CV</span></div>
         <div class="cell tall">Egresado<span style="font-weight:400;font-size:11px;">Acompañamiento post-grado · bolsa exclusiva</span></div>
       </div>
+      </div>
     </section>
 
-    <!-- 5 -->
-    <section class="sec">
-      <h2><span class="num">5</span> Eventos de networking + empleabilidad <span class="tag">✓ confirmado por Of. de Empleabilidad</span></h2>
-      <p class="desc">Acciones de vinculación con empleadores, facultades y estudiantes.</p>
+    <section class="sec" id="z-eventos" data-title="Eventos de networking + empleabilidad">
+      <div class="sec-body">
+      <h2><span class="num">4</span> Eventos de networking + empleabilidad <span class="tag">✓ confirmado por Of. de Empleabilidad</span> <span class="tag">conexión con Agenda PUCP — filtro: Empleabilidad</span></h2>
+      <p class="desc">Acciones de vinculación con empleadores, facultades y estudiantes. Los eventos se alimentan automáticamente desde <b>Agenda PUCP</b> filtrados por la categoría Empleabilidad (no se cargan a mano en la landing).</p>
       <div class="grid">
         <div class="cell">Feria de Empleabilidad PUCP</div>
         <div class="cell">Plan de Vinculación con Empleadores</div>
         <div class="cell">Eventos con facultades</div>
       </div>
-      <div class="row" style="margin-top:12px;"><span class="cta ghost">Ver próximos eventos ▸</span></div>
+      <div class="row" style="margin-top:12px;"><span class="cta ghost">Ver próximos eventos ▸</span><span class="contact" style="color:var(--ink-soft);font-size:12px;">→ lleva a Agenda PUCP con filtro de categoría "Empleabilidad" aplicado</span></div>
+      </div>
     </section>
 
-    <!-- 6 -->
-    <section class="sec alt">
-      <h2><span class="num">6</span> Recursos y beneficios por perfiles</h2>
+    <section class="sec alt" id="z-recursos" data-title="Recursos y beneficios por perfiles">
+      <div class="sec-body">
+      <h2><span class="num">5</span> Recursos y beneficios por perfiles</h2>
       <p class="desc">Contenido base confirmado por la Oficina de Empleabilidad (correo 09/06).</p>
       <div class="tabs">
         <span class="tab on">Alumnos</span>
@@ -212,40 +236,48 @@
           Empresas: Publicación de convocatorias en el Sistema de Oportunidades Laborales · Plan de Vinculación con Empleadores · Feria de Empleabilidad PUCP
         </span>
       </div>
+      </div>
     </section>
 
-    <!-- 7 -->
-    <section class="sec">
-      <h2><span class="num">7</span> Mentoring con egresados <span class="tag">⚠ por validar — viabilidad operativa con el programa de mentoring</span></h2>
-      <p class="desc">La idea original era agendar sesión con un mentor egresado. Pendiente definir con la Oficina si será: botón de interés · derivación a formulario · o sección informativa del programa.</p>
+    <section class="sec star" id="z-emprendimiento" data-title="Cultura de emprendimiento">
+      <div class="sec-body">
+      <h2><span class="num">6</span> Cultura de emprendimiento <span class="st">★</span> <span class="tag">video por recibir — mencionan el "Quipu del emprendimiento"</span></h2>
+      <p class="desc">Pieza nueva de la propuesta — emprender también es un camino de empleabilidad. Nos van a pasar un video donde hablan del <b>Quipu del emprendimiento</b>: evaluar usarlo como pieza central de esta zona.</p>
+      <div class="row">
+        <div class="cell" style="flex:1.4;height:96px;">▶ [ Video — Quipu del emprendimiento (pendiente de recibir) ]</div>
+        <span class="ph card"></span><span class="ph card"></span>
+      </div>
+      <div class="row" style="margin-top:10px;"><span class="cta ghost">Conoce el ecosistema emprendedor PUCP ▸</span></div>
+      </div>
+    </section>
+
+    <section class="sec alt" id="z-tutores" data-title="Conoce a nuestros tutores">
+      <div class="sec-body">
+      <h2><span class="num">7</span> Conoce a nuestros tutores <span class="tag">reemplaza a "Testimonios de egresados" — no llamarlos egresados</span></h2>
+      <p class="desc">Testimonios de los tutores del programa: profesionales bien posicionados, con buenos empleos. Por perfil: foto en su lugar de trabajo + cargo y empresa + "¿qué hace hoy?" + "¿cómo llegó?" con hitos concretos y una línea de carrera honesta. El material se irá cargando a la carpeta compartida.</p>
+      <div class="row"><span class="ph card"></span><span class="ph card"></span><span class="ph card"></span></div>
+      </div>
+    </section>
+
+    <section class="sec" id="z-mentoring" data-title="Mentoring con egresados">
+      <div class="sec-body">
+      <h2><span class="num">8</span> Mentoring con egresados <span class="tag">⚠ por validar — viabilidad operativa con el programa de mentoring</span> <span class="tag">movida antes del footer</span></h2>
+      <p class="desc">Cierra la página justo después de conocer a los tutores: el visitante ya vio quiénes son y aquí expresa su interés. Pendiente definir con la Oficina si será: botón de interés · derivación a formulario · o sección informativa del programa.</p>
       <div class="row">
         <span class="cta ghost">Me interesa el mentoring</span>
         <div class="cell" style="flex:1;height:auto;padding:12px;font-weight:400;">[ Alternativas en evaluación: formulario de interés / calendario abierto / info del programa: X mentores activos, Y horas al mes ]</div>
       </div>
+      </div>
     </section>
 
-    <!-- 8 ★ -->
-    <section class="sec star">
-      <h2><span class="num">8</span> Cultura de emprendimiento <span class="st">★</span></h2>
-      <p class="desc">Pieza nueva de la propuesta — emprender también es un camino de empleabilidad.</p>
-      <div class="row"><span class="ph card"></span><span class="ph card"></span><span class="ph card"></span></div>
-      <div class="row" style="margin-top:10px;"><span class="cta ghost">Conoce el ecosistema emprendedor PUCP ▸</span></div>
-    </section>
-
-    <!-- 9 -->
-    <section class="sec alt">
-      <h2><span class="num">9</span> Testimonios de egresados <span class="tag">movida al final — selección de perfiles delicada (Punto Edu)</span></h2>
-      <p class="desc">Pocos perfiles disponibles y sin estándar de información. La Oficina propone usar mentores destacados del programa; el material se irá cargando a la carpeta compartida. Por perfil: foto en su lugar de trabajo + "¿qué hace hoy?" + cargo y empresa + "¿cómo llegó?" con hitos concretos y una línea de carrera honesta.</p>
-      <div class="row"><span class="ph card"></span><span class="ph card"></span><span class="ph card"></span></div>
-    </section>
-
-    <!-- 10 footer -->
-    <section class="sec">
-      <h2><span class="num">10</span> Footer</h2>
+    <section class="sec" id="z-footer" data-title="Footer">
+      <div class="sec-body">
+      <h2><span class="num">9</span> Footer</h2>
       <div class="row" style="align-items:stretch;">
         <div class="cell" style="justify-content:flex-start;text-align:left;padding:14px;font-weight:400;">
           <span class="contact">Contacto humano (Oficina de Empleabilidad · DAES) · mapa del sitio · redes · enlaces secundarios</span>
         </div>
+      </div>
       </div>
     </section>
 
@@ -254,9 +286,201 @@
   <div class="legend">
     <b>Wireframe de baja fidelidad — Empleabilidad</b> · escala de grises · ★ = contenido propio / pieza nueva · etiquetas punteadas = estado según feedback ·
     contenido nutrido con la propuesta (Z0–Z11), el correo de la Oficina de Empleabilidad (09/06) y comentarios del equipo.<br>
-    <b>Cambios clave vs. propuesta original:</b> Testimonios pasa del puesto 4 al final (Punto Edu: cuidado con la selección de perfiles; usar mentores destacados) ·
-    Alumni en el mundo queda en riesgo (AEG no responde) · Egresados por sector se mantiene a la espera de data · "Agenda sesión con mentor" pasa a "Mentoring con egresados" hasta validar la dinámica.
+    <b>Cambios de esta ronda (12/06):</b> "Egresados por sector" se retira (estaba muy arriba y sin data) ·
+    Eventos de networking se conecta con Agenda PUCP filtrada por categoría Empleabilidad ·
+    Cultura de emprendimiento incorpora el video del "Quipu del emprendimiento" (por recibir) ·
+    "Testimonios de egresados" pasa a ser "Conoce a nuestros tutores" (tutores bien posicionados; no llamarlos egresados) ·
+    Mentoring se mueve al final, justo antes del footer.<br>
+    <b>Modo revisión:</b> con los botones de abajo a la derecha puedes editar textos, reordenar zonas (↑↓) y dejar comentarios por sección (💬). Todo se guarda en este navegador.
   </div>
+
+  <!-- ===== TOOLBAR DE REVISIÓN ===== -->
+  <div class="toolbar">
+    <button id="btn-edit" type="button">✏️ Editar textos</button>
+    <button id="btn-export" type="button">📋 Copiar comentarios</button>
+    <button id="btn-reset" type="button">↺ Restablecer</button>
+    <span class="hint">Cambios y comentarios se guardan en este navegador</span>
+  </div>
+  <div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  var KEY = 'wf-empleabilidad-v1';
+  var main = document.getElementById('zones');
+  var toast = document.getElementById('toast');
+  var toastTimer = null;
+
+  function notify(msg){
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toast.classList.remove('show'); }, 2200);
+  }
+
+  function load(){
+    try{ return JSON.parse(localStorage.getItem(KEY)) || {}; }catch(e){ return {}; }
+  }
+  function save(state){
+    localStorage.setItem(KEY, JSON.stringify(state));
+  }
+  var state = load();           // { order:[], content:{id:html}, comments:{id:[{text,author,ts}]} }
+  state.content = state.content || {};
+  state.comments = state.comments || {};
+
+  /* ----- restaurar orden y textos guardados ----- */
+  if (Array.isArray(state.order)){
+    state.order.forEach(function(id){
+      var sec = document.getElementById(id);
+      if (sec) main.appendChild(sec);
+    });
+  }
+  Object.keys(state.content).forEach(function(id){
+    var sec = document.getElementById(id);
+    if (sec) sec.querySelector('.sec-body').innerHTML = state.content[id];
+  });
+
+  function renumber(){
+    var n = 1;
+    main.querySelectorAll('section .num').forEach(function(el){ el.textContent = n++; });
+  }
+  function saveOrder(){
+    state.order = Array.prototype.map.call(main.querySelectorAll('section'), function(s){ return s.id; });
+    save(state);
+  }
+  function saveContent(sec){
+    state.content[sec.id] = sec.querySelector('.sec-body').innerHTML;
+    save(state);
+  }
+  function esc(s){
+    var d = document.createElement('div');
+    d.textContent = s;
+    return d.innerHTML;
+  }
+
+  /* ----- controles por sección ----- */
+  main.querySelectorAll('section').forEach(function(sec){
+    var tools = document.createElement('div');
+    tools.className = 'sec-tools';
+    tools.setAttribute('contenteditable','false');
+    tools.innerHTML =
+      '<button type="button" class="up" title="Subir sección">↑</button>' +
+      '<button type="button" class="down" title="Bajar sección">↓</button>' +
+      '<button type="button" class="c-btn" title="Comentarios de esta sección">💬 <span class="c-count">0</span></button>';
+    sec.appendChild(tools);
+
+    var panel = document.createElement('div');
+    panel.className = 'sec-comments';
+    panel.setAttribute('contenteditable','false');
+    panel.innerHTML =
+      '<div class="c-list"></div>' +
+      '<form><input type="text" class="c-author" placeholder="Autor (opcional)">' +
+      '<textarea class="c-text" placeholder="Escribe un comentario sobre esta sección…" required></textarea>' +
+      '<button type="submit">Agregar</button></form>';
+    sec.appendChild(panel);
+
+    tools.querySelector('.up').addEventListener('click', function(){
+      var prev = sec.previousElementSibling;
+      if (prev){ main.insertBefore(sec, prev); renumber(); saveOrder(); }
+    });
+    tools.querySelector('.down').addEventListener('click', function(){
+      var next = sec.nextElementSibling;
+      if (next){ main.insertBefore(next, sec); renumber(); saveOrder(); }
+    });
+    tools.querySelector('.c-btn').addEventListener('click', function(){
+      panel.classList.toggle('open');
+    });
+
+    panel.querySelector('form').addEventListener('submit', function(ev){
+      ev.preventDefault();
+      var txt = panel.querySelector('.c-text').value.trim();
+      if (!txt) return;
+      var author = panel.querySelector('.c-author').value.trim();
+      (state.comments[sec.id] = state.comments[sec.id] || []).push({ text:txt, author:author, ts:Date.now() });
+      save(state);
+      panel.querySelector('.c-text').value = '';
+      renderComments(sec);
+      notify('Comentario guardado');
+    });
+
+    sec.querySelector('.sec-body').addEventListener('input', function(){
+      clearTimeout(sec._t);
+      sec._t = setTimeout(function(){ saveContent(sec); }, 400);
+    });
+
+    renderComments(sec);
+  });
+
+  function renderComments(sec){
+    var list = sec.querySelector('.c-list');
+    var items = state.comments[sec.id] || [];
+    sec.querySelector('.c-count').textContent = items.length;
+    sec.querySelector('.c-btn').classList.toggle('has', items.length > 0);
+    list.innerHTML = items.map(function(c, i){
+      var meta = (c.author ? esc(c.author) + ' · ' : '') + new Date(c.ts).toLocaleString('es-PE');
+      return '<div class="c-item"><div>' + esc(c.text) + '<span class="c-meta">' + meta + '</span></div>' +
+             '<button type="button" class="c-del" data-i="' + i + '" title="Eliminar">✕</button></div>';
+    }).join('');
+    list.querySelectorAll('.c-del').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        items.splice(parseInt(btn.dataset.i, 10), 1);
+        save(state);
+        renderComments(sec);
+      });
+    });
+  }
+
+  /* ----- modo edición de textos ----- */
+  var btnEdit = document.getElementById('btn-edit');
+  btnEdit.addEventListener('click', function(){
+    var on = document.body.classList.toggle('editing');
+    btnEdit.classList.toggle('on', on);
+    btnEdit.textContent = on ? '✔ Terminar edición' : '✏️ Editar textos';
+    main.querySelectorAll('.sec-body').forEach(function(b){
+      b.contentEditable = on ? 'true' : 'false';
+    });
+    notify(on ? 'Haz clic sobre cualquier texto para editarlo' : 'Edición guardada');
+  });
+
+  /* ----- exportar comentarios ----- */
+  document.getElementById('btn-export').addEventListener('click', function(){
+    var out = ['Comentarios — Wireframe Empleabilidad (' + new Date().toLocaleDateString('es-PE') + ')', ''];
+    var total = 0;
+    main.querySelectorAll('section').forEach(function(sec, idx){
+      var items = state.comments[sec.id] || [];
+      if (!items.length) return;
+      out.push((idx + 1) + '. ' + sec.dataset.title);
+      items.forEach(function(c){
+        total++;
+        out.push('   - ' + (c.author ? c.author + ': ' : '') + c.text + ' [' + new Date(c.ts).toLocaleString('es-PE') + ']');
+      });
+      out.push('');
+    });
+    if (!total){ notify('No hay comentarios para copiar'); return; }
+    var text = out.join('\n');
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){ notify(total + ' comentario(s) copiado(s) al portapapeles'); });
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      ta.remove();
+      notify(total + ' comentario(s) copiado(s) al portapapeles');
+    }
+  });
+
+  /* ----- restablecer ----- */
+  document.getElementById('btn-reset').addEventListener('click', function(){
+    if (confirm('¿Restablecer el wireframe? Se perderán los textos editados, el orden y los comentarios guardados en este navegador.')){
+      localStorage.removeItem(KEY);
+      location.reload();
+    }
+  });
+
+  renumber();
+})();
+</script>
 
 </body>
 </html>
