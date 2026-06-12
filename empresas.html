@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wireframe — Empresas · PUCP</title>
+<style>
+  :root{
+    --page:#ffffff;
+    --t0:#fafafa;
+    --t1:#f1f1f1;
+    --t2:#e6e6e6;
+    --t3:#d6d6d6;
+    --t4:#c2c2c2;
+    --line:#cfcfcf;
+    --line-strong:#a8a8a8;
+    --ink:#2b2b2b;
+    --ink-soft:#6c6c6c;
+    --nav:#3a3a3a;
+    --nav-util:#efefef;
+    --accent:#555555;
+    --accent-soft:#dcdcdc;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--page);font-family:'Segoe UI',Arial,sans-serif;color:var(--ink);}
+  .wrap{max-width:1200px;margin:0 auto;}
+  /* ---------- TOP NAV ---------- */
+  .util .wrap,.nav .wrap{max-width:1340px;}
+  .util{background:var(--nav-util);border-bottom:1px solid var(--line);}
+  .util .wrap{display:flex;align-items:center;justify-content:space-between;padding:9px 26px;font-size:13px;color:var(--ink-soft);}
+  .util .profiles{display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
+  .util .profiles span{white-space:nowrap;}
+  .util .profiles .me{color:var(--ink);font-weight:700;border-bottom:2px solid var(--accent);padding-bottom:2px;}
+  .util .sep{color:var(--line-strong);}
+  .util .right{display:flex;align-items:center;gap:14px;}
+  .util .becas{font-weight:700;color:var(--ink);text-decoration:underline;letter-spacing:.5px;}
+  .acc-btn{background:var(--nav);color:#fff;font-size:12.5px;font-weight:700;padding:6px 16px;border-radius:5px;display:inline-block;white-space:nowrap;}
+  .hotlink{font-weight:700;color:var(--ink);background:var(--accent-soft);border:1px solid var(--line-strong);border-radius:5px;padding:5px 12px;white-space:nowrap;}
+  .nav{background:var(--nav);}
+  .nav .wrap{display:flex;align-items:center;gap:16px;padding:14px 26px;}
+  .logo{display:flex;align-items:center;gap:8px;color:#fff;font-weight:800;letter-spacing:1px;font-size:20px;flex:none;}
+  .nav ul{display:flex;gap:12px;list-style:none;margin:0;padding:0;flex:1;flex-wrap:wrap;align-items:center;}
+  .nav li{color:#d8d8d8;font-size:12.5px;white-space:nowrap;}
+  .inscribete{background:#fff;color:var(--ink);font-weight:700;border-radius:8px;padding:10px 18px;font-size:13.5px;text-align:center;flex:none;}
+  .lupa{width:38px;height:38px;border:2px solid #fff;border-radius:8px;display:flex;align-items:center;justify-content:center;flex:none;}
+  .crumb{padding:14px 26px 4px;color:var(--ink-soft);font-size:12.5px;}
+  /* ---------- BODY ---------- */
+  main{padding:8px 26px 60px;}
+  .sec{position:relative;background:var(--t1);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+  .sec.alt{background:var(--t0);}
+  .sec.star{border-left:5px solid var(--accent);background:#ededed;}
+  .sec h2{margin:0 0 6px;font-size:17px;display:flex;align-items:center;gap:9px;color:var(--ink);flex-wrap:wrap;}
+  .num{display:inline-flex;width:26px;height:26px;border-radius:6px;background:var(--t4);color:var(--ink);align-items:center;justify-content:center;font-size:13px;font-weight:700;flex:none;}
+  .star .num{background:var(--accent);color:#fff;}
+  .st{color:var(--accent);font-size:14px;}
+  .tag{background:#fff;border:1px dashed var(--line-strong);color:var(--ink-soft);font-size:11px;padding:3px 9px;border-radius:4px;font-weight:700;letter-spacing:.3px;}
+  .desc{color:var(--ink-soft);font-size:13px;margin:0 0 12px;}
+  .msg{font-size:13px;color:var(--ink);background:#fff;border-left:3px solid var(--accent);padding:8px 12px;margin:0 0 12px;font-style:italic;}
+  .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+  .ph{background:var(--t2);border:1px dashed var(--line-strong);border-radius:7px;}
+  .banner{height:140px;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);font-size:13px;font-weight:600;text-align:center;padding:0 20px;
+           background:repeating-linear-gradient(45deg,var(--t2),var(--t2) 12px,var(--t1) 12px,var(--t1) 24px);border-radius:8px;margin-bottom:12px;}
+  .card{flex:1;min-width:0;height:96px;}
+  .cta{background:var(--accent);color:#fff;font-weight:700;font-size:13.5px;padding:11px 20px;border-radius:7px;display:inline-block;flex:none;}
+  .cta.ghost{background:#fff;color:var(--ink);border:1.5px solid var(--accent);}
+  .tabs{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap;}
+  .tab{padding:9px 16px;border:1px solid var(--line);border-radius:6px;background:#fff;color:var(--ink-soft);font-size:13px;}
+  .tab.on{background:var(--nav);color:#fff;font-weight:700;border-color:var(--nav);}
+  .panel{border:1px dashed var(--line-strong);border-radius:7px;background:#fff;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);font-size:12.5px;text-align:center;padding:14px;}
+  .grid{display:flex;gap:10px;flex-wrap:nowrap;}
+  .grid.wraps{flex-wrap:wrap;}
+  .cell{flex:1;min-width:0;height:74px;background:var(--t2);border:1px dashed var(--line-strong);border-radius:7px;display:flex;align-items:center;justify-content:center;color:var(--ink);font-size:12px;text-align:center;padding:6px;font-weight:600;}
+  .cell.tall{height:112px;flex-direction:column;gap:5px;}
+  .cell .sub{font-weight:400;font-size:10.5px;color:var(--ink-soft);line-height:1.35;}
+  .contact{color:var(--ink);font-size:13px;line-height:1.7;}
+  /* hub */
+  .searchbar{display:flex;gap:10px;margin-bottom:10px;flex-wrap:wrap;}
+  .searchbar .inp{flex:2;min-width:220px;background:#fff;border:1px solid var(--line-strong);border-radius:7px;padding:11px 14px;color:var(--ink-soft);font-size:13px;display:flex;justify-content:space-between;align-items:center;}
+  .searchbar .sel{flex:1;min-width:160px;background:#fff;border:1px solid var(--line-strong);border-radius:7px;padding:11px 14px;color:var(--ink);font-size:13px;display:flex;justify-content:space-between;align-items:center;font-weight:600;}
+  .svc{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:6px;padding:10px 14px;margin-bottom:7px;}
+  .svc b{flex:1;font-size:13px;}
+  .svc .en{color:var(--ink-soft);font-size:12px;white-space:nowrap;}
+  .svc .me-btn{background:var(--accent);color:#fff;font-size:11.5px;font-weight:700;border-radius:5px;padding:6px 12px;white-space:nowrap;}
+  .legend{max-width:1200px;margin:0 auto;padding:0 26px 50px;color:var(--ink-soft);font-size:12.5px;line-height:1.7;}
+  .legend b{color:var(--ink);}
+  /* ---------- HERRAMIENTAS DE REVISIÓN ---------- */
+  .toolbar{position:fixed;bottom:18px;right:18px;z-index:100;display:flex;gap:8px;align-items:center;
+           background:#fff;border:1px solid var(--line-strong);border-radius:10px;padding:9px 12px;box-shadow:0 4px 18px rgba(0,0,0,.18);}
+  .toolbar button{font:inherit;font-size:12.5px;font-weight:700;border:1px solid var(--line-strong);background:var(--t1);color:var(--ink);
+                  border-radius:6px;padding:7px 12px;cursor:pointer;white-space:nowrap;}
+  .toolbar button:hover{background:var(--accent-soft);}
+  .toolbar button.on{background:var(--accent);color:#fff;border-color:var(--accent);}
+  .toolbar .hint{font-size:11px;color:var(--ink-soft);max-width:150px;line-height:1.3;}
+  .sec-tools{position:absolute;top:10px;right:10px;display:flex;gap:5px;z-index:5;}
+  .sec-tools button{font:inherit;font-size:12px;font-weight:700;width:28px;height:28px;border:1px solid var(--line-strong);
+                    background:#fff;color:var(--ink);border-radius:6px;cursor:pointer;padding:0;line-height:1;}
+  .sec-tools button:hover{background:var(--accent-soft);}
+  .sec-tools .c-btn{width:auto;padding:0 8px;}
+  .sec-tools .c-btn.has{background:var(--accent);color:#fff;border-color:var(--accent);}
+  body.editing .sec-body{outline:1.5px dashed var(--accent);outline-offset:6px;border-radius:6px;}
+  body.editing .sec-body:focus-within{outline-style:solid;background:rgba(255,255,255,.4);}
+  .sec-comments{display:none;margin-top:14px;border-top:1px dashed var(--line-strong);padding-top:12px;}
+  .sec-comments.open{display:block;}
+  .sec-comments .c-item{background:#fff;border:1px solid var(--line);border-radius:7px;padding:8px 10px;margin-bottom:7px;
+                        font-size:12.5px;display:flex;gap:10px;align-items:flex-start;justify-content:space-between;}
+  .sec-comments .c-meta{color:var(--ink-soft);font-size:11px;display:block;margin-top:3px;}
+  .sec-comments .c-del{border:none;background:none;color:var(--ink-soft);cursor:pointer;font-size:13px;padding:0 2px;flex:none;}
+  .sec-comments .c-del:hover{color:#a33;}
+  .sec-comments form{display:flex;gap:7px;flex-wrap:wrap;}
+  .sec-comments input,.sec-comments textarea{font:inherit;font-size:12.5px;border:1px solid var(--line-strong);border-radius:6px;padding:7px 9px;}
+  .sec-comments input{width:140px;}
+  .sec-comments textarea{flex:1;min-width:220px;resize:vertical;min-height:36px;}
+  .sec-comments form button{font:inherit;font-size:12.5px;font-weight:700;background:var(--accent);color:#fff;border:none;border-radius:6px;padding:7px 14px;cursor:pointer;}
+  .toast{position:fixed;bottom:78px;right:18px;z-index:101;background:var(--nav);color:#fff;font-size:12.5px;border-radius:7px;padding:9px 14px;
+         opacity:0;transition:opacity .25s;pointer-events:none;}
+  .toast.show{opacity:1;}
+  @media print{.toolbar,.sec-tools,.toast{display:none!important;}}
+</style>
+</head>
+<body>
+
+  <!-- ===== UTILITY BAR ===== -->
+  <div class="util">
+    <div class="wrap">
+      <div class="profiles">
+        <span>Postulante</span><span class="sep">|</span>
+        <span>Pregrado · Posgrado</span><span class="sep">|</span>
+        <span>Egresado</span><span class="sep">|</span>
+        <span class="me">Empresa</span><span class="sep">|</span>
+        <span>Estudiante</span><span class="sep">|</span>
+        <span>Profesor</span><span class="sep">|</span>
+        <span>Administrativo</span><span class="sep">|</span>
+        <span>Prensa</span>
+      </div>
+      <div class="right">
+        <span class="becas">BECAS</span>
+        <span class="hotlink">Intranet y correo</span>
+        <span class="hotlink">PAIDEIA</span>
+        <span class="acc-btn">Accesos ▾</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MAIN NAV ===== -->
+  <div class="nav">
+    <div class="wrap">
+      <div class="logo">
+        <svg width="36" height="36" viewBox="0 0 40 40" aria-hidden="true">
+          <circle cx="20" cy="20" r="18" fill="none" stroke="#fff" stroke-width="2"/>
+          <path d="M9 24 q11 6 22 0 l-3 5 h-16 z" fill="#fff"/>
+          <path d="M20 8 l7 13 h-14 z" fill="#fff"/>
+        </svg>
+        PUCP
+      </div>
+      <ul>
+        <li>Conoce la PUCP</li>
+        <li>Carreras y Programas</li>
+        <li>Admisión</li>
+        <li>Internacionalización</li>
+        <li>Empleabilidad</li>
+        <li>Investigación que transforma</li>
+        <li>Vida Universitaria</li>
+        <li>Noticias y Eventos</li>
+      </ul>
+      <div class="inscribete">Postula aquí</div>
+      <div class="lupa">
+        <svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true">
+          <circle cx="8" cy="8" r="6" fill="none" stroke="#fff" stroke-width="2"/>
+          <line x1="12.5" y1="12.5" x2="18.5" y2="18.5" stroke="#fff" stroke-width="2"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="crumb">Inicio › <b>Empresas</b></div>
+  </div>
+
+  <!-- ===== BODY ===== -->
+  <main class="wrap" id="zones">
+
+    <!-- 1 -->
+    <section class="sec star" id="z-banner" data-title="Banner principal">
+      <div class="sec-body">
+      <h2><span class="num">1</span> Banner principal — propuesta de valor + CTA humano <span class="st">★</span></h2>
+      <p class="desc">Para responsables de innovación, transformación digital, RR.HH., sostenibilidad, I+D y capacitación — de corporaciones a startups. La promesa: un solo punto de entrada a todas las capacidades PUCP.</p>
+      <div class="banner">"El conocimiento de la PUCP, al servicio de tu empresa" — [ foto real: equipos universidad–empresa trabajando juntos ]</div>
+      <div class="row"><span class="cta">Conversemos sobre tu proyecto ▸</span><span class="contact" style="color:var(--ink-soft);font-size:12px;">→ CTA humano: lleva a la zona "Hablemos" (contacto nombrado)</span></div>
+      </div>
+    </section>
+
+    <!-- 2 ★ el corazón -->
+    <section class="sec star" id="z-hub" data-title="¿Qué buscas resolver? — hub por intención">
+      <div class="sec-body">
+      <h2><span class="num">2</span> ¿Qué buscas resolver? — hub por intención <span class="st">★ el corazón</span> <span class="tag">2 niveles</span> <span class="tag">categorías finales validadas (doc Ligia / Lorena)</span></h2>
+      <p class="desc"><b>Nivel 1 — las 6 intenciones:</b> la oferta hacia empresas está fragmentada en múltiples unidades; este hub la organiza según la necesidad de la empresa, no según el organigrama. Cada intención deriva al sitio oficial de las unidades.</p>
+      <div class="grid wraps" style="margin-bottom:14px;">
+        <div class="cell tall" style="min-width:31%;">Innovar<span class="sub">desarrollo de soluciones, tecnologías y nuevos negocios · Portafolio de Tecnologías (VRI) · Tecnología con Impacto · CIDE · Fabricum · VEO 3D</span></div>
+        <div class="cell tall" style="min-width:31%;">Resolver desafíos<span class="sub">consultoría, servicios especializados y soporte técnico · InnovaPUCP · ICP · CIAC · CMEC · servicios tecnológicos</span></div>
+        <div class="cell tall" style="min-width:31%;">Investigar<span class="sub">investigación aplicada y generación de conocimiento · centros e institutos · grupos de investigación · convocatorias empresa–universidad</span></div>
+        <div class="cell tall" style="min-width:31%;">Acceder a tecnologías e infraestructura<span class="sub">laboratorios, equipamiento y tecnologías disponibles · licenciamiento · Portafolio de Tecnologías</span></div>
+        <div class="cell tall" style="min-width:31%;">Desarrollar talento<span class="sub">capacitación, formación ejecutiva y certificación · Educación Continua · Centrum · Instituto para la Calidad</span></div>
+        <div class="cell tall" style="min-width:31%;">Conecta con la PUCP<span class="sub">proyectos conjuntos, convocatorias, acceso a expertos y vinculación institucional</span></div>
+      </div>
+      <p class="desc"><b>Nivel 2 — buscador de servicios:</b> buscador + filtro por intención sobre el catálogo de servicios de todas las unidades (fuente: sheet de servicios por unidad).</p>
+      <div class="searchbar">
+        <span class="inp">Buscar un servicio… <span>🔍</span></span>
+        <span class="sel">Intención: Todas <span>▾</span></span>
+      </div>
+      <div class="tabs">
+        <span class="tab on">Todos</span>
+        <span class="tab">Innovar</span>
+        <span class="tab">Resolver desafíos</span>
+        <span class="tab">Investigar</span>
+        <span class="tab">Tecnologías e infraestructura</span>
+        <span class="tab">Desarrollar talento</span>
+        <span class="tab">Conecta con la PUCP</span>
+      </div>
+      <div class="svc"><b>Análisis</b><span class="en">En: Acceder a tecnologías e infraestructura</span><span class="me-btn">Me interesa</span></div>
+      <div class="svc"><b>Ensayos para experimentos</b><span class="en">En: Acceder a tecnologías e infraestructura</span><span class="me-btn">Me interesa</span></div>
+      <div class="svc"><b>Asesoría en normativa SANT</b><span class="en">En: Resolver desafíos</span><span class="me-btn">Me interesa</span></div>
+      <div class="svc"><b>Acreditaciones ISO/IEC 17025</b><span class="en">En: Resolver desafíos · Calidad</span><span class="me-btn">Me interesa</span></div>
+      <div class="svc"><b>Caracterización de procesos y operaciones</b><span class="en">En: Resolver desafíos</span><span class="me-btn">Me interesa</span></div>
+      <div class="svc"><b>Licenciamiento de tecnología</b><span class="en">En: Innovar</span><span class="me-btn">Me interesa</span></div>
+      <div class="svc"><b>Programa de capacitación in-house</b><span class="en">En: Desarrollar talento</span><span class="me-btn">Me interesa</span></div>
+      <p class="desc" style="margin:10px 0 0;">"Me interesa" alimenta el formulario de contacto con el servicio preseleccionado. <span class="tag">⚠ catálogo completo por consolidar — sheet de servicios por unidad</span></p>
+      </div>
+    </section>
+
+    <!-- 3 -->
+    <section class="sec alt" id="z-modalidades" data-title="Cómo trabajamos contigo">
+      <div class="sec-body">
+      <h2><span class="num">3</span> Cómo trabajamos contigo — modalidades + proceso <span class="tag">incluye proyectos I+D+i · Ley 30309</span></h2>
+      <p class="desc">El proceso simple en pasos: cuéntanos tu necesidad → te conectamos con la unidad o el investigador adecuado → definimos juntos la modalidad de trabajo.</p>
+      <div class="grid">
+        <div class="cell tall">Consultoría y servicios<span class="sub">contrato directo con la unidad especializada</span></div>
+        <div class="cell tall">Proyectos I+D+i<span class="sub">desarrollo conjunto universidad–empresa</span></div>
+        <div class="cell tall">Ley 30309<span class="sub">beneficio tributario: te conectamos con un investigador y postulan juntos</span></div>
+        <div class="cell tall">Licenciamiento<span class="sub">del prototipo al mercado: patentes y tecnología</span></div>
+      </div>
+      </div>
+    </section>
+
+    <!-- 4 -->
+    <section class="sec" id="z-instalaciones" data-title="Nuestras instalaciones y equipos">
+      <div class="sec-body">
+      <h2><span class="num">4</span> Nuestras instalaciones y equipos <span class="tag">deriva: catálogo de laboratorios · ICP · CERMN · INTE</span></h2>
+      <p class="desc">Laboratorios especializados + espacios e instalaciones de coworking. Equipamiento científico al servicio de la industria.</p>
+      <div class="row"><span class="ph card"></span><span class="ph card"></span><span class="ph card"></span></div>
+      <div class="row" style="margin-top:10px;"><span class="cta ghost">Explora el catálogo de laboratorios ▸</span></div>
+      </div>
+    </section>
+
+    <!-- 5 -->
+    <section class="sec alt" id="z-formacion" data-title="Formación y capacitaciones">
+      <div class="sec-body">
+      <h2><span class="num">5</span> Formación y capacitaciones <span class="tag">deriva: Educación Continua · Centrum · Posgrado · Instituto para la Calidad</span></h2>
+      <p class="desc">Cursos in-house, formación ejecutiva, certificaciones y programas corporativos a la medida de tu equipo.</p>
+      <div class="grid">
+        <div class="cell">Programas corporativos in-house</div>
+        <div class="cell">Formación ejecutiva</div>
+        <div class="cell">Certificaciones</div>
+        <div class="cell">Maestrías y doctorados</div>
+      </div>
+      </div>
+    </section>
+
+    <!-- 6 -->
+    <section class="sec" id="z-fondos" data-title="Fondos concursables">
+      <div class="sec-body">
+      <h2><span class="num">6</span> Fondos concursables <span class="tag">contenido por definir con VRI</span></h2>
+      <p class="desc">Convocatorias y fondos para proyectos conjuntos universidad–empresa: qué hay abierto, plazos y cómo postular acompañados.</p>
+      <div class="panel" style="height:80px;">[ Listado de convocatorias vigentes — fecha de cierre · monto · unidad responsable ]</div>
+      </div>
+    </section>
+
+    <!-- 7 -->
+    <section class="sec alt" id="z-startups" data-title="Impulso a las startups">
+      <div class="sec-body">
+      <h2><span class="num">7</span> Impulso a las startups <span class="tag">deriva: CIDE</span></h2>
+      <p class="desc">Para emprendedores y empresas jóvenes: valida tu idea de negocio · incubación de empresas · clínica empresarial.</p>
+      <div class="grid">
+        <div class="cell tall">Valida tu idea de negocio<span class="sub">acompañamiento temprano</span></div>
+        <div class="cell tall">Incubación de empresas<span class="sub">programa CIDE</span></div>
+        <div class="cell tall">Clínica empresarial<span class="sub">diagnóstico y mejora para pymes</span></div>
+      </div>
+      </div>
+    </section>
+
+    <!-- 8 apartado de talento (comentario Ligia) -->
+    <section class="sec" id="z-talento" data-title="¿Buscas talento PUCP?">
+      <div class="sec-body">
+      <h2><span class="num">8</span> ¿Buscas talento PUCP? <span class="tag">apartado propio — acuerdo: talento/empleo no va en el hub (Ligia)</span></h2>
+      <p class="desc">Bolsa de trabajo para empresas: publica convocatorias y accede a egresados destacados e investigadores. Deriva a Empleabilidad / Sistema de Oportunidades Laborales y facultades.</p>
+      <div class="grid">
+        <div class="cell">Publica tu convocatoria</div>
+        <div class="cell">Egresados destacados</div>
+        <div class="cell">Investigadores</div>
+      </div>
+      <div class="row" style="margin-top:10px;"><span class="cta ghost">Recluta en la PUCP ▸</span><span class="contact" style="color:var(--ink-soft);font-size:12px;">→ Sistema de Oportunidades Laborales (Symplicity) · Plan de Vinculación con Empleadores · Feria de Empleabilidad</span></div>
+      </div>
+    </section>
+
+    <!-- 9 -->
+    <section class="sec alt" id="z-casos" data-title="Casos de éxito y empresas aliadas">
+      <div class="sec-body">
+      <h2><span class="num">9</span> Casos de éxito y empresas aliadas <span class="tag">noticias · contenido relativamente estable (gobernanza fase 1)</span></h2>
+      <p class="desc">Proyectos reales universidad–empresa con resultados concretos + logos de empresas aliadas. Da prueba social institucional sin requerir actualización frecuente.</p>
+      <div class="row"><span class="ph card"></span><span class="ph card"></span><span class="ph card"></span></div>
+      <div class="panel" style="height:56px;margin-top:10px;">[ Franja de logos — empresas aliadas ]</div>
+      </div>
+    </section>
+
+    <!-- 10 -->
+    <section class="sec star" id="z-hablemos" data-title="Hablemos — contacto humano nombrado">
+      <div class="sec-body">
+      <h2><span class="num">10</span> Hablemos — contacto humano nombrado <span class="st">★</span></h2>
+      <p class="msg">No un formulario frío: una persona con nombre, cara y cargo que acompaña a la empresa a encontrar la puerta correcta.</p>
+      <div class="row">
+        <div class="cell" style="flex:none;width:110px;height:110px;border-radius:50%;">[ foto ]</div>
+        <div class="cell" style="flex:1;height:auto;padding:14px;font-weight:400;text-align:left;justify-content:flex-start;">
+          <span class="contact">[ Nombre y apellido ] — [ cargo / unidad de vinculación ]<br>correo directo · teléfono · agenda una reunión<br><i>+ formulario corto: empresa, intención (las 6 del hub), mensaje</i></span>
+        </div>
+      </div>
+      <div class="row" style="margin-top:12px;"><span class="cta">Agenda una reunión ▸</span><span class="cta ghost">Escríbenos</span></div>
+      </div>
+    </section>
+
+    <!-- 11 footer -->
+    <section class="sec" id="z-footer" data-title="Footer">
+      <div class="sec-body">
+      <h2><span class="num">11</span> Footer</h2>
+      <div class="row" style="align-items:stretch;">
+        <div class="cell" style="justify-content:flex-start;text-align:left;padding:14px;font-weight:400;">
+          <span class="contact">Contacto humano · mapa del sitio · redes · enlaces secundarios</span>
+        </div>
+      </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="legend">
+    <b>Wireframe de baja fidelidad — Empresas (Fase 1)</b> · escala de grises · ★ = piezas centrales (banner, hub por intención, contacto humano) · etiquetas punteadas = derivación o estado.<br>
+    <b>Enfoque (doc Ligia — gobernanza Fase 1):</b> la landing funciona como <b>hub de descubrimiento institucional</b> — concentra capacidades y deriva a los sitios oficiales de cada unidad; contenidos relativamente estables para minimizar mantenimiento. La articulación del ecosistema (Fase 2) vendrá después, con el VRI como articulador natural.<br>
+    <b>El corazón:</b> hub por intención en 2 niveles — nivel 1: las 6 intenciones finales (Innovar · Resolver desafíos · Investigar · Acceder a tecnologías e infraestructura · Desarrollar talento · Conecta con la PUCP); nivel 2: buscador de servicios con filtro y "Me interesa".<br>
+    <b>Decisiones aplicadas de los comentarios:</b> las pestañas del nivel 2 usan las categorías finales (Lorena) en lugar de las preliminares · "Buscar talento" sale del hub y tiene su apartado propio (Ligia) que deriva a Empleabilidad · Ley 30309 vive dentro de "Cómo trabajamos contigo".<br>
+    <b>Pendientes:</b> catálogo completo de servicios (sheet por unidad) · fondos concursables por definir con VRI · nombre del contacto humano.<br>
+    <b>Modo revisión:</b> con los botones de abajo a la derecha puedes editar textos, reordenar zonas (↑↓) y dejar comentarios por sección (💬). Todo se guarda en este navegador.
+  </div>
+
+  <!-- ===== TOOLBAR DE REVISIÓN ===== -->
+  <div class="toolbar">
+    <button id="btn-edit" type="button">✏️ Editar textos</button>
+    <button id="btn-export" type="button">📋 Copiar comentarios</button>
+    <button id="btn-reset" type="button">↺ Restablecer</button>
+    <span class="hint">Cambios y comentarios se guardan en este navegador</span>
+  </div>
+  <div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  var KEY = 'wf-empresas-v1';
+  var main = document.getElementById('zones');
+  var toast = document.getElementById('toast');
+  var toastTimer = null;
+
+  function notify(msg){
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toast.classList.remove('show'); }, 2200);
+  }
+
+  function load(){
+    try{ return JSON.parse(localStorage.getItem(KEY)) || {}; }catch(e){ return {}; }
+  }
+  function save(state){
+    localStorage.setItem(KEY, JSON.stringify(state));
+  }
+  var state = load();           // { order:[], content:{id:html}, comments:{id:[{text,author,ts}]} }
+  state.content = state.content || {};
+  state.comments = state.comments || {};
+
+  /* ----- restaurar orden y textos guardados ----- */
+  if (Array.isArray(state.order)){
+    state.order.forEach(function(id){
+      var sec = document.getElementById(id);
+      if (sec) main.appendChild(sec);
+    });
+  }
+  Object.keys(state.content).forEach(function(id){
+    var sec = document.getElementById(id);
+    if (sec) sec.querySelector('.sec-body').innerHTML = state.content[id];
+  });
+
+  function renumber(){
+    var n = 1;
+    main.querySelectorAll('section .num').forEach(function(el){ el.textContent = n++; });
+  }
+  function saveOrder(){
+    state.order = Array.prototype.map.call(main.querySelectorAll('section'), function(s){ return s.id; });
+    save(state);
+  }
+  function saveContent(sec){
+    state.content[sec.id] = sec.querySelector('.sec-body').innerHTML;
+    save(state);
+  }
+  function esc(s){
+    var d = document.createElement('div');
+    d.textContent = s;
+    return d.innerHTML;
+  }
+
+  /* ----- controles por sección ----- */
+  main.querySelectorAll('section').forEach(function(sec){
+    var tools = document.createElement('div');
+    tools.className = 'sec-tools';
+    tools.setAttribute('contenteditable','false');
+    tools.innerHTML =
+      '<button type="button" class="up" title="Subir sección">↑</button>' +
+      '<button type="button" class="down" title="Bajar sección">↓</button>' +
+      '<button type="button" class="c-btn" title="Comentarios de esta sección">💬 <span class="c-count">0</span></button>';
+    sec.appendChild(tools);
+
+    var panel = document.createElement('div');
+    panel.className = 'sec-comments';
+    panel.setAttribute('contenteditable','false');
+    panel.innerHTML =
+      '<div class="c-list"></div>' +
+      '<form><input type="text" class="c-author" placeholder="Autor (opcional)">' +
+      '<textarea class="c-text" placeholder="Escribe un comentario sobre esta sección…" required></textarea>' +
+      '<button type="submit">Agregar</button></form>';
+    sec.appendChild(panel);
+
+    tools.querySelector('.up').addEventListener('click', function(){
+      var prev = sec.previousElementSibling;
+      if (prev){ main.insertBefore(sec, prev); renumber(); saveOrder(); }
+    });
+    tools.querySelector('.down').addEventListener('click', function(){
+      var next = sec.nextElementSibling;
+      if (next){ main.insertBefore(next, sec); renumber(); saveOrder(); }
+    });
+    tools.querySelector('.c-btn').addEventListener('click', function(){
+      panel.classList.toggle('open');
+    });
+
+    panel.querySelector('form').addEventListener('submit', function(ev){
+      ev.preventDefault();
+      var txt = panel.querySelector('.c-text').value.trim();
+      if (!txt) return;
+      var author = panel.querySelector('.c-author').value.trim();
+      (state.comments[sec.id] = state.comments[sec.id] || []).push({ text:txt, author:author, ts:Date.now() });
+      save(state);
+      panel.querySelector('.c-text').value = '';
+      renderComments(sec);
+      notify('Comentario guardado');
+    });
+
+    sec.querySelector('.sec-body').addEventListener('input', function(){
+      clearTimeout(sec._t);
+      sec._t = setTimeout(function(){ saveContent(sec); }, 400);
+    });
+
+    renderComments(sec);
+  });
+
+  function renderComments(sec){
+    var list = sec.querySelector('.c-list');
+    var items = state.comments[sec.id] || [];
+    sec.querySelector('.c-count').textContent = items.length;
+    sec.querySelector('.c-btn').classList.toggle('has', items.length > 0);
+    list.innerHTML = items.map(function(c, i){
+      var meta = (c.author ? esc(c.author) + ' · ' : '') + new Date(c.ts).toLocaleString('es-PE');
+      return '<div class="c-item"><div>' + esc(c.text) + '<span class="c-meta">' + meta + '</span></div>' +
+             '<button type="button" class="c-del" data-i="' + i + '" title="Eliminar">✕</button></div>';
+    }).join('');
+    list.querySelectorAll('.c-del').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        items.splice(parseInt(btn.dataset.i, 10), 1);
+        save(state);
+        renderComments(sec);
+      });
+    });
+  }
+
+  /* ----- modo edición de textos ----- */
+  var btnEdit = document.getElementById('btn-edit');
+  btnEdit.addEventListener('click', function(){
+    var on = document.body.classList.toggle('editing');
+    btnEdit.classList.toggle('on', on);
+    btnEdit.textContent = on ? '✔ Terminar edición' : '✏️ Editar textos';
+    main.querySelectorAll('.sec-body').forEach(function(b){
+      b.contentEditable = on ? 'true' : 'false';
+    });
+    notify(on ? 'Haz clic sobre cualquier texto para editarlo' : 'Edición guardada');
+  });
+
+  /* ----- exportar comentarios ----- */
+  document.getElementById('btn-export').addEventListener('click', function(){
+    var out = ['Comentarios — Wireframe Empresas (' + new Date().toLocaleDateString('es-PE') + ')', ''];
+    var total = 0;
+    main.querySelectorAll('section').forEach(function(sec, idx){
+      var items = state.comments[sec.id] || [];
+      if (!items.length) return;
+      out.push((idx + 1) + '. ' + sec.dataset.title);
+      items.forEach(function(c){
+        total++;
+        out.push('   - ' + (c.author ? c.author + ': ' : '') + c.text + ' [' + new Date(c.ts).toLocaleString('es-PE') + ']');
+      });
+      out.push('');
+    });
+    if (!total){ notify('No hay comentarios para copiar'); return; }
+    var text = out.join('\n');
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){ notify(total + ' comentario(s) copiado(s) al portapapeles'); });
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      ta.remove();
+      notify(total + ' comentario(s) copiado(s) al portapapeles');
+    }
+  });
+
+  /* ----- restablecer ----- */
+  document.getElementById('btn-reset').addEventListener('click', function(){
+    if (confirm('¿Restablecer el wireframe? Se perderán los textos editados, el orden y los comentarios guardados en este navegador.')){
+      localStorage.removeItem(KEY);
+      location.reload();
+    }
+  });
+
+  renumber();
+})();
+</script>
+
+</body>
+</html>
