@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wireframe — Egresados · PUCP</title>
+<style>
+  :root{
+    --page:#ffffff;
+    --t0:#fafafa;
+    --t1:#f1f1f1;
+    --t2:#e6e6e6;
+    --t3:#d6d6d6;
+    --t4:#c2c2c2;
+    --line:#cfcfcf;
+    --line-strong:#a8a8a8;
+    --ink:#2b2b2b;
+    --ink-soft:#6c6c6c;
+    --nav:#3a3a3a;
+    --nav-util:#efefef;
+    --accent:#555555;
+    --accent-soft:#dcdcdc;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--page);font-family:'Segoe UI',Arial,sans-serif;color:var(--ink);}
+  .wrap{max-width:1200px;margin:0 auto;}
+  /* ---------- TOP NAV ---------- */
+  .util .wrap,.nav .wrap{max-width:1340px;}
+  .util{background:var(--nav-util);border-bottom:1px solid var(--line);}
+  .util .wrap{display:flex;align-items:center;justify-content:space-between;padding:9px 26px;font-size:13px;color:var(--ink-soft);}
+  .util .profiles{display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
+  .util .profiles span{white-space:nowrap;}
+  .util .profiles .me{color:var(--ink);font-weight:700;border-bottom:2px solid var(--accent);padding-bottom:2px;}
+  .util .sep{color:var(--line-strong);}
+  .util .right{display:flex;align-items:center;gap:14px;}
+  .util .becas{font-weight:700;color:var(--ink);text-decoration:underline;letter-spacing:.5px;}
+  .acc-btn{background:var(--nav);color:#fff;font-size:12.5px;font-weight:700;padding:6px 16px;border-radius:5px;display:inline-block;white-space:nowrap;}
+  .hotlink{font-weight:700;color:var(--ink);background:var(--accent-soft);border:1px solid var(--line-strong);border-radius:5px;padding:5px 12px;white-space:nowrap;}
+  .nav{background:var(--nav);}
+  .nav .wrap{display:flex;align-items:center;gap:16px;padding:14px 26px;}
+  .logo{display:flex;align-items:center;gap:8px;color:#fff;font-weight:800;letter-spacing:1px;font-size:20px;flex:none;}
+  .nav ul{display:flex;gap:12px;list-style:none;margin:0;padding:0;flex:1;flex-wrap:wrap;align-items:center;}
+  .nav li{color:#d8d8d8;font-size:12.5px;white-space:nowrap;}
+  .inscribete{background:#fff;color:var(--ink);font-weight:700;border-radius:8px;padding:10px 18px;font-size:13.5px;text-align:center;flex:none;}
+  .lupa{width:38px;height:38px;border:2px solid #fff;border-radius:8px;display:flex;align-items:center;justify-content:center;flex:none;}
+  .crumb{padding:14px 26px 4px;color:var(--ink-soft);font-size:12.5px;}
+  /* ---------- BODY ---------- */
+  main{padding:8px 26px 60px;}
+  .sec{position:relative;background:var(--t1);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+  .sec.alt{background:var(--t0);}
+  .sec.star{border-left:5px solid var(--accent);background:#ededed;}
+  .sec.opc{border-style:dashed;background:#fff;}
+  .sec h2{margin:0 0 6px;font-size:17px;display:flex;align-items:center;gap:9px;color:var(--ink);flex-wrap:wrap;}
+  .num{display:inline-flex;width:26px;height:26px;border-radius:6px;background:var(--t4);color:var(--ink);align-items:center;justify-content:center;font-size:13px;font-weight:700;flex:none;}
+  .star .num{background:var(--accent);color:#fff;}
+  .st{color:var(--accent);font-size:14px;}
+  .tag{background:#fff;border:1px dashed var(--line-strong);color:var(--ink-soft);font-size:11px;padding:3px 9px;border-radius:4px;font-weight:700;letter-spacing:.3px;}
+  .desc{color:var(--ink-soft);font-size:13px;margin:0 0 12px;}
+  .msg{font-size:13px;color:var(--ink);background:#fff;border-left:3px solid var(--accent);padding:8px 12px;margin:0 0 12px;font-style:italic;}
+  .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+  .ph{background:var(--t2);border:1px dashed var(--line-strong);border-radius:7px;}
+  .banner{height:140px;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);font-size:13px;font-weight:600;text-align:center;padding:0 20px;
+           background:repeating-linear-gradient(45deg,var(--t2),var(--t2) 12px,var(--t1) 12px,var(--t1) 24px);border-radius:8px;margin-bottom:12px;}
+  .ticker{display:flex;align-items:center;gap:12px;background:#fff;border:1px dashed var(--line-strong);border-radius:7px;padding:10px 14px;font-size:12.5px;color:var(--ink);}
+  .ticker .arr{color:var(--ink-soft);font-weight:700;}
+  .card{flex:1;min-width:0;height:96px;}
+  .card.sm{height:80px;}
+  .bar{height:16px;background:var(--t3);border-radius:4px;}
+  .cta{background:var(--accent);color:#fff;font-weight:700;font-size:13.5px;padding:11px 20px;border-radius:7px;display:inline-block;flex:none;}
+  .cta.ghost{background:#fff;color:var(--ink);border:1.5px solid var(--accent);}
+  .tabs{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap;}
+  .tab{padding:9px 16px;border:1px solid var(--line);border-radius:6px 6px 0 0;background:#fff;color:var(--ink-soft);font-size:13px;}
+  .tab.on{background:var(--accent-soft);color:var(--ink);font-weight:700;border-bottom:2px solid var(--accent);}
+  .panel{border:1px dashed var(--line-strong);border-radius:7px;background:#fff;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);font-size:12.5px;text-align:center;padding:14px;}
+  .grid{display:flex;gap:10px;flex-wrap:nowrap;}
+  .cell{flex:1;min-width:0;height:74px;background:var(--t2);border:1px dashed var(--line-strong);border-radius:7px;display:flex;align-items:center;justify-content:center;color:var(--ink);font-size:12px;text-align:center;padding:6px;font-weight:600;}
+  .cell.tall{height:108px;flex-direction:column;gap:5px;}
+  .cell .sub{font-weight:400;font-size:11px;color:var(--ink-soft);}
+  .kpi{font-size:20px;font-weight:800;color:var(--ink);}
+  .contact{color:var(--ink);font-size:13px;line-height:1.7;}
+  .legend{max-width:1200px;margin:0 auto;padding:0 26px 50px;color:var(--ink-soft);font-size:12.5px;line-height:1.7;}
+  .legend b{color:var(--ink);}
+  /* ---------- HERRAMIENTAS DE REVISIÓN ---------- */
+  .toolbar{position:fixed;bottom:18px;right:18px;z-index:100;display:flex;gap:8px;align-items:center;
+           background:#fff;border:1px solid var(--line-strong);border-radius:10px;padding:9px 12px;box-shadow:0 4px 18px rgba(0,0,0,.18);}
+  .toolbar button{font:inherit;font-size:12.5px;font-weight:700;border:1px solid var(--line-strong);background:var(--t1);color:var(--ink);
+                  border-radius:6px;padding:7px 12px;cursor:pointer;white-space:nowrap;}
+  .toolbar button:hover{background:var(--accent-soft);}
+  .toolbar button.on{background:var(--accent);color:#fff;border-color:var(--accent);}
+  .toolbar .hint{font-size:11px;color:var(--ink-soft);max-width:150px;line-height:1.3;}
+  .sec-tools{position:absolute;top:10px;right:10px;display:flex;gap:5px;z-index:5;}
+  .sec-tools button{font:inherit;font-size:12px;font-weight:700;width:28px;height:28px;border:1px solid var(--line-strong);
+                    background:#fff;color:var(--ink);border-radius:6px;cursor:pointer;padding:0;line-height:1;}
+  .sec-tools button:hover{background:var(--accent-soft);}
+  .sec-tools .c-btn{width:auto;padding:0 8px;}
+  .sec-tools .c-btn.has{background:var(--accent);color:#fff;border-color:var(--accent);}
+  body.editing .sec-body{outline:1.5px dashed var(--accent);outline-offset:6px;border-radius:6px;}
+  body.editing .sec-body:focus-within{outline-style:solid;background:rgba(255,255,255,.4);}
+  .sec-comments{display:none;margin-top:14px;border-top:1px dashed var(--line-strong);padding-top:12px;}
+  .sec-comments.open{display:block;}
+  .sec-comments .c-item{background:#fff;border:1px solid var(--line);border-radius:7px;padding:8px 10px;margin-bottom:7px;
+                        font-size:12.5px;display:flex;gap:10px;align-items:flex-start;justify-content:space-between;}
+  .sec-comments .c-meta{color:var(--ink-soft);font-size:11px;display:block;margin-top:3px;}
+  .sec-comments .c-del{border:none;background:none;color:var(--ink-soft);cursor:pointer;font-size:13px;padding:0 2px;flex:none;}
+  .sec-comments .c-del:hover{color:#a33;}
+  .sec-comments form{display:flex;gap:7px;flex-wrap:wrap;}
+  .sec-comments input,.sec-comments textarea{font:inherit;font-size:12.5px;border:1px solid var(--line-strong);border-radius:6px;padding:7px 9px;}
+  .sec-comments input{width:140px;}
+  .sec-comments textarea{flex:1;min-width:220px;resize:vertical;min-height:36px;}
+  .sec-comments form button{font:inherit;font-size:12.5px;font-weight:700;background:var(--accent);color:#fff;border:none;border-radius:6px;padding:7px 14px;cursor:pointer;}
+  .toast{position:fixed;bottom:78px;right:18px;z-index:101;background:var(--nav);color:#fff;font-size:12.5px;border-radius:7px;padding:9px 14px;
+         opacity:0;transition:opacity .25s;pointer-events:none;}
+  .toast.show{opacity:1;}
+  @media print{.toolbar,.sec-tools,.toast{display:none!important;}}
+</style>
+</head>
+<body>
+
+  <!-- ===== UTILITY BAR ===== -->
+  <div class="util">
+    <div class="wrap">
+      <div class="profiles">
+        <span>Postulante</span><span class="sep">|</span>
+        <span>Pregrado · Posgrado</span><span class="sep">|</span>
+        <span class="me">Egresado</span><span class="sep">|</span>
+        <span>Empresa</span><span class="sep">|</span>
+        <span>Estudiante</span><span class="sep">|</span>
+        <span>Profesor</span><span class="sep">|</span>
+        <span>Administrativo</span><span class="sep">|</span>
+        <span>Prensa</span>
+      </div>
+      <div class="right">
+        <span class="becas">BECAS</span>
+        <span class="hotlink">Intranet y correo</span>
+        <span class="hotlink">PAIDEIA</span>
+        <span class="acc-btn">Accesos ▾</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MAIN NAV ===== -->
+  <div class="nav">
+    <div class="wrap">
+      <div class="logo">
+        <svg width="36" height="36" viewBox="0 0 40 40" aria-hidden="true">
+          <circle cx="20" cy="20" r="18" fill="none" stroke="#fff" stroke-width="2"/>
+          <path d="M9 24 q11 6 22 0 l-3 5 h-16 z" fill="#fff"/>
+          <path d="M20 8 l7 13 h-14 z" fill="#fff"/>
+        </svg>
+        PUCP
+      </div>
+      <ul>
+        <li>Conoce la PUCP</li>
+        <li>Carreras y Programas</li>
+        <li>Admisión</li>
+        <li>Internacionalización</li>
+        <li>Empleabilidad</li>
+        <li>Investigación que transforma</li>
+        <li>Vida Universitaria</li>
+        <li>Noticias y Eventos</li>
+      </ul>
+      <div class="inscribete">Postula aquí</div>
+      <div class="lupa">
+        <svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true">
+          <circle cx="8" cy="8" r="6" fill="none" stroke="#fff" stroke-width="2"/>
+          <line x1="12.5" y1="12.5" x2="18.5" y2="18.5" stroke="#fff" stroke-width="2"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="crumb">Inicio › <b>Egresados</b></div>
+  </div>
+
+  <!-- ===== BODY ===== -->
+  <main class="wrap" id="zones">
+
+    <!-- 0 -->
+    <section class="sec alt" id="z-novedades" data-title="Banner de novedades (rotativo)">
+      <div class="sec-body">
+      <h2><span class="num">0</span> Banner de novedades — rotativo <span class="tag">anuncios temporales (Ligia)</span></h2>
+      <p class="desc">Franja delgada sobre el hero para campañas con fecha: encuestas, convocatorias, eventos. Rota automáticamente.</p>
+      <div class="ticker"><span class="arr">‹</span><span style="flex:1;text-align:center;">📢 Encuesta de egresados 2026 — tu opinión construye la PUCP del futuro · <b>Participa aquí ▸</b></span><span class="arr">›</span></div>
+      </div>
+    </section>
+
+    <!-- 1 -->
+    <section class="sec star" id="z-historia" data-title="La PUCP es parte de tu historia">
+      <div class="sec-body">
+      <h2><span class="num">1</span> La PUCP es parte de tu historia <span class="st">★</span> <span class="tag">conexión emocional + pertenencia</span></h2>
+      <p class="msg">"Te graduaste, pero nunca dejaste de ser parte de nuestra comunidad. La PUCP sigue siendo tuya, y nosotros seguimos siendo parte de tu historia."</p>
+      <p class="desc">Hablamos desde el "nosotros": somos una comunidad, no una institución que informa. Video o imagen de alta carga emocional: campus, graduaciones, rostros reales de egresados.</p>
+      <div class="banner">[ video / foto emocional: campus · graduaciones · rostros reales de egresados ]</div>
+      <div class="row" style="margin-bottom:12px;"><span class="cta">Cuéntanos dónde estás hoy ▸</span><span class="contact" style="color:var(--ink-soft);font-size:12px;">→ CTA principal del landing: actualiza tus datos</span></div>
+      <div class="grid">
+        <div class="cell tall"><span class="kpi">+XX,000</span><span class="sub">egresados PUCP</span></div>
+        <div class="cell tall"><span class="kpi">+XX</span><span class="sub">países con presencia de egresados</span></div>
+        <div class="cell tall"><span class="kpi">+100</span><span class="sub">años al servicio del país</span></div>
+      </div>
+      <p class="desc" style="margin:10px 0 0;">Cifras breves, visuales y emocionales: una comunidad que transforma. <span class="tag">⚠ cifras exactas pendientes — correo de Sara</span></p>
+      </div>
+    </section>
+
+    <!-- 2 -->
+    <section class="sec" id="z-testimonios" data-title="Testimonios — impacto de vida">
+      <div class="sec-body">
+      <h2><span class="num">2</span> Testimonios de egresados <span class="tag">impacto de vida, no logros académicos</span></h2>
+      <p class="desc">Pregunta guía para cada testimonio: <b>"¿Qué te dio la PUCP que ningún título puede resumir?"</b>. Complementa con perfiles destacados: 4–6 con foto en su lugar de trabajo real, cargo + empresa + carrera + año y "¿cómo llegué?" en 2–3 párrafos. Diversidad explícita: sector público · privado · social · internacional · investigación.</p>
+      <div class="row"><span class="ph card"></span><span class="ph card"></span><span class="ph card"></span></div>
+      <div class="row" style="margin-top:10px;"><span class="cta ghost">Líderes que transforman ▸</span><span class="contact" style="color:var(--ink-soft);font-size:12px;">→ enlaza a la serie de Punto Edu "Orgullo PUCP"</span></div>
+      </div>
+    </section>
+
+    <!-- 3 -->
+    <section class="sec alt" id="z-mundo" data-title="Alumni en el mundo">
+      <div class="sec-body">
+      <h2><span class="num">3</span> Alumni en el mundo <span class="tag">⚠ mismo riesgo que en Empleabilidad — depende de data AEG</span></h2>
+      <p class="desc">Mapa interactivo con países y cargos destacados · convenios internacionales con nombres específicos (no genéricos) · movilidad post-egreso: maestrías con doble titulación.</p>
+      <div class="panel" style="height:110px;margin-bottom:10px;">[ Mapa mundi interactivo — egresados por país y cargos destacados ]</div>
+      <div class="row"><span class="cta ghost">Investigación y movilidad global ▸</span><span class="contact" style="color:var(--ink-soft);font-size:12px;">→ subsitio de internacionalización (DARI)</span></div>
+      </div>
+    </section>
+
+    <!-- 4 -->
+    <section class="sec" id="z-empleo" data-title="Empleabilidad alumni">
+      <div class="sec-body">
+      <h2><span class="num">4</span> Empleabilidad alumni <span class="tag">valor profesional concreto</span></h2>
+      <p class="desc">Tasa de empleo a 6 / 12 / 24 meses · bolsa de empleo embebida (10–15 ofertas con filtro por sector) · empresas que contratan: logos agrupados + cuántos egresados trabajan allí.</p>
+      <div class="grid" style="margin-bottom:10px;">
+        <div class="cell tall"><span class="kpi">XX%</span><span class="sub">con empleo a 6 meses</span></div>
+        <div class="cell tall"><span class="kpi">XX%</span><span class="sub">a 12 meses</span></div>
+        <div class="cell tall"><span class="kpi">XX%</span><span class="sub">a 24 meses</span></div>
+      </div>
+      <div class="panel" style="height:90px;margin-bottom:10px;">[ Bolsa embebida: 10–15 ofertas · filtro por sector ] &nbsp;·&nbsp; [ logos de empresas que contratan PUCP ]</div>
+      <div class="row"><span class="cta">Ir a la bolsa de empleo alumni ▸</span><span class="contact" style="color:var(--ink-soft);font-size:12px;">→ Sistema de Oportunidades Laborales PUCP (Symplicity)</span></div>
+      </div>
+    </section>
+
+    <!-- 5 -->
+    <section class="sec alt" id="z-formacion" data-title="Queremos seguir acompañándote">
+      <div class="sec-body">
+      <h2><span class="num">5</span> Queremos seguir acompañándote <span class="tag">continúa formándote + beneficios</span></h2>
+      <p class="msg">"Tu formación no terminó el día que te graduaste. Para nosotros, ese fue solo el comienzo."</p>
+      <div class="grid">
+        <div class="cell tall">Posgrados<span class="sub">descuento alumni (% concreto) · programas acelerados de 1 año por experiencia · doble titulación con universidades específicas</span></div>
+        <div class="cell tall">Formación Continua<span class="sub">el mundo cambia, tu formación también</span></div>
+        <div class="cell tall">Beneficios PUCP<span class="sub">ventajas de seguir siendo comunidad</span></div>
+        <div class="cell tall">Biblioteca<span class="sub">sigue investigando, seguimos siendo tu respaldo</span></div>
+      </div>
+      <div class="panel" style="height:auto;margin-top:10px;">[ Caso de éxito embebido: ex analista → Cencosud post-MBA ]</div>
+      <p class="desc" style="margin:10px 0 0;">Enlaces: posgrado.pucp.edu.pe · educacioncontinua.pucp.edu.pe · beneficios (Punto Edu) · biblioteca.pucp.edu.pe/servicios</p>
+      </div>
+    </section>
+
+    <!-- 6 -->
+    <section class="sec" id="z-campus" data-title="Tu campus te espera">
+      <div class="sec-body">
+      <h2><span class="num">6</span> Tu campus te espera <span class="tag">reconexión con la comunidad</span></h2>
+      <p class="msg">"Tu comunidad sigue creciendo. Y siempre tendrá un lugar para ti."</p>
+      <div class="grid">
+        <div class="cell tall">Agenda PUCP<span class="sub">participa en las actividades</span></div>
+        <div class="cell tall">Trámites para egresados<span class="sub">estamos para facilitarte el camino</span></div>
+        <div class="cell tall">Servicios para egresados<span class="sub">todo en un solo lugar · por construir</span></div>
+        <div class="cell tall">Medios PUCP<span class="sub">sigue el pulso de la Universidad</span></div>
+        <div class="cell tall">Visitas guiadas<span class="sub">redescubre el campus · por construir</span></div>
+      </div>
+      <p class="desc" style="margin:10px 0 0;">Carnet alumni: biblioteca · descuentos · intranet &nbsp;·&nbsp; acceso a campus + instalaciones deportivas + publicaciones <span class="tag">servicios alumni — fusionado aquí</span></p>
+      </div>
+    </section>
+
+    <!-- 7 -->
+    <section class="sec star" id="z-conectados" data-title="Sigamos conectados">
+      <div class="sec-body">
+      <h2><span class="num">7</span> Sigamos conectados <span class="st">★</span> <span class="tag">conversión — vínculo de largo plazo</span></h2>
+      <p class="desc">Miles de egresados ya son parte. ¿Y tú? Eventos cerrados para alumni: Career Day, charlas, encuentros sectoriales · asesoría profesional: CV · LinkedIn · entrevistas.</p>
+      <div class="grid" style="margin-bottom:12px;">
+        <div class="cell tall">Asociación de Egresados (AEG)<span class="sub">aeg.pucp.edu.pe</span></div>
+        <div class="cell tall">Red de egresados por facultad<span class="sub">reconéctate con tu promoción · por construir</span></div>
+        <div class="cell tall">Eventos para alumni<span class="sub">Career Day · charlas · encuentros sectoriales</span></div>
+      </div>
+      <div class="row"><span class="cta">Únete a la AEG — Regístrate aquí ▸</span></div>
+      </div>
+    </section>
+
+    <!-- 8 opcional -->
+    <section class="sec opc" id="z-mentoring" data-title="Mentoring (opcional — etapa posterior)">
+      <div class="sec-body">
+      <h2><span class="num">8</span> Mentoring Empleabilidad <span class="tag">bloque opcional — etapa posterior (acuerdo reunión 10/06)</span></h2>
+      <p class="desc">"Tu experiencia puede abrir puertas a las nuevas generaciones." Programa formal: X mentores activos, Y horas/mes. CTA tentativo: "Agenda sesión con un mentor" (calendario abierto, 30 min — se evalúa Calendly). Se activa cuando el programa de mentoring esté validado con la Oficina de Empleabilidad.</p>
+      <div class="row"><span class="cta ghost">Quiero ser mentor</span><span class="cta ghost">Agenda sesión con un mentor</span></div>
+      </div>
+    </section>
+
+    <!-- 9 opcional -->
+    <section class="sec opc" id="z-transforma" data-title="Tu experiencia puede transformar (opcional)">
+      <div class="sec-body">
+      <h2><span class="num">9</span> Tu experiencia puede transformar <span class="tag">bloque opcional — todo por construir</span></h2>
+      <p class="msg">"Todo lo que has construido puede seguir transformando vidas."</p>
+      <div class="grid">
+        <div class="cell tall">Representación<span class="sub">tu voz en la Asamblea Universitaria</span></div>
+        <div class="cell tall">Acreditación<span class="sub">tu opinión construye la PUCP del futuro</span></div>
+        <div class="cell tall">Voluntariado RSU<span class="sub">sigue aportando al país</span></div>
+        <div class="cell tall">Apoyo a becas<span class="sub">porque alguien también apostó por ti</span></div>
+      </div>
+      </div>
+    </section>
+
+    <!-- 10 footer -->
+    <section class="sec" id="z-footer" data-title="Footer">
+      <div class="sec-body">
+      <h2><span class="num">10</span> Footer</h2>
+      <div class="row" style="align-items:stretch;">
+        <div class="cell" style="justify-content:flex-start;text-align:left;padding:14px;font-weight:400;">
+          <span class="contact">Contacto humano · mapa del sitio · redes · enlaces secundarios</span>
+        </div>
+      </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="legend">
+    <b>Wireframe de baja fidelidad — Egresados (primera etapa)</b> · escala de grises · ★ = pieza central de la narrativa · bordes punteados = bloques opcionales / etapa posterior.<br>
+    <b>Marco narrativo (doc Ligia):</b> la PUCP le habla directamente a sus egresados, como una conversación cercana desde el "nosotros" — reconoce su trayectoria, ofrece valor real y los invita a seguir siendo comunidad.<br>
+    <b>Historia que cuenta el orden propuesto:</b> pertenencia (tu historia + cifras) → orgullo (testimonios y alumni en el mundo) → valor profesional (empleabilidad y formación) → reconexión (tu campus) → vínculo (AEG y redes) → contribución (mentoring y transformación, opcionales).<br>
+    <b>Fusión de fuentes:</b> los 5 bloques del doc de Ligia (peso principal) + nuestra propuesta (cifra protagonista, empleabilidad alumni con tasas 6/12/24, egresados destacados, alumni en el mundo, servicios alumni — fusionados en "Tu campus te espera") + acuerdos de la reunión 10/06 (banner rotativo de novedades, CTA "Cuéntanos dónde estás hoy", mentoring como opcional posterior).<br>
+    <b>Pendientes:</b> cifras exactas (correo de Sara) · data AEG para el mapa · "Servicios para egresados" y "Visitas guiadas" por construir.<br>
+    <b>Modo revisión:</b> con los botones de abajo a la derecha puedes editar textos, reordenar zonas (↑↓) y dejar comentarios por sección (💬). Todo se guarda en este navegador.
+  </div>
+
+  <!-- ===== TOOLBAR DE REVISIÓN ===== -->
+  <div class="toolbar">
+    <button id="btn-edit" type="button">✏️ Editar textos</button>
+    <button id="btn-export" type="button">📋 Copiar comentarios</button>
+    <button id="btn-reset" type="button">↺ Restablecer</button>
+    <span class="hint">Cambios y comentarios se guardan en este navegador</span>
+  </div>
+  <div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  var KEY = 'wf-egresados-v1';
+  var main = document.getElementById('zones');
+  var toast = document.getElementById('toast');
+  var toastTimer = null;
+
+  function notify(msg){
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toast.classList.remove('show'); }, 2200);
+  }
+
+  function load(){
+    try{ return JSON.parse(localStorage.getItem(KEY)) || {}; }catch(e){ return {}; }
+  }
+  function save(state){
+    localStorage.setItem(KEY, JSON.stringify(state));
+  }
+  var state = load();           // { order:[], content:{id:html}, comments:{id:[{text,author,ts}]} }
+  state.content = state.content || {};
+  state.comments = state.comments || {};
+
+  /* ----- restaurar orden y textos guardados ----- */
+  if (Array.isArray(state.order)){
+    state.order.forEach(function(id){
+      var sec = document.getElementById(id);
+      if (sec) main.appendChild(sec);
+    });
+  }
+  Object.keys(state.content).forEach(function(id){
+    var sec = document.getElementById(id);
+    if (sec) sec.querySelector('.sec-body').innerHTML = state.content[id];
+  });
+
+  function renumber(){
+    var n = 0; /* esta página numera desde 0 (banner de novedades) */
+    main.querySelectorAll('section .num').forEach(function(el){ el.textContent = n++; });
+  }
+  function saveOrder(){
+    state.order = Array.prototype.map.call(main.querySelectorAll('section'), function(s){ return s.id; });
+    save(state);
+  }
+  function saveContent(sec){
+    state.content[sec.id] = sec.querySelector('.sec-body').innerHTML;
+    save(state);
+  }
+  function esc(s){
+    var d = document.createElement('div');
+    d.textContent = s;
+    return d.innerHTML;
+  }
+
+  /* ----- controles por sección ----- */
+  main.querySelectorAll('section').forEach(function(sec){
+    var tools = document.createElement('div');
+    tools.className = 'sec-tools';
+    tools.setAttribute('contenteditable','false');
+    tools.innerHTML =
+      '<button type="button" class="up" title="Subir sección">↑</button>' +
+      '<button type="button" class="down" title="Bajar sección">↓</button>' +
+      '<button type="button" class="c-btn" title="Comentarios de esta sección">💬 <span class="c-count">0</span></button>';
+    sec.appendChild(tools);
+
+    var panel = document.createElement('div');
+    panel.className = 'sec-comments';
+    panel.setAttribute('contenteditable','false');
+    panel.innerHTML =
+      '<div class="c-list"></div>' +
+      '<form><input type="text" class="c-author" placeholder="Autor (opcional)">' +
+      '<textarea class="c-text" placeholder="Escribe un comentario sobre esta sección…" required></textarea>' +
+      '<button type="submit">Agregar</button></form>';
+    sec.appendChild(panel);
+
+    tools.querySelector('.up').addEventListener('click', function(){
+      var prev = sec.previousElementSibling;
+      if (prev){ main.insertBefore(sec, prev); renumber(); saveOrder(); }
+    });
+    tools.querySelector('.down').addEventListener('click', function(){
+      var next = sec.nextElementSibling;
+      if (next){ main.insertBefore(next, sec); renumber(); saveOrder(); }
+    });
+    tools.querySelector('.c-btn').addEventListener('click', function(){
+      panel.classList.toggle('open');
+    });
+
+    panel.querySelector('form').addEventListener('submit', function(ev){
+      ev.preventDefault();
+      var txt = panel.querySelector('.c-text').value.trim();
+      if (!txt) return;
+      var author = panel.querySelector('.c-author').value.trim();
+      (state.comments[sec.id] = state.comments[sec.id] || []).push({ text:txt, author:author, ts:Date.now() });
+      save(state);
+      panel.querySelector('.c-text').value = '';
+      renderComments(sec);
+      notify('Comentario guardado');
+    });
+
+    sec.querySelector('.sec-body').addEventListener('input', function(){
+      clearTimeout(sec._t);
+      sec._t = setTimeout(function(){ saveContent(sec); }, 400);
+    });
+
+    renderComments(sec);
+  });
+
+  function renderComments(sec){
+    var list = sec.querySelector('.c-list');
+    var items = state.comments[sec.id] || [];
+    sec.querySelector('.c-count').textContent = items.length;
+    sec.querySelector('.c-btn').classList.toggle('has', items.length > 0);
+    list.innerHTML = items.map(function(c, i){
+      var meta = (c.author ? esc(c.author) + ' · ' : '') + new Date(c.ts).toLocaleString('es-PE');
+      return '<div class="c-item"><div>' + esc(c.text) + '<span class="c-meta">' + meta + '</span></div>' +
+             '<button type="button" class="c-del" data-i="' + i + '" title="Eliminar">✕</button></div>';
+    }).join('');
+    list.querySelectorAll('.c-del').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        items.splice(parseInt(btn.dataset.i, 10), 1);
+        save(state);
+        renderComments(sec);
+      });
+    });
+  }
+
+  /* ----- modo edición de textos ----- */
+  var btnEdit = document.getElementById('btn-edit');
+  btnEdit.addEventListener('click', function(){
+    var on = document.body.classList.toggle('editing');
+    btnEdit.classList.toggle('on', on);
+    btnEdit.textContent = on ? '✔ Terminar edición' : '✏️ Editar textos';
+    main.querySelectorAll('.sec-body').forEach(function(b){
+      b.contentEditable = on ? 'true' : 'false';
+    });
+    notify(on ? 'Haz clic sobre cualquier texto para editarlo' : 'Edición guardada');
+  });
+
+  /* ----- exportar comentarios ----- */
+  document.getElementById('btn-export').addEventListener('click', function(){
+    var out = ['Comentarios — Wireframe Egresados (' + new Date().toLocaleDateString('es-PE') + ')', ''];
+    var total = 0;
+    main.querySelectorAll('section').forEach(function(sec, idx){
+      var items = state.comments[sec.id] || [];
+      if (!items.length) return;
+      out.push(idx + '. ' + sec.dataset.title);
+      items.forEach(function(c){
+        total++;
+        out.push('   - ' + (c.author ? c.author + ': ' : '') + c.text + ' [' + new Date(c.ts).toLocaleString('es-PE') + ']');
+      });
+      out.push('');
+    });
+    if (!total){ notify('No hay comentarios para copiar'); return; }
+    var text = out.join('\n');
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){ notify(total + ' comentario(s) copiado(s) al portapapeles'); });
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      ta.remove();
+      notify(total + ' comentario(s) copiado(s) al portapapeles');
+    }
+  });
+
+  /* ----- restablecer ----- */
+  document.getElementById('btn-reset').addEventListener('click', function(){
+    if (confirm('¿Restablecer el wireframe? Se perderán los textos editados, el orden y los comentarios guardados en este navegador.')){
+      localStorage.removeItem(KEY);
+      location.reload();
+    }
+  });
+
+  renumber();
+})();
+</script>
+
+</body>
+</html>
