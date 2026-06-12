@@ -46,17 +46,21 @@
   .crumb{padding:14px 26px 4px;color:var(--ink-soft);font-size:12.5px;}
   /* ---------- BODY ---------- */
   main{padding:8px 26px 60px;}
-  .sec{background:var(--t1);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+  .sec{position:relative;background:var(--t1);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
   .sec.alt{background:var(--t0);}
   .sec.star{border-left:5px solid var(--accent);background:#ededed;}
-  .sec h2{margin:0 0 6px;font-size:17px;display:flex;align-items:center;gap:9px;color:var(--ink);}
-  .num{display:inline-flex;width:26px;height:26px;border-radius:6px;background:var(--t4);color:var(--ink);align-items:center;justify-content:center;font-size:13px;font-weight:700;flex:none;}
+  .sec h2{margin:0 0 6px;font-size:13px;display:flex;align-items:center;gap:9px;color:var(--ink-soft);flex-wrap:wrap;font-weight:600;}
+  .num{display:inline-flex;width:24px;height:24px;border-radius:6px;background:var(--t4);color:var(--ink);align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:none;}
   .star .num{background:var(--accent);color:#fff;}
   .st{color:var(--accent);font-size:14px;}
+  /* mediana fidelidad: titulares reales por sección */
+  .kicker{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--ink-soft);font-weight:700;margin:8px 0 0;}
+  .display{font-size:27px;font-weight:800;letter-spacing:-.4px;color:var(--ink);margin:2px 0 10px;line-height:1.2;}
+  .tag{background:#fff;border:1px dashed var(--line-strong);color:var(--ink-soft);font-size:11px;padding:3px 9px;border-radius:4px;font-weight:700;letter-spacing:.3px;}
   .desc{color:var(--ink-soft);font-size:13px;margin:0 0 12px;}
   .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
   .ph{background:var(--t2);border:1px dashed var(--line-strong);border-radius:7px;}
-  .banner{height:140px;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);font-size:13px;font-weight:600;
+  .banner{height:160px;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);font-size:13px;font-weight:600;text-align:center;padding:0 20px;
            background:repeating-linear-gradient(45deg,var(--t2),var(--t2) 12px,var(--t1) 12px,var(--t1) 24px);border-radius:8px;margin-bottom:12px;}
   /* rectángulos a todo el ancho: flex:1 */
   .card{flex:1;min-width:0;height:96px;}
@@ -71,9 +75,43 @@
   .panel{border:1px dashed var(--line-strong);border-radius:0 7px 7px 7px;background:#fff;height:90px;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);font-size:12.5px;text-align:center;padding:0 14px;}
   .grid{display:flex;gap:10px;flex-wrap:nowrap;}
   .cell{flex:1;min-width:0;height:74px;background:var(--t2);border:1px dashed var(--line-strong);border-radius:7px;display:flex;align-items:center;justify-content:center;color:var(--ink);font-size:12px;text-align:center;padding:6px;font-weight:600;}
+  .cell.tall{height:100px;flex-direction:column;gap:6px;}
+  .kpi{font-size:22px;font-weight:800;color:var(--ink);}
   .contact{color:var(--ink);font-size:13px;line-height:1.7;}
   .legend{max-width:1200px;margin:0 auto;padding:0 26px 50px;color:var(--ink-soft);font-size:12.5px;line-height:1.7;}
   .legend b{color:var(--ink);}
+  /* ---------- HERRAMIENTAS DE REVISIÓN ---------- */
+  .toolbar{position:fixed;bottom:18px;right:18px;z-index:100;display:flex;gap:8px;align-items:center;
+           background:#fff;border:1px solid var(--line-strong);border-radius:10px;padding:9px 12px;box-shadow:0 4px 18px rgba(0,0,0,.18);}
+  .toolbar button{font:inherit;font-size:12.5px;font-weight:700;border:1px solid var(--line-strong);background:var(--t1);color:var(--ink);
+                  border-radius:6px;padding:7px 12px;cursor:pointer;white-space:nowrap;}
+  .toolbar button:hover{background:var(--accent-soft);}
+  .toolbar button.on{background:var(--accent);color:#fff;border-color:var(--accent);}
+  .toolbar .hint{font-size:11px;color:var(--ink-soft);max-width:150px;line-height:1.3;}
+  .sec-tools{position:absolute;top:10px;right:10px;display:flex;gap:5px;z-index:5;}
+  .sec-tools button{font:inherit;font-size:12px;font-weight:700;width:28px;height:28px;border:1px solid var(--line-strong);
+                    background:#fff;color:var(--ink);border-radius:6px;cursor:pointer;padding:0;line-height:1;}
+  .sec-tools button:hover{background:var(--accent-soft);}
+  .sec-tools .c-btn{width:auto;padding:0 8px;}
+  .sec-tools .c-btn.has{background:var(--accent);color:#fff;border-color:var(--accent);}
+  body.editing .sec-body{outline:1.5px dashed var(--accent);outline-offset:6px;border-radius:6px;}
+  body.editing .sec-body:focus-within{outline-style:solid;background:rgba(255,255,255,.4);}
+  .sec-comments{display:none;margin-top:14px;border-top:1px dashed var(--line-strong);padding-top:12px;}
+  .sec-comments.open{display:block;}
+  .sec-comments .c-item{background:#fff;border:1px solid var(--line);border-radius:7px;padding:8px 10px;margin-bottom:7px;
+                        font-size:12.5px;display:flex;gap:10px;align-items:flex-start;justify-content:space-between;}
+  .sec-comments .c-meta{color:var(--ink-soft);font-size:11px;display:block;margin-top:3px;}
+  .sec-comments .c-del{border:none;background:none;color:var(--ink-soft);cursor:pointer;font-size:13px;padding:0 2px;flex:none;}
+  .sec-comments .c-del:hover{color:#a33;}
+  .sec-comments form{display:flex;gap:7px;flex-wrap:wrap;}
+  .sec-comments input,.sec-comments textarea{font:inherit;font-size:12.5px;border:1px solid var(--line-strong);border-radius:6px;padding:7px 9px;}
+  .sec-comments input{width:140px;}
+  .sec-comments textarea{flex:1;min-width:220px;resize:vertical;min-height:36px;}
+  .sec-comments form button{font:inherit;font-size:12.5px;font-weight:700;background:var(--accent);color:#fff;border:none;border-radius:6px;padding:7px 14px;cursor:pointer;}
+  .toast{position:fixed;bottom:78px;right:18px;z-index:101;background:var(--nav);color:#fff;font-size:12.5px;border-radius:7px;padding:9px 14px;
+         opacity:0;transition:opacity .25s;pointer-events:none;}
+  .toast.show{opacity:1;}
+  @media print{.toolbar,.sec-tools,.toast{display:none!important;}}
 </style>
 </head>
 <body>
@@ -136,22 +174,45 @@
   </div>
 
   <!-- ===== BODY ===== -->
-  <main class="wrap">
+  <main class="wrap" id="zones">
 
-    <!-- 1 ★ contenido propio -->
-    <section class="sec star">
-      <h2><span class="num">1</span> Banner vivencial <span class="st">★</span></h2>
-      <p class="desc">Contenido propio — hay que producirlo. La vida universitaria ocurre dentro y fuera del aula.</p>
-      <div class="banner">"Vive la PUCP" — [ video real del campus: estudiantes, jardines, cafeterías, deporte, cultura ]</div>
-      <div class="row"><span class="cta">Descubre el campus ▸</span></div>
+    <section class="sec star" id="z-banner" data-title="Banner vivencial">
+      <div class="sec-body">
+      <h2><span class="num">1</span> Banner vivencial <span class="st">★</span> <span class="tag">el video comunica: "Ven y conoce el campus"</span></h2>
+      <p class="kicker">Vida universitaria</p>
+      <p class="display">Vive la PUCP</p>
+      <p class="desc">Contenido propio — hay que producirlo. El video invita a conocer el campus en persona: la vida universitaria ocurre dentro y fuera del aula.</p>
+      <div class="banner">[ video real del campus: estudiantes, jardines, cafeterías, deporte, cultura ]<br>mensaje del video: "Ven y conoce el CAMPUS"</div>
+      <div class="row"><span class="cta">Visita guiada al campus PUCP — Regístrate ▸</span><span class="contact" style="color:var(--ink-soft);font-size:12px;">se retiró el botón "Descubre el campus" (feedback 12/06)</span></div>
+      </div>
     </section>
 
-    <!-- 2 ★ contenido propio -->
-    <section class="sec star">
-      <h2><span class="num">2</span> Espacios del campus <span class="st">★</span></h2>
-      <p class="desc">Contenido propio — videos + interactivo. Cuatro categorías: los espacios icónicos viven aquí; comedores, estudio y culturales resumen y enlazan a su web.</p>
+    <section class="sec" id="z-agenda" data-title="Agenda viva">
+      <div class="sec-body">
+      <h2><span class="num">2</span> Agenda viva <span class="tag">sube a zona 2 — mayor protagonismo</span></h2>
+      <p class="kicker">Esta semana en campus</p>
+      <p class="display">Siempre pasa algo en la PUCP</p>
+      <p class="desc">Embebido de agenda.pucp.edu.pe — actividades académicas, culturales, deportivas y estudiantiles.</p>
       <div class="tabs">
-        <span class="tab on">Espacios icónicos</span>
+        <span class="tab on">Hoy</span>
+        <span class="tab">Esta semana</span>
+        <span class="tab">Próxima semana</span>
+      </div>
+      <div class="panel" style="height:130px;">[ Listado de eventos con fecha · hora · lugar — filtros por tipo de evento y área temática ]</div>
+      <div class="row" style="margin-top:12px;"><span class="cta ghost">Ver toda la agenda ▸</span></div>
+      </div>
+    </section>
+
+    <section class="sec star" id="z-espacios" data-title="Espacios del campus">
+      <div class="sec-body">
+      <h2><span class="num">3</span> Espacios del campus <span class="st">★</span> <span class="tag">baja debajo de Agenda viva</span> <span class="tag">+ infraestructura: laboratorios e innovación</span></h2>
+      <p class="kicker">Infraestructura y lugares</p>
+      <p class="display">Encuentra tu lugar en el campus</p>
+      <p class="desc">Contenido propio — videos + interactivo. Categorías ligadas a infraestructura: desde los espacios para compartir hasta laboratorios, deporte, comedores, biblioteca y cultura.</p>
+      <div class="tabs">
+        <span class="tab on">Espacios para compartir</span>
+        <span class="tab">Laboratorios y espacios de innovación</span>
+        <span class="tab">Espacios deportivos</span>
         <span class="tab">Comedores PUCP</span>
         <span class="tab">Espacios de estudio</span>
         <span class="tab">Espacios culturales</span>
@@ -165,37 +226,52 @@
         <div class="cell">Mesas por Digimundo</div>
         <div class="cell">Mesas junto al Diodo</div>
       </div>
-      <p class="desc" style="margin:12px 0 0;">Comedores → Central · Arte · Letras (Alimentación PUCP) &nbsp;·&nbsp; Estudio → bibliotecas y salas (Biblioteca PUCP) &nbsp;·&nbsp; Culturales → DACU y CCPUCP.</p>
+      <p class="desc" style="margin:12px 0 0;">Laboratorios e innovación → laboratorios por facultad · espacios de innovación (Open PUCP) &nbsp;·&nbsp; Deportivos → polideportivo, gimnasio y campos &nbsp;·&nbsp; Comedores → Central · Arte · Letras (Alimentación PUCP) &nbsp;·&nbsp; Estudio → bibliotecas y salas (Biblioteca PUCP) &nbsp;·&nbsp; Culturales → DACU y CCPUCP.</p>
+      </div>
     </section>
 
-    <!-- 3 -->
-    <section class="sec">
-      <h2><span class="num">3</span> Salud y bienestar (DAES)</h2>
+    <section class="sec alt" id="z-salud" data-title="Salud y bienestar (DAES)">
+      <div class="sec-body">
+      <h2><span class="num">4</span> Salud y bienestar (DAES) <span class="tag">"Conoce más" lleva a daes.pucp.edu.pe</span></h2>
+      <p class="kicker">Acompañamiento integral</p>
+      <p class="display">Tu bienestar es lo primero</p>
       <p class="desc">Resumen + enlace a daes.pucp.edu.pe — acompañamiento integral al estudiante.</p>
       <div class="grid">
         <div class="cell">Atención médica en campus</div>
         <div class="cell">Apoyo psicológico</div>
         <div class="cell">Bienestar social</div>
       </div>
-      <div class="row" style="margin-top:12px;"><span class="cta">Reserva tu cita ▸</span><span class="cta ghost">Conoce la DAES</span></div>
-    </section>
-
-    <!-- 4 -->
-    <section class="sec alt">
-      <h2><span class="num">4</span> Campus activo — Deporte y vida activa (DAES)</h2>
-      <p class="desc">Resumen + enlace a Deportes DAES e Interfacultades — el campus como espacio activo.</p>
-      <div class="grid">
-        <div class="cell">Polideportivo</div>
-        <div class="cell">Gimnasio PUCP</div>
-        <div class="cell">Selecciones deportivas</div>
-        <div class="cell">Interfacultades</div>
+      <div class="row" style="margin-top:12px;"><span class="cta">Reserva tu cita ▸</span><span class="cta ghost">Conoce más</span><span class="contact" style="color:var(--ink-soft);font-size:12px;">→ lleva a daes.pucp.edu.pe</span></div>
       </div>
-      <div class="row" style="margin-top:12px;"><span class="cta">Conoce Deportes PUCP ▸</span></div>
     </section>
 
-    <!-- 5 -->
-    <section class="sec">
-      <h2><span class="num">5</span> Cultura y experiencias (Cultura)</h2>
+    <section class="sec" id="z-deporte" data-title="Campus activo — Deportes (DAES)">
+      <div class="sec-body">
+      <h2><span class="num">5</span> Campus activo — Deportes (DAES) <span class="tag">contenido tal cual de daes.pucp.edu.pe/areas/deportes</span></h2>
+      <p class="kicker">Deporte y vida activa</p>
+      <p class="display">El campus también se entrena</p>
+      <p class="desc">Formamos deportistas y promovemos la actividad física en diversas modalidades, fomentando hábitos saludables con entrenadores y preparadores de trayectoria reconocida. Instalaciones: Coliseo Polideportivo · campos deportivos · gimnasio completamente equipado.</p>
+      <div class="grid">
+        <div class="cell">Gimnasio</div>
+        <div class="cell">Juegos Interfacultades</div>
+        <div class="cell">Reserva de espacios deportivos</div>
+        <div class="cell">Selección PUCP</div>
+        <div class="cell">Talleres deportivos</div>
+      </div>
+      <div class="grid" style="margin-top:10px;">
+        <div class="cell tall"><span class="kpi">2,902</span>estudiantes en talleres deportivos</div>
+        <div class="cell tall"><span class="kpi">796</span>deportistas destacados</div>
+        <div class="cell tall"><span class="kpi">1,142</span>inscritos en gimnasio (2024-2)</div>
+      </div>
+      <div class="row" style="margin-top:12px;"><span class="cta">Conoce Deportes PUCP ▸</span><span class="contact" style="color:var(--ink-soft);font-size:12px;">→ lleva a daes.pucp.edu.pe/areas/deportes</span></div>
+      </div>
+    </section>
+
+    <section class="sec alt" id="z-cultura" data-title="Cultura y experiencias">
+      <div class="sec-body">
+      <h2><span class="num">6</span> Cultura y experiencias (Cultura)</h2>
+      <p class="kicker">DACU · CCPUCP · Cultura PUCP</p>
+      <p class="display">El arte y la cultura viven aquí</p>
       <p class="desc">Resumen + enlace a DACU, CCPUCP y Cultura PUCP. Lo más destacado del estudio: agenda cultural, talleres y museos/colecciones.</p>
       <div class="tabs">
         <span class="tab on">Agenda cultural</span>
@@ -210,73 +286,255 @@
         <div class="cell">Galería y exposiciones</div>
       </div>
       <div class="row" style="margin-top:12px;"><span class="cta">Explora Cultura PUCP ▸</span></div>
+      </div>
     </section>
 
-    <!-- 6 -->
-    <section class="sec alt">
-      <h2><span class="num">6</span> Comunidad y participación (DARS)</h2>
-      <p class="desc">Resumen + enlace a dars.pucp.edu.pe — impacto social desde la experiencia universitaria. Destacados según lo más visitado (GA): voluntariado, proyectos y convocatorias del Fondo RSU.</p>
+    <section class="sec" id="z-comunidad" data-title="Comunidad y participación (DARS)">
+      <div class="sec-body">
+      <h2><span class="num">7</span> Comunidad y participación (DARS) <span class="tag">se quita "Noticias y eventos"</span> <span class="tag">proyectos van dentro de RSU</span></h2>
+      <p class="kicker">Responsabilidad social universitaria</p>
+      <p class="display">Transforma tu entorno desde la universidad</p>
+      <p class="desc">Resumen + enlace a dars.pucp.edu.pe — impacto social desde la experiencia universitaria. Destacados según lo más visitado (GA): voluntariado y RSU (con sus proyectos y convocatorias dentro).</p>
       <div class="grid">
         <div class="cell">Voluntariado RSU</div>
-        <div class="cell">Fondo RSU — convocatorias</div>
-        <div class="cell">Proyectos (Barrio PUCP)</div>
-        <div class="cell">Noticias y eventos</div>
+        <div class="cell tall">RSU<span style="font-weight:400;font-size:11px;">Proyectos (Barrio PUCP) · Fondo RSU — convocatorias</span></div>
       </div>
       <div class="row" style="margin-top:12px;"><span class="cta">Súmate al voluntariado ▸</span><span class="cta ghost">Qué es la RSU</span></div>
-    </section>
-
-    <!-- 7 -->
-    <section class="sec">
-      <h2><span class="num">7</span> Agenda viva — esta semana en campus</h2>
-      <p class="desc">Embebido de agenda.pucp.edu.pe — actividades académicas, culturales, deportivas y estudiantiles.</p>
-      <div class="tabs">
-        <span class="tab on">Hoy</span>
-        <span class="tab">Esta semana</span>
-        <span class="tab">Próxima semana</span>
       </div>
-      <div class="panel">[ Listado de eventos con fecha · hora · lugar — filtros por tipo de evento y área temática ]</div>
-      <div class="row" style="margin-top:12px;"><span class="cta ghost">Ver toda la agenda ▸</span></div>
     </section>
 
-    <!-- 8 -->
-    <section class="sec alt">
-      <h2><span class="num">8</span> Campus sostenible</h2>
-      <p class="desc">Resumen + enlace a Clima de Cambios — sostenibilidad desde la experiencia del campus, contada en cifras (KPIs rápidos).</p>
+    <section class="sec alt" id="z-sostenible" data-title="Campus sostenible">
+      <div class="sec-body">
+      <h2><span class="num">8</span> Campus sostenible <span class="tag">menos datos — solo 3 cifras</span> <span class="tag">⚠ DARS validará con la unidad qué cifras van</span></h2>
+      <p class="kicker">Clima de Cambios</p>
+      <p class="display">Un campus que respira</p>
+      <p class="desc">Resumen + enlace a Clima de Cambios — sostenibilidad desde la experiencia del campus, en pocas cifras.</p>
       <div class="grid">
-        <div class="cell">7 edificios certificados (platino · oro · plata)</div>
-        <div class="cell">+3,200 árboles</div>
-        <div class="cell">167,000 m² de áreas verdes</div>
-        <div class="cell">26 grupos de investigación ambiental</div>
-        <div class="cell">+20 estacionamientos de bicicletas</div>
-        <div class="cell">+33 t de reciclaje donado a Aniquem</div>
+        <div class="cell tall"><span class="kpi">+3,200</span>árboles</div>
+        <div class="cell tall"><span class="kpi">167,000 m²</span>de áreas verdes</div>
+        <div class="cell tall"><span class="kpi">+20</span>estacionamientos de bicicletas</div>
       </div>
       <div class="row" style="margin-top:12px;"><span class="cta ghost">Visita Clima de Cambios ▸</span></div>
+      </div>
     </section>
 
-    <!-- 9 -->
-    <section class="sec">
-      <h2><span class="num">9</span> Mi Campus PUCP</h2>
-      <p class="desc">Feed embebido de @micampuspucp (Instagram) — lo que ocurre en el campus más allá de las clases, contado por la propia comunidad.</p>
+    <section class="sec" id="z-micampus" data-title="Mi Campus PUCP">
+      <div class="sec-body">
+      <h2><span class="num">9</span> Mi Campus PUCP <span class="tag">sin look "social" — solo tiene Instagram; si mostramos la red, las demás áreas pedirán la suya</span></h2>
+      <p class="kicker">La comunidad cuenta</p>
+      <p class="display">El campus, contado por su gente</p>
+      <p class="desc">Galería de momentos del campus más allá de las clases. Se alimenta del feed de Mi Campus, pero se presenta como contenido propio de la página: sin logo de la red, sin botón de "síguenos", sin contadores. Solo un crédito discreto al pie.</p>
       <div class="row"><span class="ph card"></span><span class="ph card"></span><span class="ph card"></span><span class="ph card"></span></div>
-      <div class="row" style="margin-top:10px;">
-        <span class="cta">Síguenos: @micampuspucp ▸</span>
-        <div class="cell" style="flex:none;height:auto;padding:10px 14px;font-weight:400;">
-          <span class="contact">RRSS PUCP: Instagram · TikTok · YouTube · Facebook · LinkedIn · Spotify</span>
-        </div>
+      <p class="desc" style="margin:10px 0 0;font-size:11.5px;">crédito discreto: "Momentos compartidos por la comunidad PUCP" (fuente: Mi Campus)</p>
       </div>
     </section>
 
   </main>
 
   <div class="legend">
-    <b>Wireframe de baja fidelidad</b> · escala de grises · Intranet y correo y PAIDEIA se destacan fuera del menú "Accesos" por ser los accesos más clickeados ·
+    <b>Wireframe — Vida en la PUCP (mediana fidelidad)</b> · escala de grises · Intranet y correo y PAIDEIA se destacan fuera del menú "Accesos" por ser los accesos más clickeados ·
     ★ = contenido propio, vive en el home (hay que producirlo) ·
     sin ★ = resumen + enlace al subdominio y/o embebido ·
     contenido nutrido con datos reales de daes / cultura / centrocultural / dars / agenda .pucp.edu.pe y el doc de enlaces de Vida Universitaria.<br>
-    <b>Argumentación del orden:</b> lidera lo vivencial (hero en video real y espacios del campus — lo más pedido: 40%) ·
-    Deporte, Cultura y Agenda van arriba: son lo más consumido según Google Analytics ·
-    Bienestar y comunidad dan tranquilidad también a padres y familias.
+    <b>Cambios de esta ronda (12/06):</b> el video del banner comunica "Ven y conoce el campus" con registro a la visita guiada (se retira "Descubre el campus") ·
+    Agenda viva sube a zona 2 (mayor protagonismo) y Espacios del campus pasa debajo ·
+    Espacios suma categorías de infraestructura, incluida la pestaña "Laboratorios y espacios de innovación" ·
+    "Conoce más" de Salud y bienestar lleva a daes.pucp.edu.pe ·
+    Campus activo usa tal cual el contenido de daes.pucp.edu.pe/areas/deportes ·
+    Comunidad: se quita "Noticias y eventos" y los proyectos van dentro de RSU ·
+    Campus sostenible queda con 3 cifras (árboles, áreas verdes, bicicletas) — DARS validará con la unidad ·
+    Mi Campus se presenta sin estética de red social ·
+    Paso a mediana fidelidad: titulares atractivos por sección.<br>
+    <b>Modo revisión:</b> con los botones de abajo a la derecha puedes editar textos, reordenar zonas (↑↓) y dejar comentarios por sección (💬). Todo se guarda en este navegador.
   </div>
+
+  <!-- ===== TOOLBAR DE REVISIÓN ===== -->
+  <div class="toolbar">
+    <button id="btn-edit" type="button">✏️ Editar textos</button>
+    <button id="btn-export" type="button">📋 Copiar comentarios</button>
+    <button id="btn-reset" type="button">↺ Restablecer</button>
+    <span class="hint">Cambios y comentarios se guardan en este navegador</span>
+  </div>
+  <div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  var KEY = 'wf-vida-pucp-v1';
+  var main = document.getElementById('zones');
+  var toast = document.getElementById('toast');
+  var toastTimer = null;
+
+  function notify(msg){
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toast.classList.remove('show'); }, 2200);
+  }
+
+  function load(){
+    try{ return JSON.parse(localStorage.getItem(KEY)) || {}; }catch(e){ return {}; }
+  }
+  function save(state){
+    localStorage.setItem(KEY, JSON.stringify(state));
+  }
+  var state = load();           // { order:[], content:{id:html}, comments:{id:[{text,author,ts}]} }
+  state.content = state.content || {};
+  state.comments = state.comments || {};
+
+  /* ----- restaurar orden y textos guardados ----- */
+  if (Array.isArray(state.order)){
+    state.order.forEach(function(id){
+      var sec = document.getElementById(id);
+      if (sec) main.appendChild(sec);
+    });
+  }
+  Object.keys(state.content).forEach(function(id){
+    var sec = document.getElementById(id);
+    if (sec) sec.querySelector('.sec-body').innerHTML = state.content[id];
+  });
+
+  function renumber(){
+    var n = 1;
+    main.querySelectorAll('section .num').forEach(function(el){ el.textContent = n++; });
+  }
+  function saveOrder(){
+    state.order = Array.prototype.map.call(main.querySelectorAll('section'), function(s){ return s.id; });
+    save(state);
+  }
+  function saveContent(sec){
+    state.content[sec.id] = sec.querySelector('.sec-body').innerHTML;
+    save(state);
+  }
+  function esc(s){
+    var d = document.createElement('div');
+    d.textContent = s;
+    return d.innerHTML;
+  }
+
+  /* ----- controles por sección ----- */
+  main.querySelectorAll('section').forEach(function(sec){
+    var tools = document.createElement('div');
+    tools.className = 'sec-tools';
+    tools.setAttribute('contenteditable','false');
+    tools.innerHTML =
+      '<button type="button" class="up" title="Subir sección">↑</button>' +
+      '<button type="button" class="down" title="Bajar sección">↓</button>' +
+      '<button type="button" class="c-btn" title="Comentarios de esta sección">💬 <span class="c-count">0</span></button>';
+    sec.appendChild(tools);
+
+    var panel = document.createElement('div');
+    panel.className = 'sec-comments';
+    panel.setAttribute('contenteditable','false');
+    panel.innerHTML =
+      '<div class="c-list"></div>' +
+      '<form><input type="text" class="c-author" placeholder="Autor (opcional)">' +
+      '<textarea class="c-text" placeholder="Escribe un comentario sobre esta sección…" required></textarea>' +
+      '<button type="submit">Agregar</button></form>';
+    sec.appendChild(panel);
+
+    tools.querySelector('.up').addEventListener('click', function(){
+      var prev = sec.previousElementSibling;
+      if (prev){ main.insertBefore(sec, prev); renumber(); saveOrder(); }
+    });
+    tools.querySelector('.down').addEventListener('click', function(){
+      var next = sec.nextElementSibling;
+      if (next){ main.insertBefore(next, sec); renumber(); saveOrder(); }
+    });
+    tools.querySelector('.c-btn').addEventListener('click', function(){
+      panel.classList.toggle('open');
+    });
+
+    panel.querySelector('form').addEventListener('submit', function(ev){
+      ev.preventDefault();
+      var txt = panel.querySelector('.c-text').value.trim();
+      if (!txt) return;
+      var author = panel.querySelector('.c-author').value.trim();
+      (state.comments[sec.id] = state.comments[sec.id] || []).push({ text:txt, author:author, ts:Date.now() });
+      save(state);
+      panel.querySelector('.c-text').value = '';
+      renderComments(sec);
+      notify('Comentario guardado');
+    });
+
+    sec.querySelector('.sec-body').addEventListener('input', function(){
+      clearTimeout(sec._t);
+      sec._t = setTimeout(function(){ saveContent(sec); }, 400);
+    });
+
+    renderComments(sec);
+  });
+
+  function renderComments(sec){
+    var list = sec.querySelector('.c-list');
+    var items = state.comments[sec.id] || [];
+    sec.querySelector('.c-count').textContent = items.length;
+    sec.querySelector('.c-btn').classList.toggle('has', items.length > 0);
+    list.innerHTML = items.map(function(c, i){
+      var meta = (c.author ? esc(c.author) + ' · ' : '') + new Date(c.ts).toLocaleString('es-PE');
+      return '<div class="c-item"><div>' + esc(c.text) + '<span class="c-meta">' + meta + '</span></div>' +
+             '<button type="button" class="c-del" data-i="' + i + '" title="Eliminar">✕</button></div>';
+    }).join('');
+    list.querySelectorAll('.c-del').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        items.splice(parseInt(btn.dataset.i, 10), 1);
+        save(state);
+        renderComments(sec);
+      });
+    });
+  }
+
+  /* ----- modo edición de textos ----- */
+  var btnEdit = document.getElementById('btn-edit');
+  btnEdit.addEventListener('click', function(){
+    var on = document.body.classList.toggle('editing');
+    btnEdit.classList.toggle('on', on);
+    btnEdit.textContent = on ? '✔ Terminar edición' : '✏️ Editar textos';
+    main.querySelectorAll('.sec-body').forEach(function(b){
+      b.contentEditable = on ? 'true' : 'false';
+    });
+    notify(on ? 'Haz clic sobre cualquier texto para editarlo' : 'Edición guardada');
+  });
+
+  /* ----- exportar comentarios ----- */
+  document.getElementById('btn-export').addEventListener('click', function(){
+    var out = ['Comentarios — Wireframe Vida en la PUCP (' + new Date().toLocaleDateString('es-PE') + ')', ''];
+    var total = 0;
+    main.querySelectorAll('section').forEach(function(sec, idx){
+      var items = state.comments[sec.id] || [];
+      if (!items.length) return;
+      out.push((idx + 1) + '. ' + sec.dataset.title);
+      items.forEach(function(c){
+        total++;
+        out.push('   - ' + (c.author ? c.author + ': ' : '') + c.text + ' [' + new Date(c.ts).toLocaleString('es-PE') + ']');
+      });
+      out.push('');
+    });
+    if (!total){ notify('No hay comentarios para copiar'); return; }
+    var text = out.join('\n');
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){ notify(total + ' comentario(s) copiado(s) al portapapeles'); });
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      ta.remove();
+      notify(total + ' comentario(s) copiado(s) al portapapeles');
+    }
+  });
+
+  /* ----- restablecer ----- */
+  document.getElementById('btn-reset').addEventListener('click', function(){
+    if (confirm('¿Restablecer el wireframe? Se perderán los textos editados, el orden y los comentarios guardados en este navegador.')){
+      localStorage.removeItem(KEY);
+      location.reload();
+    }
+  });
+
+  renumber();
+})();
+</script>
 
 </body>
 </html>
