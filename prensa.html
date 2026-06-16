@@ -116,6 +116,28 @@
          opacity:0;transition:opacity .25s;pointer-events:none;}
   .toast.show{opacity:1;}
   @media print{.toolbar,.sec-tools,.toast{display:none!important;}}
+
+  /* ===== comentarios estilo Google Docs ===== */
+  @media(min-width:1101px){ .util .wrap, .nav .wrap, .wrap, .legend{ margin-right:344px; } }
+  #crail{position:absolute;top:0;right:16px;width:312px;z-index:40;}
+  .cthread{position:absolute;right:0;width:300px;}
+  .cthread.inline{position:static;width:auto;display:none;margin:14px 0 0;}
+  .cthread.inline.open{display:block;}
+  .ct-item{background:#fff;border:1px solid #e2e6ea;border-left:3px solid #0a7d72;border-radius:9px;padding:9px 11px;margin-bottom:7px;box-shadow:0 1px 5px rgba(20,30,45,.07);font-size:12.5px;}
+  .ct-body{white-space:pre-wrap;word-wrap:break-word;overflow-wrap:anywhere;color:#22272e;line-height:1.5;}
+  .ct-body a{color:#0a7d72;font-weight:600;}
+  .ct-meta{display:flex;align-items:center;gap:8px;color:#9097a0;font-size:10.5px;margin-top:6px;}
+  .ct-meta span{flex:1;}
+  .ct-del{border:none;background:none;color:#c2c2cc;cursor:pointer;font-size:12px;line-height:1;padding:0 2px;}
+  .ct-del:hover{color:#c0392b;}
+  .ct-add{background:#fff;border:1px dashed #b9c0c8;border-radius:9px;padding:8px;}
+  .ct-add textarea{width:100%;border:1px solid #e2e6ea;border-radius:7px;padding:8px;font:inherit;font-size:12.5px;resize:none;overflow:hidden;min-height:34px;line-height:1.45;}
+  .ct-row{display:flex;gap:6px;margin-top:6px;}
+  .ct-row input{flex:1;min-width:0;border:1px solid #e2e6ea;border-radius:7px;padding:7px;font:inherit;font-size:11.5px;}
+  .ct-row button{border:none;background:#0a7d72;color:#fff;border-radius:7px;padding:7px 13px;font:inherit;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;}
+  .ct-row button:hover{background:#08645b;}
+  .cthread.flash .ct-add{box-shadow:0 0 0 3px rgba(10,125,114,.4);transition:box-shadow .2s;}
+  @media(max-width:1100px){ #crail{display:none;} }
 </style>
 </head>
 <body>
@@ -314,188 +336,144 @@
 
 <script>
 (function(){
-  var KEY = 'wf-prensa-v1';
-  var main = document.getElementById('zones');
-  var toast = document.getElementById('toast');
-  var toastTimer = null;
+  var KEY='wf-prensa-v1', WF='prensa', API='https://comentarios.ludik.pe';
+  var main=document.getElementById('zones'), toast=document.getElementById('toast'), tt=null;
+  function notify(m){toast.textContent=m;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('show');},2200);}
+  function load(){try{return JSON.parse(localStorage.getItem(KEY))||{};}catch(e){return {};}}
+  function save(s){localStorage.setItem(KEY,JSON.stringify(s));}
+  var state=load(); state.content=state.content||{};
+  if(Array.isArray(state.order)){state.order.forEach(function(id){var s=document.getElementById(id);if(s)main.appendChild(s);});}
+  Object.keys(state.content).forEach(function(id){var s=document.getElementById(id);if(s)s.querySelector('.sec-body').innerHTML=state.content[id];});
+  function renumber(){var n=1;main.querySelectorAll('section .num').forEach(function(e){e.textContent=n++;});}
+  function saveOrder(){state.order=Array.prototype.map.call(main.querySelectorAll('section'),function(s){return s.id;});save(state);}
+  function saveContent(s){state.content[s.id]=s.querySelector('.sec-body').innerHTML;save(state);}
+  function esc(s){var d=document.createElement('div');d.textContent=(s==null?'':s);return d.innerHTML;}
+  function linkify(s){return esc(s).replace(/(https?:\/\/[^\s<]+)/g,function(u){return '<a href="'+u+'" target="_blank" rel="noopener">'+u+'</a>';});}
 
-  function notify(msg){
-    toast.textContent = msg;
-    toast.classList.add('show');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(function(){ toast.classList.remove('show'); }, 2200);
+  var rail=document.createElement('div'); rail.id='crail'; rail.setAttribute('contenteditable','false'); document.body.appendChild(rail);
+  var comments={}, threads={};
+
+  function makeThread(sec){
+    var t=document.createElement('div'); t.className='cthread'; t.dataset.sec=sec.id; t.setAttribute('contenteditable','false');
+    t.innerHTML='<div class="ct-list"></div><form class="ct-add"><textarea class="ct-text" rows="1" placeholder="Escribe un comentario… (enlaces y saltos de línea permitidos)"></textarea><div class="ct-row"><input class="ct-author" placeholder="Tu nombre (opcional)"><button type="submit">Comentar</button></div></form>';
+    var ta=t.querySelector('.ct-text');
+    function grow(){ta.style.height='auto';ta.style.height=ta.scrollHeight+'px';}
+    ta.addEventListener('input',function(){grow();layout();});
+    t.querySelector('form').addEventListener('submit',function(ev){
+      ev.preventDefault();
+      var body=ta.value.replace(/\s+$/,''); if(!body.trim())return;
+      var author=t.querySelector('.ct-author').value.trim();
+      fetch(API+'/comments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({wf:WF,section:sec.id,author:author,body:body})})
+        .then(function(r){return r.json();}).then(function(c){
+          (comments[sec.id]=comments[sec.id]||[]).push(c);
+          ta.value=''; grow(); renderThread(sec.id); layout(); notify('Comentario guardado');
+        }).catch(function(){notify('No se pudo guardar (sin conexión)');});
+    });
+    threads[sec.id]=t; return t;
   }
 
-  function load(){
-    try{ return JSON.parse(localStorage.getItem(KEY)) || {}; }catch(e){ return {}; }
+  function renderThread(sid){
+    var t=threads[sid]; if(!t)return;
+    var items=comments[sid]||[];
+    var list=t.querySelector('.ct-list');
+    list.innerHTML=items.map(function(c){
+      return '<div class="ct-item"><div class="ct-body">'+linkify(c.body)+'</div><div class="ct-meta"><span>'+esc(c.author||'Anónimo')+' · '+new Date(c.created_at).toLocaleString('es-PE')+'</span><button class="ct-del" data-id="'+c.id+'" title="Eliminar">✕</button></div></div>';
+    }).join('');
+    list.querySelectorAll('.ct-del').forEach(function(b){
+      b.addEventListener('click',function(){
+        fetch(API+'/comments/'+b.dataset.id,{method:'DELETE'}).catch(function(){});
+        comments[sid]=(comments[sid]||[]).filter(function(x){return String(x.id)!==b.dataset.id;});
+        renderThread(sid); layout();
+      });
+    });
+    var badge=document.querySelector('[data-cnt="'+sid+'"]');
+    if(badge){ badge.textContent=items.length; badge.parentNode.classList.toggle('has',items.length>0); }
   }
-  function save(state){
-    localStorage.setItem(KEY, JSON.stringify(state));
+
+  function layout(){
+    var wide=window.innerWidth>1100;
+    if(wide){
+      rail.style.display='block';
+      var prev=0;
+      main.querySelectorAll('section').forEach(function(sec){
+        var t=threads[sec.id]; if(!t)return;
+        if(t.parentNode!==rail) rail.appendChild(t);
+        t.classList.remove('inline','open');
+        var top=sec.getBoundingClientRect().top+window.scrollY;
+        if(top<prev+8) top=prev+8;
+        t.style.top=top+'px';
+        prev=top+t.offsetHeight;
+      });
+    } else {
+      rail.style.display='none';
+      main.querySelectorAll('section').forEach(function(sec){
+        var t=threads[sec.id]; if(!t)return;
+        t.style.top=''; t.classList.add('inline');
+        if(t.parentNode!==sec) sec.appendChild(t);
+      });
+    }
   }
-  var state = load();
-  state.content = state.content || {};
-  state.comments = {};
-  var API='https://metadieta.ludik.pe/wf-comments', WF='prensa';
+
   function loadRemote(){
     fetch(API+'/comments?wf='+WF).then(function(r){return r.json();}).then(function(rows){
-      state.comments={};
-      rows.forEach(function(c){ (state.comments[c.section]=state.comments[c.section]||[]).push({id:c.id,text:c.body,author:c.author||'',ts:new Date(c.created_at).getTime()}); });
-      main.querySelectorAll('section').forEach(renderComments);
+      comments={};
+      rows.forEach(function(c){(comments[c.section]=comments[c.section]||[]).push(c);});
+      Object.keys(threads).forEach(renderThread);
+      layout();
     }).catch(function(){});
   }
 
-  if (Array.isArray(state.order)){
-    state.order.forEach(function(id){
-      var sec = document.getElementById(id);
-      if (sec) main.appendChild(sec);
-    });
-  }
-  Object.keys(state.content).forEach(function(id){
-    var sec = document.getElementById(id);
-    if (sec) sec.querySelector('.sec-body').innerHTML = state.content[id];
-  });
-
-  function renumber(){
-    var n = 1;
-    main.querySelectorAll('section .num').forEach(function(el){ el.textContent = n++; });
-  }
-  function saveOrder(){
-    state.order = Array.prototype.map.call(main.querySelectorAll('section'), function(s){ return s.id; });
-    save(state);
-  }
-  function saveContent(sec){
-    state.content[sec.id] = sec.querySelector('.sec-body').innerHTML;
-    save(state);
-  }
-  function esc(s){
-    var d = document.createElement('div');
-    d.textContent = s;
-    return d.innerHTML;
-  }
-
   main.querySelectorAll('section').forEach(function(sec){
-    var tools = document.createElement('div');
-    tools.className = 'sec-tools';
-    tools.setAttribute('contenteditable','false');
-    tools.innerHTML =
-      '<button type="button" class="up" title="Subir sección">↑</button>' +
-      '<button type="button" class="down" title="Bajar sección">↓</button>' +
-      '<button type="button" class="c-btn" title="Comentarios de esta sección">💬 <span class="c-count">0</span></button>';
+    var tools=document.createElement('div'); tools.className='sec-tools'; tools.setAttribute('contenteditable','false');
+    tools.innerHTML='<button type="button" class="up" title="Subir">↑</button><button type="button" class="down" title="Bajar">↓</button><button type="button" class="c-btn" title="Comentar">💬 <span data-cnt="'+sec.id+'">0</span></button>';
     sec.appendChild(tools);
-
-    var panel = document.createElement('div');
-    panel.className = 'sec-comments';
-    panel.setAttribute('contenteditable','false');
-    panel.innerHTML =
-      '<div class="c-list"></div>' +
-      '<form><input type="text" class="c-author" placeholder="Autor (opcional)">' +
-      '<textarea class="c-text" placeholder="Escribe un comentario sobre esta sección…" required></textarea>' +
-      '<button type="submit">Agregar</button></form>';
-    sec.appendChild(panel);
-
-    tools.querySelector('.up').addEventListener('click', function(){
-      var prev = sec.previousElementSibling;
-      if (prev){ main.insertBefore(sec, prev); renumber(); saveOrder(); }
+    makeThread(sec);
+    tools.querySelector('.up').addEventListener('click',function(){var p=sec.previousElementSibling;if(p){main.insertBefore(sec,p);renumber();saveOrder();layout();}});
+    tools.querySelector('.down').addEventListener('click',function(){var n=sec.nextElementSibling;if(n){main.insertBefore(n,sec);renumber();saveOrder();layout();}});
+    tools.querySelector('.c-btn').addEventListener('click',function(){
+      var t=threads[sec.id]; if(!t)return;
+      if(window.innerWidth>1100){ t.querySelector('.ct-text').focus(); t.classList.add('flash'); setTimeout(function(){t.classList.remove('flash');},800); t.scrollIntoView({behavior:'smooth',block:'center'}); }
+      else { t.classList.toggle('open'); if(t.classList.contains('open')) t.scrollIntoView({behavior:'smooth',block:'nearest'}); }
     });
-    tools.querySelector('.down').addEventListener('click', function(){
-      var next = sec.nextElementSibling;
-      if (next){ main.insertBefore(next, sec); renumber(); saveOrder(); }
-    });
-    tools.querySelector('.c-btn').addEventListener('click', function(){
-      panel.classList.toggle('open');
-    });
-
-    panel.querySelector('form').addEventListener('submit', function(ev){
-      ev.preventDefault();
-      var txt = panel.querySelector('.c-text').value.trim();
-      if (!txt) return;
-      var author = panel.querySelector('.c-author').value.trim();
-      fetch(API+'/comments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({wf:WF,section:sec.id,author:author,body:txt})})
-        .then(function(r){return r.json();}).then(function(c){
-          (state.comments[sec.id] = state.comments[sec.id] || []).push({ id:c.id, text:c.body, author:c.author||'', ts:new Date(c.created_at).getTime() });
-          panel.querySelector('.c-text').value = '';
-          renderComments(sec);
-          notify('Comentario guardado');
-        }).catch(function(){ notify('No se pudo guardar (sin conexion)'); });
-    });
-
-    sec.querySelector('.sec-body').addEventListener('input', function(){
-      clearTimeout(sec._t);
-      sec._t = setTimeout(function(){ saveContent(sec); }, 400);
-    });
-
-    renderComments(sec);
+    sec.querySelector('.sec-body').addEventListener('input',function(){clearTimeout(sec._t);sec._t=setTimeout(function(){saveContent(sec);layout();},400);});
   });
 
   loadRemote();
+  layout();
+  window.addEventListener('resize',layout);
+  window.addEventListener('load',function(){setTimeout(layout,200);});
+  setTimeout(layout,500);
 
-  function renderComments(sec){
-    var list = sec.querySelector('.c-list');
-    var items = state.comments[sec.id] || [];
-    sec.querySelector('.c-count').textContent = items.length;
-    sec.querySelector('.c-btn').classList.toggle('has', items.length > 0);
-    list.innerHTML = items.map(function(c, i){
-      var meta = (c.author ? esc(c.author) + ' · ' : '') + new Date(c.ts).toLocaleString('es-PE');
-      return '<div class="c-item"><div>' + esc(c.text) + '<span class="c-meta">' + meta + '</span></div>' +
-             '<button type="button" class="c-del" data-i="' + i + '" title="Eliminar">✕</button></div>';
-    }).join('');
-    list.querySelectorAll('.c-del').forEach(function(btn){
-      btn.addEventListener('click', function(){
-        var cc = items[parseInt(btn.dataset.i, 10)];
-        if (cc && cc.id){ fetch(API+'/comments/'+cc.id,{method:'DELETE'}).catch(function(){}); }
-        items.splice(parseInt(btn.dataset.i, 10), 1);
-        renderComments(sec);
-      });
-    });
-  }
-
-  var btnEdit = document.getElementById('btn-edit');
-  btnEdit.addEventListener('click', function(){
-    var on = document.body.classList.toggle('editing');
-    btnEdit.classList.toggle('on', on);
-    btnEdit.textContent = on ? '✔ Terminar edición' : '✏️ Editar textos';
-    main.querySelectorAll('.sec-body').forEach(function(b){
-      b.contentEditable = on ? 'true' : 'false';
-    });
-    notify(on ? 'Haz clic sobre cualquier texto para editarlo' : 'Edición guardada');
+  var btnEdit=document.getElementById('btn-edit');
+  btnEdit.addEventListener('click',function(){
+    var on=document.body.classList.toggle('editing');
+    btnEdit.classList.toggle('on',on);
+    btnEdit.textContent=on?'✔ Terminar edición':'✏️ Editar textos';
+    main.querySelectorAll('.sec-body').forEach(function(b){b.contentEditable=on?'true':'false';});
+    setTimeout(layout,60);
+    notify(on?'Haz clic sobre cualquier texto para editarlo':'Edición guardada');
   });
 
-  document.getElementById('btn-export').addEventListener('click', function(){
-    var out = ['Comentarios — Wireframe Prensa (' + new Date().toLocaleDateString('es-PE') + ')', ''];
-    var total = 0;
-    main.querySelectorAll('section').forEach(function(sec, idx){
-      var items = state.comments[sec.id] || [];
-      if (!items.length) return;
-      out.push((idx + 1) + '. ' + sec.dataset.title);
-      items.forEach(function(c){
-        total++;
-        out.push('   - ' + (c.author ? c.author + ': ' : '') + c.text + ' [' + new Date(c.ts).toLocaleString('es-PE') + ']');
-      });
+  document.getElementById('btn-export').addEventListener('click',function(){
+    var out=['Comentarios — Prensa ('+new Date().toLocaleDateString('es-PE')+')',''];var total=0;
+    main.querySelectorAll('section').forEach(function(sec,idx){
+      var items=comments[sec.id]||[]; if(!items.length)return;
+      out.push((idx+1)+'. '+sec.dataset.title);
+      items.forEach(function(c){total++;out.push('   - '+(c.author?c.author+': ':'')+c.body.replace(/\n+/g,' ')+' ['+new Date(c.created_at).toLocaleString('es-PE')+']');});
       out.push('');
     });
-    if (!total){ notify('No hay comentarios para copiar'); return; }
-    var text = out.join('\n');
-    if (navigator.clipboard && navigator.clipboard.writeText){
-      navigator.clipboard.writeText(text).then(function(){ notify(total + ' comentario(s) copiado(s) al portapapeles'); });
-    } else {
-      var ta = document.createElement('textarea');
-      ta.value = text;
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand('copy');
-      ta.remove();
-      notify(total + ' comentario(s) copiado(s) al portapapeles');
-    }
+    if(!total){notify('No hay comentarios para copiar');return;}
+    var text=out.join('\n');
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){notify(total+' comentario(s) copiado(s)');});}
+    else{var ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();notify(total+' comentario(s) copiado(s)');}
   });
 
-  document.getElementById('btn-reset').addEventListener('click', function(){
-    if (confirm('¿Restablecer el wireframe? Se perderán los textos editados, el orden y los comentarios guardados en este navegador.')){
-      localStorage.removeItem(KEY);
-      location.reload();
-    }
+  document.getElementById('btn-reset').addEventListener('click',function(){
+    if(confirm('¿Restablecer textos y orden de este navegador? Los comentarios viven en la base de datos y NO se borran.')){localStorage.removeItem(KEY);location.reload();}
   });
 
   renumber();
+
 })();
 </script>
 
