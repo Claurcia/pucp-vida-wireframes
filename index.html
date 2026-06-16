@@ -559,7 +559,15 @@
   }
   var state = load();           // { order:[], content:{id:html}, comments:{id:[{text,author,ts}]} }
   state.content = state.content || {};
-  state.comments = state.comments || {};
+  state.comments = {};
+  var API='https://metadieta.ludik.pe/wf-comments', WF='vida';
+  function loadRemote(){
+    fetch(API+'/comments?wf='+WF).then(function(r){return r.json();}).then(function(rows){
+      state.comments={};
+      rows.forEach(function(c){ (state.comments[c.section]=state.comments[c.section]||[]).push({id:c.id,text:c.body,author:c.author||'',ts:new Date(c.created_at).getTime()}); });
+      main.querySelectorAll('section').forEach(renderComments);
+    }).catch(function(){});
+  }
 
   /* ----- restaurar orden y textos guardados ----- */
   if (Array.isArray(state.order)){
@@ -629,11 +637,13 @@
       var txt = panel.querySelector('.c-text').value.trim();
       if (!txt) return;
       var author = panel.querySelector('.c-author').value.trim();
-      (state.comments[sec.id] = state.comments[sec.id] || []).push({ text:txt, author:author, ts:Date.now() });
-      save(state);
-      panel.querySelector('.c-text').value = '';
-      renderComments(sec);
-      notify('Comentario guardado');
+      fetch(API+'/comments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({wf:WF,section:sec.id,author:author,body:txt})})
+        .then(function(r){return r.json();}).then(function(c){
+          (state.comments[sec.id] = state.comments[sec.id] || []).push({ id:c.id, text:c.body, author:c.author||'', ts:new Date(c.created_at).getTime() });
+          panel.querySelector('.c-text').value = '';
+          renderComments(sec);
+          notify('Comentario guardado');
+        }).catch(function(){ notify('No se pudo guardar (sin conexion)'); });
     });
 
     sec.querySelector('.sec-body').addEventListener('input', function(){
@@ -643,6 +653,8 @@
 
     renderComments(sec);
   });
+
+  loadRemote();
 
   function renderComments(sec){
     var list = sec.querySelector('.c-list');
@@ -656,8 +668,9 @@
     }).join('');
     list.querySelectorAll('.c-del').forEach(function(btn){
       btn.addEventListener('click', function(){
+        var cc = items[parseInt(btn.dataset.i, 10)];
+        if (cc && cc.id){ fetch(API+'/comments/'+cc.id,{method:'DELETE'}).catch(function(){}); }
         items.splice(parseInt(btn.dataset.i, 10), 1);
-        save(state);
         renderComments(sec);
       });
     });
