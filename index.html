@@ -153,11 +153,11 @@
   .toolbar button.on{background:var(--brand);color:#fff;border-color:var(--brand);}
   .toolbar .hint{font-size:11px;color:var(--ink-soft);max-width:150px;line-height:1.3;}
   .sec-tools{position:absolute;top:10px;right:10px;display:flex;gap:5px;z-index:5;}
-  .sec-tools button{font:inherit;font-size:12px;font-weight:700;width:28px;height:28px;border:1px solid var(--line-strong);
-                    background:#fff;color:var(--ink);border-radius:6px;cursor:pointer;padding:0;line-height:1;}
+  .sec-tools button{font:inherit;font-size:13px;font-weight:700;height:32px;min-width:32px;border:1px solid var(--line-strong);
+                    background:#fff;color:var(--ink);border-radius:6px;cursor:pointer;padding:0 6px;line-height:1;}
   .sec-tools button:hover{background:var(--accent-soft);}
-  .sec-tools .c-btn{width:auto;padding:0 8px;}
-  .sec-tools .c-btn.has{background:var(--brand);color:#fff;border-color:var(--brand);}
+  .sec-tools .c-btn{width:auto;padding:0 12px;background:#0a7d72;color:#fff;border-color:#0a7d72;}
+  .sec-tools .c-btn.has{background:#08645b;color:#fff;border-color:#08645b;}
   body.editing .sec-body{outline:1.5px dashed var(--brand);outline-offset:6px;border-radius:6px;}
   body.editing .sec-body:focus-within{outline-style:solid;background:rgba(255,255,255,.4);}
   .sec-comments{display:none;margin-top:14px;border-top:1px dashed var(--line-strong);padding-top:12px;}
@@ -241,6 +241,12 @@
 
   <div class="wrap">
     <div class="crumb">Inicio › <b>Vida Universitaria</b></div>
+  </div>
+
+  <div class="wrap">
+    <div style="margin:6px 26px 0;padding:10px 14px;background:#e8f5f3;border:1px solid #0a7d72;border-left:4px solid #0a7d72;border-radius:8px;font-size:13px;color:#2b2b2b;">
+      💬 <b>¿Cómo comentar?</b> Pasa el cursor por una sección y haz clic en el botón verde <b>«💬 Comentar»</b> (arriba a la derecha de cada sección); escribe y pulsa <b>Agregar</b>. Luego usa <b>«📋 Copiar comentarios»</b> (abajo a la derecha) para enviármelos.
+    </div>
   </div>
 
   <!-- ===== BODY ===== -->
@@ -593,7 +599,7 @@
     tools.innerHTML =
       '<button type="button" class="up" title="Subir sección">↑</button>' +
       '<button type="button" class="down" title="Bajar sección">↓</button>' +
-      '<button type="button" class="c-btn" title="Comentarios de esta sección">💬 <span class="c-count">0</span></button>';
+      '<button type="button" class="c-btn" title="Comentar esta sección">💬 Comentar <span class="c-count">0</span></button>';
     sec.appendChild(tools);
 
     var panel = document.createElement('div');

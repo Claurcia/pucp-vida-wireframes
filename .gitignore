@@ -25,6 +25,12 @@ catalogo-plantillas-home-pucp.md
 *.pem
 *.token
 
+# Dependencias / herramientas de prueba (no son parte del wireframe)
+node_modules/
+package.json
+package-lock.json
+_*.js
+
 # Sistema
 .DS_Store
 Thumbs.db
