@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comentarios — Wireframes Home PUCP</title>
+<style>
+  :root{--brand:#27425f;--brand2:#0a7d72;--ink:#22272e;--soft:#69707a;--line:#e2e6ea;--bg:#f5f7f9;--card:#fff;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);font-family:'Segoe UI',Arial,sans-serif;color:var(--ink);}
+  header{background:var(--brand);color:#fff;padding:16px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+  header h1{font-size:18px;margin:0;font-weight:800;flex:1;}
+  header .meta{font-size:13px;color:#cdd8e4;}
+  header button{font:inherit;font-size:13px;font-weight:700;border:1px solid rgba(255,255,255,.5);background:transparent;color:#fff;border-radius:7px;padding:7px 13px;cursor:pointer;}
+  header button:hover{background:rgba(255,255,255,.12);}
+  .wrap{max-width:980px;margin:0 auto;padding:22px 20px 60px;}
+  .gate{max-width:420px;margin:60px auto;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:26px;text-align:center;box-shadow:0 2px 10px rgba(20,30,45,.06);}
+  .gate h2{margin:0 0 6px;font-size:18px;color:var(--brand);}
+  .gate p{color:var(--soft);font-size:13px;margin:0 0 16px;}
+  .gate input{width:100%;font:inherit;font-size:14px;border:1px solid var(--line);border-radius:8px;padding:11px 12px;margin-bottom:12px;}
+  .gate button,.bigbtn{font:inherit;font-size:14px;font-weight:700;background:var(--brand);color:#fff;border:none;border-radius:8px;padding:11px 18px;cursor:pointer;width:100%;}
+  .err{color:#c0392b;font-size:13px;margin-top:10px;min-height:18px;}
+  .summary{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:18px;}
+  .pill{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 15px;font-size:13px;font-weight:700;color:var(--brand);}
+  .wf{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:16px;overflow:hidden;}
+  .wf-head{background:#eef2f5;padding:12px 18px;font-weight:800;color:var(--brand);display:flex;align-items:center;gap:10px;}
+  .wf-head a{margin-left:auto;font-size:12px;font-weight:700;color:var(--brand2);text-decoration:none;}
+  .wf-head .cnt{font-size:12px;font-weight:700;color:#fff;background:var(--brand2);border-radius:999px;padding:2px 9px;}
+  .sec{padding:6px 18px 14px;}
+  .sec-title{font-size:12px;text-transform:uppercase;letter-spacing:.6px;color:var(--soft);font-weight:700;margin:12px 0 6px;}
+  .c{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:9px;padding:10px 12px;margin-bottom:8px;background:#fbfcfd;}
+  .c .body{flex:1;font-size:13.5px;line-height:1.5;white-space:pre-wrap;}
+  .c .who{display:block;color:var(--soft);font-size:11.5px;margin-top:5px;}
+  .c .del{border:none;background:none;color:#b9b9c2;cursor:pointer;font-size:15px;line-height:1;padding:2px 4px;flex:none;}
+  .c .del:hover{color:#c0392b;}
+  .empty{color:var(--soft);font-size:14px;text-align:center;padding:40px;background:var(--card);border:1px dashed var(--line);border-radius:12px;}
+</style>
+</head>
+<body>
+<header>
+  <h1>💬 Comentarios — Wireframes Home PUCP</h1>
+  <span class="meta" id="meta"></span>
+  <button id="btn-refresh" type="button" style="display:none;">↻ Actualizar</button>
+  <button id="btn-logout" type="button" style="display:none;">Salir</button>
+</header>
+
+<div class="wrap" id="wrap">
+  <div class="gate" id="gate">
+    <h2>Acceso de administrador</h2>
+    <p>Ingresa la clave para ver todos los comentarios del equipo.</p>
+    <input type="password" id="key" placeholder="Clave de administrador" autocomplete="off">
+    <button id="btn-enter" type="button">Entrar</button>
+    <div class="err" id="err"></div>
+  </div>
+  <div id="content"></div>
+</div>
+
+<script>
+(function(){
+  var API = 'https://metadieta.ludik.pe/wf-comments';
+  var NAMES = { vida:'Vida en la PUCP', empresas:'Empresas', egresados:'Egresados', empleabilidad:'Empleabilidad', prensa:'Prensa' };
+  var BASEWF = 'https://claurcia.github.io/pucp-vida-wireframes/';
+  var FILE = { vida:'index.html', empresas:'empresas.html', egresados:'egresados.html', empleabilidad:'empleabilidad.html', prensa:'prensa.html' };
+
+  var gate = document.getElementById('gate');
+  var content = document.getElementById('content');
+  var errEl = document.getElementById('err');
+  var meta = document.getElementById('meta');
+  var btnRefresh = document.getElementById('btn-refresh');
+  var btnLogout = document.getElementById('btn-logout');
+  var key = localStorage.getItem('wf-admin-key') || '';
+
+  function esc(s){ var d=document.createElement('div'); d.textContent=s==null?'':s; return d.innerHTML; }
+  function fmtDate(iso){ try{ return new Date(iso).toLocaleString('es-PE'); }catch(e){ return iso; } }
+
+  function load(){
+    errEl.textContent = '';
+    fetch(API + '/admin?key=' + encodeURIComponent(key)).then(function(r){
+      if (r.status === 401){ throw new Error('401'); }
+      return r.json();
+    }).then(function(data){
+      localStorage.setItem('wf-admin-key', key);
+      gate.style.display = 'none';
+      btnRefresh.style.display = btnLogout.style.display = 'inline-block';
+      render(data);
+    }).catch(function(e){
+      if (e.message === '401'){ errEl.textContent = 'Clave incorrecta.'; localStorage.removeItem('wf-admin-key'); }
+      else { errEl.textContent = 'No se pudo conectar con la API.'; }
+      gate.style.display = 'block'; content.innerHTML = '';
+      btnRefresh.style.display = btnLogout.style.display = 'none';
+      meta.textContent = '';
+    });
+  }
+
+  function render(data){
+    var rows = data.comments || [];
+    meta.textContent = data.total + ' comentario(s)';
+    if (!rows.length){ content.innerHTML = '<div class="empty">Aún no hay comentarios.</div>'; return; }
+    // agrupar por wireframe -> seccion
+    var byWf = {};
+    rows.forEach(function(c){
+      (byWf[c.wireframe] = byWf[c.wireframe] || {});
+      (byWf[c.wireframe][c.section] = byWf[c.wireframe][c.section] || []).push(c);
+    });
+    var order = ['vida','empresas','egresados','empleabilidad','prensa'];
+    Object.keys(byWf).forEach(function(w){ if(order.indexOf(w)<0) order.push(w); });
+    var html = '';
+    order.forEach(function(w){
+      if (!byWf[w]) return;
+      var secs = byWf[w];
+      var total = Object.keys(secs).reduce(function(a,s){ return a + secs[s].length; }, 0);
+      var url = BASEWF + (FILE[w] || '');
+      html += '<div class="wf"><div class="wf-head">' + esc(NAMES[w] || w) +
+              ' <span class="cnt">' + total + '</span>' +
+              (FILE[w] ? ' <a href="' + url + '" target="_blank">abrir wireframe ↗</a>' : '') + '</div>';
+      Object.keys(secs).forEach(function(sid){
+        html += '<div class="sec"><div class="sec-title">' + esc(sid) + '</div>';
+        secs[sid].forEach(function(c){
+          html += '<div class="c"><div class="body">' + esc(c.body) +
+                  '<span class="who">' + esc(c.author || 'Anónimo') + ' · ' + fmtDate(c.created_at) + '</span></div>' +
+                  '<button class="del" data-id="' + c.id + '" title="Eliminar">✕</button></div>';
+        });
+        html += '</div>';
+      });
+      html += '</div>';
+    });
+    content.innerHTML = html;
+    content.querySelectorAll('.del').forEach(function(b){
+      b.addEventListener('click', function(){
+        if (!confirm('¿Eliminar este comentario?')) return;
+        fetch(API + '/comments/' + b.dataset.id, { method:'DELETE' }).then(function(){ load(); });
+      });
+    });
+  }
+
+  document.getElementById('btn-enter').addEventListener('click', function(){
+    key = document.getElementById('key').value.trim();
+    if (key) load();
+  });
+  document.getElementById('key').addEventListener('keydown', function(e){ if (e.key === 'Enter'){ key = this.value.trim(); if (key) load(); } });
+  btnRefresh.addEventListener('click', load);
+  btnLogout.addEventListener('click', function(){ localStorage.removeItem('wf-admin-key'); key=''; location.reload(); });
+
+  if (key) load();
+})();
+</script>
+</body>
+</html>
