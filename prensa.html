@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wireframe — Prensa · PUCP</title>
+<style>
+  :root{
+    --page:#ffffff;
+    --t0:#fafafa;
+    --t1:#f1f1f1;
+    --t2:#e6e6e6;
+    --t3:#d6d6d6;
+    --t4:#c2c2c2;
+    --line:#cfcfcf;
+    --line-strong:#a8a8a8;
+    --ink:#2b2b2b;
+    --ink-soft:#6c6c6c;
+    --nav:#3a3a3a;
+    --nav-util:#efefef;
+    --accent:#555555;
+    --accent-soft:#dcdcdc;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--page);font-family:'Segoe UI',Arial,sans-serif;color:var(--ink);}
+  .wrap{max-width:1200px;margin:0 auto;}
+  /* ---------- TOP NAV ---------- */
+  .util .wrap,.nav .wrap{max-width:1340px;}
+  .util{background:var(--nav-util);border-bottom:1px solid var(--line);}
+  .util .wrap{display:flex;align-items:center;justify-content:space-between;padding:9px 26px;font-size:13px;color:var(--ink-soft);}
+  .util .profiles{display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
+  .util .profiles span{white-space:nowrap;}
+  .util .profiles .me{color:var(--ink);font-weight:700;border-bottom:2px solid var(--accent);padding-bottom:2px;}
+  .util .sep{color:var(--line-strong);}
+  .util .right{display:flex;align-items:center;gap:14px;}
+  .util .becas{font-weight:700;color:var(--ink);text-decoration:underline;letter-spacing:.5px;}
+  .acc-btn{background:var(--nav);color:#fff;font-size:12.5px;font-weight:700;padding:6px 16px;border-radius:5px;display:inline-block;white-space:nowrap;}
+  .hotlink{font-weight:700;color:var(--ink);background:var(--accent-soft);border:1px solid var(--line-strong);border-radius:5px;padding:5px 12px;white-space:nowrap;}
+  .nav{background:var(--nav);}
+  .nav .wrap{display:flex;align-items:center;gap:16px;padding:14px 26px;}
+  .logo{display:flex;align-items:center;gap:8px;color:#fff;font-weight:800;letter-spacing:1px;font-size:20px;flex:none;}
+  .nav ul{display:flex;gap:12px;list-style:none;margin:0;padding:0;flex:1;flex-wrap:wrap;align-items:center;}
+  .nav li{color:#d8d8d8;font-size:12.5px;white-space:nowrap;}
+  .inscribete{background:#fff;color:var(--ink);font-weight:700;border-radius:8px;padding:10px 18px;font-size:13.5px;text-align:center;flex:none;}
+  .lupa{width:38px;height:38px;border:2px solid #fff;border-radius:8px;display:flex;align-items:center;justify-content:center;flex:none;}
+  .crumb{padding:14px 26px 4px;color:var(--ink-soft);font-size:12.5px;}
+  /* ---------- BODY ---------- */
+  main{padding:8px 26px 60px;}
+  .sec{position:relative;background:var(--t1);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+  .sec.alt{background:var(--t0);}
+  .sec.star{border-left:5px solid var(--accent);background:#ededed;}
+  .sec h2{margin:0 0 6px;font-size:17px;display:flex;align-items:center;gap:9px;color:var(--ink);flex-wrap:wrap;}
+  .num{display:inline-flex;width:26px;height:26px;border-radius:6px;background:var(--t4);color:var(--ink);align-items:center;justify-content:center;font-size:13px;font-weight:700;flex:none;}
+  .star .num{background:var(--accent);color:#fff;}
+  .st{color:var(--accent);font-size:14px;}
+  .tag{background:#fff;border:1px dashed var(--line-strong);color:var(--ink-soft);font-size:11px;padding:3px 9px;border-radius:4px;font-weight:700;letter-spacing:.3px;}
+  .tag.own{border-style:solid;border-color:var(--accent);color:var(--accent);}
+  .desc{color:var(--ink-soft);font-size:13px;margin:0 0 12px;}
+  .msg{font-size:13px;color:var(--ink);background:#fff;border-left:3px solid var(--accent);padding:8px 12px;margin:0 0 12px;font-style:italic;}
+  .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+  .ph{background:var(--t2);border:1px dashed var(--line-strong);border-radius:7px;}
+  .banner{height:140px;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);font-size:13px;font-weight:600;text-align:center;padding:0 20px;
+           background:repeating-linear-gradient(45deg,var(--t2),var(--t2) 12px,var(--t1) 12px,var(--t1) 24px);border-radius:8px;margin-bottom:12px;}
+  .card{flex:1;min-width:0;height:96px;}
+  .cta{background:var(--accent);color:#fff;font-weight:700;font-size:13.5px;padding:11px 20px;border-radius:7px;display:inline-block;flex:none;}
+  .cta.ghost{background:#fff;color:var(--ink);border:1.5px solid var(--accent);}
+  .tabs{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap;}
+  .tab{padding:9px 16px;border:1px solid var(--line);border-radius:6px;background:#fff;color:var(--ink-soft);font-size:13px;}
+  .tab.on{background:var(--nav);color:#fff;font-weight:700;border-color:var(--nav);}
+  .panel{border:1px dashed var(--line-strong);border-radius:7px;background:#fff;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);font-size:12.5px;text-align:center;padding:14px;}
+  .grid{display:flex;gap:10px;flex-wrap:nowrap;}
+  .grid.wraps{flex-wrap:wrap;}
+  .cell{flex:1;min-width:0;height:74px;background:var(--t2);border:1px dashed var(--line-strong);border-radius:7px;display:flex;align-items:center;justify-content:center;color:var(--ink);font-size:12px;text-align:center;padding:6px;font-weight:600;}
+  .cell.tall{height:112px;flex-direction:column;gap:5px;}
+  .cell .sub{font-weight:400;font-size:10.5px;color:var(--ink-soft);line-height:1.35;}
+  .contact{color:var(--ink);font-size:13px;line-height:1.7;}
+  /* hub */
+  .searchbar{display:flex;gap:10px;margin-bottom:10px;flex-wrap:wrap;}
+  .searchbar .inp{flex:2;min-width:220px;background:#fff;border:1px solid var(--line-strong);border-radius:7px;padding:11px 14px;color:var(--ink-soft);font-size:13px;display:flex;justify-content:space-between;align-items:center;}
+  .searchbar .sel{flex:1;min-width:160px;background:#fff;border:1px solid var(--line-strong);border-radius:7px;padding:11px 14px;color:var(--ink);font-size:13px;display:flex;justify-content:space-between;align-items:center;font-weight:600;}
+  .svc{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:6px;padding:10px 14px;margin-bottom:7px;}
+  .svc b{flex:1;font-size:13px;}
+  .svc .en{color:var(--ink-soft);font-size:12px;white-space:nowrap;}
+  .svc .me-btn{background:var(--accent);color:#fff;font-size:11.5px;font-weight:700;border-radius:5px;padding:6px 12px;white-space:nowrap;}
+  .legend{max-width:1200px;margin:0 auto;padding:0 26px 50px;color:var(--ink-soft);font-size:12.5px;line-height:1.7;}
+  .legend b{color:var(--ink);}
+  /* ---------- HERRAMIENTAS DE REVISIÓN ---------- */
+  .toolbar{position:fixed;bottom:18px;right:18px;z-index:100;display:flex;gap:8px;align-items:center;
+           background:#fff;border:1px solid var(--line-strong);border-radius:10px;padding:9px 12px;box-shadow:0 4px 18px rgba(0,0,0,.18);}
+  .toolbar button{font:inherit;font-size:12.5px;font-weight:700;border:1px solid var(--line-strong);background:var(--t1);color:var(--ink);
+                  border-radius:6px;padding:7px 12px;cursor:pointer;white-space:nowrap;}
+  .toolbar button:hover{background:var(--accent-soft);}
+  .toolbar button.on{background:var(--accent);color:#fff;border-color:var(--accent);}
+  .toolbar .hint{font-size:11px;color:var(--ink-soft);max-width:150px;line-height:1.3;}
+  .sec-tools{position:absolute;top:10px;right:10px;display:flex;gap:5px;z-index:5;}
+  .sec-tools button{font:inherit;font-size:12px;font-weight:700;width:28px;height:28px;border:1px solid var(--line-strong);
+                    background:#fff;color:var(--ink);border-radius:6px;cursor:pointer;padding:0;line-height:1;}
+  .sec-tools button:hover{background:var(--accent-soft);}
+  .sec-tools .c-btn{width:auto;padding:0 8px;}
+  .sec-tools .c-btn.has{background:var(--accent);color:#fff;border-color:var(--accent);}
+  body.editing .sec-body{outline:1.5px dashed var(--accent);outline-offset:6px;border-radius:6px;}
+  body.editing .sec-body:focus-within{outline-style:solid;background:rgba(255,255,255,.4);}
+  .sec-comments{display:none;margin-top:14px;border-top:1px dashed var(--line-strong);padding-top:12px;}
+  .sec-comments.open{display:block;}
+  .sec-comments .c-item{background:#fff;border:1px solid var(--line);border-radius:7px;padding:8px 10px;margin-bottom:7px;
+                        font-size:12.5px;display:flex;gap:10px;align-items:flex-start;justify-content:space-between;}
+  .sec-comments .c-meta{color:var(--ink-soft);font-size:11px;display:block;margin-top:3px;}
+  .sec-comments .c-del{border:none;background:none;color:var(--ink-soft);cursor:pointer;font-size:13px;padding:0 2px;flex:none;}
+  .sec-comments .c-del:hover{color:#a33;}
+  .sec-comments form{display:flex;gap:7px;flex-wrap:wrap;}
+  .sec-comments input,.sec-comments textarea{font:inherit;font-size:12.5px;border:1px solid var(--line-strong);border-radius:6px;padding:7px 9px;}
+  .sec-comments input{width:140px;}
+  .sec-comments textarea{flex:1;min-width:220px;resize:vertical;min-height:36px;}
+  .sec-comments form button{font:inherit;font-size:12.5px;font-weight:700;background:var(--accent);color:#fff;border:none;border-radius:6px;padding:7px 14px;cursor:pointer;}
+  .toast{position:fixed;bottom:78px;right:18px;z-index:101;background:var(--nav);color:#fff;font-size:12.5px;border-radius:7px;padding:9px 14px;
+         opacity:0;transition:opacity .25s;pointer-events:none;}
+  .toast.show{opacity:1;}
+  @media print{.toolbar,.sec-tools,.toast{display:none!important;}}
+</style>
+</head>
+<body>
+
+  <!-- ===== UTILITY BAR ===== -->
+  <div class="util">
+    <div class="wrap">
+      <div class="profiles">
+        <span>Postulante</span><span class="sep">|</span>
+        <span>Pregrado · Posgrado</span><span class="sep">|</span>
+        <span>Egresado</span><span class="sep">|</span>
+        <span>Empresa</span><span class="sep">|</span>
+        <span>Estudiante</span><span class="sep">|</span>
+        <span>Profesor</span><span class="sep">|</span>
+        <span>Administrativo</span><span class="sep">|</span>
+        <span class="me">Prensa</span>
+      </div>
+      <div class="right">
+        <span class="becas">BECAS</span>
+        <span class="hotlink">Intranet y correo</span>
+        <span class="hotlink">PAIDEIA</span>
+        <span class="acc-btn">Accesos ▾</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MAIN NAV ===== -->
+  <div class="nav">
+    <div class="wrap">
+      <div class="logo">
+        <svg width="36" height="36" viewBox="0 0 40 40" aria-hidden="true">
+          <circle cx="20" cy="20" r="18" fill="none" stroke="#fff" stroke-width="2"/>
+          <path d="M9 24 q11 6 22 0 l-3 5 h-16 z" fill="#fff"/>
+          <path d="M20 8 l7 13 h-14 z" fill="#fff"/>
+        </svg>
+        PUCP
+      </div>
+      <ul>
+        <li>Conoce la PUCP</li>
+        <li>Carreras y Programas</li>
+        <li>Admisión</li>
+        <li>Internacionalización</li>
+        <li>Empleabilidad</li>
+        <li>Investigación que transforma</li>
+        <li>Vida Universitaria</li>
+        <li>Noticias y Eventos</li>
+      </ul>
+      <div class="inscribete">Postula aquí</div>
+      <div class="lupa">
+        <svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true">
+          <circle cx="8" cy="8" r="6" fill="none" stroke="#fff" stroke-width="2"/>
+          <line x1="12.5" y1="12.5" x2="18.5" y2="18.5" stroke="#fff" stroke-width="2"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="crumb">Inicio › Noticias y Eventos › <b>Prensa</b></div>
+  </div>
+
+  <!-- ===== BODY ===== -->
+  <main class="wrap" id="zones">
+
+    <!-- 1 -->
+    <section class="sec star" id="z-banner" data-title="Banner + introducción">
+      <div class="sec-body">
+      <h2><span class="num">1</span> Banner + introducción — Sala de Prensa PUCP <span class="st">★</span> <span class="tag own">contenido propio</span></h2>
+      <p class="desc">Punto de entrada para periodistas y medios. La prensa / visitante general es ~12% de los 5 millones de visitas anuales del home; "PUCP en Prensa" recibió ~168 clics en 3 meses (124 desde el home + 44 desde el menú), mayormente desde móvil. Acceso rápido a voceros, datos y recursos.</p>
+      <div class="banner">"Sala de Prensa PUCP — fuentes, expertos y recursos para medios" — [ foto real: vocero / campus ]</div>
+      <div class="row"><span class="cta">Contactar a la oficina de prensa ▸</span><span class="contact" style="color:var(--ink-soft);font-size:12px;">→ CTA lleva a la zona "Equipo de prensa" (contacto humano)</span></div>
+      </div>
+    </section>
+
+    <!-- 2 -->
+    <section class="sec" id="z-oficina" data-title="Oficina de prensa PUCP">
+      <div class="sec-body">
+      <h2><span class="num">2</span> Oficina de prensa PUCP <span class="tag own">contenido propio</span></h2>
+      <p class="desc">Datos institucionales de contacto para medios: teléfonos y correo de la oficina de prensa. Atención a solicitudes de entrevista y declaraciones.</p>
+      <div class="row" style="align-items:stretch;">
+        <div class="cell" style="justify-content:flex-start;text-align:left;padding:14px;font-weight:400;height:auto;">
+          <span class="contact">📞 [ Teléfono central de prensa ] · anexo [ 0000 ]<br>✉️ [ prensa@pucp.edu.pe ]<br>🕑 Horario de atención a medios</span>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- 3 — subió a posición 3 (Claudia, 12 jun) -->
+    <section class="sec star" id="z-equipo" data-title="Equipo de prensa — contacto humano">
+      <div class="sec-body">
+      <h2><span class="num">3</span> Equipo de prensa — contacto humano nombrado <span class="st">★</span> <span class="tag">subió a la posición 3 (Claudia · 12 jun)</span></h2>
+      <p class="msg">No un formulario frío: personas con nombre, cargo y canal directo que atienden a cada medio. El "contacto humano identificado" es top-4 en el ranking de elementos del home (puntaje 4.13).</p>
+      <div class="row">
+        <div class="cell" style="flex:none;width:96px;height:96px;border-radius:50%;">[ foto ]</div>
+        <div class="cell" style="flex:1;height:auto;padding:14px;font-weight:400;text-align:left;justify-content:flex-start;">
+          <span class="contact">[ Nombre y apellido ] — [ cargo / oficina de prensa ]<br>correo directo · teléfono · agenda una entrevista</span>
+        </div>
+        <div class="cell" style="flex:1;height:auto;padding:14px;font-weight:400;text-align:left;justify-content:flex-start;">
+          <span class="contact">[ Nombre y apellido ] — [ cargo ]<br>correo directo · teléfono</span>
+        </div>
+      </div>
+      <p class="desc" style="margin:12px 0 0;"><span class="tag">⚠ evaluar si van correos y teléfonos directos o solo derivación a la oficina (Claudia)</span></p>
+      </div>
+    </section>
+
+    <!-- 4 -->
+    <section class="sec alt" id="z-especialista" data-title="Encuentra a un especialista">
+      <div class="sec-body">
+      <h2><span class="num">4</span> Encuentra a un especialista <span class="tag">deriva: Gabinete de prensa / directorio de expertos</span></h2>
+      <p class="desc">Buscador de voceros y expertos PUCP por tema o facultad, para declaraciones y entrevistas especializadas.</p>
+      <div class="searchbar">
+        <span class="inp">Buscar un especialista por tema… <span>🔍</span></span>
+        <span class="sel">Área: Todas <span>▾</span></span>
+      </div>
+      <div class="svc"><b>[ Especialista ] — [ tema / facultad ]</b><span class="en">Disponible para medios</span><span class="me-btn">Solicitar entrevista</span></div>
+      <div class="svc"><b>[ Especialista ] — [ tema / facultad ]</b><span class="en">Disponible para medios</span><span class="me-btn">Solicitar entrevista</span></div>
+      <p class="desc" style="margin:10px 0 0;">"Solicitar entrevista" lleva al gabinete de prensa con el especialista preseleccionado.</p>
+      </div>
+    </section>
+
+    <!-- 5 -->
+    <section class="sec" id="z-medios" data-title="PUCP en medios">
+      <div class="sec-body">
+      <h2><span class="num">5</span> PUCP en medios <span class="tag">resumen + enlace a subdominio (Prensa / clipping)</span></h2>
+      <p class="desc">Clipping de apariciones de la PUCP en medios. Se muestran las más recientes (resumen/embebido); el archivo completo vive en el subdominio de prensa.</p>
+      <div class="row"><span class="ph card"></span><span class="ph card"></span><span class="ph card"></span></div>
+      <div class="row" style="margin-top:10px;"><span class="cta ghost">Ver todas las apariciones ▸</span></div>
+      </div>
+    </section>
+
+    <!-- 6 -->
+    <section class="sec alt" id="z-entrepares" data-title="Entre Pares">
+      <div class="sec-body">
+      <h2><span class="num">6</span> Entre Pares <span class="tag">resumen + enlace a subdominio</span></h2>
+      <p class="desc">Medio institucional PUCP. Resumen de las últimas publicaciones con enlace al sitio de Entre Pares.</p>
+      <div class="row"><span class="ph card"></span><span class="ph card"></span><span class="ph card"></span></div>
+      <div class="row" style="margin-top:10px;"><span class="cta ghost">Ir a Entre Pares ▸</span></div>
+      </div>
+    </section>
+
+    <!-- 7 -->
+    <section class="sec star" id="z-recursos" data-title="Recursos para periodistas">
+      <div class="sec-body">
+      <h2><span class="num">7</span> Recursos para periodistas <span class="st">★</span> <span class="tag own">contenido propio — kit descargable</span></h2>
+      <p class="desc">Material institucional listo para usar: fotos en alta, logos y manual de marca, dossier institucional, y datos y cifras oficiales.</p>
+      <div class="grid wraps">
+        <div class="cell tall" style="min-width:23%;">Fotos en alta<span class="sub">banco de imágenes institucional</span></div>
+        <div class="cell tall" style="min-width:23%;">Logos y manual de marca<span class="sub">usos correctos de la identidad</span></div>
+        <div class="cell tall" style="min-width:23%;">Dossier institucional<span class="sub">presentación PUCP para medios</span></div>
+        <div class="cell tall" style="min-width:23%;">Datos y cifras<span class="sub">PUCP en cifras · hechos clave</span></div>
+      </div>
+      <div class="row" style="margin-top:10px;"><span class="cta">Descargar kit de prensa ▸</span></div>
+      </div>
+    </section>
+
+    <!-- 8 -->
+    <section class="sec" id="z-redes" data-title="Redes institucionales">
+      <div class="sec-body">
+      <h2><span class="num">8</span> Redes institucionales <span class="tag">enlaces a canales oficiales</span></h2>
+      <p class="desc">Canales oficiales de la PUCP para seguimiento informativo en tiempo real.</p>
+      <div class="grid wraps">
+        <div class="cell" style="min-width:18%;">Facebook</div>
+        <div class="cell" style="min-width:18%;">X (Twitter)</div>
+        <div class="cell" style="min-width:18%;">LinkedIn</div>
+        <div class="cell" style="min-width:18%;">Instagram</div>
+        <div class="cell" style="min-width:18%;">YouTube</div>
+      </div>
+      </div>
+    </section>
+
+    <!-- 9 footer -->
+    <section class="sec" id="z-footer" data-title="Footer">
+      <div class="sec-body">
+      <h2><span class="num">9</span> Footer</h2>
+      <div class="row" style="align-items:stretch;">
+        <div class="cell" style="justify-content:flex-start;text-align:left;padding:14px;font-weight:400;">
+          <span class="contact">Oficina de prensa · mapa del sitio · redes · enlaces secundarios</span>
+        </div>
+      </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="legend">
+    <b>Wireframe de baja fidelidad — Prensa (Fase 1)</b> · escala de grises · ★ = piezas centrales (banner, equipo de prensa, recursos para periodistas) · <span class="tag own">borde sólido</span> = contenido propio (vive en el home) · <span class="tag">borde punteado</span> = resumen + enlace a subdominio / derivación.<br>
+    <b>Para quién:</b> periodistas y medios. La prensa/visitante general es ~12% del tráfico anual (5M visitas); "PUCP en Prensa" tuvo ~168 clics en 3 meses, sobre todo en móvil → la sala de prensa debe ser directa y mobile-first.<br>
+    <b>Decisiones aplicadas (comentarios Claudia Díaz, 12 jun):</b> "Equipo (contacto)" <b>subió a la posición 3</b> (antes 9) por su alto valor para medios · se <b>omiten "Noticias institucionales"</b> · se <b>elimina "Agenda PUCP"</b> de esta landing (vive en su propio subdominio: agenda.pucp.edu.pe).<br>
+    <b>Benchmarks de salas de prensa:</b> TUM, KU Leuven, Sorbonne, Heidelberg y San Diego — todas priorizan contacto directo con la oficina de prensa + recursos descargables para periodistas.<br>
+    <b>Pendientes:</b> definir si el Equipo muestra correos/teléfonos directos o solo derivación (Claudia) · nombres y fotos del equipo · enlace del subdominio de clipping.<br>
+    <b>Modo revisión:</b> con los botones de abajo a la derecha puedes editar textos, reordenar zonas (↑↓) y dejar comentarios por sección (💬). Todo se guarda en este navegador.
+  </div>
+
+  <!-- ===== TOOLBAR DE REVISIÓN ===== -->
+  <div class="toolbar">
+    <button id="btn-edit" type="button">✏️ Editar textos</button>
+    <button id="btn-export" type="button">📋 Copiar comentarios</button>
+    <button id="btn-reset" type="button">↺ Restablecer</button>
+    <span class="hint">Cambios y comentarios se guardan en este navegador</span>
+  </div>
+  <div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  var KEY = 'wf-prensa-v1';
+  var main = document.getElementById('zones');
+  var toast = document.getElementById('toast');
+  var toastTimer = null;
+
+  function notify(msg){
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toast.classList.remove('show'); }, 2200);
+  }
+
+  function load(){
+    try{ return JSON.parse(localStorage.getItem(KEY)) || {}; }catch(e){ return {}; }
+  }
+  function save(state){
+    localStorage.setItem(KEY, JSON.stringify(state));
+  }
+  var state = load();
+  state.content = state.content || {};
+  state.comments = state.comments || {};
+
+  if (Array.isArray(state.order)){
+    state.order.forEach(function(id){
+      var sec = document.getElementById(id);
+      if (sec) main.appendChild(sec);
+    });
+  }
+  Object.keys(state.content).forEach(function(id){
+    var sec = document.getElementById(id);
+    if (sec) sec.querySelector('.sec-body').innerHTML = state.content[id];
+  });
+
+  function renumber(){
+    var n = 1;
+    main.querySelectorAll('section .num').forEach(function(el){ el.textContent = n++; });
+  }
+  function saveOrder(){
+    state.order = Array.prototype.map.call(main.querySelectorAll('section'), function(s){ return s.id; });
+    save(state);
+  }
+  function saveContent(sec){
+    state.content[sec.id] = sec.querySelector('.sec-body').innerHTML;
+    save(state);
+  }
+  function esc(s){
+    var d = document.createElement('div');
+    d.textContent = s;
+    return d.innerHTML;
+  }
+
+  main.querySelectorAll('section').forEach(function(sec){
+    var tools = document.createElement('div');
+    tools.className = 'sec-tools';
+    tools.setAttribute('contenteditable','false');
+    tools.innerHTML =
+      '<button type="button" class="up" title="Subir sección">↑</button>' +
+      '<button type="button" class="down" title="Bajar sección">↓</button>' +
+      '<button type="button" class="c-btn" title="Comentarios de esta sección">💬 <span class="c-count">0</span></button>';
+    sec.appendChild(tools);
+
+    var panel = document.createElement('div');
+    panel.className = 'sec-comments';
+    panel.setAttribute('contenteditable','false');
+    panel.innerHTML =
+      '<div class="c-list"></div>' +
+      '<form><input type="text" class="c-author" placeholder="Autor (opcional)">' +
+      '<textarea class="c-text" placeholder="Escribe un comentario sobre esta sección…" required></textarea>' +
+      '<button type="submit">Agregar</button></form>';
+    sec.appendChild(panel);
+
+    tools.querySelector('.up').addEventListener('click', function(){
+      var prev = sec.previousElementSibling;
+      if (prev){ main.insertBefore(sec, prev); renumber(); saveOrder(); }
+    });
+    tools.querySelector('.down').addEventListener('click', function(){
+      var next = sec.nextElementSibling;
+      if (next){ main.insertBefore(next, sec); renumber(); saveOrder(); }
+    });
+    tools.querySelector('.c-btn').addEventListener('click', function(){
+      panel.classList.toggle('open');
+    });
+
+    panel.querySelector('form').addEventListener('submit', function(ev){
+      ev.preventDefault();
+      var txt = panel.querySelector('.c-text').value.trim();
+      if (!txt) return;
+      var author = panel.querySelector('.c-author').value.trim();
+      (state.comments[sec.id] = state.comments[sec.id] || []).push({ text:txt, author:author, ts:Date.now() });
+      save(state);
+      panel.querySelector('.c-text').value = '';
+      renderComments(sec);
+      notify('Comentario guardado');
+    });
+
+    sec.querySelector('.sec-body').addEventListener('input', function(){
+      clearTimeout(sec._t);
+      sec._t = setTimeout(function(){ saveContent(sec); }, 400);
+    });
+
+    renderComments(sec);
+  });
+
+  function renderComments(sec){
+    var list = sec.querySelector('.c-list');
+    var items = state.comments[sec.id] || [];
+    sec.querySelector('.c-count').textContent = items.length;
+    sec.querySelector('.c-btn').classList.toggle('has', items.length > 0);
+    list.innerHTML = items.map(function(c, i){
+      var meta = (c.author ? esc(c.author) + ' · ' : '') + new Date(c.ts).toLocaleString('es-PE');
+      return '<div class="c-item"><div>' + esc(c.text) + '<span class="c-meta">' + meta + '</span></div>' +
+             '<button type="button" class="c-del" data-i="' + i + '" title="Eliminar">✕</button></div>';
+    }).join('');
+    list.querySelectorAll('.c-del').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        items.splice(parseInt(btn.dataset.i, 10), 1);
+        save(state);
+        renderComments(sec);
+      });
+    });
+  }
+
+  var btnEdit = document.getElementById('btn-edit');
+  btnEdit.addEventListener('click', function(){
+    var on = document.body.classList.toggle('editing');
+    btnEdit.classList.toggle('on', on);
+    btnEdit.textContent = on ? '✔ Terminar edición' : '✏️ Editar textos';
+    main.querySelectorAll('.sec-body').forEach(function(b){
+      b.contentEditable = on ? 'true' : 'false';
+    });
+    notify(on ? 'Haz clic sobre cualquier texto para editarlo' : 'Edición guardada');
+  });
+
+  document.getElementById('btn-export').addEventListener('click', function(){
+    var out = ['Comentarios — Wireframe Prensa (' + new Date().toLocaleDateString('es-PE') + ')', ''];
+    var total = 0;
+    main.querySelectorAll('section').forEach(function(sec, idx){
+      var items = state.comments[sec.id] || [];
+      if (!items.length) return;
+      out.push((idx + 1) + '. ' + sec.dataset.title);
+      items.forEach(function(c){
+        total++;
+        out.push('   - ' + (c.author ? c.author + ': ' : '') + c.text + ' [' + new Date(c.ts).toLocaleString('es-PE') + ']');
+      });
+      out.push('');
+    });
+    if (!total){ notify('No hay comentarios para copiar'); return; }
+    var text = out.join('\n');
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){ notify(total + ' comentario(s) copiado(s) al portapapeles'); });
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      ta.remove();
+      notify(total + ' comentario(s) copiado(s) al portapapeles');
+    }
+  });
+
+  document.getElementById('btn-reset').addEventListener('click', function(){
+    if (confirm('¿Restablecer el wireframe? Se perderán los textos editados, el orden y los comentarios guardados en este navegador.')){
+      localStorage.removeItem(KEY);
+      location.reload();
+    }
+  });
+
+  renumber();
+})();
+</script>
+
+</body>
+</html>

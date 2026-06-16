@@ -1,0 +1,30 @@
+# ─────────────────────────────────────────────────────────────
+# REPO PÚBLICO — este repositorio es solo para WIREFRAMES (.html)
+# NO publicar material comercial, financiero ni de trabajo interno.
+# ─────────────────────────────────────────────────────────────
+
+# Cotizaciones, mapas de sitio, propuestas (costos y márgenes internos)
+*.xlsx
+*.pptx
+
+# Documentos del proveedor / diseñador (incluye datos bancarios)
+*.pdf
+*.docx
+
+# Scripts generadores de cotizaciones y propuestas (lógica de costos)
+*.py
+
+# Notas internas de costos y catálogo asociado a la cotización
+costos-referencia-disenadores.md
+catalogo-plantillas-home-pucp.md
+
+# Secretos / entorno
+.env
+.env.*
+*.key
+*.pem
+*.token
+
+# Sistema
+.DS_Store
+Thumbs.db
