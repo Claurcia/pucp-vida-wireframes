@@ -17,6 +17,9 @@
 # Notas internas de costos y catálogo asociado a la cotización
 costos-referencia-disenadores.md
 catalogo-plantillas-home-pucp.md
+Presentacion-Inversion-Home-PUCP.md
+Esquema-Infraestructura-Ludik-DigitalOcean.md
+Guia-Acceso-Despliegue-Servidor-Ludik.md
 
 # Secretos / entorno
 .env
