@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wireframe — PUCP en cifras · PUCP</title>
+<style>
+  :root{
+    --page:#ffffff;
+    --t0:#fafafa;
+    --t1:#f1f1f1;
+    --t2:#e6e6e6;
+    --t3:#d6d6d6;
+    --t4:#c2c2c2;
+    --line:#cfcfcf;
+    --line-strong:#a8a8a8;
+    --ink:#2b2b2b;
+    --ink-soft:#6c6c6c;
+    --nav:#3a3a3a;
+    --nav-util:#efefef;
+    --accent:#555555;
+    --accent-soft:#dcdcdc;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--page);font-family:'Segoe UI',Arial,sans-serif;color:var(--ink);}
+  .wrap{max-width:1200px;margin:0 auto;}
+  /* ---------- TOP NAV ---------- */
+  .util .wrap,.nav .wrap{max-width:1340px;}
+  .util{background:var(--nav-util);border-bottom:1px solid var(--line);}
+  .util .wrap{display:flex;align-items:center;justify-content:space-between;padding:9px 26px;font-size:13px;color:var(--ink-soft);}
+  .util .profiles{display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
+  .util .profiles span{white-space:nowrap;}
+  .util .profiles .me{color:var(--ink);font-weight:700;border-bottom:2px solid var(--accent);padding-bottom:2px;}
+  .util .sep{color:var(--line-strong);}
+  .util .right{display:flex;align-items:center;gap:14px;}
+  .util .becas{font-weight:700;color:var(--ink);text-decoration:underline;letter-spacing:.5px;}
+  .acc-btn{background:var(--nav);color:#fff;font-size:12.5px;font-weight:700;padding:6px 16px;border-radius:5px;display:inline-block;white-space:nowrap;}
+  .hotlink{font-weight:700;color:var(--ink);background:var(--accent-soft);border:1px solid var(--line-strong);border-radius:5px;padding:5px 12px;white-space:nowrap;}
+  .nav{background:var(--nav);}
+  .nav .wrap{display:flex;align-items:center;gap:16px;padding:14px 26px;}
+  .logo{display:flex;align-items:center;gap:8px;color:#fff;font-weight:800;letter-spacing:1px;font-size:20px;flex:none;}
+  .nav ul{display:flex;gap:12px;list-style:none;margin:0;padding:0;flex:1;flex-wrap:wrap;align-items:center;}
+  .nav li{color:#d8d8d8;font-size:12.5px;white-space:nowrap;}
+  .nav li.me{color:#fff;font-weight:700;border-bottom:2px solid #fff;padding-bottom:2px;}
+  .inscribete{background:#fff;color:var(--ink);font-weight:700;border-radius:8px;padding:10px 18px;font-size:13.5px;text-align:center;flex:none;}
+  .lupa{width:38px;height:38px;border:2px solid #fff;border-radius:8px;display:flex;align-items:center;justify-content:center;flex:none;}
+  .crumb{padding:14px 26px 4px;color:var(--ink-soft);font-size:12.5px;}
+  /* ---------- BODY ---------- */
+  main{padding:8px 26px 60px;}
+  .sec{position:relative;background:var(--t1);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+  .sec.alt{background:var(--t0);}
+  .sec.star{border-left:5px solid var(--accent);background:#ededed;}
+  .sec h2{margin:0 0 6px;font-size:17px;display:flex;align-items:center;gap:9px;color:var(--ink);flex-wrap:wrap;}
+  .num{display:inline-flex;width:26px;height:26px;border-radius:6px;background:var(--t4);color:var(--ink);align-items:center;justify-content:center;font-size:13px;font-weight:700;flex:none;}
+  .star .num{background:var(--accent);color:#fff;}
+  .st{color:var(--accent);font-size:14px;}
+  .tag{background:#fff;border:1px dashed var(--line-strong);color:var(--ink-soft);font-size:11px;padding:3px 9px;border-radius:4px;font-weight:700;letter-spacing:.3px;}
+  .tag.own{border-style:solid;border-color:var(--accent);color:var(--accent);}
+  .tag.src{border-style:solid;border-color:var(--line-strong);color:var(--ink);}
+  .desc{color:var(--ink-soft);font-size:13px;margin:0 0 12px;}
+  .msg{font-size:13px;color:var(--ink);background:#fff;border-left:3px solid var(--accent);padding:8px 12px;margin:0 0 12px;font-style:italic;}
+  .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+  .ph{background:var(--t2);border:1px dashed var(--line-strong);border-radius:7px;}
+  .banner{height:140px;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);font-size:13px;font-weight:600;text-align:center;padding:0 20px;
+           background:repeating-linear-gradient(45deg,var(--t2),var(--t2) 12px,var(--t1) 12px,var(--t1) 24px);border-radius:8px;margin-bottom:12px;}
+  .card{flex:1;min-width:0;height:96px;}
+  .cta{background:var(--accent);color:#fff;font-weight:700;font-size:13.5px;padding:11px 20px;border-radius:7px;display:inline-block;flex:none;}
+  .cta.ghost{background:#fff;color:var(--ink);border:1.5px solid var(--accent);}
+  .panel{border:1px dashed var(--line-strong);border-radius:7px;background:#fff;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);font-size:12.5px;text-align:center;padding:14px;}
+  .grid{display:flex;gap:10px;flex-wrap:nowrap;}
+  .grid.wraps{flex-wrap:wrap;}
+  .cell{flex:1;min-width:0;height:74px;background:var(--t2);border:1px dashed var(--line-strong);border-radius:7px;display:flex;align-items:center;justify-content:center;color:var(--ink);font-size:12px;text-align:center;padding:6px;font-weight:600;}
+  .cell.tall{height:auto;min-height:104px;flex-direction:column;gap:6px;justify-content:center;padding:14px 10px;}
+  .cell .sub{font-weight:400;font-size:11px;color:var(--ink-soft);line-height:1.35;}
+  /* cifras */
+  .kpi{font-size:22px;font-weight:800;color:var(--ink);line-height:1;}
+  .kpi.hero{font-size:42px;}
+  .cell.lead{background:#e7e7e7;border-style:solid;border-color:var(--accent);}
+  .cell.pend{background:#fff;border-style:dashed;}
+  .cell.pend .kpi{color:var(--ink-soft);}
+  .nav-mini{display:flex;gap:8px;flex-wrap:wrap;}
+  .nav-mini .chip{background:#fff;border:1px solid var(--line-strong);border-radius:20px;padding:7px 14px;font-size:12px;font-weight:600;color:var(--ink);white-space:nowrap;}
+  .contact{color:var(--ink);font-size:13px;line-height:1.7;}
+  .legend{max-width:1200px;margin:0 auto;padding:0 26px 50px;color:var(--ink-soft);font-size:12.5px;line-height:1.7;}
+  .legend b{color:var(--ink);}
+  /* ---------- HERRAMIENTAS DE REVISIÓN ---------- */
+  .toolbar{position:fixed;bottom:18px;right:18px;z-index:100;display:flex;gap:8px;align-items:center;
+           background:#fff;border:1px solid var(--line-strong);border-radius:10px;padding:9px 12px;box-shadow:0 4px 18px rgba(0,0,0,.18);}
+  .toolbar button{font:inherit;font-size:12.5px;font-weight:700;border:1px solid var(--line-strong);background:var(--t1);color:var(--ink);
+                  border-radius:6px;padding:7px 12px;cursor:pointer;white-space:nowrap;}
+  .toolbar button:hover{background:var(--accent-soft);}
+  .toolbar button.on{background:var(--accent);color:#fff;border-color:var(--accent);}
+  .toolbar .hint{font-size:11px;color:var(--ink-soft);max-width:150px;line-height:1.3;}
+  .sec-tools{position:absolute;top:10px;right:10px;display:flex;gap:5px;z-index:5;}
+  .sec-tools button{font:inherit;font-size:12px;font-weight:700;width:28px;height:28px;border:1px solid var(--line-strong);
+                    background:#fff;color:var(--ink);border-radius:6px;cursor:pointer;padding:0;line-height:1;}
+  .sec-tools button:hover{background:var(--accent-soft);}
+  .sec-tools .c-btn{width:auto;padding:0 8px;}
+  .sec-tools .c-btn.has{background:var(--accent);color:#fff;border-color:var(--accent);}
+  body.editing .sec-body{outline:1.5px dashed var(--accent);outline-offset:6px;border-radius:6px;}
+  body.editing .sec-body:focus-within{outline-style:solid;background:rgba(255,255,255,.4);}
+  .sec-comments{display:none;margin-top:14px;border-top:1px dashed var(--line-strong);padding-top:12px;}
+  .sec-comments.open{display:block;}
+  .sec-comments .c-item{background:#fff;border:1px solid var(--line);border-radius:7px;padding:8px 10px;margin-bottom:7px;
+                        font-size:12.5px;display:flex;gap:10px;align-items:flex-start;justify-content:space-between;}
+  .sec-comments .c-meta{color:var(--ink-soft);font-size:11px;display:block;margin-top:3px;}
+  .sec-comments .c-del{border:none;background:none;color:var(--ink-soft);cursor:pointer;font-size:13px;padding:0 2px;flex:none;}
+  .sec-comments .c-del:hover{color:#a33;}
+  .sec-comments form{display:flex;gap:7px;flex-wrap:wrap;}
+  .sec-comments input,.sec-comments textarea{font:inherit;font-size:12.5px;border:1px solid var(--line-strong);border-radius:6px;padding:7px 9px;}
+  .sec-comments input{width:140px;}
+  .sec-comments textarea{flex:1;min-width:220px;resize:vertical;min-height:36px;}
+  .sec-comments form button{font:inherit;font-size:12.5px;font-weight:700;background:var(--accent);color:#fff;border:none;border-radius:6px;padding:7px 14px;cursor:pointer;}
+  .toast{position:fixed;bottom:78px;right:18px;z-index:101;background:var(--nav);color:#fff;font-size:12.5px;border-radius:7px;padding:9px 14px;
+         opacity:0;transition:opacity .25s;pointer-events:none;}
+  .toast.show{opacity:1;}
+  @media print{.toolbar,.sec-tools,.toast{display:none!important;}}
+
+  /* ===== comentarios estilo Google Docs ===== */
+  @media(min-width:1101px){ .util .wrap, .nav .wrap, .wrap, .legend{ margin-right:344px; } }
+  #crail{position:absolute;top:0;right:16px;width:312px;z-index:40;}
+  .cthread{position:absolute;right:0;width:300px;}
+  .cthread.inline{position:static;width:auto;display:none;margin:14px 0 0;}
+  .cthread.inline.open{display:block;}
+  .ct-item{background:#fff;border:1px solid #e2e6ea;border-left:3px solid #0a7d72;border-radius:9px;padding:9px 11px;margin-bottom:7px;box-shadow:0 1px 5px rgba(20,30,45,.07);font-size:12.5px;}
+  .ct-body{white-space:pre-wrap;word-wrap:break-word;overflow-wrap:anywhere;color:#22272e;line-height:1.5;}
+  .ct-body a{color:#0a7d72;font-weight:600;}
+  .ct-meta{display:flex;align-items:center;gap:8px;color:#9097a0;font-size:10.5px;margin-top:6px;}
+  .ct-meta span{flex:1;}
+  .ct-del{border:none;background:none;color:#c2c2cc;cursor:pointer;font-size:12px;line-height:1;padding:0 2px;}
+  .ct-del:hover{color:#c0392b;}
+  .ct-add{background:#fff;border:1px dashed #b9c0c8;border-radius:9px;padding:8px;}
+  .ct-add textarea{width:100%;border:1px solid #e2e6ea;border-radius:7px;padding:8px;font:inherit;font-size:12.5px;resize:none;overflow:hidden;min-height:34px;line-height:1.45;}
+  .ct-row{display:flex;gap:6px;margin-top:6px;}
+  .ct-row input{flex:1;min-width:0;border:1px solid #e2e6ea;border-radius:7px;padding:7px;font:inherit;font-size:11.5px;}
+  .ct-row button{border:none;background:#0a7d72;color:#fff;border-radius:7px;padding:7px 13px;font:inherit;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;}
+  .ct-row button:hover{background:#08645b;}
+  .cthread.flash .ct-add{box-shadow:0 0 0 3px rgba(10,125,114,.4);transition:box-shadow .2s;}
+  @media(max-width:1100px){ #crail{display:none;} }
+</style>
+</head>
+<body>
+
+  <!-- ===== UTILITY BAR ===== -->
+  <div class="util">
+    <div class="wrap">
+      <div class="profiles">
+        <span>Postulante</span><span class="sep">|</span>
+        <span>Pregrado · Posgrado</span><span class="sep">|</span>
+        <span>Egresado</span><span class="sep">|</span>
+        <span>Empresa</span><span class="sep">|</span>
+        <span>Estudiante</span><span class="sep">|</span>
+        <span>Profesor</span><span class="sep">|</span>
+        <span>Administrativo</span><span class="sep">|</span>
+        <span>Prensa</span>
+      </div>
+      <div class="right">
+        <span class="becas">BECAS</span>
+        <span class="hotlink">Intranet y correo</span>
+        <span class="hotlink">PAIDEIA</span>
+        <span class="acc-btn">Accesos ▾</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MAIN NAV ===== -->
+  <div class="nav">
+    <div class="wrap">
+      <div class="logo">
+        <svg width="36" height="36" viewBox="0 0 40 40" aria-hidden="true">
+          <circle cx="20" cy="20" r="18" fill="none" stroke="#fff" stroke-width="2"/>
+          <path d="M9 24 q11 6 22 0 l-3 5 h-16 z" fill="#fff"/>
+          <path d="M20 8 l7 13 h-14 z" fill="#fff"/>
+        </svg>
+        PUCP
+      </div>
+      <ul>
+        <li class="me">Conoce la PUCP</li>
+        <li>Carreras y Programas</li>
+        <li>Admisión</li>
+        <li>Internacionalización</li>
+        <li>Empleabilidad</li>
+        <li>Investigación que transforma</li>
+        <li>Vida Universitaria</li>
+        <li>Noticias y Eventos</li>
+      </ul>
+      <div class="inscribete">Postula aquí</div>
+      <div class="lupa">
+        <svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true">
+          <circle cx="8" cy="8" r="6" fill="none" stroke="#fff" stroke-width="2"/>
+          <line x1="12.5" y1="12.5" x2="18.5" y2="18.5" stroke="#fff" stroke-width="2"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="crumb">Inicio › Conoce la PUCP › <b>PUCP en cifras</b></div>
+  </div>
+
+  <!-- ===== BODY ===== -->
+  <main class="wrap" id="zones">
+
+    <!-- 1 — Banner + intro -->
+    <section class="sec star" id="z-banner" data-title="Banner + introducción — PUCP en cifras">
+      <div class="sec-body">
+      <h2><span class="num">1</span> Banner + introducción — PUCP en cifras <span class="st">★</span> <span class="tag own">contenido propio</span></h2>
+      <p class="desc">Sección interna de la home: <b>Hechos y Cifras</b>. Datos oficiales y verificables que respaldan la posición de la PUCP — rankings, investigación, internacionalización, empleabilidad, infraestructura y sostenibilidad. Cada cifra cita su fuente y año. Patrón "facts &amp; figures": número grande + etiqueta breve, agrupados por categoría.</p>
+      <div class="banner">[ foto real: campus / vista aérea PUCP ] — "PUCP en cifras: hechos y datos que nos respaldan"</div>
+      <p class="desc" style="margin:0 0 8px;"><b>Índice rápido</b> (ancla a cada bloque):</p>
+      <div class="nav-mini">
+        <span class="chip">Rankings — QS</span>
+        <span class="chip">Investigación</span>
+        <span class="chip">Internacionalización</span>
+        <span class="chip">Empleabilidad</span>
+        <span class="chip">Infraestructura</span>
+        <span class="chip">Sostenibilidad — ODS</span>
+      </div>
+      </div>
+    </section>
+
+    <!-- 2 — Rankings -->
+    <section class="sec star" id="z-rankings" data-title="Rankings y reconocimiento global">
+      <div class="sec-body">
+      <h2><span class="num">2</span> Rankings y reconocimiento global <span class="st">★</span> <span class="tag src">fuente: QS World University Rankings 2027</span></h2>
+      <p class="msg">N.° 1 en Perú. Top 10 en América Latina.</p>
+      <div class="grid wraps">
+        <div class="cell tall lead" style="min-width:30%;"><span class="kpi hero">357</span><span class="sub">del mundo según QS World University Rankings 2027</span></div>
+        <div class="cell tall" style="min-width:21%;"><span class="kpi">1.ª</span><span class="sub">del Perú</span></div>
+        <div class="cell tall" style="min-width:21%;"><span class="kpi">10.ª</span><span class="sub">de América Latina</span></div>
+        <div class="cell tall" style="min-width:21%;"><span class="kpi">1.ª</span><span class="sub">del Perú en Sostenibilidad (QS Sustainability 2026)</span></div>
+        <div class="cell tall" style="min-width:30%;"><span class="kpi">401–600</span><span class="sub">mundial en Impacto Social (THE Impact Rankings 2026)</span></div>
+      </div>
+      <p class="desc" style="margin:12px 0 0;">Destacada por su excelencia académica, investigación, empleabilidad, sostenibilidad e impacto social.</p>
+      </div>
+    </section>
+
+    <!-- 3 — Investigación -->
+    <section class="sec" id="z-investigacion" data-title="Investigación que trasciende fronteras">
+      <div class="sec-body">
+      <h2><span class="num">3</span> Investigación que trasciende fronteras <span class="tag">cifras de investigación</span></h2>
+      <div class="grid wraps">
+        <div class="cell tall lead" style="min-width:30%;"><span class="kpi hero">+500</span><span class="sub">proyectos de investigación</span></div>
+        <div class="cell tall" style="min-width:21%;"><span class="kpi">+200</span><span class="sub">grupos de investigación</span></div>
+        <div class="cell tall" style="min-width:21%;"><span class="kpi">113</span><span class="sub">líneas de investigación</span></div>
+        <div class="cell tall" style="min-width:21%;"><span class="kpi">617</span><span class="sub">alianzas académicas internacionales</span></div>
+        <div class="cell tall" style="min-width:21%;"><span class="kpi">425</span><span class="sub">acuerdos de intercambio</span></div>
+      </div>
+      <p class="desc" style="margin:12px 0 0;">Producción científica reconocida internacionalmente. <span class="tag">⚠ "617 alianzas" coincide con "617 universidades con convenio" del bloque de internacionalización — confirmar si es la misma cifra</span></p>
+      </div>
+    </section>
+
+    <!-- 4 — Internacionalización -->
+    <section class="sec alt" id="z-internacional" data-title="Conectados con el mundo">
+      <div class="sec-body">
+      <h2><span class="num">4</span> Conectados con el mundo <span class="tag">cifras de internacionalización</span></h2>
+      <p class="msg">Estudia, investiga y colabora en más de 30 países.</p>
+      <div class="grid wraps">
+        <div class="cell tall lead" style="min-width:30%;"><span class="kpi hero">617</span><span class="sub">universidades extranjeras con convenio académico</span></div>
+        <div class="cell tall" style="min-width:30%;"><span class="kpi">30+</span><span class="sub">países disponibles para intercambio estudiantil</span></div>
+        <div class="cell tall" style="min-width:30%;"><span class="kpi">398</span><span class="sub">programas de intercambio internacional disponibles para estudiantes PUCP</span></div>
+      </div>
+      </div>
+    </section>
+
+    <!-- 5 — Empleabilidad -->
+    <section class="sec" id="z-empleabilidad" data-title="Talento PUCP — empleabilidad">
+      <div class="sec-body">
+      <h2><span class="num">5</span> Talento PUCP que impulsa el desarrollo <span class="tag">cifras de empleabilidad</span></h2>
+      <p class="desc">Los egresados PUCP contribuyen al desarrollo de organizaciones, empresas e instituciones en el Perú y el mundo, destacando por su empleabilidad, capacidad de liderazgo y proyección internacional.</p>
+      <div class="grid wraps">
+        <div class="cell tall pend" style="min-width:21%;"><span class="kpi">XX %</span><span class="sub">empleado en su campo profesional durante los primeros seis meses</span></div>
+        <div class="cell tall pend" style="min-width:21%;"><span class="kpi">XX %</span><span class="sub">de empleabilidad</span></div>
+        <div class="cell tall pend" style="min-width:21%;"><span class="kpi">XX</span><span class="sub">países con presencia de egresados PUCP</span></div>
+        <div class="cell tall pend" style="min-width:21%;"><span class="kpi">XX %</span><span class="sub">trabaja en el extranjero</span></div>
+      </div>
+      <p class="desc" style="margin:12px 0 0;"><span class="tag">⚠ cifras por confirmar — solicitar data a AEG / Bolsa de Trabajo PUCP</span></p>
+      </div>
+    </section>
+
+    <!-- 6 — Infraestructura -->
+    <section class="sec alt" id="z-campus" data-title="Un campus para aprender, investigar y crear">
+      <div class="sec-body">
+      <h2><span class="num">6</span> Un campus para aprender, investigar y crear <span class="tag">cifras de infraestructura</span></h2>
+      <p class="msg">Casi medio millón de recursos bibliográficos al servicio del conocimiento.</p>
+      <div class="grid wraps">
+        <div class="cell tall lead" style="min-width:30%;"><span class="kpi hero">491,942</span><span class="sub">recursos bibliográficos</span></div>
+        <div class="cell tall" style="min-width:21%;"><span class="kpi">154</span><span class="sub">laboratorios especializados</span></div>
+        <div class="cell tall" style="min-width:21%;"><span class="kpi">17</span><span class="sub">centros e institutos de investigación</span></div>
+        <div class="cell tall" style="min-width:21%;"><span class="kpi">14</span><span class="sub">bibliotecas y centros de documentación</span></div>
+        <div class="cell tall" style="min-width:21%;"><span class="kpi">43 ha</span><span class="sub">de campus universitario</span></div>
+        <div class="cell tall" style="min-width:21%;"><span class="kpi">13</span><span class="sub">espacios culturales y artísticos</span></div>
+      </div>
+      </div>
+    </section>
+
+    <!-- 7 — Sostenibilidad -->
+    <section class="sec star" id="z-sostenibilidad" data-title="Compromiso con la sostenibilidad">
+      <div class="sec-body">
+      <h2><span class="num">7</span> Compromiso con la sostenibilidad <span class="st">★</span> <span class="tag">impacto para el desarrollo sostenible</span></h2>
+      <div class="grid wraps">
+        <div class="cell tall" style="min-width:30%;"><span class="kpi">1.ª</span><span class="sub">universidad del Perú en QS Sustainability Rankings 2026</span></div>
+        <div class="cell tall" style="min-width:30%;"><span class="kpi">401–600</span><span class="sub">universidades con mayor impacto social del mundo (THE Impact Rankings 2026)</span></div>
+        <div class="cell tall" style="min-width:21%;"><span class="kpi">17</span><span class="sub">Objetivos de Desarrollo Sostenible como marco de acción institucional</span></div>
+        <div class="cell tall lead" style="min-width:21%;"><span class="kpi hero">2,696</span><span class="sub">becas otorgadas a estudiantes en el último periodo reportado</span></div>
+        <div class="cell tall" style="min-width:21%;"><span class="kpi">+2,500</span><span class="sub">estudiantes beneficiados con becas y ayudas económicas</span></div>
+        <div class="cell tall" style="min-width:21%;"><span class="kpi">S/ 32.8 M</span><span class="sub">destinados a becas y ayudas económicas</span></div>
+      </div>
+      <p class="desc" style="margin:12px 0 0;"><b>Cifras a consultar disponibilidad</b> (RSU / Dirección de Becas):</p>
+      <div class="grid wraps">
+        <div class="cell tall pend" style="min-width:21%;"><span class="kpi">XX %</span><span class="sub">de estudiantes beneficiados por algún programa de beca o apoyo económico</span></div>
+        <div class="cell tall pend" style="min-width:21%;"><span class="kpi">XX</span><span class="sub">estudiantes beneficiados por becas y ayudas económicas</span></div>
+        <div class="cell tall pend" style="min-width:21%;"><span class="kpi">XX</span><span class="sub">proyectos de responsabilidad social universitaria activos</span></div>
+        <div class="cell tall pend" style="min-width:21%;"><span class="kpi">XX</span><span class="sub">comunidades o instituciones beneficiadas por proyectos de impacto social</span></div>
+      </div>
+      </div>
+    </section>
+
+    <!-- 8 — Informe ODS embebido -->
+    <section class="sec" id="z-informe-ods" data-title="Informe de Sostenibilidad ODS (embebido)">
+      <div class="sec-body">
+      <h2><span class="num">8</span> Informe de Sostenibilidad ODS <span class="tag">link a embebido</span></h2>
+      <p class="desc">Informe institucional de sostenibilidad alineado a los 17 ODS. Se muestra <b>embebido en la home</b> (visor) con enlace al documento completo para descarga.</p>
+      <div class="panel" style="height:120px;margin-bottom:10px;">[ Visor embebido — Informe de Sostenibilidad ODS · PDF / flipbook ]</div>
+      <div class="row"><span class="cta">Ver informe completo ▸</span><span class="cta ghost">Descargar PDF ▸</span></div>
+      </div>
+    </section>
+
+    <!-- 9 — Footer -->
+    <section class="sec" id="z-footer" data-title="Footer">
+      <div class="sec-body">
+      <h2><span class="num">9</span> Footer</h2>
+      <div class="row" style="align-items:stretch;">
+        <div class="cell" style="justify-content:flex-start;text-align:left;padding:14px;font-weight:400;">
+          <span class="contact">Conoce la PUCP · mapa del sitio · redes · enlaces secundarios</span>
+        </div>
+      </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="legend">
+    <b>Wireframe de baja fidelidad — PUCP en cifras (Fase 1)</b> · escala de grises · sección interna de la home (Conoce la PUCP) · ★ = bloques destacados · <span class="tag own">borde sólido</span> = contenido propio · <span class="cell lead" style="display:inline-block;width:14px;height:14px;vertical-align:middle;padding:0;min-height:0;"></span> celda destacada = número <b>hero</b> de cada categoría · <span class="cell pend" style="display:inline-block;width:14px;height:14px;vertical-align:middle;padding:0;min-height:0;"></span> celda punteada blanca = cifra <b>por confirmar</b>.<br>
+    <b>Patrón visual:</b> "facts &amp; figures" — número grande + etiqueta breve, agrupados por categoría. Cada cifra cita fuente y año.<br>
+    <b>Fuentes citadas:</b> QS World University Rankings 2027 · QS Sustainability Rankings 2026 · THE Impact Rankings 2026.<br>
+    <b>Referencias de benchmark (facts &amp; figures):</b> Griffith University (Ratings and Rankings) · University of Melbourne (Facts and Figures) · University of Michigan · University of Calgary · KFUPM (Facts and Rankings) · THE Impact Rankings.<br>
+    <b>Pendientes / a confirmar:</b> empleabilidad (4 cifras XX — AEG/Bolsa de Trabajo) · sostenibilidad (4 cifras XX — RSU/Becas) · si "617" de investigación e internacionalización es la misma cifra.<br>
+    <b>Modo revisión:</b> con los botones de abajo a la derecha puedes editar textos, reordenar zonas (↑↓) y dejar comentarios por sección (💬). Todo se guarda en este navegador.
+  </div>
+
+  <!-- ===== TOOLBAR DE REVISIÓN ===== -->
+  <div class="toolbar">
+    <button id="btn-edit" type="button">✏️ Editar textos</button>
+    <button id="btn-export" type="button">📋 Copiar comentarios</button>
+    <button id="btn-reset" type="button">↺ Restablecer</button>
+    <span class="hint">Cambios y comentarios se guardan en este navegador</span>
+  </div>
+  <div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  var KEY='wf-cifras-v1', WF='cifras', API='https://comentarios.ludik.pe';
+  var main=document.getElementById('zones'), toast=document.getElementById('toast'), tt=null;
+  function notify(m){toast.textContent=m;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('show');},2200);}
+  function load(){try{return JSON.parse(localStorage.getItem(KEY))||{};}catch(e){return {};}}
+  function save(s){localStorage.setItem(KEY,JSON.stringify(s));}
+  var state=load(); state.content=state.content||{};
+  if(Array.isArray(state.order)){state.order.forEach(function(id){var s=document.getElementById(id);if(s)main.appendChild(s);});}
+  Object.keys(state.content).forEach(function(id){var s=document.getElementById(id);if(s)s.querySelector('.sec-body').innerHTML=state.content[id];});
+  function renumber(){var n=1;main.querySelectorAll('section .num').forEach(function(e){e.textContent=n++;});}
+  function saveOrder(){state.order=Array.prototype.map.call(main.querySelectorAll('section'),function(s){return s.id;});save(state);}
+  function saveContent(s){state.content[s.id]=s.querySelector('.sec-body').innerHTML;save(state);}
+  function esc(s){var d=document.createElement('div');d.textContent=(s==null?'':s);return d.innerHTML;}
+  function linkify(s){return esc(s).replace(/(https?:\/\/[^\s<]+)/g,function(u){return '<a href="'+u+'" target="_blank" rel="noopener">'+u+'</a>';});}
+
+  var rail=document.createElement('div'); rail.id='crail'; rail.setAttribute('contenteditable','false'); document.body.appendChild(rail);
+  var comments={}, threads={};
+
+  function makeThread(sec){
+    var t=document.createElement('div'); t.className='cthread'; t.dataset.sec=sec.id; t.setAttribute('contenteditable','false');
+    t.innerHTML='<div class="ct-list"></div><form class="ct-add"><textarea class="ct-text" rows="1" placeholder="Escribe un comentario… (enlaces y saltos de línea permitidos)"></textarea><div class="ct-row"><input class="ct-author" placeholder="Tu nombre (opcional)"><button type="submit">Comentar</button></div></form>';
+    var ta=t.querySelector('.ct-text');
+    function grow(){ta.style.height='auto';ta.style.height=ta.scrollHeight+'px';}
+    ta.addEventListener('input',function(){grow();layout();});
+    t.querySelector('form').addEventListener('submit',function(ev){
+      ev.preventDefault();
+      var body=ta.value.replace(/\s+$/,''); if(!body.trim())return;
+      var author=t.querySelector('.ct-author').value.trim();
+      fetch(API+'/comments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({wf:WF,section:sec.id,author:author,body:body})})
+        .then(function(r){return r.json();}).then(function(c){
+          (comments[sec.id]=comments[sec.id]||[]).push(c);
+          ta.value=''; grow(); renderThread(sec.id); layout(); notify('Comentario guardado');
+        }).catch(function(){notify('No se pudo guardar (sin conexión)');});
+    });
+    threads[sec.id]=t; return t;
+  }
+
+  function renderThread(sid){
+    var t=threads[sid]; if(!t)return;
+    var items=comments[sid]||[];
+    var list=t.querySelector('.ct-list');
+    list.innerHTML=items.map(function(c){
+      return '<div class="ct-item"><div class="ct-body">'+linkify(c.body)+'</div><div class="ct-meta"><span>'+esc(c.author||'Anónimo')+' · '+new Date(c.created_at).toLocaleString('es-PE')+'</span><button class="ct-del" data-id="'+c.id+'" title="Eliminar">✕</button></div></div>';
+    }).join('');
+    list.querySelectorAll('.ct-del').forEach(function(b){
+      b.addEventListener('click',function(){
+        fetch(API+'/comments/'+b.dataset.id,{method:'DELETE'}).catch(function(){});
+        comments[sid]=(comments[sid]||[]).filter(function(x){return String(x.id)!==b.dataset.id;});
+        renderThread(sid); layout();
+      });
+    });
+    var badge=document.querySelector('[data-cnt="'+sid+'"]');
+    if(badge){ badge.textContent=items.length; badge.parentNode.classList.toggle('has',items.length>0); }
+  }
+
+  function layout(){
+    var wide=window.innerWidth>1100;
+    if(wide){
+      rail.style.display='block';
+      var prev=0;
+      main.querySelectorAll('section').forEach(function(sec){
+        var t=threads[sec.id]; if(!t)return;
+        if(t.parentNode!==rail) rail.appendChild(t);
+        t.classList.remove('inline','open');
+        var top=sec.getBoundingClientRect().top+window.scrollY;
+        if(top<prev+8) top=prev+8;
+        t.style.top=top+'px';
+        prev=top+t.offsetHeight;
+      });
+    } else {
+      rail.style.display='none';
+      main.querySelectorAll('section').forEach(function(sec){
+        var t=threads[sec.id]; if(!t)return;
+        t.style.top=''; t.classList.add('inline');
+        if(t.parentNode!==sec) sec.appendChild(t);
+      });
+    }
+  }
+
+  function loadRemote(){
+    fetch(API+'/comments?wf='+WF).then(function(r){return r.json();}).then(function(rows){
+      comments={};
+      rows.forEach(function(c){(comments[c.section]=comments[c.section]||[]).push(c);});
+      Object.keys(threads).forEach(renderThread);
+      layout();
+    }).catch(function(){});
+  }
+
+  main.querySelectorAll('section').forEach(function(sec){
+    var tools=document.createElement('div'); tools.className='sec-tools'; tools.setAttribute('contenteditable','false');
+    tools.innerHTML='<button type="button" class="up" title="Subir">↑</button><button type="button" class="down" title="Bajar">↓</button><button type="button" class="c-btn" title="Comentar">💬 <span data-cnt="'+sec.id+'">0</span></button>';
+    sec.appendChild(tools);
+    makeThread(sec);
+    tools.querySelector('.up').addEventListener('click',function(){var p=sec.previousElementSibling;if(p){main.insertBefore(sec,p);renumber();saveOrder();layout();}});
+    tools.querySelector('.down').addEventListener('click',function(){var n=sec.nextElementSibling;if(n){main.insertBefore(n,sec);renumber();saveOrder();layout();}});
+    tools.querySelector('.c-btn').addEventListener('click',function(){
+      var t=threads[sec.id]; if(!t)return;
+      if(window.innerWidth>1100){ t.querySelector('.ct-text').focus(); t.classList.add('flash'); setTimeout(function(){t.classList.remove('flash');},800); t.scrollIntoView({behavior:'smooth',block:'center'}); }
+      else { t.classList.toggle('open'); if(t.classList.contains('open')) t.scrollIntoView({behavior:'smooth',block:'nearest'}); }
+    });
+    sec.querySelector('.sec-body').addEventListener('input',function(){clearTimeout(sec._t);sec._t=setTimeout(function(){saveContent(sec);layout();},400);});
+  });
+
+  loadRemote();
+  layout();
+  window.addEventListener('resize',layout);
+  window.addEventListener('load',function(){setTimeout(layout,200);});
+  setTimeout(layout,500);
+
+  var btnEdit=document.getElementById('btn-edit');
+  btnEdit.addEventListener('click',function(){
+    var on=document.body.classList.toggle('editing');
+    btnEdit.classList.toggle('on',on);
+    btnEdit.textContent=on?'✔ Terminar edición':'✏️ Editar textos';
+    main.querySelectorAll('.sec-body').forEach(function(b){b.contentEditable=on?'true':'false';});
+    setTimeout(layout,60);
+    notify(on?'Haz clic sobre cualquier texto para editarlo':'Edición guardada');
+  });
+
+  document.getElementById('btn-export').addEventListener('click',function(){
+    var out=['Comentarios — PUCP en cifras ('+new Date().toLocaleDateString('es-PE')+')',''];var total=0;
+    main.querySelectorAll('section').forEach(function(sec,idx){
+      var items=comments[sec.id]||[]; if(!items.length)return;
+      out.push((idx+1)+'. '+sec.dataset.title);
+      items.forEach(function(c){total++;out.push('   - '+(c.author?c.author+': ':'')+c.body.replace(/\n+/g,' ')+' ['+new Date(c.created_at).toLocaleString('es-PE')+']');});
+      out.push('');
+    });
+    if(!total){notify('No hay comentarios para copiar');return;}
+    var text=out.join('\n');
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){notify(total+' comentario(s) copiado(s)');});}
+    else{var ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();notify(total+' comentario(s) copiado(s)');}
+  });
+
+  document.getElementById('btn-reset').addEventListener('click',function(){
+    if(confirm('¿Restablecer textos y orden de este navegador? Los comentarios viven en la base de datos y NO se borran.')){localStorage.removeItem(KEY);location.reload();}
+  });
+
+  renumber();
+
+})();
+</script>
+
+</body>
+</html>
