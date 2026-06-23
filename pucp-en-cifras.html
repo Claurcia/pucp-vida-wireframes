@@ -78,6 +78,10 @@
   .cell.lead{background:#e7e7e7;border-style:solid;border-color:var(--accent);}
   .cell.pend{background:#fff;border-style:dashed;}
   .cell.pend .kpi{color:var(--ink-soft);}
+  .claims{display:flex;flex-direction:column;gap:10px;flex:1;min-width:280px;}
+  .claim{background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:7px;padding:11px 14px;}
+  .claim b{display:block;font-size:16.5px;color:var(--ink);line-height:1.25;}
+  .claim .sub{font-size:12px;color:var(--ink-soft);}
   .nav-mini{display:flex;gap:8px;flex-wrap:wrap;}
   .nav-mini .chip{background:#fff;border:1px solid var(--line-strong);border-radius:20px;padding:7px 14px;font-size:12px;font-weight:600;color:var(--ink);white-space:nowrap;}
   .contact{color:var(--ink);font-size:13px;line-height:1.7;}
@@ -223,22 +227,32 @@
     <section class="sec star" id="z-rankings" data-title="Rankings y reconocimiento global">
       <div class="sec-body">
       <h2><span class="num">2</span> Rankings y reconocimiento global <span class="st">★</span> <span class="tag src">fuente: QS World University Rankings 2027</span></h2>
-      <p class="msg">N.° 1 en Perú. Top 10 en América Latina.</p>
-      <div class="grid wraps">
-        <div class="cell tall lead" style="min-width:30%;"><span class="kpi hero">357</span><span class="sub">del mundo según QS World University Rankings 2027</span></div>
-        <div class="cell tall" style="min-width:21%;"><span class="kpi">1.ª</span><span class="sub">del Perú</span></div>
-        <div class="cell tall" style="min-width:21%;"><span class="kpi">10.ª</span><span class="sub">de América Latina</span></div>
-        <div class="cell tall" style="min-width:21%;"><span class="kpi">1.ª</span><span class="sub">del Perú en Sostenibilidad (QS Sustainability 2026)</span></div>
-        <div class="cell tall" style="min-width:30%;"><span class="kpi">401–600</span><span class="sub">mundial en Impacto Social (THE Impact Rankings 2026)</span></div>
+      <div class="row" style="align-items:stretch;gap:16px;">
+        <div class="claims">
+          <div class="claim"><b>#1 en Perú por 14 años consecutivos</b><span class="sub">Ranking QS</span></div>
+          <div class="claim"><b>#10 en América Latina</b><span class="sub">Ranking QS 2026</span></div>
+          <div class="claim"><b>#1 en Perú en Sostenibilidad</b><span class="sub">QS Sustainability 2026</span></div>
+          <div class="claim"><b>#1 en Perú</b><span class="sub">THE University Impact Rankings 2026</span></div>
+        </div>
+        <div class="cell" style="flex:1;min-width:300px;min-height:240px;text-align:center;padding:18px;font-weight:400;line-height:1.5;">
+          [ Imagen institucional QS — "TOP 24% mundial · PUCP entre las mejores universidades del mundo" + "PUCP N° 1 en Perú por indicadores": reputación académica · reputación entre empleadores · red internacional de investigación · sostenibilidad ]
+        </div>
       </div>
-      <p class="desc" style="margin:12px 0 0;">Destacada por su excelencia académica, investigación, empleabilidad, sostenibilidad e impacto social.</p>
+      </div>
+    </section>
+
+    <!-- 3 — Ranking por áreas temáticas (solo título; contenido por definir) -->
+    <section class="sec" id="z-areas-tematicas" data-title="Ranking por áreas temáticas">
+      <div class="sec-body">
+      <h2><span class="num">3</span> Ranking por áreas temáticas <span class="tag">solo título — contenido por definir</span></h2>
+      <div class="panel" style="height:130px;">[ Contenido por definir &nbsp;·&nbsp; referencia: QS World University Rankings por áreas temáticas 2026 — "N° 1 del Perú en 21 áreas temáticas QS · top 100 mundial en Historia, Estudios de Desarrollo, Derecho y Lenguas Modernas" ]</div>
       </div>
     </section>
 
     <!-- 3 — Investigación -->
     <section class="sec" id="z-investigacion" data-title="Investigación que trasciende fronteras">
       <div class="sec-body">
-      <h2><span class="num">3</span> Investigación que trasciende fronteras <span class="tag">cifras de investigación</span></h2>
+      <h2><span class="num">4</span> Investigación que trasciende fronteras <span class="tag">cifras de investigación</span></h2>
       <div class="grid wraps">
         <div class="cell tall lead" style="min-width:30%;"><span class="kpi hero">+500</span><span class="sub">proyectos de investigación</span></div>
         <div class="cell tall" style="min-width:21%;"><span class="kpi">+200</span><span class="sub">grupos de investigación</span></div>
@@ -253,7 +267,7 @@
     <!-- 4 — Internacionalización -->
     <section class="sec alt" id="z-internacional" data-title="Conectados con el mundo">
       <div class="sec-body">
-      <h2><span class="num">4</span> Conectados con el mundo <span class="tag">cifras de internacionalización</span></h2>
+      <h2><span class="num">5</span> Conectados con el mundo <span class="tag">cifras de internacionalización</span></h2>
       <p class="msg">Estudia, investiga y colabora en más de 30 países.</p>
       <div class="grid wraps">
         <div class="cell tall lead" style="min-width:30%;"><span class="kpi hero">617</span><span class="sub">universidades extranjeras con convenio académico</span></div>
@@ -266,7 +280,7 @@
     <!-- 5 — Empleabilidad -->
     <section class="sec" id="z-empleabilidad" data-title="Talento PUCP — empleabilidad">
       <div class="sec-body">
-      <h2><span class="num">5</span> Talento PUCP que impulsa el desarrollo <span class="tag">cifras de empleabilidad</span></h2>
+      <h2><span class="num">6</span> Talento PUCP que impulsa el desarrollo <span class="tag">cifras de empleabilidad</span></h2>
       <p class="desc">Los egresados PUCP contribuyen al desarrollo de organizaciones, empresas e instituciones en el Perú y el mundo, destacando por su empleabilidad, capacidad de liderazgo y proyección internacional.</p>
       <div class="grid wraps">
         <div class="cell tall pend" style="min-width:21%;"><span class="kpi">XX %</span><span class="sub">empleado en su campo profesional durante los primeros seis meses</span></div>
@@ -281,7 +295,7 @@
     <!-- 6 — Infraestructura -->
     <section class="sec alt" id="z-campus" data-title="Un campus para aprender, investigar y crear">
       <div class="sec-body">
-      <h2><span class="num">6</span> Un campus para aprender, investigar y crear <span class="tag">cifras de infraestructura</span></h2>
+      <h2><span class="num">7</span> Un campus para aprender, investigar y crear <span class="tag">cifras de infraestructura</span></h2>
       <p class="msg">Casi medio millón de recursos bibliográficos al servicio del conocimiento.</p>
       <div class="grid wraps">
         <div class="cell tall lead" style="min-width:30%;"><span class="kpi hero">491,942</span><span class="sub">recursos bibliográficos</span></div>
@@ -297,7 +311,7 @@
     <!-- 7 — Sostenibilidad -->
     <section class="sec star" id="z-sostenibilidad" data-title="Compromiso con la sostenibilidad">
       <div class="sec-body">
-      <h2><span class="num">7</span> Compromiso con la sostenibilidad <span class="st">★</span> <span class="tag">impacto para el desarrollo sostenible</span></h2>
+      <h2><span class="num">8</span> Compromiso con la sostenibilidad <span class="st">★</span> <span class="tag">impacto para el desarrollo sostenible</span></h2>
       <div class="grid wraps">
         <div class="cell tall" style="min-width:30%;"><span class="kpi">1.ª</span><span class="sub">universidad del Perú en QS Sustainability Rankings 2026</span></div>
         <div class="cell tall" style="min-width:30%;"><span class="kpi">401–600</span><span class="sub">universidades con mayor impacto social del mundo (THE Impact Rankings 2026)</span></div>
@@ -319,7 +333,7 @@
     <!-- 8 — Informe ODS embebido -->
     <section class="sec" id="z-informe-ods" data-title="Informe de Sostenibilidad ODS (embebido)">
       <div class="sec-body">
-      <h2><span class="num">8</span> Informe de Sostenibilidad ODS <span class="tag">link a embebido</span></h2>
+      <h2><span class="num">9</span> Informe de Sostenibilidad ODS <span class="tag">link a embebido</span></h2>
       <p class="desc">Informe institucional de sostenibilidad alineado a los 17 ODS. Se muestra <b>embebido en la home</b> (visor) con enlace al documento completo para descarga.</p>
       <div class="panel" style="height:120px;margin-bottom:10px;">[ Visor embebido — Informe de Sostenibilidad ODS · PDF / flipbook ]</div>
       <div class="row"><span class="cta">Ver informe completo ▸</span><span class="cta ghost">Descargar PDF ▸</span></div>
@@ -329,7 +343,7 @@
     <!-- 9 — Footer -->
     <section class="sec" id="z-footer" data-title="Footer">
       <div class="sec-body">
-      <h2><span class="num">9</span> Footer</h2>
+      <h2><span class="num">10</span> Footer</h2>
       <div class="row" style="align-items:stretch;">
         <div class="cell" style="justify-content:flex-start;text-align:left;padding:14px;font-weight:400;">
           <span class="contact">Conoce la PUCP · mapa del sitio · redes · enlaces secundarios</span>
