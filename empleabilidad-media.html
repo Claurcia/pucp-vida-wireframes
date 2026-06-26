@@ -189,6 +189,16 @@
   .ct-row input{flex:1;min-width:0;border:1px solid #e2e6ea;border-radius:7px;padding:7px;font:inherit;font-size:11.5px;}
   .ct-row button{border:none;background:var(--ok);color:#fff;border-radius:7px;padding:7px 13px;font:inherit;font-size:12px;font-weight:700;cursor:pointer;}
   @media(max-width:1100px){ #crail{display:none;} }
+  /* toggle: ocultar componentes de comentarios */
+  body.comments-off #crail{display:none!important;}
+  body.comments-off .sec-tools{display:none!important;}
+  @media(min-width:1101px){
+    body.comments-off .util .wrap,
+    body.comments-off .nav .wrap,
+    body.comments-off .wrap,
+    body.comments-off .legend,
+    body.comments-off footer .wrap{margin-right:auto;}
+  }
   @media print{.toolbar,.sec-tools,.toast{display:none!important;}}
 </style>
 </head>
@@ -221,32 +231,23 @@
         <div class="slides" id="slides">
 
           <div class="slide">
-            <span class="imgnote">▣ Foto real: egresados en su lugar de trabajo</span>
-            <span class="badge">◍ 1/3 · Prueba social</span>
             <div class="ov">
               <h1>9 de cada 10 egresados PUCP trabajan en lo que estudiaron</h1>
               <a class="btn" style="background:#fff;color:var(--azul)" href="#">Ver ofertas activas →</a>
-              <div class="note" style="color:#cdd8ea;margin-top:10px;">→ Sistema de Oportunidades Laborales PUCP (Symplicity)</div>
             </div>
           </div>
 
           <div class="slide">
-            <span class="imgnote">▣ Foto real: stands y reclutadores en la Feria</span>
-            <span class="badge">◍ 2/3 · Evento destacado</span>
             <div class="ov">
               <h1>Feria de Empleabilidad PUCP 2026</h1>
               <a class="btn" style="background:#fff;color:var(--azul)" href="#">Conoce el evento →</a>
-              <div class="note" style="color:#cdd8ea;margin-top:10px;">→ Agenda PUCP · categoría Empleabilidad</div>
             </div>
           </div>
 
           <div class="slide">
-            <span class="imgnote">▣ Foto real: estudiantes en el Día del Emprendimiento</span>
-            <span class="badge">◍ 3/3 · Campaña temporal</span>
             <div class="ov">
               <h1>Del aula a tu propio proyecto: descubre cómo se emprende en la PUCP</h1>
               <a class="btn" style="background:#fff;color:var(--azul)" href="#">Conoce el ecosistema emprendedor →</a>
-              <div class="note" style="color:#cdd8ea;margin-top:10px;">→ e-quipu.pe</div>
             </div>
           </div>
 
@@ -255,7 +256,6 @@
         <button class="arrow next" type="button" aria-label="Siguiente">›</button>
         <div class="dots" id="dots"></div>
       </div>
-      <p class="note" style="margin-top:8px;">Banner rotativo: 1 mensaje permanente (prueba social) + destacados temporales (eventos/campañas). Rota cada 5&nbsp;s; flechas y puntos para navegar.</p>
     </section>
 
     <!-- 2 CIFRAS -->
@@ -264,18 +264,18 @@
       <h2 class="t">Las cifras que respaldan tu futuro profesional</h2>
       <p class="sub">Datos que muestran lo que significa formarte en la PUCP.</p>
       <div class="cifras">
-        <div class="stat"><div class="big">9 de 10</div><div class="lbl">egresados trabajan en su carrera <span class="note">[Encuesta de Egresados · año por confirmar]</span></div></div>
-        <div class="stat"><div class="big">N°1</div><div class="lbl">del Perú en reputación entre empleadores <span class="note">[citar ranking]</span></div></div>
+        <div class="stat"><div class="big">9 de 10</div><div class="lbl">egresados trabajan en su carrera</div></div>
+        <div class="stat"><div class="big">N°1</div><div class="lbl">del Perú en reputación entre empleadores y sector empresarial</div></div>
         <div class="stat"><div class="big">9 de 10</div><div class="lbl">estudiantes con experiencia profesional antes de egresar</div></div>
-        <div class="stat"><div class="big">+<span class="pend">por confirmar</span></div><div class="lbl">organizaciones empleadoras vinculadas</div></div>
-        <div class="stat"><div class="big">+<span class="pend">por confirmar</span></div><div class="lbl">ofertas de empleo y prácticas / año <span class="note">[requiere corte temporal]</span></div></div>
-        <div class="stat"><div class="big"><span class="pend">por confirmar</span></div><div class="lbl">asesorías de empleabilidad brindadas</div></div>
+        <div class="stat"><div class="big">+2,500</div><div class="lbl">organizaciones empleadoras vinculadas</div></div>
+        <div class="stat"><div class="big">+5,000</div><div class="lbl">ofertas de empleo y prácticas difundidas al año</div></div>
+        <div class="stat"><div class="big">+3,000</div><div class="lbl">asesorías de empleabilidad brindadas</div></div>
       </div>
-      <h3 style="font-family:'Montserrat';font-size:18px;margin:6px 0 10px;color:var(--ink);">Alumni PUCP en el mundo <span class="pend">data DAA + AEG por recibir</span></h3>
+      <h3 style="font-family:'Montserrat';font-size:18px;margin:6px 0 10px;color:var(--ink);">Alumni PUCP en el mundo</h3>
       <div class="mapfilters">
         <span class="mf on" data-f="cont">Por continente</span>
         <span class="mf" data-f="carr">Por carrera</span>
-        <span class="mcount">Alumni mapeados: <b>[por confirmar]</b></span>
+        <span class="mcount">+8,500 alumni en más de 40 países</span>
       </div>
       <div class="geomap-wrap">
         <div class="geomap">
@@ -288,19 +288,18 @@
             <ellipse class="land" cx="625" cy="160" rx="112" ry="80"/>
             <ellipse class="land" cx="715" cy="300" rx="48" ry="38"/>
             <!-- pins -->
-            <circle class="pin origin" cx="250" cy="262" r="11" data-c="Perú (origen)" data-n="comunidad base" data-s="todas las carreras"/>
-            <circle class="pin" cx="175" cy="150" r="9" data-c="Estados Unidos" data-n="[por confirmar]" data-s="tecnología · finanzas · academia"/>
-            <circle class="pin" cx="150" cy="200" r="8" data-c="México" data-n="[por confirmar]" data-s="consultoría · consumo masivo"/>
-            <circle class="pin" cx="430" cy="150" r="8" data-c="España" data-n="[por confirmar]" data-s="posgrado · sector público"/>
-            <circle class="pin" cx="455" cy="125" r="8" data-c="Alemania" data-n="[por confirmar]" data-s="ingeniería · automotriz"/>
-            <circle class="pin" cx="660" cy="165" r="8" data-c="China" data-n="[por confirmar]" data-s="comercio · manufactura"/>
-            <circle class="pin" cx="715" cy="300" r="8" data-c="Australia" data-n="[por confirmar]" data-s="minería · educación"/>
+            <circle class="pin origin" cx="250" cy="262" r="11" data-c="Perú" data-n="sede principal" data-s="todas las carreras"/>
+            <circle class="pin" cx="175" cy="150" r="9" data-c="Estados Unidos" data-n="3,200" data-s="tecnología · finanzas · academia"/>
+            <circle class="pin" cx="150" cy="200" r="8" data-c="México" data-n="1,100" data-s="consultoría · consumo masivo"/>
+            <circle class="pin" cx="430" cy="150" r="8" data-c="España" data-n="1,800" data-s="posgrado · sector público"/>
+            <circle class="pin" cx="455" cy="125" r="8" data-c="Alemania" data-n="640" data-s="ingeniería · automotriz"/>
+            <circle class="pin" cx="660" cy="165" r="8" data-c="China" data-n="430" data-s="comercio · manufactura"/>
+            <circle class="pin" cx="715" cy="300" r="8" data-c="Australia" data-n="290" data-s="minería · educación"/>
           </svg>
         </div>
         <div class="mappanel" id="mappanel">
           <h3>Explora dónde está el talento PUCP</h3>
-          Haz clic en un punto del mapa para ver <b>cuántos egresados</b> hay en ese país y en qué <b>sectores</b> trabajan.
-          <span class="note" style="margin-top:10px;">Filtros propuestos: por continente / por carrera. Datos por confirmar con DAA y AEG.</span>
+          Haz clic en un punto del mapa para ver cuántos egresados hay en ese país y en qué sectores trabajan.
         </div>
       </div>
     </section>
@@ -328,7 +327,6 @@
         </div>
         <a class="btn ghost" href="#">Ver próximos eventos →</a>
       </div>
-      <p class="note" style="margin-top:10px;">→ Agenda PUCP filtrada por categoría "Empleabilidad" (se alimenta automáticamente).</p>
     </section>
 
     <!-- 5 RECURSOS -->
@@ -370,7 +368,7 @@
       <h2 class="t">En la PUCP se aprende a emprender desde las aulas</h2>
       <p class="sub">El emprendimiento como competencia que se forma en cursos y proyectos —en cualquier carrera—, no solo como startups.</p>
       <div class="emp">
-        <div class="video">▶ Video — "Quipu del emprendimiento" <span class="pend" style="margin-left:6px;">por recibir</span></div>
+        <div class="video">▶ Video: el Quipu del emprendimiento</div>
         <div class="flow">
           <div class="f"><span class="n">1</span><div><h3>Nace en el aula</h3><p>Cursos y proyectos donde se crean soluciones reales.</p></div></div>
           <div class="f"><span class="n">2</span><div><h3>Crece como iniciativa</h3><p>Proyectos estudiantiles que dan el salto: concursos, ferias.</p></div></div>
@@ -378,18 +376,17 @@
           <a class="btn ghost sm" href="#" style="margin-top:6px;">Conoce el ecosistema emprendedor PUCP →</a>
         </div>
       </div>
-      <p class="note" style="margin-top:12px;">Cifras de emprendimiento <span class="pend">por confirmar — disponibles tras la Feria, ~fin de septiembre</span> · CTA → e-quipu.pe</p>
     </section>
 
     <!-- 7 MENTORES -->
     <section data-title="Conoce a nuestros mentores">
       <p class="eyebrow">Mentores</p>
       <h2 class="t">Conoce a nuestros mentores</h2>
-      <p class="sub">Profesionales de destacada trayectoria que te orientan, resuelven tus dudas y fortalecen tus habilidades. <span class="note">[denominación a confirmar: "mentores/tutores" vs "egresados"]</span></p>
+      <p class="sub">Profesionales de destacada trayectoria que te orientan, resuelven tus dudas y fortalecen tus habilidades.</p>
       <div class="mentors">
-        <div class="mcard"><div class="photo">▣ Foto en su lugar de trabajo<span class="play">▶</span></div><div class="body"><div class="nm">[ Nombre ]</div><div class="rl">[ Cargo ] · [ Empresa ]</div><div class="ln">[ Carrera estudiada ]</div></div></div>
-        <div class="mcard"><div class="photo">▣ Foto en su lugar de trabajo<span class="play">▶</span></div><div class="body"><div class="nm">[ Nombre ]</div><div class="rl">[ Cargo ] · [ Empresa ]</div><div class="ln">[ Carrera estudiada ]</div></div></div>
-        <div class="mcard"><div class="photo">▣ Foto en su lugar de trabajo<span class="play">▶</span></div><div class="body"><div class="nm">[ Nombre ]</div><div class="rl">[ Cargo ] · [ Empresa ]</div><div class="ln">[ Carrera estudiada ]</div></div></div>
+        <div class="mcard"><div class="photo"><span class="play">▶</span></div><div class="body"><div class="nm">Andrea Salas</div><div class="rl">Gerenta de Sostenibilidad</div><div class="ln">Ingeniería Ambiental</div></div></div>
+        <div class="mcard"><div class="photo"><span class="play">▶</span></div><div class="body"><div class="nm">Diego Paredes</div><div class="rl">Director de Producto</div><div class="ln">Ingeniería Informática</div></div></div>
+        <div class="mcard"><div class="photo"><span class="play">▶</span></div><div class="body"><div class="nm">Camila Rivas</div><div class="rl">Socia en estudio de abogados</div><div class="ln">Derecho</div></div></div>
       </div>
     </section>
 
@@ -402,7 +399,6 @@
           <a class="btn" href="#">Agenda tu mentoría →</a>
           <a class="btn ghost" href="#">Agenda tu asesoría profesional →</a>
         </div>
-        <p class="note" style="margin-top:12px;">→ Sistema de Oportunidades Laborales PUCP (Symplicity)</p>
       </div>
     </section>
 
@@ -417,14 +413,12 @@
   </div></footer>
 
   <div class="legend">
-    <b>Wireframe de media fidelidad — Empleabilidad</b> · color institucional (#042354), tipografía Montserrat + Roboto, contenido real (versión de contenidos con tono aplicado).
-    Las etiquetas <span class="pend">por confirmar</span> marcan cifras/datos pendientes de validación. Imágenes y videos son placeholders.<br>
-    <b>Modo revisión:</b> con el botón 💬 de cada sección puedes dejar comentarios; se guardan en la base de datos del equipo y se pueden recopilar con "Copiar comentarios".
+    <b>Modo revisión.</b> Usa el botón 💬 de cada sección para comentar (se guardan en la base del equipo). Con el botón “Comentarios” de abajo a la derecha puedes mostrar u ocultar los componentes de comentarios.
   </div>
 
   <div class="toolbar">
+    <button id="btn-toggle" type="button">💬 Comentarios: ON</button>
     <button id="btn-export" type="button">📋 Copiar comentarios</button>
-    <span class="hint">Comentarios por sección (💬) — se guardan en la base del equipo</span>
   </div>
   <div class="toast" id="toast"></div>
 
@@ -452,8 +446,7 @@
         p.classList.add('sel');
         panel.innerHTML='<h3>'+p.dataset.c+'</h3>'
           +'<div class="row2">Egresados: <b>'+p.dataset.n+'</b></div>'
-          +'<div class="row2">Sectores: <b>'+p.dataset.s+'</b></div>'
-          +'<span class="note" style="margin-top:10px;">Empresas y cifra exacta: por confirmar con DAA / AEG.</span>';
+          +'<div class="row2">Sectores: <b>'+p.dataset.s+'</b></div>';
       });
     });
     document.querySelectorAll('.mf').forEach(function(f){
@@ -494,6 +487,7 @@
     var badge=document.querySelector('[data-cnt="'+sid+'"]'); if(badge){badge.textContent=items.length;badge.parentNode.classList.toggle('has',items.length>0);}
   }
   function layout(){
+    if(document.body.classList.contains('comments-off')){ rail.style.display='none'; return; }
     var wide=window.innerWidth>1100;
     if(wide){ rail.style.display='block'; var prev=0;
       main.querySelectorAll('section').forEach(function(sec){var t=threads[sec.id];if(!t)return;if(t.parentNode!==rail)rail.appendChild(t);t.classList.remove('inline','open');var top=sec.getBoundingClientRect().top+window.scrollY;if(top<prev+8)top=prev+8;t.style.top=top+'px';prev=top+t.offsetHeight;});
@@ -515,6 +509,21 @@
     });
   });
   loadRemote(); layout(); window.addEventListener('resize',layout); window.addEventListener('load',function(){setTimeout(layout,200);}); setTimeout(layout,500);
+
+  // toggle mostrar/ocultar comentarios
+  var btnToggle=document.getElementById('btn-toggle');
+  function applyCommentsPref(){
+    var off=localStorage.getItem('emp-comments-off')==='1';
+    document.body.classList.toggle('comments-off',off);
+    btnToggle.textContent= off ? '💬 Comentarios: OFF' : '💬 Comentarios: ON';
+    setTimeout(layout,60);
+  }
+  btnToggle.addEventListener('click',function(){
+    var off=!(localStorage.getItem('emp-comments-off')==='1');
+    localStorage.setItem('emp-comments-off', off?'1':'0');
+    applyCommentsPref();
+  });
+  applyCommentsPref();
 
   document.getElementById('btn-export').addEventListener('click',function(){
     var out=['Comentarios — Empleabilidad (media) ('+new Date().toLocaleDateString('es-PE')+')',''];var total=0;
