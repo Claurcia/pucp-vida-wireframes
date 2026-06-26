@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wireframe media — Empresas · PUCP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --azul:#042354; --azul-2:#0a3a7a; --tint:#eef2f8; --tint-2:#f6f8fb;
+    --line:#d7dee8; --ink:#1d2430; --ink-soft:#5b6675; --ph:#dde3ec; --ph-line:#b6c1d2; --ok:#0a7d72;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:#fff;font-family:'Roboto',Arial,sans-serif;color:var(--ink);line-height:1.55;}
+  h1,h2,h3,.mont{font-family:'Montserrat',Arial,sans-serif;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+  a{color:var(--azul);}
+  /* header */
+  .util{background:var(--tint);border-bottom:1px solid var(--line);font-size:12.5px;color:var(--ink-soft);}
+  .util .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:8px 24px;flex-wrap:wrap;}
+  .util .profiles{display:flex;gap:12px;flex-wrap:wrap;}
+  .util .sep{color:var(--ph-line);}
+  .util .right{display:flex;gap:12px;align-items:center;}
+  .util .becas{font-weight:700;color:var(--azul);letter-spacing:.5px;}
+  .util .hot{background:#fff;border:1px solid var(--line);border-radius:5px;padding:4px 10px;}
+  .nav{background:var(--azul);color:#fff;}
+  .nav .wrap{display:flex;align-items:center;gap:18px;padding:14px 24px;}
+  .logo{display:flex;align-items:center;gap:9px;font-family:'Montserrat';font-weight:800;letter-spacing:1px;font-size:21px;flex:none;}
+  .nav ul{display:flex;gap:15px;list-style:none;margin:0;padding:0;flex:1;flex-wrap:wrap;font-size:13px;}
+  .nav li{color:#cdd8ea;white-space:nowrap;}
+  .nav li.active{color:#fff;font-weight:700;border-bottom:2px solid #fff;padding-bottom:3px;}
+  .postula{background:#fff;color:var(--azul);font-family:'Montserrat';font-weight:700;border-radius:7px;padding:9px 16px;font-size:13px;flex:none;}
+  .lupa{width:36px;height:36px;border:1.5px solid #fff;border-radius:7px;display:flex;align-items:center;justify-content:center;flex:none;}
+  .crumb{font-size:12.5px;color:var(--ink-soft);padding:14px 0 0;}
+  /* secciones */
+  section{padding:30px 0;border-bottom:1px solid var(--tint);position:relative;}
+  .eyebrow{font-family:'Montserrat';font-weight:700;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--azul);margin:0 0 6px;}
+  h2.t{font-size:26px;font-weight:700;margin:0 0 8px;color:var(--ink);line-height:1.2;}
+  p.sub{font-size:15px;color:var(--ink-soft);margin:0 0 18px;max-width:820px;}
+  .btn{display:inline-flex;align-items:center;gap:7px;background:var(--azul);color:#fff;font-family:'Montserrat';font-weight:600;font-size:14px;padding:12px 22px;border-radius:8px;text-decoration:none;}
+  .btn.ghost{background:#fff;color:var(--azul);border:1.5px solid var(--azul);}
+  .btn.sm{padding:9px 16px;font-size:13px;}
+  /* hero */
+  .hero{background:var(--ph);border:1px dashed var(--ph-line);border-radius:14px;position:relative;min-height:300px;display:flex;align-items:flex-end;overflow:hidden;}
+  .hero .imgnote{position:absolute;top:14px;left:16px;font-size:12px;color:#7a869a;background:#ffffffcc;border-radius:5px;padding:3px 9px;}
+  .hero .ov{position:relative;width:100%;padding:32px 36px;background:linear-gradient(to top,rgba(4,35,84,.9),rgba(4,35,84,.05));color:#fff;}
+  .hero .ey{font-family:'Montserrat';font-weight:700;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#cdd8ea;margin-bottom:8px;}
+  .hero h1{font-size:34px;font-weight:800;margin:0 0 12px;max-width:680px;line-height:1.13;}
+  .hero p{margin:0 0 16px;max-width:600px;color:#e7edf6;font-size:15px;}
+  .cifras{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px;}
+  .cifras .c{flex:1;min-width:150px;background:var(--tint-2);border:1px solid var(--line);border-radius:10px;padding:14px 16px;}
+  .cifras .big{font-family:'Montserrat';font-weight:800;font-size:23px;color:var(--azul);line-height:1;}
+  .cifras .lbl{font-size:12.5px;color:var(--ink-soft);margin-top:5px;}
+  /* hub */
+  .hub{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .hubcard{border:1px solid var(--line);border-top:4px solid var(--azul);border-radius:12px;padding:18px 18px 16px;background:#fff;display:flex;flex-direction:column;}
+  .hubcard h3{font-size:16.5px;margin:0 0 4px;color:var(--ink);}
+  .hubcard .d{font-size:12.5px;color:var(--ink-soft);margin:0 0 12px;}
+  .hubcard ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;}
+  .hubcard li{font-size:13px;}
+  .hubcard li a{text-decoration:none;border-bottom:1px solid transparent;}
+  .hubcard li a:hover{border-bottom-color:var(--azul);}
+  .hubcard li.txt{color:var(--ink-soft);}
+  .hubcard li .ext{color:var(--ph-line);font-size:11px;}
+  /* buscador nivel 2 */
+  .searchwrap{margin-top:20px;background:var(--tint-2);border:1px solid var(--line);border-radius:12px;padding:18px;}
+  .searchbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px;}
+  .inp{flex:1;min-width:220px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:11px 14px;color:var(--ink-soft);font-size:14px;display:flex;justify-content:space-between;}
+  .sel{background:#fff;border:1px solid var(--line);border-radius:8px;padding:11px 14px;color:var(--ink-soft);font-size:14px;}
+  .stabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
+  .stab{font-size:12.5px;padding:7px 13px;border:1px solid var(--line);border-radius:20px;background:#fff;color:var(--ink-soft);cursor:pointer;}
+  .stab.on{background:var(--azul);color:#fff;border-color:var(--azul);}
+  .svc{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:9px;padding:11px 14px;margin-bottom:8px;}
+  .svc b{font-family:'Montserrat';font-size:14px;}
+  .svc .en{flex:1;color:var(--ink-soft);font-size:12px;}
+  .svc .me{background:var(--tint);border:1px solid var(--line);border-radius:6px;padding:6px 12px;font-size:12.5px;font-weight:600;color:var(--azul);cursor:pointer;}
+  /* grids genéricas */
+  .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .cards.c3{grid-template-columns:repeat(3,1fr);}
+  .card{border:1px solid var(--line);border-radius:11px;padding:16px;background:#fff;}
+  .card .ti{font-family:'Montserrat';font-weight:700;font-size:14.5px;margin-bottom:5px;}
+  .card .ds{font-size:12.5px;color:var(--ink-soft);}
+  .card a{font-size:12.5px;}
+  /* convocatorias */
+  .conv{display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin-bottom:9px;background:#fff;}
+  .conv .nm{flex:1;font-size:14px;}
+  .conv .dl{font-size:12.5px;color:var(--ink-soft);white-space:nowrap;}
+  .conv .st{font-size:11.5px;font-weight:700;border-radius:20px;padding:3px 10px;background:#e6f4ea;color:#1c7a3f;white-space:nowrap;}
+  .conv .st.eval{background:#fdf0d8;color:#8a6d1a;}
+  /* logos */
+  .logos{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:6px;}
+  .logo-ph{height:60px;background:var(--tint-2);border:1px dashed var(--ph-line);border-radius:9px;display:flex;align-items:center;justify-content:center;color:#9aa6b6;font-size:12px;text-align:center;padding:6px;}
+  /* hablemos */
+  .contactbox{display:grid;grid-template-columns:130px 1fr;gap:20px;align-items:center;background:var(--tint);border:1px solid var(--line);border-radius:14px;padding:24px;}
+  .contactbox .photo{width:130px;height:130px;border-radius:50%;background:var(--ph);border:1px dashed var(--ph-line);display:flex;align-items:center;justify-content:center;color:#7a869a;font-size:12px;}
+  .contactbox h3{margin:0 0 4px;font-size:20px;}
+  .contactbox .who{color:var(--azul);font-weight:600;font-size:14px;margin-bottom:8px;}
+  .contactbox .det{font-size:13.5px;color:var(--ink-soft);margin-bottom:14px;}
+  .ctas{display:flex;gap:10px;flex-wrap:wrap;}
+  /* footer */
+  footer{background:var(--azul);color:#cdd8ea;padding:34px 0;}
+  footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:13px;}
+  footer b{color:#fff;font-family:'Montserrat';}
+  footer a{color:#cdd8ea;}
+  .legend{max-width:1180px;margin:0 auto;padding:22px 24px 60px;color:var(--ink-soft);font-size:12.5px;line-height:1.7;}
+  .legend b{color:var(--ink);}
+  @media(max-width:860px){ .hub,.cards{grid-template-columns:1fr 1fr;} .logos{grid-template-columns:repeat(3,1fr);} .contactbox{grid-template-columns:1fr;} }
+  @media(max-width:560px){ .hub,.cards,.cards.c3{grid-template-columns:1fr;} }
+  /* herramientas comentarios */
+  .toolbar{position:fixed;bottom:18px;right:18px;z-index:100;display:flex;gap:8px;align-items:center;background:#fff;border:1px solid var(--ph-line);border-radius:10px;padding:9px 12px;box-shadow:0 4px 18px rgba(0,0,0,.18);}
+  .toolbar button{font:inherit;font-size:12.5px;font-weight:700;border:1px solid var(--ph-line);background:var(--tint);color:var(--ink);border-radius:6px;padding:7px 12px;cursor:pointer;}
+  .sec-tools{position:absolute;top:10px;right:10px;display:flex;gap:5px;z-index:5;}
+  .sec-tools button{font:inherit;font-size:12px;font-weight:700;border:1px solid var(--ph-line);background:#fff;color:var(--ink);border-radius:6px;cursor:pointer;padding:4px 8px;}
+  .sec-tools .c-btn.has{background:var(--azul);color:#fff;border-color:var(--azul);}
+  .toast{position:fixed;bottom:78px;right:18px;z-index:101;background:var(--azul);color:#fff;font-size:12.5px;border-radius:7px;padding:9px 14px;opacity:0;transition:opacity .25s;pointer-events:none;}
+  .toast.show{opacity:1;}
+  @media(min-width:1101px){ .util .wrap,.nav .wrap,.wrap,.legend,footer .wrap{margin-right:344px;} }
+  #crail{position:absolute;top:0;right:16px;width:312px;z-index:40;}
+  .cthread{position:absolute;right:0;width:300px;}
+  .cthread.inline{position:static;width:auto;display:none;margin:14px 0 0;}
+  .cthread.inline.open{display:block;}
+  .ct-item{background:#fff;border:1px solid #e2e6ea;border-left:3px solid var(--ok);border-radius:9px;padding:9px 11px;margin-bottom:7px;box-shadow:0 1px 5px rgba(20,30,45,.07);font-size:12.5px;}
+  .ct-body{white-space:pre-wrap;word-wrap:break-word;overflow-wrap:anywhere;color:#22272e;line-height:1.5;}
+  .ct-body a{color:var(--ok);font-weight:600;}
+  .ct-meta{display:flex;align-items:center;gap:8px;color:#9097a0;font-size:10.5px;margin-top:6px;}
+  .ct-meta span{flex:1;}
+  .ct-del{border:none;background:none;color:#c2c2cc;cursor:pointer;font-size:12px;}
+  .ct-add{background:#fff;border:1px dashed #b9c0c8;border-radius:9px;padding:8px;}
+  .ct-add textarea{width:100%;border:1px solid #e2e6ea;border-radius:7px;padding:8px;font:inherit;font-size:12.5px;resize:none;overflow:hidden;min-height:34px;line-height:1.45;}
+  .ct-row{display:flex;gap:6px;margin-top:6px;}
+  .ct-row input{flex:1;min-width:0;border:1px solid #e2e6ea;border-radius:7px;padding:7px;font:inherit;font-size:11.5px;}
+  .ct-row button{border:none;background:var(--ok);color:#fff;border-radius:7px;padding:7px 13px;font:inherit;font-size:12px;font-weight:700;cursor:pointer;}
+  body.comments-off #crail{display:none!important;}
+  body.comments-off .sec-tools{display:none!important;}
+  @media(min-width:1101px){ body.comments-off .util .wrap,body.comments-off .nav .wrap,body.comments-off .wrap,body.comments-off .legend,body.comments-off footer .wrap{margin-right:auto;} }
+  @media(max-width:1100px){ #crail{display:none;} }
+  @media print{.toolbar,.sec-tools,.toast{display:none!important;}}
+</style>
+</head>
+<body>
+
+  <div class="util"><div class="wrap">
+    <div class="profiles"><span>Empresa</span><span class="sep">|</span><span>Postulante</span><span class="sep">|</span><span>Egresado</span><span class="sep">|</span><span>Estudiante</span></div>
+    <div class="right"><span class="becas">BECAS</span><span class="hot">Intranet y correo</span><span class="hot">PAIDEIA</span></div>
+  </div></div>
+  <div class="nav"><div class="wrap">
+    <div class="logo"><svg width="34" height="34" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="none" stroke="#fff" stroke-width="2"/><path d="M9 24 q11 6 22 0 l-3 5 h-16 z" fill="#fff"/><path d="M20 8 l7 13 h-14 z" fill="#fff"/></svg>PUCP</div>
+    <ul><li>Conoce la PUCP</li><li>Carreras y Programas</li><li>Admisión</li><li>Internacionalización</li><li>Empleabilidad</li><li class="active">Investigación que transforma</li><li>Vida Universitaria</li><li>Noticias</li></ul>
+    <span class="postula">Postula aquí</span>
+    <span class="lupa"><svg width="17" height="17" viewBox="0 0 20 20"><circle cx="8" cy="8" r="6" fill="none" stroke="#fff" stroke-width="2"/><line x1="12.5" y1="12.5" x2="18.5" y2="18.5" stroke="#fff" stroke-width="2"/></svg></span>
+  </div></div>
+  <div class="wrap"><div class="crumb">Inicio › Investigación que transforma › <b>Empresas</b></div></div>
+
+  <main>
+  <div class="wrap">
+
+    <!-- 1 BANNER -->
+    <section data-title="Banner principal">
+      <div class="hero">
+        <span class="imgnote">▣ Foto real: equipos universidad–empresa trabajando juntos</span>
+        <div class="ov">
+          <div class="ey">Vinculación universidad–empresa</div>
+          <h1>Convertimos tus desafíos en oportunidades de innovación</h1>
+          <p>Desde la Oficina de Innovación de la PUCP, con más de 15 años articulando la vinculación entre la universidad y las organizaciones, ponemos el conocimiento al servicio de tu empresa.</p>
+          <a class="btn" style="background:#fff;color:var(--azul)" href="#hablemos">Conversemos sobre tu proyecto →</a>
+        </div>
+      </div>
+      <div class="cifras">
+        <div class="c"><div class="big">+15 años</div><div class="lbl">articulando universidad y empresa</div></div>
+        <div class="c"><div class="big">+250</div><div class="lbl">proyectos de vinculación U–empresa</div></div>
+        <div class="c"><div class="big">+192</div><div class="lbl">organizaciones aliadas</div></div>
+        <div class="c"><div class="big">+500</div><div class="lbl">investigadores reconocidos por RENACYT</div></div>
+        <div class="c"><div class="big">+70</div><div class="lbl">laboratorios y centros especializados</div></div>
+      </div>
+    </section>
+
+    <!-- 2 HUB -->
+    <section data-title="¿Qué buscas resolver? — hub por intención">
+      <p class="eyebrow">El corazón de la landing</p>
+      <h2 class="t">¿Qué buscas resolver?</h2>
+      <p class="sub">Organizamos toda la oferta de la PUCP según tu necesidad, no según nuestro organigrama. Elige tu intención y te llevamos directo a la unidad o el servicio adecuado.</p>
+      <div class="hub">
+
+        <div class="hubcard">
+          <h3>Innovar</h3>
+          <div class="d">Desarrollo de soluciones, tecnologías y nuevos negocios.</div>
+          <ul>
+            <li><a href="https://investigacion.pucp.edu.pe/vinculacion-con-el-entorno/vinculacion-universidad-empresa/">Innovación abierta ↗</a></li>
+            <li><a href="https://investigacion.pucp.edu.pe/convocatorias/?_s=&_fuentes%5B%5D=externo&_publicos%5B%5D=empresas&f=1">Financiamiento para proyectos ↗</a></li>
+            <li><a href="https://investigacion.pucp.edu.pe/directorio-de-proyectos/?_s&_lineas-estrategicas%5B0%5D=Innovaci%C3%B3n&f=1">Proyectos de innovación en curso ↗</a></li>
+          </ul>
+        </div>
+
+        <div class="hubcard">
+          <h3>Resolver desafíos</h3>
+          <div class="d">Consultoría, servicios especializados y soporte técnico.</div>
+          <ul>
+            <li class="txt">CIDE — Centro de Innovación y Desarrollo Emprendedor</li>
+            <li class="txt">InnovaPUCP · ICP · CIAC · CMEC</li>
+            <li class="txt">Servicios tecnológicos especializados</li>
+          </ul>
+        </div>
+
+        <div class="hubcard">
+          <h3>Investigar</h3>
+          <div class="d">Investigación aplicada y generación de conocimiento.</div>
+          <ul>
+            <li><a href="https://investigacion.pucp.edu.pe/centros-e-institutos/directorio-de-centros-e-institutos/">Centros e institutos ↗</a></li>
+            <li><a href="https://investigacion.pucp.edu.pe/grupos-vri/directorio-de-grupos/">Grupos de investigación ↗</a></li>
+            <li><a href="https://investigacion.pucp.edu.pe/nosotros/directorio-de-perfiles/">Investigadores ↗</a></li>
+          </ul>
+        </div>
+
+        <div class="hubcard">
+          <h3>Acceder a tecnologías e infraestructura</h3>
+          <div class="d">Laboratorios, equipamiento y tecnologías disponibles.</div>
+          <ul>
+            <li><a href="https://investigacion.pucp.edu.pe/vinculacion-con-el-entorno/portafolio-de-tecnologias/">Portafolio de Tecnologías ↗</a></li>
+            <li><a href="https://tecnologiaconimpacto.pucp.edu.pe/">Tecnología con Impacto ↗</a></li>
+          </ul>
+        </div>
+
+        <div class="hubcard">
+          <h3>Desarrollar talento</h3>
+          <div class="d">Capacitación, formación ejecutiva y certificación.</div>
+          <ul>
+            <li class="txt">Educación Continua PUCP</li>
+            <li class="txt">Instituto para la Calidad</li>
+            <li class="txt">Centrum PUCP</li>
+          </ul>
+        </div>
+
+        <div class="hubcard">
+          <h3>Conecta con la PUCP</h3>
+          <div class="d">Proyectos conjuntos, convocatorias y acceso a expertos.</div>
+          <ul>
+            <li><a href="https://pucp.kissflow.com/public/Process/Pf2fb9a820-4c3c-40cb-a75e-aef0fd48cf55">Contacta a la Oficina de Innovación ↗</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="searchwrap">
+        <div class="eyebrow" style="margin-bottom:8px;">Nivel 2 — buscador de servicios</div>
+        <div class="searchbar">
+          <span class="inp">Buscar un servicio… <span>🔍</span></span>
+          <span class="sel">Intención: Todas ▾</span>
+        </div>
+        <div class="stabs">
+          <span class="stab on">Todos</span><span class="stab">Innovar</span><span class="stab">Resolver desafíos</span><span class="stab">Investigar</span><span class="stab">Tecnologías e infraestructura</span><span class="stab">Desarrollar talento</span><span class="stab">Conecta con la PUCP</span>
+        </div>
+        <div class="svc"><b>Análisis y ensayos de laboratorio</b><span class="en">Acceder a tecnologías e infraestructura</span><span class="me">Me interesa</span></div>
+        <div class="svc"><b>Acreditaciones ISO/IEC 17025</b><span class="en">Resolver desafíos · Calidad</span><span class="me">Me interesa</span></div>
+        <div class="svc"><b>Caracterización de procesos y operaciones</b><span class="en">Resolver desafíos</span><span class="me">Me interesa</span></div>
+        <div class="svc"><b>Licenciamiento de tecnología</b><span class="en">Innovar</span><span class="me">Me interesa</span></div>
+        <div class="svc"><b>Programa de capacitación in-house</b><span class="en">Desarrollar talento</span><span class="me">Me interesa</span></div>
+      </div>
+    </section>
+
+    <!-- 3 MODALIDADES -->
+    <section data-title="Cómo trabajamos contigo">
+      <p class="eyebrow">Modalidades + proceso</p>
+      <h2 class="t">Cómo trabajamos contigo</h2>
+      <p class="sub">Cuéntanos tu necesidad → te conectamos con la unidad o el investigador adecuado → definimos juntos la modalidad de trabajo.</p>
+      <div class="cards">
+        <div class="card"><div class="ti">Consultoría y servicios</div><div class="ds">Contrato directo con la unidad especializada.</div></div>
+        <div class="card"><div class="ti">Proyectos I+D+i</div><div class="ds">Desarrollo conjunto universidad–empresa. <a href="https://investigacion.pucp.edu.pe/vinculacion-con-el-entorno/vinculacion-universidad-empresa/">Ver más ↗</a></div></div>
+        <div class="card"><div class="ti">Ley 30309</div><div class="ds">Beneficio tributario: te conectamos con un investigador y postulan juntos. <a href="https://investigacion.pucp.edu.pe/noticias-y-eventos/innovacion-empresarial-con-beneficios-tributarios-como-la-pucp-acompana-proyectos-de-idi-bajo-la-ley-30309/">Cómo funciona ↗</a></div></div>
+        <div class="card"><div class="ti">Portafolio de Tecnologías</div><div class="ds">Del prototipo al mercado: tecnologías PUCP para licenciar. <a href="https://investigacion.pucp.edu.pe/vinculacion-con-el-entorno/portafolio-de-tecnologias/">Explorar ↗</a></div></div>
+      </div>
+    </section>
+
+    <!-- 4 INSTALACIONES -->
+    <section data-title="Nuestras instalaciones y equipos">
+      <p class="eyebrow">Infraestructura</p>
+      <h2 class="t">Nuestras instalaciones y equipos</h2>
+      <p class="sub">Laboratorios especializados y equipamiento científico al servicio de la industria: validación tecnológica, investigación aplicada y consultorías de I+D+i.</p>
+      <div class="cards">
+        <div class="card"><div class="ti">Genómica y Biotecnología</div></div>
+        <div class="card"><div class="ti">Resonancia Magnética Nuclear</div></div>
+        <div class="card"><div class="ti">Biomecánica y Robótica</div></div>
+        <div class="card"><div class="ti">Materiales y Corrosión</div></div>
+      </div>
+      <div class="ctas" style="margin-top:14px;"><a class="btn ghost sm" href="https://tecnologiaconimpacto.pucp.edu.pe/">Explora los laboratorios (Tecnología con Impacto) →</a></div>
+    </section>
+
+    <!-- 5 FORMACION -->
+    <section data-title="Formación y capacitaciones">
+      <p class="eyebrow">Desarrollar talento</p>
+      <h2 class="t">Formación y capacitaciones</h2>
+      <p class="sub">Cursos in-house, formación ejecutiva, certificaciones y programas corporativos a la medida de tu equipo.</p>
+      <div class="cards">
+        <div class="card"><div class="ti">Programas corporativos in-house</div></div>
+        <div class="card"><div class="ti">Formación ejecutiva</div></div>
+        <div class="card"><div class="ti">Certificaciones</div></div>
+        <div class="card"><div class="ti">Maestrías y doctorados</div></div>
+      </div>
+    </section>
+
+    <!-- 6 FONDOS -->
+    <section data-title="Fondos concursables">
+      <p class="eyebrow">Financiamiento</p>
+      <h2 class="t">Fondos concursables para tu empresa</h2>
+      <p class="sub">Convocatorias abiertas para proyectos conjuntos universidad–empresa: postulan acompañados por un equipo PUCP.</p>
+      <div class="conv"><span class="nm">ProCiencia — Seguridad Ciudadana</span><span class="dl">Cierre: 04/08/2026</span><span class="st">Abierta</span></div>
+      <div class="conv"><span class="nm">Temasek Foundation — Liveability &amp; Sustainability</span><span class="dl">Cierre: 09/12/2026</span><span class="st">Abierta</span></div>
+      <div class="conv"><span class="nm">ProCiencia — Cadenas de Valor</span><span class="dl">—</span><span class="st eval">En evaluación</span></div>
+      <div class="conv"><span class="nm">ProCiencia — Pasantías CTI · Digital Cities Small Grants</span><span class="dl">Varios</span><span class="st">Abierta</span></div>
+      <div class="ctas" style="margin-top:6px;"><a class="btn ghost sm" href="https://investigacion.pucp.edu.pe/convocatorias/?_s=&_fuentes%5B%5D=externo&_publicos%5B%5D=empresas&f=1">Ver todas las convocatorias para empresas →</a></div>
+    </section>
+
+    <!-- 7 STARTUPS -->
+    <section data-title="Impulso a las startups">
+      <p class="eyebrow">Emprendimiento</p>
+      <h2 class="t">Impulso a las startups</h2>
+      <p class="sub">Para emprendedores y empresas jóvenes, de la mano del CIDE — Centro de Innovación y Desarrollo Emprendedor.</p>
+      <div class="cards c3">
+        <div class="card"><div class="ti">Valida tu idea de negocio</div><div class="ds">Acompañamiento temprano.</div></div>
+        <div class="card"><div class="ti">Incubación de empresas</div><div class="ds">Programa CIDE.</div></div>
+        <div class="card"><div class="ti">Clínica empresarial</div><div class="ds">Diagnóstico y mejora para pymes.</div></div>
+      </div>
+    </section>
+
+    <!-- 8 TALENTO -->
+    <section data-title="¿Buscas talento PUCP?">
+      <p class="eyebrow">Talento</p>
+      <h2 class="t">¿Buscas talento PUCP?</h2>
+      <p class="sub">Publica tus convocatorias y conecta con estudiantes, egresados destacados e investigadores.</p>
+      <div class="cards c3">
+        <div class="card"><div class="ti">Publica tu convocatoria</div></div>
+        <div class="card"><div class="ti">Egresados destacados</div></div>
+        <div class="card"><div class="ti">Investigadores</div></div>
+      </div>
+      <div class="ctas" style="margin-top:14px;"><a class="btn ghost sm" href="#">Recluta en la PUCP → Sistema de Oportunidades Laborales</a></div>
+    </section>
+
+    <!-- 9 CASOS -->
+    <section data-title="Casos de éxito y empresas aliadas">
+      <p class="eyebrow">Prueba social</p>
+      <h2 class="t">Casos de éxito y empresas aliadas</h2>
+      <p class="sub">Proyectos reales universidad–empresa con resultados concretos. 35 empresas mantienen una relación de compra recurrente con la PUCP.</p>
+      <div class="logos">
+        <div class="logo-ph">Alicorp</div><div class="logo-ph">Statkraft Perú</div><div class="logo-ph">AGP Perú</div>
+        <div class="logo-ph">+ logo</div><div class="logo-ph">+ logo</div><div class="logo-ph">+ logo</div>
+      </div>
+      <div class="ctas" style="margin-top:14px;"><a class="btn ghost sm" href="https://investigacion.pucp.edu.pe/vinculacion-con-el-entorno/vinculacion-universidad-empresa/">Conoce los casos de éxito →</a></div>
+    </section>
+
+    <!-- 10 HABLEMOS -->
+    <section id="hablemos" data-title="Hablemos — contacto humano nombrado">
+      <p class="eyebrow">Conversemos</p>
+      <h2 class="t">Hablemos</h2>
+      <p class="sub">No un formulario frío: una persona con nombre y cargo que acompaña a tu empresa a encontrar la puerta correcta.</p>
+      <div class="contactbox">
+        <div class="photo">▣ Foto</div>
+        <div>
+          <h3>Nombre y apellido</h3>
+          <div class="who">Oficina de Innovación · Vinculación universidad–empresa</div>
+          <div class="det">Correo directo · teléfono · agenda una reunión · WhatsApp. Cuéntanos tu empresa, tu intención (las 6 del hub) y tu mensaje.</div>
+          <div class="ctas">
+            <a class="btn" href="https://pucp.kissflow.com/public/Process/Pf2fb9a820-4c3c-40cb-a75e-aef0fd48cf55">Agenda una reunión →</a>
+            <a class="btn ghost" href="https://pucp.kissflow.com/public/Process/Pf2fb9a820-4c3c-40cb-a75e-aef0fd48cf55">Escríbenos</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+  </main>
+
+  <!-- 11 FOOTER -->
+  <footer><div class="wrap">
+    <div><b>Oficina de Innovación · VRI</b><br>Contacto humano identificado · vri@pucp.edu.pe · (511) 626-2000</div>
+    <div><b>Enlaces</b><br><a href="https://investigacion.pucp.edu.pe/innovacion/">Innovación PUCP</a> · <a href="https://investigacion.pucp.edu.pe/vinculacion-con-el-entorno/vinculacion-universidad-empresa/">Vinculación U–empresa</a> · Mapa del sitio</div>
+    <div><b>Síguenos</b><br>Redes sociales · Libro de reclamaciones</div>
+  </div></footer>
+
+  <div class="legend">
+    <b>Wireframe de media fidelidad — Empresas.</b> Color institucional (#042354), Montserrat + Roboto. Contenido y enlaces reales según los comentarios de Sara (VRI) y las webs del Vicerrectorado de Investigación. Las cifras del banner son las del VRI (a confirmar unidad/año).<br>
+    <b>Modo revisión.</b> Usa el botón 💬 de cada sección para comentar. Con el botón “Comentarios” de abajo a la derecha puedes mostrar u ocultar los componentes de comentarios.
+  </div>
+
+  <div class="toolbar">
+    <button id="btn-toggle" type="button">💬 Comentarios: ON</button>
+    <button id="btn-export" type="button">📋 Copiar comentarios</button>
+  </div>
+  <div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  // filtro de servicios (nivel 2) — visual
+  document.querySelectorAll('.stab').forEach(function(t){
+    t.addEventListener('click',function(){document.querySelectorAll('.stab').forEach(function(x){x.classList.remove('on');});t.classList.add('on');});
+  });
+
+  // comentarios
+  var WF='empresas-media', API='https://comentarios.ludik.pe';
+  var main=document.querySelector('main'), toast=document.getElementById('toast'), tt=null;
+  function notify(m){toast.textContent=m;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('show');},2200);}
+  function esc(s){var d=document.createElement('div');d.textContent=(s==null?'':s);return d.innerHTML;}
+  function linkify(s){return esc(s).replace(/(https?:\/\/[^\s<]+)/g,function(u){return '<a href="'+u+'" target="_blank" rel="noopener">'+u+'</a>';});}
+  var rail=document.createElement('div'); rail.id='crail'; document.body.appendChild(rail);
+  var comments={}, threads={};
+  function makeThread(sec){
+    var t=document.createElement('div'); t.className='cthread'; t.dataset.sec=sec.id;
+    t.innerHTML='<div class="ct-list"></div><form class="ct-add"><textarea class="ct-text" rows="1" placeholder="Escribe un comentario…"></textarea><div class="ct-row"><input class="ct-author" placeholder="Tu nombre (opcional)"><button type="submit">Comentar</button></div></form>';
+    var ta=t.querySelector('.ct-text');
+    function grow(){ta.style.height='auto';ta.style.height=ta.scrollHeight+'px';}
+    ta.addEventListener('input',function(){grow();layout();});
+    t.querySelector('form').addEventListener('submit',function(ev){ev.preventDefault();var body=ta.value.replace(/\s+$/,'');if(!body.trim())return;var author=t.querySelector('.ct-author').value.trim();
+      fetch(API+'/comments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({wf:WF,section:sec.id,author:author,body:body})}).then(function(r){return r.json();}).then(function(c){(comments[sec.id]=comments[sec.id]||[]).push(c);ta.value='';grow();renderThread(sec.id);layout();notify('Comentario guardado');}).catch(function(){notify('No se pudo guardar (sin conexión)');});});
+    threads[sec.id]=t; return t;
+  }
+  function renderThread(sid){var t=threads[sid];if(!t)return;var items=comments[sid]||[];var list=t.querySelector('.ct-list');
+    list.innerHTML=items.map(function(c){return '<div class="ct-item"><div class="ct-body">'+linkify(c.body)+'</div><div class="ct-meta"><span>'+esc(c.author||'Anónimo')+' · '+new Date(c.created_at).toLocaleString('es-PE')+'</span><button class="ct-del" data-id="'+c.id+'">✕</button></div></div>';}).join('');
+    list.querySelectorAll('.ct-del').forEach(function(b){b.addEventListener('click',function(){fetch(API+'/comments/'+b.dataset.id,{method:'DELETE'}).catch(function(){});comments[sid]=(comments[sid]||[]).filter(function(x){return String(x.id)!==b.dataset.id;});renderThread(sid);layout();});});
+    var badge=document.querySelector('[data-cnt="'+sid+'"]');if(badge){badge.textContent=items.length;badge.parentNode.classList.toggle('has',items.length>0);}}
+  function layout(){
+    if(document.body.classList.contains('comments-off')){rail.style.display='none';return;}
+    var wide=window.innerWidth>1100;
+    if(wide){rail.style.display='block';var prev=0;main.querySelectorAll('section').forEach(function(sec){var t=threads[sec.id];if(!t)return;if(t.parentNode!==rail)rail.appendChild(t);t.classList.remove('inline','open');var top=sec.getBoundingClientRect().top+window.scrollY;if(top<prev+8)top=prev+8;t.style.top=top+'px';prev=top+t.offsetHeight;});}
+    else{rail.style.display='none';main.querySelectorAll('section').forEach(function(sec){var t=threads[sec.id];if(!t)return;t.style.top='';t.classList.add('inline');if(t.parentNode!==sec)sec.appendChild(t);});}
+  }
+  function loadRemote(){fetch(API+'/comments?wf='+WF).then(function(r){return r.json();}).then(function(rows){comments={};rows.forEach(function(c){(comments[c.section]=comments[c.section]||[]).push(c);});Object.keys(threads).forEach(renderThread);layout();}).catch(function(){});}
+  main.querySelectorAll('section').forEach(function(sec,i){
+    if(!sec.id)sec.id='sec-'+i;
+    var tools=document.createElement('div');tools.className='sec-tools';tools.innerHTML='<button type="button" class="c-btn" title="Comentar">💬 <span data-cnt="'+sec.id+'">0</span></button>';
+    sec.appendChild(tools);makeThread(sec);
+    tools.querySelector('.c-btn').addEventListener('click',function(){var t=threads[sec.id];if(!t)return;if(window.innerWidth>1100){t.querySelector('.ct-text').focus();t.scrollIntoView({behavior:'smooth',block:'center'});}else{t.classList.toggle('open');if(t.classList.contains('open'))t.scrollIntoView({behavior:'smooth',block:'nearest'});}});
+  });
+  loadRemote();layout();window.addEventListener('resize',layout);window.addEventListener('load',function(){setTimeout(layout,200);});setTimeout(layout,500);
+
+  var btnToggle=document.getElementById('btn-toggle');
+  function applyCommentsPref(){var off=localStorage.getItem('emp-comments-off')==='1';document.body.classList.toggle('comments-off',off);btnToggle.textContent=off?'💬 Comentarios: OFF':'💬 Comentarios: ON';setTimeout(layout,60);}
+  btnToggle.addEventListener('click',function(){var off=!(localStorage.getItem('emp-comments-off')==='1');localStorage.setItem('emp-comments-off',off?'1':'0');applyCommentsPref();});
+  applyCommentsPref();
+
+  document.getElementById('btn-export').addEventListener('click',function(){
+    var out=['Comentarios — Empresas (media) ('+new Date().toLocaleDateString('es-PE')+')',''];var total=0;
+    main.querySelectorAll('section').forEach(function(sec,idx){var items=comments[sec.id]||[];if(!items.length)return;out.push((idx+1)+'. '+(sec.dataset.title||sec.id));items.forEach(function(c){total++;out.push('   - '+(c.author?c.author+': ':'')+c.body.replace(/\n+/g,' ')+' ['+new Date(c.created_at).toLocaleString('es-PE')+']');});out.push('');});
+    if(!total){notify('No hay comentarios para copiar');return;}
+    var text=out.join('\n');
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){notify(total+' comentario(s) copiado(s)');});}
+    else{var ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();notify(total+' comentario(s) copiado(s)');}
+  });
+})();
+</script>
+</body>
+</html>
