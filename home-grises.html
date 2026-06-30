@@ -368,12 +368,13 @@
 
   <div class="legend">
     <b>Wireframe de media fidelidad — Home PUCP · escala de grises, sin fotografías.</b> Versión comercial (hero carrusel). Estructura, orden y textos según la versión actual del Figma. Áreas grises = placeholders de foto/video. Tipografía Montserrat + Source Serif Pro (énfasis) + Roboto. Sin color institucional.<br>
-    <b>Modo revisión.</b> Botón 💬 por sección para comentar; con el botón “Comentarios” (abajo a la derecha) los muestras u ocultas.
+    <b>Modo revisión.</b> Botón 💬 por sección para comentar; flechas ↑↓ para reordenar las secciones (se guarda en tu navegador; “Restablecer orden” vuelve al original). Con el botón “Comentarios” los muestras u ocultas.
   </div>
 
   <div class="toolbar">
     <button id="btn-toggle" type="button">💬 Comentarios: ON</button>
     <button id="btn-export" type="button">📋 Copiar comentarios</button>
+    <button id="btn-resetorder" type="button">↺ Restablecer orden</button>
   </div>
   <div class="toast" id="toast"></div>
 
@@ -407,10 +408,17 @@
     else{document.body.classList.remove('crpad');rail.style.display='none';main.querySelectorAll('section').forEach(function(sec){var t=threads[sec.id];if(!t)return;t.style.top='';t.classList.add('inline');if(t.parentNode!==sec)sec.appendChild(t);});}
   }
   function loadRemote(){fetch(API+'/comments?wf='+WF).then(function(r){return r.json();}).then(function(rows){comments={};rows.forEach(function(c){(comments[c.section]=comments[c.section]||[]).push(c);});Object.keys(threads).forEach(renderThread);layout();}).catch(function(){});}
-  main.querySelectorAll('section').forEach(function(sec,i){
-    if(!sec.id)sec.id='sec-'+i;
-    var tools=document.createElement('div');tools.className='sec-tools';tools.innerHTML='<button type="button" class="c-btn" title="Comentar">💬 <span data-cnt="'+sec.id+'">0</span></button>';
+  // ids estables en orden original
+  Array.prototype.forEach.call(main.querySelectorAll('section'),function(sec,i){ if(!sec.id)sec.id='sec-'+i; });
+  // aplica orden guardado
+  try{var ord=JSON.parse(localStorage.getItem('home-order'));if(Array.isArray(ord)){ord.forEach(function(id){var s=document.getElementById(id);if(s)main.appendChild(s);});}}catch(e){}
+  function saveOrder(){try{localStorage.setItem('home-order',JSON.stringify(Array.prototype.map.call(main.querySelectorAll('section'),function(s){return s.id;})));}catch(e){}}
+  main.querySelectorAll('section').forEach(function(sec){
+    var tools=document.createElement('div');tools.className='sec-tools';
+    tools.innerHTML='<button type="button" class="up" title="Subir sección">↑</button><button type="button" class="down" title="Bajar sección">↓</button><button type="button" class="c-btn" title="Comentar">💬 <span data-cnt="'+sec.id+'">0</span></button>';
     sec.appendChild(tools);makeThread(sec);
+    tools.querySelector('.up').addEventListener('click',function(){var p=sec.previousElementSibling;while(p&&p.tagName!=='SECTION')p=p.previousElementSibling;if(p){main.insertBefore(sec,p);saveOrder();layout();sec.scrollIntoView({behavior:'smooth',block:'center'});}});
+    tools.querySelector('.down').addEventListener('click',function(){var n=sec.nextElementSibling;while(n&&n.tagName!=='SECTION')n=n.nextElementSibling;if(n){main.insertBefore(n,sec);saveOrder();layout();sec.scrollIntoView({behavior:'smooth',block:'center'});}});
     tools.querySelector('.c-btn').addEventListener('click',function(){var t=threads[sec.id];if(!t)return;if(window.innerWidth>1100){t.querySelector('.ct-text').focus();t.scrollIntoView({behavior:'smooth',block:'center'});}else{t.classList.toggle('open');if(t.classList.contains('open'))t.scrollIntoView({behavior:'smooth',block:'nearest'});}});
   });
   loadRemote();layout();window.addEventListener('resize',layout);window.addEventListener('load',function(){setTimeout(layout,200);});setTimeout(layout,500);
@@ -418,6 +426,7 @@
   function applyPref(){var off=localStorage.getItem('home-comments-off')==='1';document.body.classList.toggle('comments-off',off);btnToggle.textContent=off?'💬 Comentarios: OFF':'💬 Comentarios: ON';setTimeout(layout,60);}
   btnToggle.addEventListener('click',function(){var off=!(localStorage.getItem('home-comments-off')==='1');localStorage.setItem('home-comments-off',off?'1':'0');applyPref();});
   applyPref();
+  document.getElementById('btn-resetorder').addEventListener('click',function(){localStorage.removeItem('home-order');location.reload();});
   document.getElementById('btn-export').addEventListener('click',function(){
     var out=['Comentarios — Home PUCP grises ('+new Date().toLocaleDateString('es-PE')+')',''];var total=0;
     main.querySelectorAll('section').forEach(function(sec,idx){var items=comments[sec.id]||[];if(!items.length)return;out.push((idx+1)+'. '+(sec.dataset.title||sec.id));items.forEach(function(c){total++;out.push('   - '+(c.author?c.author+': ':'')+c.body.replace(/\n+/g,' ')+' ['+new Date(c.created_at).toLocaleString('es-PE')+']');});out.push('');});
