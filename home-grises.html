@@ -11,20 +11,15 @@
   :root{
     --ink:#1f2530; --ink2:#5b6470; --soft:#8a93a0; --line:#e3e6ea;
     --bg:#ffffff; --bg2:#f4f5f7; --ph:#e0e2e6; --ph2:#c8ccd2; --ph3:#aab0b8;
-    --dark:#2b2f36; --pill:#2b2f36;
+    --dark:#2b2f36; --dark2:#23262c; --pill:#2b2f36;
   }
   *{box-sizing:border-box;}
   body{margin:0;background:var(--bg);font-family:'Roboto',Arial,sans-serif;color:var(--ink);line-height:1.55;}
   h1,h2,h3,.mont{font-family:'Montserrat',Arial,sans-serif;}
   .em{font-family:'Source Serif Pro',Georgia,serif;font-style:italic;font-weight:600;}
-  .wrap{max-width:1140px;margin:0 auto;padding:0 24px;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
   a{color:inherit;}
-  /* ===== HEADER ===== */
-  .adm{background:var(--ph2);color:var(--ink);font-size:13px;}
-  .adm .wrap{display:flex;align-items:center;justify-content:center;gap:10px;padding:8px 24px;position:relative;}
-  .adm .pill{background:#fff;border-radius:20px;padding:3px 12px;font-weight:700;font-size:12px;}
-  .adm a{font-weight:700;text-decoration:underline;}
-  .adm .x{position:absolute;right:18px;width:22px;height:22px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;}
+  /* HEADER */
   .topnav{background:var(--dark);color:#dfe3e8;font-size:12.5px;}
   .topnav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:9px 24px;flex-wrap:wrap;}
   .topnav .l,.topnav .r{display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
@@ -36,8 +31,8 @@
   .search{display:flex;align-items:center;gap:7px;font-size:14px;color:var(--ink2);}
   .postula{background:var(--pill);color:#fff;font-family:'Montserrat';font-weight:700;border-radius:24px;padding:11px 22px;font-size:14px;}
   .menu{border-bottom:1px solid var(--line);}
-  .menu .wrap{display:flex;gap:20px;flex-wrap:wrap;padding:13px 24px;font-size:13.5px;color:var(--ink);}
-  /* ===== generic ===== */
+  .menu .wrap{display:flex;gap:18px;flex-wrap:wrap;padding:13px 24px;font-size:13.5px;color:var(--ink);}
+  /* generic */
   section{padding:46px 0;border-bottom:1px solid var(--bg2);position:relative;}
   .eyebrow{font-family:'Montserrat';font-weight:700;font-size:12px;letter-spacing:1.8px;text-transform:uppercase;color:var(--soft);text-align:center;margin:0 0 12px;}
   .eyebrow.l{text-align:left;}
@@ -50,99 +45,97 @@
   .btn.ghost{background:#fff;color:var(--ink);border:1.5px solid var(--ink);}
   .btn.sm{padding:9px 16px;font-size:13px;}
   .ph{background:var(--ph);border-radius:10px;}
-  .pcard{position:relative;background:var(--ph2);border-radius:12px;overflow:hidden;}
-  .pcard .lbl{position:absolute;left:16px;bottom:14px;right:14px;color:#fff;font-family:'Montserrat';font-weight:700;font-size:18px;display:flex;justify-content:space-between;align-items:flex-end;gap:8px;text-shadow:0 1px 6px rgba(0,0,0,.5);}
-  .pcard::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.45),rgba(0,0,0,0) 55%);}
-  /* ===== HERO ===== */
-  .hero{display:grid;grid-template-columns:1.55fr .8fr .8fr .8fr;gap:8px;padding:0 24px;max-width:1140px;margin:18px auto 0;}
-  .hero .main{position:relative;background:var(--ph2);border-radius:12px;min-height:520px;display:flex;align-items:center;padding:40px;overflow:hidden;}
-  .hero .main::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(0,0,0,.35),rgba(0,0,0,0) 60%);}
-  .hero .main .in{position:relative;z-index:1;}
-  .hero .main h1{font-family:'Montserrat';font-weight:800;font-size:32px;color:#fff;margin:0 0 18px;text-shadow:0 1px 8px rgba(0,0,0,.5);}
-  .hero .col{position:relative;background:var(--ph2);border-radius:12px;min-height:520px;overflow:hidden;}
-  .hero .col .lbl{position:absolute;left:14px;bottom:16px;right:10px;color:#fff;font-family:'Montserrat';font-weight:700;font-size:15px;text-shadow:0 1px 6px rgba(0,0,0,.6);}
-  .hero .col .nn{position:absolute;left:14px;bottom:54px;color:#fff;font-size:13px;opacity:.85;}
-  .hero .col::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.55),rgba(0,0,0,0) 50%);}
-  .aldia{max-width:1140px;margin:14px auto 0;padding:0 24px;}
-  .aldia .box{background:var(--bg2);border-radius:12px;padding:18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
-  .aldia .ttl{font-family:'Montserrat';font-weight:700;font-size:14px;white-space:nowrap;}
-  .aldia .b{flex:1;min-width:200px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 18px;display:flex;justify-content:space-between;font-family:'Montserrat';font-weight:700;font-size:15px;}
-  /* cards grid */
+  /* HERO carrusel */
+  .hero{position:relative;background:var(--ph2);border-radius:0;min-height:540px;display:flex;align-items:center;padding:0 24px;overflow:hidden;}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,rgba(0,0,0,.45),rgba(0,0,0,.05) 60%);}
+  .hero .in{position:relative;z-index:1;max-width:1180px;margin:0 auto;width:100%;}
+  .hero h1{font-family:'Montserrat';font-weight:800;font-size:34px;color:#fff;margin:0 0 18px;text-shadow:0 1px 10px rgba(0,0,0,.5);}
+  .hero .dots{position:absolute;left:50%;bottom:96px;transform:translateX(-50%);z-index:2;display:flex;gap:8px;align-items:center;color:#fff;background:rgba(0,0,0,.25);border-radius:20px;padding:7px 14px;}
+  .hero .dots b{width:8px;height:8px;border-radius:50%;background:#fff;display:inline-block;opacity:.5;}
+  .hero .dots b.on{opacity:1;}
+  .hero .pause{position:absolute;right:36px;bottom:96px;z-index:2;width:44px;height:44px;border-radius:50%;background:rgba(0,0,0,.3);color:#fff;display:flex;align-items:center;justify-content:center;}
+  .news3{max-width:1180px;margin:-60px auto 0;padding:0 24px;position:relative;z-index:3;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  .ncard{background:var(--ph);border-radius:12px;padding:18px;min-height:150px;display:flex;flex-direction:column;justify-content:space-between;}
+  .ncard h3{font-family:'Montserrat';font-weight:700;font-size:15px;margin:0;}
+  .ncard .meta{font-size:12.5px;color:var(--ink2);margin-top:14px;}
+  .ncard .ar{align-self:flex-end;width:30px;height:30px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;}
+  .novstrip{max-width:1180px;margin:26px auto 0;padding:18px 24px;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;border-top:1px solid var(--line);}
+  .novstrip .ttl{font-family:'Montserrat';font-weight:700;font-size:14px;}
+  /* grids */
   .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
-  .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
-  .ocard{border:1px solid var(--line);border-radius:12px;padding:16px;}
-  .ocard .img{height:160px;border-radius:9px;background:var(--ph);margin-bottom:14px;}
-  .ocard h3{font-family:'Montserrat';font-weight:700;font-size:18px;margin:0 0 6px;}
-  .ocard p{color:var(--ink2);font-size:13.5px;margin:0 0 16px;}
-  /* two-col */
+  .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
   .two{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;}
-  .two.left{grid-template-columns:.8fr 1.2fr;}
-  .scroller{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
-  .vcard{height:300px;}
-  /* stats */
-  .stat-row{display:flex;flex-direction:column;gap:0;}
-  .stat{display:flex;align-items:center;gap:14px;padding:13px 0;border-bottom:1px dashed var(--line);}
-  .stat .num{font-family:'Montserrat';font-weight:800;font-size:24px;color:var(--ink);min-width:120px;}
-  .stat .lbl{color:var(--ink2);font-size:14px;}
-  .statbox{background:var(--bg2);border-radius:12px;padding:18px;}
-  .statbox .num{font-family:'Montserrat';font-weight:800;font-size:30px;}
-  .statbox .lbl{color:var(--ink2);font-size:13px;margin-top:6px;}
-  /* mundo */
-  .mapwrap{background:var(--ph);border-radius:12px;min-height:300px;position:relative;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;padding:20px;}
-  .mapwrap .rg{background:#fff;border:1px solid var(--line);border-radius:8px;padding:5px 11px;font-size:12.5px;font-weight:600;}
-  .infocard{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;gap:14px;align-items:center;margin-bottom:14px;}
-  .infocard .img{width:70px;height:60px;border-radius:8px;background:var(--ph);flex:none;}
-  .infocard .num{font-family:'Montserrat';font-weight:800;font-size:24px;}
-  .infocard .lbl{color:var(--ink2);font-size:13px;}
-  /* investigacion cards */
-  .rcard{border-radius:14px;padding:22px 18px 0;background:var(--bg2);text-align:center;display:flex;flex-direction:column;}
-  .rcard h3{font-family:'Montserrat';font-weight:700;font-size:18px;margin:0 0 8px;}
-  .rcard p{color:var(--ink2);font-size:13px;margin:0 0 16px;}
-  .rcard .circ{width:150px;height:150px;border-radius:50% 50% 0 0;background:var(--ph2);margin:auto auto 0;}
+  .two.left{grid-template-columns:.85fr 1.15fr;}
+  /* oferta big cards */
+  .bigcard{position:relative;border-radius:16px;background:var(--ph2);min-height:460px;padding:24px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;}
+  .bigcard.top{justify-content:flex-start;}
+  .bigcard h3{font-family:'Montserrat';font-weight:700;font-size:22px;margin:0 0 8px;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.5);}
+  .bigcard p{color:#f0f1f3;font-size:14px;margin:0;max-width:240px;text-shadow:0 1px 6px rgba(0,0,0,.5);}
+  .bigcard .ar{position:absolute;width:42px;height:42px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;}
+  .bigcard.top .ar{top:24px;right:24px;}
+  .bigcard:not(.top) .ar{bottom:24px;right:24px;}
   /* rankings */
-  .top{background:var(--bg2);border-radius:12px;padding:22px;text-align:center;}
+  .top{background:var(--bg2);border-radius:200px 200px 12px 12px;padding:34px 22px 26px;text-align:center;}
+  .top.alt{border-radius:50%;background:#fff;border:1px solid var(--line);aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;}
   .top .lab{font-family:'Montserrat';font-weight:700;font-size:12px;letter-spacing:1.5px;color:var(--soft);}
-  .top .one{font-family:'Montserrat';font-weight:800;font-size:40px;margin:4px 0 12px;}
-  .top .ds{font-size:13.5px;color:var(--ink);min-height:54px;}
-  .top .meta{display:flex;justify-content:space-between;color:var(--soft);font-size:12px;margin-top:14px;}
-  /* noticias */
-  .tabs2{display:flex;justify-content:center;gap:0;margin-bottom:22px;}
-  .tab2{font-family:'Montserrat';font-weight:600;font-size:14px;padding:9px 18px;border:1px solid var(--line);background:#fff;color:var(--ink2);}
-  .tab2:first-child{border-radius:8px 0 0 8px;}
-  .tab2:last-child{border-radius:0 8px 8px 0;}
-  .tab2.on{background:#fff;color:var(--ink);border-color:var(--ink);font-weight:700;}
-  .news{display:grid;grid-template-columns:1.1fr 1fr;gap:22px;}
-  .feat{position:relative;background:var(--ph2);border-radius:12px;min-height:300px;overflow:hidden;}
-  .feat::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.55),rgba(0,0,0,0) 55%);}
-  .feat .ov{position:absolute;left:18px;bottom:16px;right:18px;color:#fff;z-index:1;}
-  .feat .ov .tag,.nrow .tag{display:inline-block;background:#fff;color:var(--ink);font-size:11px;font-weight:700;border-radius:5px;padding:2px 8px;margin-bottom:8px;}
-  .feat .ov h3{font-family:'Montserrat';font-weight:700;font-size:18px;margin:0;text-shadow:0 1px 6px rgba(0,0,0,.6);}
-  .feat .ov .dt{font-size:12px;opacity:.85;margin-top:6px;}
-  .nrow{display:flex;gap:14px;margin-bottom:16px;}
-  .nrow .img{width:130px;height:96px;border-radius:8px;background:var(--ph);flex:none;}
-  .nrow h3{font-family:'Montserrat';font-weight:700;font-size:15px;margin:6px 0 0;}
-  .nrow .dt{font-size:12px;color:var(--soft);margin-top:6px;}
+  .top .one{font-size:36px;margin:2px 0 12px;}
+  .top .ds{font-size:13.5px;color:var(--ink);min-height:54px;font-weight:600;}
+  .top .yr{color:var(--soft);font-size:12.5px;margin-top:10px;}
+  .talento{display:grid;grid-template-columns:.7fr 1fr 1fr 1fr;gap:18px;align-items:center;margin-top:34px;}
+  .circstat{aspect-ratio:1;border-radius:50%;border:1.5px solid var(--ph3);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:14px;}
+  .circstat.fill{background:var(--ph2);border:none;}
+  .circstat .num{font-size:28px;}
+  .circstat .lbl{font-size:12.5px;color:var(--ink2);margin-top:6px;}
+  /* dark sections */
+  .darksec{background:var(--dark);color:#e8eaed;}
+  .darksec .eyebrow{color:#aab2bd;}
+  .darksec h2.t{color:#fff;}
+  .darksec p.sub{color:#c6cbd2;}
+  .mapwrap{min-height:340px;position:relative;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px;padding:20px;}
+  .mapwrap .rg{background:#fff;color:var(--ink);border-radius:8px;padding:5px 11px;font-size:12.5px;font-weight:600;}
+  .worldstat{border:1px solid #3a3f47;border-radius:18px;padding:18px;text-align:center;}
+  .worldstat.fill{background:#3a3f47;border:none;}
+  .worldstat .num{font-size:30px;color:#fff;}
+  .worldstat .lbl{font-size:13px;color:#c6cbd2;margin-top:4px;}
+  /* vida acordeón */
+  .acc{margin-top:22px;}
+  .accrow{display:grid;grid-template-columns:1fr 1.2fr auto;gap:18px;align-items:center;padding:20px 0;border-bottom:1px solid var(--line);}
+  .accrow.on{background:var(--ph);border-radius:30px;padding:20px 26px;border:none;color:var(--ink);}
+  .accrow h3{font-family:'Montserrat';font-weight:700;font-size:18px;margin:0;}
+  .accrow p{font-size:13.5px;color:var(--ink2);margin:0;}
+  .accrow .ar{width:44px;height:44px;border-radius:50%;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;}
+  /* investigacion cards */
+  .rcard{border-radius:16px;padding:20px;background:var(--ph2);min-height:340px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;}
+  .rcard .imgtop{position:absolute;top:18px;left:18px;right:18px;height:150px;border-radius:10px;background:rgba(255,255,255,.35);}
+  .rcard h3{font-family:'Montserrat';font-weight:700;font-size:19px;margin:0 0 8px;color:var(--ink);}
+  .rcard p{color:var(--ink2);font-size:13px;margin:0;max-width:210px;}
+  .rcard .ar{position:absolute;bottom:18px;right:18px;width:42px;height:42px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;}
+  .invstats{display:grid;grid-template-columns:.7fr 1fr 1fr 1fr 1fr;gap:16px;align-items:center;margin-top:30px;}
+  /* orgullo */
+  .ocards{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:8px;}
+  .ostory{position:relative;border-radius:16px;background:var(--ph2);min-height:340px;padding:22px;overflow:hidden;}
+  .ostory.dark{background:var(--dark);color:#fff;}
+  .ostory h3{font-family:'Montserrat';font-weight:700;font-size:20px;margin:0 0 6px;}
+  .ostory p{font-size:13.5px;opacity:.95;margin:0;}
+  .ostory .img{height:150px;border-radius:12px;background:rgba(255,255,255,.3);margin:14px 0;}
+  .ostory .ar{position:absolute;bottom:18px;right:18px;width:42px;height:42px;border-radius:50%;background:#fff;color:var(--ink);display:flex;align-items:center;justify-content:center;}
   /* comunidad */
-  .soc{display:flex;gap:10px;flex-wrap:wrap;}
-  .soc span{width:46px;height:46px;border-radius:9px;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:var(--ink2);}
-  .collage{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:84px;gap:8px;}
-  .collage .ph{border-radius:9px;}
+  .soc{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
+  .soc span{width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff;}
+  .comgrid{display:grid;grid-template-columns:.8fr 1.4fr .8fr;gap:20px;align-items:center;}
+  .comgrid .circ{aspect-ratio:1;border-radius:50%;background:rgba(255,255,255,.25);}
   /* footer */
   footer{background:var(--dark);color:#c3c9d0;padding:40px 0 24px;}
   footer .cols{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:24px;}
   footer b,footer .h{color:#fff;font-family:'Montserrat';font-weight:700;display:block;margin-bottom:12px;font-size:14px;}
   footer a,footer div.li{color:#c3c9d0;font-size:13px;display:block;margin-bottom:8px;text-decoration:none;}
   footer .soc2{display:flex;gap:12px;margin-top:14px;font-size:15px;}
-  footer .badges{display:flex;gap:18px;margin:26px 0 14px;padding-top:18px;border-top:1px solid #3a3f47;}
-  footer .badge{background:#3a3f47;border-radius:6px;padding:10px 16px;font-size:11px;color:#c3c9d0;}
-  footer .copy{border-top:1px solid #3a3f47;padding-top:16px;font-size:12.5px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
-  .legend{max-width:1140px;margin:0 auto;padding:22px 24px 60px;color:var(--ink2);font-size:12.5px;line-height:1.7;}
+  footer .badge{background:#3a3f47;border-radius:6px;padding:12px 18px;font-size:11px;color:#c3c9d0;display:inline-block;margin-top:6px;}
+  footer .copy{border-top:1px solid #3a3f47;padding-top:16px;margin-top:24px;font-size:12.5px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+  .legend{max-width:1180px;margin:0 auto;padding:22px 24px 60px;color:var(--ink2);font-size:12.5px;line-height:1.7;}
   .legend b{color:var(--ink);}
-  @media(max-width:900px){
-    .hero{grid-template-columns:1fr 1fr;}
-    .g3,.g4,.two,.two.left,.news,.scroller,footer .cols,.collage{grid-template-columns:1fr 1fr;}
-  }
-  @media(max-width:600px){ .hero,.g3,.g4,.two,.two.left,.news,.scroller,footer .cols{grid-template-columns:1fr;} }
+  @media(max-width:900px){ .g3,.g4,.two,.two.left,.news3,.ocards,footer .cols,.talento,.invstats,.comgrid{grid-template-columns:1fr 1fr;} .accrow{grid-template-columns:1fr;} }
+  @media(max-width:600px){ .g3,.g4,.two,.two.left,.news3,.ocards,footer .cols,.talento,.invstats,.comgrid{grid-template-columns:1fr;} }
   /* comentarios */
   .toolbar{position:fixed;bottom:18px;right:18px;z-index:100;display:flex;gap:8px;align-items:center;background:#fff;border:1px solid var(--ph3);border-radius:10px;padding:9px 12px;box-shadow:0 4px 18px rgba(0,0,0,.18);}
   .toolbar button{font:inherit;font-size:12.5px;font-weight:700;border:1px solid var(--ph3);background:var(--bg2);color:var(--ink);border-radius:6px;padding:7px 12px;cursor:pointer;}
@@ -151,7 +144,7 @@
   .sec-tools .c-btn.has{background:var(--dark);color:#fff;border-color:var(--dark);}
   .toast{position:fixed;bottom:78px;right:18px;z-index:101;background:var(--dark);color:#fff;font-size:12.5px;border-radius:7px;padding:9px 14px;opacity:0;transition:opacity .25s;pointer-events:none;}
   .toast.show{opacity:1;}
-  @media(min-width:1101px){ .wrap,.hero,.aldia,.legend,footer .wrap{margin-right:auto;} body.crpad .wrap,body.crpad .hero,body.crpad .aldia,body.crpad .legend{margin-right:344px;} }
+  @media(min-width:1101px){ body.crpad .wrap,body.crpad .news3,body.crpad .novstrip,body.crpad .legend{margin-right:344px;} }
   #crail{position:absolute;top:0;right:10px;width:312px;z-index:40;}
   .cthread{position:absolute;right:0;width:300px;}
   .cthread.inline{position:static;width:auto;display:none;margin:14px 24px 0;}
@@ -173,8 +166,7 @@
 </head>
 <body>
 
-  <!-- ===== HEADER ===== -->
-  <div class="adm"><div class="wrap"><span class="pill">Admisión 2026</span> Conoce las fechas del próximo examen de admisión. <a href="#">Postula ahora ↗</a><span class="x">✕</span></div></div>
+  <!-- HEADER -->
   <div class="topnav"><div class="wrap">
     <div class="l"><span>Postulante ▾</span><span>Estudiante</span><span>Profesor</span><span>Administrativo</span><span>Egresado</span><span>Prensa</span><span>Alianza con empresa</span></div>
     <div class="r"><span>Intranet y correo</span><span>PAIDEIA</span><span>⠿ Accesos</span><span>🌐 ES</span></div>
@@ -183,183 +175,167 @@
     <div class="logo"><svg width="32" height="32" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="none" stroke-width="2"/><path d="M9 24 q11 6 22 0 l-3 5 h-16 z"/><path d="M20 8 l7 13 h-14 z"/></svg>PUCP</div>
     <div class="r"><span class="search">🔍 Buscar</span><span class="postula">Postula aquí</span></div>
   </div></div>
-  <div class="menu"><div class="wrap"><span>Conoce la PUCP</span><span>Carreras y Programas</span><span>Admisión</span><span>Internacional</span><span>Vida universitaria</span><span>Empleabilidad</span><span>Investigación</span><span>Novedades</span><span>Facultades</span><span>Centros</span></div></div>
+  <div class="menu"><div class="wrap"><span>Conoce la PUCP</span><span>Carreras y Programas</span><span>Admisión</span><span>Internacional</span><span>Vida universitaria</span><span>Empleabilidad</span><span>Investigación</span><span>Novedades</span><span>Departamentos</span><span>Centros</span></div></div>
 
   <main>
 
-  <!-- ===== HERO (acordeón) ===== -->
-  <section style="padding-top:0;padding-bottom:0;border:none;" data-title="Hero — Bienvenido a la PUCP">
+  <!-- HERO carrusel comercial -->
+  <section style="padding:0;border:none;" data-title="Hero — carrusel comercial">
     <div class="hero">
-      <div class="main"><div class="in"><h1>Bienvenido a la PUCP</h1><a class="btn" style="background:#fff;color:var(--ink)" href="#">Conoce a la PUCP ↗</a></div></div>
-      <div class="col"><div class="nn">02</div><div class="lbl">Campus y comunidad ↗</div></div>
-      <div class="col"><div class="nn">03</div><div class="lbl">Mentes trabajando ↗</div></div>
-      <div class="col"><div class="nn">04</div><div class="lbl">Líderes que transforman ↗</div></div>
+      <div class="in">
+        <h1>Bienvenido a la PUCP</h1>
+        <a class="btn" style="background:#fff;color:var(--ink)" href="#">Conoce a la PUCP ↗</a>
+      </div>
+      <div class="dots">‹ <b class="on"></b><b></b><b></b><b></b> ›</div>
+      <div class="pause">❚❚</div>
     </div>
-    <div class="aldia"><div class="box">
-      <span class="ttl">Mantente al día:</span>
-      <span class="b">Ver más noticias ↗</span>
-      <span class="b">Explora PuntoEdu ↗</span>
-      <span class="b">Agenda PUCP ↗</span>
-    </div></div>
+    <div class="news3">
+      <div class="ncard"><h3>Inti Kallpa: un sistema fotovoltaico que convierte a la Universidad en un laboratorio de energía solar</h3><div style="display:flex;justify-content:space-between;align-items:flex-end;"><span class="meta">Orgullo PUCP · 05 junio, 2026</span><span class="ar">↗</span></div></div>
+      <div class="ncard"><h3>Analizar el cuerpo más allá de lo clínico: Dante Elías, y la data del movimiento para atletas y terapistas</h3><div style="display:flex;justify-content:space-between;align-items:flex-end;"><span class="meta">Orgullo PUCP · 05 junio, 2026</span><span class="ar">↗</span></div></div>
+      <div class="ncard"><h3>Líderes del concreto: estudiantes PUCP ganan concurso internacional de Ingeniería en Estados Unidos</h3><div style="display:flex;justify-content:space-between;align-items:flex-end;"><span class="meta">Orgullo PUCP · 05 junio, 2026</span><span class="ar">↗</span></div></div>
+    </div>
+    <div class="novstrip"><span class="ttl">Conoce las novedades de la PUCP:</span><a class="btn ghost sm" href="#">Ver más noticias ↗</a><a class="btn ghost sm" href="#">Ver agenda PUCP ↗</a></div>
   </section>
 
-  <!-- ===== OFERTA ACADÉMICA ===== -->
+  <!-- OFERTA ACADÉMICA -->
   <section data-title="Oferta académica"><div class="wrap">
-    <p class="eyebrow"><span class="dot">•</span> Oferta académica <span class="dot">•</span></p>
+    <p class="eyebrow"><span class="dot">▸</span> Oferta académica <span class="dot">◂</span></p>
     <h2 class="t">Encuentra el <span class="em">camino</span><br>para alcanzar tus metas</h2>
     <div class="g3" style="margin-top:26px;">
-      <div class="ocard"><div class="img"></div><h3>Pregrado</h3><p>Descubre tu vocación y construye las bases de tu futuro.</p><a class="btn ghost sm" href="#">Conocer carreras ↗</a></div>
-      <div class="ocard"><div class="img"></div><h3>Postgrado</h3><p>Desarrolla nuevas capacidades con nuestros programas de posgrado.</p><a class="btn ghost sm" href="#">Conocer programas ↗</a></div>
-      <div class="ocard"><div class="img"></div><h3>Educación continua</h3><p>Actualiza tus conocimientos y desarrolla nuevas competencias.</p><a class="btn ghost sm" href="#">Conocer cursos ↗</a></div>
+      <div class="bigcard"><span class="ar">↗</span><h3>Pregrado</h3><p>Encuentra tu lugar en el mundo, aprende haciendo y construye el futuro que imaginas.</p></div>
+      <div class="bigcard top"><span class="ar">↗</span><h3>Posgrado</h3><p>Especialízate para liderar los nuevos desafíos de tu sector con visión real y global.</p></div>
+      <div class="bigcard"><span class="ar">↗</span><h3>Educación continua</h3><p>Actualiza tus herramientas de forma rápida y mantente siempre un paso adelante.</p></div>
     </div>
   </div></section>
 
-  <!-- ===== VIDA UNIVERSITARIA ===== -->
-  <section data-title="Vida universitaria"><div class="wrap">
-    <div class="two left">
+  <!-- RECONOCIMIENTOS / RANKINGS -->
+  <section data-title="Reconocimientos — Rankings + Talento"><div class="wrap">
+    <p class="eyebrow"><span class="dot">▸</span> Reconocimientos <span class="dot">◂</span></p>
+    <h2 class="t">Lideramos los rankings internacionales</h2>
+    <div class="g3" style="margin-top:22px;">
+      <div class="top"><div class="lab">TOP</div><div class="one em">— #1 —</div><div class="ds">Del Perú en QS World University Ranking 2027</div><div class="yr">Año: 2027</div></div>
+      <div class="top alt"><div class="lab">TOP</div><div class="one em">— #1 —</div><div class="ds">Del Perú en QS World University Rankings: Latin America &amp; The Caribbean 2026</div><div class="yr">Año: 2026</div></div>
+      <div class="top"><div class="lab">TOP</div><div class="one em">— #1 —</div><div class="ds">Del Perú en QS World University Rankings: Sustainability 2026</div><div class="yr">Año: 2026</div></div>
+    </div>
+    <div class="talento">
       <div>
-        <p class="eyebrow l"><span class="dot">•</span> Vida universitaria</p>
+        <h2 class="t l" style="font-size:24px;margin-bottom:14px;">Impulsamos el talento que lidera</h2>
+        <a class="btn ghost sm" href="#">Ver más Cifras ↗</a>
+      </div>
+      <div class="circstat"><span class="num em">+175</span><span class="lbl">Programas de posgrado</span></div>
+      <div class="circstat fill"><span class="num em">80%</span><span class="lbl">Alumnos en puestos reconocidos</span></div>
+      <div class="circstat"><span class="num em">110,000</span><span class="lbl">Alumnos en puestos destacado</span></div>
+    </div>
+  </div></section>
+
+  <!-- PUCP EN EL MUNDO (oscuro) -->
+  <section class="darksec" data-title="PUCP en el mundo"><div class="wrap">
+    <p class="eyebrow"><span class="dot">▸</span> PUCP en el mundo <span class="dot">◂</span></p>
+    <h2 class="t">Una experiencia educativa global</h2>
+    <div class="two" style="grid-template-columns:1fr 2fr 1fr;align-items:center;margin-top:20px;">
+      <div>
+        <div class="worldstat fill"><span class="num em">+300</span><span class="lbl">Convenios internacionales</span></div>
+        <div class="worldstat" style="margin-top:14px;"><span class="num em">11</span><span class="lbl">Alianzas con universidades Top 100 mundial</span></div>
+      </div>
+      <div class="mapwrap ph" style="background:#23262c;">
+        <span class="rg">Norteamérica</span><span class="rg">Europa</span><span class="rg">Asia</span><span class="rg">África</span><span class="rg">Sudamérica</span><span class="rg">Australia</span>
+      </div>
+      <div>
+        <div class="worldstat"><span class="num em">60</span><span class="lbl">Países para estudiar fuera</span></div>
+        <div class="worldstat fill" style="margin-top:14px;"><span class="num em">400</span><span class="lbl">Estudiantes extranjeros nos eligen cada año</span></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:20px;"><a class="btn" style="background:#fff;color:var(--ink)" href="#">Ver programas ↗</a></div>
+  </div></section>
+
+  <!-- VIDA UNIVERSITARIA (acordeón) -->
+  <section data-title="Vida universitaria"><div class="wrap">
+    <div class="two left" style="align-items:start;">
+      <div>
+        <p class="eyebrow l"><span class="dot">▸</span> Vida universitaria</p>
         <h2 class="t l">Vive la <span class="em">experiencia</span> de nuestro campus</h2>
         <a class="btn" href="#" style="margin-top:8px;">Más información ↗</a>
       </div>
-      <div class="scroller">
-        <div class="pcard vcard"><div class="lbl">Deporte y vida activa <span>↗</span></div></div>
-        <div class="pcard vcard"><div class="lbl">Cultura y comunidad <span>↗</span></div></div>
-        <div class="pcard vcard"><div class="lbl">Bienestar <span>↗</span></div></div>
-      </div>
-    </div>
-  </div></section>
-
-  <!-- ===== CAMPUS VERDE ===== -->
-  <section data-title="Campus Verde"><div class="wrap">
-    <div class="two">
-      <div class="ph" style="min-height:380px;"></div>
       <div>
-        <p class="eyebrow l"><span class="dot">•</span> Campus Verde</p>
-        <h2 class="t l">Explora nuestro campus</h2>
-        <p class="sub l">Un campus pensado para aprender, compartir y generar impacto.</p>
-        <a class="btn" href="#" style="margin-bottom:18px;">Visita al campus ↗</a>
-        <div class="stat-row">
-          <div class="stat"><span class="num">+ 3,200</span><span class="lbl">árboles plantados</span></div>
-          <div class="stat"><span class="num">167,000 m²</span><span class="lbl">de áreas verdes</span></div>
-          <div class="stat"><span class="num">26</span><span class="lbl">grupos de investigación</span></div>
-          <div class="stat" style="border-bottom:none;"><span class="num">+20</span><span class="lbl">estacionamientos de bicicletas</span></div>
+        <div class="acc">
+          <div class="accrow"><h3>Deporte y vida activa</h3><p>Conecta con el arte, el voluntariado y las expresiones que le dan identidad a nuestra universidad.</p><span class="ar">↗</span></div>
+          <div class="accrow on"><h3>Cultura y comunidad</h3><p>Disfruta de infraestructura deportiva de vanguardia y selecciones campeonas en el campus.</p><span class="ar">↗</span></div>
+          <div class="accrow"><h3>Bienestar estudiantil</h3><p>Servicios, espacios y recursos pensados para apoyar tu bienestar y aprendizaje.</p><span class="ar">↗</span></div>
+          <div class="accrow"><h3>Responsabilidad social</h3><p>Servicios, espacios y recursos pensados para apoyar tu bienestar y aprendizaje.</p><span class="ar">↗</span></div>
         </div>
       </div>
     </div>
   </div></section>
 
-  <!-- ===== PUCP EN EL MUNDO ===== -->
-  <section style="background:var(--bg2);" data-title="PUCP en el mundo"><div class="wrap">
-    <p class="eyebrow"><span class="dot">•</span> PUCP en el mundo <span class="dot">•</span></p>
-    <h2 class="t">+300 convenios internacionales en más de 60 países<br>para impulsar tu <span class="em">formación</span></h2>
-    <div class="two" style="margin-top:26px;align-items:start;">
-      <div>
-        <div class="infocard"><div class="img"></div><div><div class="num">11</div><div class="lbl">universidades del Top 100 mundial en nuestra red de convenios</div></div></div>
-        <div class="infocard"><div class="img"></div><div><div class="num">+400</div><div class="lbl">estudiantes extranjeros estudian en la PUCP cada año</div></div></div>
-        <a class="btn" href="#">Ver programas ↗</a>
-      </div>
-      <div class="mapwrap">
-        <span class="rg">Norteamérica</span><span class="rg">Europa</span><span class="rg">Asia</span><span class="rg">África</span><span class="rg">Sudamérica</span><span class="rg">Australia</span>
-      </div>
-    </div>
-  </div></section>
-
-  <!-- ===== INVESTIGACIÓN E INNOVACIÓN ===== -->
+  <!-- INVESTIGACIÓN E INNOVACIÓN -->
   <section data-title="Investigación e innovación"><div class="wrap">
-    <p class="eyebrow"><span class="dot">•</span> Investigación e innovación <span class="dot">•</span></p>
-    <h2 class="t"><span class="em">Investigación</span> que impulsa la transformación</h2>
-    <p class="sub">Exploramos nuevas ideas y desarrollamos investigaciones que ayudan a comprender y transformar los desafíos del país y del mundo.</p>
+    <p class="eyebrow"><span class="dot">▸</span> Investigación e innovación <span class="dot">◂</span></p>
+    <h2 class="t">Investigación que impulsa la <span class="em">transformación</span></h2>
     <div class="g3" style="margin-top:8px;">
-      <div class="rcard"><h3>Investigación</h3><p>Impulsamos el avance científico, tecnológico y social.</p><a class="btn sm" href="#" style="margin:0 auto 18px;">Conoce más +</a><div class="circ"></div></div>
-      <div class="rcard" style="background:#e7eaee;"><h3>Innovación que trasciende</h3><p>Impulsamos ideas y proyectos que generan impacto para la sociedad.</p><a class="btn sm" href="#" style="margin:0 auto 18px;">Conoce más +</a><div class="circ"></div></div>
-      <div class="rcard" style="background:#e3e7e4;"><h3>Transformar el entorno</h3><p>Promovemos iniciativas que contribuyen al desarrollo sostenible.</p><a class="btn sm" href="#" style="margin:0 auto 18px;">Conoce más +</a><div class="circ"></div></div>
+      <div class="rcard"><div class="imgtop"></div><span class="ar">↗</span><h3>Investigación</h3><p>Impulsamos el avance científico, tecnológico y social.</p></div>
+      <div class="rcard"><div class="imgtop"></div><span class="ar">↗</span><h3>Innovación que trasciende</h3><p>Impulsamos ideas y proyectos que generan impacto para la sociedad.</p></div>
+      <div class="rcard"><div class="imgtop"></div><span class="ar">↗</span><h3>Transformar el entorno</h3><p>Promovemos iniciativas que aportan al desarrollo sostenible.</p></div>
     </div>
-    <div class="g4" style="margin-top:22px;">
-      <div class="statbox"><div class="num">+500</div><div class="lbl">Proyectos de investigación</div></div>
-      <div class="statbox"><div class="num">+200</div><div class="lbl">Grupos de investigación</div></div>
-      <div class="statbox"><div class="num">113</div><div class="lbl">Líneas de investigación · <a href="#">Conocer más ↗</a></div></div>
-      <div class="statbox"><div class="num">+25,000</div><div class="lbl">Estudiantes participan en actividades de investigación</div></div>
+    <div class="invstats">
+      <div><h2 class="t l" style="font-size:22px;margin:0;">Ciencia, cultura y pensamiento en acción</h2></div>
+      <div class="circstat"><span class="num em">+500</span><span class="lbl">Proyectos científicos y sociales</span></div>
+      <div class="circstat fill"><span class="num em">+200</span><span class="lbl">Grupos de investigación y pensamiento</span></div>
+      <div class="circstat"><span class="num em">113</span><span class="lbl">Líneas de investigación · <a href="#">Conocer más ↗</a></span></div>
+      <div class="circstat fill"><span class="num em">+25,000</span><span class="lbl">Estudiantes participan en proyectos de investigación</span></div>
     </div>
   </div></section>
 
-  <!-- ===== ORGULLO PUCP — HISTORIAS ===== -->
-  <section style="background:var(--bg2);" data-title="Orgullo PUCP — Historias"><div class="wrap">
-    <div class="two left">
+  <!-- ORGULLO PUCP -->
+  <section data-title="Orgullo PUCP — Historias"><div class="wrap">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;">
       <div>
-        <p class="eyebrow l"><span class="dot">•</span> Orgullo PUCP</p>
+        <p class="eyebrow l"><span class="dot">▸</span> Orgullo PUCP</p>
         <h2 class="t l">Historias que inspiran y <span class="em">transforman</span></h2>
-        <p class="sub l">Los líderes que transforman son egresados top que están ejerciendo un impacto positivo en la sociedad, a diferencia de los egresados destacados.</p>
-        <a class="btn" href="#">Ver más historias ↗</a>
       </div>
-      <div class="scroller" style="grid-template-columns:1fr 1fr;">
-        <div class="pcard" style="min-height:320px;"><div class="lbl">Líderes que transforman <span>↗</span></div></div>
-        <div class="pcard" style="min-height:320px;"><div class="lbl">Egresados <span>↗</span></div></div>
-      </div>
+      <a class="btn" href="#" style="margin-top:8px;">Ver más historias ↗</a>
+    </div>
+    <div class="ocards">
+      <div class="ostory dark"><span class="ar">↗</span><h3>Líderes que transforman</h3><div class="img"></div><p>Testimonios de innovación, ciencia y compromiso social.</p></div>
+      <div class="ostory"><span class="ar">↗</span><h3>Egresado</h3><p>Historias reales de crecimiento y éxito profesional.</p><div class="img"></div></div>
     </div>
   </div></section>
 
-  <!-- ===== NUESTRA HISTORIA ===== -->
-  <section data-title="Nuestra historia"><div class="wrap">
-    <div class="two">
-      <div class="ph" style="min-height:360px;"></div>
+  <!-- CAMPUS VERDE (oscuro) -->
+  <section class="darksec" data-title="Campus Verde"><div class="wrap">
+    <p class="eyebrow l"><span class="dot">▸</span> Campus Verde</p>
+    <h2 class="t l">Conoce nuestro campus</h2>
+    <div class="two" style="grid-template-columns:1fr 2fr;align-items:center;">
       <div>
-        <p class="eyebrow l"><span class="dot">•</span> Nuestra historia</p>
-        <h2 class="t l">110 años formando el <span class="em">futuro</span></h2>
-        <p class="sub l">Formamos profesionales preparados para liderar, innovar y generar impacto en un mundo en constante evolución. Nuestros egresados destacan en organizaciones, empresas y proyectos que transforman la sociedad.</p>
-        <a class="btn" href="#">Conoce nuestra historia +</a>
-        <div class="ph" style="height:150px;margin-top:18px;"></div>
+        <p class="sub l" style="color:#c6cbd2;">Un ecosistema verde y moderno diseñado para que explores tu potencial, trabajes en equipo y disfrutes cada día de tu vida universitaria.</p>
+        <a class="btn" style="background:#fff;color:var(--ink)" href="#">Visita al campus ↗</a>
+      </div>
+      <div class="g4" style="gap:14px;">
+        <div class="worldstat"><span class="num em">+3,200</span><span class="lbl">Proyectos científicos y sociales</span></div>
+        <div class="worldstat fill"><span class="num em">167,000m²</span><span class="lbl">de áreas verdes</span></div>
+        <div class="worldstat"><span class="num em">26</span><span class="lbl">grupos de investigación</span></div>
+        <div class="worldstat fill"><span class="num em">+3,200</span><span class="lbl">estacionamientos de bicicletas</span></div>
       </div>
     </div>
+    <div class="ph" style="height:300px;margin-top:24px;background:#23262c;"></div>
   </div></section>
 
-  <!-- ===== RECONOCIMIENTOS — RANKINGS ===== -->
-  <section data-title="Reconocimientos — Rankings"><div class="wrap">
-    <p class="eyebrow"><span class="dot">•</span> Reconocimientos <span class="dot">•</span></p>
-    <h2 class="t">Ranking internacionales</h2>
-    <div class="g3" style="margin-top:22px;">
-      <div class="top"><div class="lab">TOP</div><div class="one">— 1 —</div><div class="ds">Del Perú en QS World University Ranking 2027</div><div class="meta"><span>QS World University</span><span>Año: 2027</span></div></div>
-      <div class="top"><div class="lab">TOP</div><div class="one">— 1 —</div><div class="ds">Del Perú en QS World University Rankings: Latin America &amp; The Caribbean 2026</div><div class="meta"><span>QS World University</span><span>Año: 2026</span></div></div>
-      <div class="top"><div class="lab">TOP</div><div class="one">— 1 —</div><div class="ds">Del Perú en QS World University Rankings: Sustainability 2026</div><div class="meta"><span>QS World University</span><span>Año: 2026</span></div></div>
-    </div>
-    <div style="text-align:center;margin-top:24px;"><a class="btn ghost" href="#">Ir a PUCP en Cifras ↗</a></div>
-  </div></section>
-
-  <!-- ===== NOTICIAS ===== -->
-  <section data-title="Noticias"><div class="wrap">
-    <p class="eyebrow"><span class="dot">•</span> Noticias <span class="dot">•</span></p>
-    <h2 class="t">Conoce las novedades de la PUCP</h2>
-    <div class="tabs2"><span class="tab2 on">Noticias .edu</span><span class="tab2">Agenda PUCP</span></div>
-    <div class="news">
-      <div class="feat"><div class="ov"><span class="tag">INVESTIGACIÓN</span><h3>La PUCP desarrolla soluciones innovadoras para los desafíos ambientales del país</h3><div class="dt">25 de Octubre, 2026 · 5 min</div></div></div>
-      <div>
-        <div class="nrow"><div class="img"></div><div><span class="tag">INVESTIGACIÓN</span><h3>Empieza a vivir el Festival Internacional de Cine de Lima PUCP este 4 de junio en el campus</h3><div class="dt">25 de Octubre, 2026 · 5 min</div></div></div>
-        <div class="nrow"><div class="img"></div><div><span class="tag">COMUNIDAD .EDU</span><h3>Estudiantes PUCP destacan con propuestas tecnológicas de impacto social</h3><div class="dt">25 de Octubre, 2026 · 5 min</div></div></div>
-      </div>
-    </div>
-    <div style="text-align:center;margin-top:24px;"><a class="btn" href="#">Ver más noticias ↗</a></div>
-  </div></section>
-
-  <!-- ===== COMUNIDAD PUCP ===== -->
-  <section style="background:var(--bg2);" data-title="Comunidad PUCP"><div class="wrap">
-    <div class="two">
-      <div>
-        <p class="eyebrow l"><span class="dot">•</span> Comunidad PUCP</p>
-        <h2 class="t l">Descubre, comparte y vive la experiencia PUCP</h2>
-        <p class="sub l">Síguenos y mantente al tanto de lo que impulsa nuestra comunidad.</p>
+  <!-- COMUNIDAD PUCP -->
+  <section class="darksec" style="background:#3a3140;" data-title="Comunidad PUCP"><div class="wrap">
+    <div class="comgrid">
+      <div class="circ"></div>
+      <div style="text-align:center;">
+        <p class="eyebrow"><span class="dot">▸</span> Comunidad PUCP <span class="dot">◂</span></p>
+        <h2 class="t">Descubre, comparte y vive la experiencia PUCP</h2>
+        <p style="color:#e3dce8;font-size:14px;margin:0 0 18px;">Síguenos en:</p>
         <div class="soc"><span>in</span><span>X</span><span>f</span><span>▶</span><span>◎</span><span>♫</span><span>♪</span></div>
       </div>
-      <div class="collage">
-        <div class="ph"></div><div class="ph"></div><div class="ph" style="grid-row:span 2;"></div>
-        <div class="ph"></div><div class="ph"></div>
-        <div class="ph" style="grid-column:span 2;"></div>
-      </div>
+      <div class="circ"></div>
     </div>
   </div></section>
 
   </main>
 
-  <!-- ===== FOOTER ===== -->
+  <!-- FOOTER -->
   <footer><div class="wrap">
     <div class="cols">
       <div>
@@ -381,13 +357,8 @@
       <div>
         <span class="h">Institucional</span>
         <a href="#">Gobierno y autoridades</a><a href="#">Transparencia</a><a href="#">Documentos institucionales</a>
-        <div class="badge" style="display:inline-block;margin-top:6px;">📖 Libro de Reclamaciones</div>
+        <span class="badge">📖 Libro de Reclamaciones</span>
       </div>
-    </div>
-    <div class="badges">
-      <span class="badge">QS World University Rankings</span>
-      <span class="badge">QS · Latin America &amp; The Caribbean 2026</span>
-      <span class="badge">QS · Sustainability 2026</span>
     </div>
     <div class="copy">
       <span>© 2026 Pontificia Universidad Católica del Perú — Todos los derechos reservados</span>
@@ -396,7 +367,7 @@
   </div></footer>
 
   <div class="legend">
-    <b>Wireframe de media fidelidad — Home PUCP · escala de grises, sin fotografías.</b> Estructura, orden y textos según la versión actual del Figma. Las áreas grises son placeholders de foto/video. Tipografía Montserrat + Source Serif Pro (énfasis) + Roboto. Sin color institucional (versión en grises).<br>
+    <b>Wireframe de media fidelidad — Home PUCP · escala de grises, sin fotografías.</b> Versión comercial (hero carrusel). Estructura, orden y textos según la versión actual del Figma. Áreas grises = placeholders de foto/video. Tipografía Montserrat + Source Serif Pro (énfasis) + Roboto. Sin color institucional.<br>
     <b>Modo revisión.</b> Botón 💬 por sección para comentar; con el botón “Comentarios” (abajo a la derecha) los muestras u ocultas.
   </div>
 
