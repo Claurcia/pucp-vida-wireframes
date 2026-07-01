@@ -196,6 +196,10 @@
   .ct-meta span{flex:1;}
   .ct-del{border:none;background:none;color:#c2c2cc;cursor:pointer;font-size:12px;line-height:1;padding:0 2px;}
   .ct-del:hover{color:#c0392b;}
+  .ct-hist-toggle{width:100%;text-align:left;background:#eef1f4;border:1px solid #e2e6ea;border-radius:7px;padding:6px 10px;font:inherit;font-size:11.5px;font-weight:700;color:#5b6470;cursor:pointer;margin-bottom:7px;}
+  .ct-hist-toggle:hover{background:#e4e9ee;}
+  .ct-hist{opacity:.82;}
+  .ct-empty{font-size:11.5px;color:#9097a0;padding:2px 2px 4px;}
   .ct-add{background:#fff;border:1px dashed #b9c0c8;border-radius:9px;padding:8px;}
   .ct-add textarea{width:100%;border:1px solid #e2e6ea;border-radius:7px;padding:8px;font:inherit;font-size:12.5px;resize:none;overflow:hidden;min-height:34px;line-height:1.45;}
   .ct-row{display:flex;gap:6px;margin-top:6px;}
@@ -314,6 +318,7 @@
         <span class="tab">Esta semana</span>
         <span class="tab">Próxima semana</span>
       </div>
+      <div class="row" style="gap:6px;margin:2px 0 10px;flex-wrap:wrap;align-items:center;"><span class="note" style="margin:0 4px 0 0;">Filtrar por tipo:</span><span class="chip">Todos</span><span class="chip">Cultural</span><span class="chip">Deportivo</span><span class="chip">Estudiantil</span><span class="chip">Bienestar</span></div>
       <div class="ev-list">
         <div class="ev">
           <div class="date"><b>12</b><span>jun</span></div>
@@ -447,32 +452,27 @@
         <span class="pill">Selección PUCP</span>
         <span class="pill">Talleres deportivos</span>
       </div>
-      <div class="kpis">
-        <div class="kpi-card"><div class="n">2,902</div><div class="l">estudiantes en talleres deportivos</div></div>
-        <div class="kpi-card"><div class="n">796</div><div class="l">deportistas destacados</div></div>
-        <div class="kpi-card"><div class="n">1,142</div><div class="l">inscritos en gimnasio (2024-2)</div></div>
-      </div>
       <div class="row" style="margin-top:16px;"><span class="cta">Conoce Deportes PUCP ▸</span><span class="note">→ daes.pucp.edu.pe/areas/deportes</span></div>
       </div>
     </section>
 
     <section class="sec tint" id="z-cultura" data-title="Cultura y experiencias">
       <div class="sec-body">
-      <p class="zone"><span class="num">6</span> Cultura y experiencias (Cultura)</p>
+      <p class="zone"><span class="num">6</span> Cultura y experiencias (Cultura) <span class="tag">mismos módulos del home de la nueva página de DACU</span></p>
       <p class="kicker">DACU · CCPUCP · Cultura PUCP</p>
       <p class="display">El arte y la cultura viven aquí</p>
       <div class="tabs" data-group="cultura">
-        <span class="tab on">Agenda cultural</span>
-        <span class="tab">Talleres culturales</span>
+        <span class="tab on">Talleres y cursos</span>
+        <span class="tab">Elencos</span>
         <span class="tab">Museos y colecciones</span>
       </div>
       <div class="cards">
         <div class="scard" style="flex:1.2;padding:0;overflow:hidden;">
-          <div class="photo p6" style="height:130px;border-radius:0;"><span class="ic">DESTACADO</span><span class="cap">Temporada de teatro — sala CCPUCP</span></div>
-          <div style="padding:14px 16px;"><b>Estreno: elenco de teatro PUCP</b><p>Del 18 al 28 de junio · CCPUCP · entradas con descuento para la comunidad.</p></div>
+          <div class="photo p6" style="height:130px;border-radius:0;"><span class="ic">DESTACADO</span><span class="cap">Talleres y cursos — DACU</span></div>
+          <div style="padding:14px 16px;"><b>Talleres y cursos</b><p>Danza, música, teatro y artes visuales — inscripciones por ciclo (DACU).</p></div>
         </div>
-        <div class="scard"><b>Elencos</b><p>CEMDUC · Coros · Tuna — audiciones abiertas cada semestre.</p><b style="margin-top:12px;">Cine CCPUCP</b><p>Cartelera de cine de autor y festivales, toda la semana.</p></div>
-        <div class="scard"><b>Galería y exposiciones</b><p>Muestras temporales en campus y CCPUCP.</p><b style="margin-top:12px;">Talleres culturales</b><p>Danza, música, artes visuales y más — inscripciones por ciclo.</p></div>
+        <div class="scard"><b>Elencos</b><p>CEMDUC · Coros · Tuna · elenco de teatro PUCP — audiciones abiertas cada semestre.</p></div>
+        <div class="scard"><b>Museos y colecciones</b><p>Museos, galerías y colecciones de la PUCP — muestras temporales en campus y CCPUCP.</p></div>
       </div>
       <div class="row" style="margin-top:16px;"><span class="cta">Explora Cultura PUCP ▸</span></div>
       </div>
@@ -482,18 +482,18 @@
       <div class="sec-body">
       <p class="zone"><span class="num">7</span> Comunidad y participación (DARS) <span class="tag">sin "Noticias y eventos"</span> <span class="tag">proyectos dentro de RSU</span></p>
       <p class="kicker">Responsabilidad social universitaria</p>
-      <p class="display">Transforma tu entorno desde la universidad</p>
+      <p class="display">Contribuye a la transformación social del país desde la PUCP</p>
       <div class="cards">
         <div class="scard" style="padding:0;overflow:hidden;">
-          <div class="photo p2" style="height:120px;border-radius:0;"><span class="ic">FOTO</span><span class="cap">Voluntariado en acción</span></div>
-          <div style="padding:14px 16px;"><b>Voluntariado RSU</b><p>Súmate a iniciativas con comunidades dentro y fuera del campus.</p></div>
+          <div class="photo p4" style="height:120px;border-radius:0;"><span class="ic">FOTO</span><span class="cap">Ruta RSU del estudiante</span></div>
+          <div style="padding:14px 16px;"><b>Ruta RSU del estudiante PUCP</b><p>Tu compromiso genera cambios.</p></div>
         </div>
         <div class="scard" style="padding:0;overflow:hidden;">
-          <div class="photo p4" style="height:120px;border-radius:0;"><span class="ic">FOTO</span><span class="cap">Barrio PUCP</span></div>
-          <div style="padding:14px 16px;"><b>RSU — proyectos y fondo</b><p>Proyectos (Barrio PUCP) y convocatorias del Fondo RSU, dentro de un solo bloque.</p></div>
+          <div class="photo p2" style="height:120px;border-radius:0;"><span class="ic">FOTO</span><span class="cap">Voluntariado en acción</span></div>
+          <div style="padding:14px 16px;"><b>Voluntariado RSU</b><p>Ciudadanía en acción.</p></div>
         </div>
       </div>
-      <div class="row" style="margin-top:16px;"><span class="cta">Súmate al voluntariado ▸</span><span class="cta ghost">Qué es la RSU</span><span class="note">→ dars.pucp.edu.pe</span></div>
+      <div class="row" style="margin-top:16px;"><span class="cta">¿Qué es la RSU?</span><span class="cta ghost">Conoce más</span><span class="note">→ dars.pucp.edu.pe</span></div>
       </div>
     </section>
 
@@ -518,7 +518,7 @@
 
     <section class="sec tint" id="z-micampus" data-title="Mi Campus PUCP">
       <div class="sec-body">
-      <p class="zone"><span class="num">9</span> Mi Campus PUCP <span class="tag">sin look "social" — sin logo de red, sin "síguenos", sin contadores</span></p>
+      <p class="zone"><span class="num">9</span> Mi Campus PUCP <span class="tag">últimos posts de Instagram de @DAES, @DARS y @MiCampusPUCP</span> <span class="tag">sin look "social": sin logo de red, sin "síguenos", sin contadores</span></p>
       <p class="kicker">La comunidad cuenta</p>
       <p class="display">El campus, contado por su gente</p>
       <div class="masonry">
@@ -531,7 +531,7 @@
         <div class="photo p6"><span class="cap">Café y apuntes</span></div>
         <div class="photo p1"><span class="cap">Bicis al campus</span></div>
       </div>
-      <p class="credit">Momentos compartidos por la comunidad PUCP — fuente: Mi Campus</p>
+      <p class="credit">Feed automático con los últimos posts de Instagram de @DAES, @DARS y @MiCampusPUCP.</p>
       </div>
     </section>
 
@@ -599,11 +599,25 @@
 
   function renderThread(sid){
     var t=threads[sid]; if(!t)return;
-    var items=comments[sid]||[];
+    var items=(comments[sid]||[]).slice().sort(function(a,b){return new Date(a.created_at)-new Date(b.created_at);});
     var list=t.querySelector('.ct-list');
-    list.innerHTML=items.map(function(c){
-      return '<div class="ct-item"><div class="ct-body">'+linkify(c.body)+'</div><div class="ct-meta"><span>'+esc(c.author||'Anónimo')+' · '+new Date(c.created_at).toLocaleString('es-PE')+'</span><button class="ct-del" data-id="'+c.id+'" title="Eliminar">✕</button></div></div>';
-    }).join('');
+    var lastRes=-1;
+    items.forEach(function(c,i){ if(/RESUELTO|ANOTADO/i.test(c.body||'')) lastRes=i; });
+    var hist = lastRes>=0 ? items.slice(0,lastRes+1) : [];
+    var pend = lastRes>=0 ? items.slice(lastRes+1) : items;
+    function itemHTML(c){ return '<div class="ct-item"><div class="ct-body">'+linkify(c.body)+'</div><div class="ct-meta"><span>'+esc(c.author||'Anónimo')+' · '+new Date(c.created_at).toLocaleString('es-PE')+'</span><button class="ct-del" data-id="'+c.id+'" title="Eliminar">✕</button></div></div>'; }
+    var open = t.dataset.histopen==='1';
+    var html='';
+    if(hist.length){
+      html += '<button type="button" class="ct-hist-toggle">'+(open?'▾ Ocultar resueltos ('+hist.length+')':'▸ Ver resueltos ('+hist.length+')')+'</button>';
+      html += '<div class="ct-hist"'+(open?'':' style="display:none"')+'>'+hist.map(itemHTML).join('')+'</div>';
+    }
+    html += pend.map(itemHTML).join('');
+    if(!pend.length && !hist.length){ html += '<div class="ct-empty">Sin comentarios aún</div>'; }
+    else if(!pend.length){ html += '<div class="ct-empty">✓ Todo resuelto en esta sección</div>'; }
+    list.innerHTML=html;
+    var tg=list.querySelector('.ct-hist-toggle');
+    if(tg){ tg.addEventListener('click',function(){ t.dataset.histopen=(t.dataset.histopen==='1')?'0':'1'; renderThread(sid); layout(); }); }
     list.querySelectorAll('.ct-del').forEach(function(b){
       b.addEventListener('click',function(){
         fetch(API+'/comments/'+b.dataset.id,{method:'DELETE'}).catch(function(){});
@@ -612,7 +626,7 @@
       });
     });
     var badge=document.querySelector('[data-cnt="'+sid+'"]');
-    if(badge){ badge.textContent=items.length; badge.parentNode.classList.toggle('has',items.length>0); }
+    if(badge){ badge.textContent = pend.length ? pend.length : (hist.length?'✓':'0'); badge.parentNode.classList.toggle('has',pend.length>0); }
   }
 
   function layout(){
