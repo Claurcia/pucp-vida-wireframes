@@ -146,6 +146,10 @@
   @media(min-width:1101px){ body.crpad .sec-tools{right:352px;} }
   .sec-tools button{font:inherit;font-size:12px;font-weight:700;border:1px solid var(--ph3);background:#fff;color:var(--ink);border-radius:6px;cursor:pointer;padding:4px 8px;}
   .sec-tools .c-btn.has{background:var(--dark);color:#fff;border-color:var(--dark);}
+  .editable{outline:none;}
+  body.editing .editable{outline:1.5px dashed #9aa2ac;outline-offset:6px;border-radius:8px;}
+  body.editing .editable:focus-within{outline-style:solid;outline-color:#6b7280;}
+  body.editing [contenteditable="true"]{cursor:text;}
   .toast{position:fixed;bottom:78px;right:18px;z-index:101;background:var(--dark);color:#fff;font-size:12.5px;border-radius:7px;padding:9px 14px;opacity:0;transition:opacity .25s;pointer-events:none;}
   .toast.show{opacity:1;}
   @media(min-width:1101px){ body.crpad .wrap,body.crpad .news3,body.crpad .novstrip,body.crpad .legend{margin-right:344px;} }
@@ -380,13 +384,14 @@
 
   <div class="legend">
     <b>Wireframe de media fidelidad — Home PUCP · escala de grises, sin fotografías.</b> Versión comercial (hero carrusel). Estructura, orden y textos según la versión actual del Figma. Áreas grises = placeholders de foto/video. Tipografía Montserrat + Source Serif Pro (énfasis) + Roboto. Sin color institucional.<br>
-    <b>Modo revisión.</b> Botón 💬 por sección para comentar; flechas ↑↓ para reordenar las secciones (se guarda en tu navegador; “Restablecer orden” vuelve al original). Con el botón “Comentarios” los muestras u ocultas.
+    <b>Modo revisión.</b> “✏️ Editar textos” hace editable cualquier texto del wireframe; 💬 por sección para comentar; flechas ↑↓ para reordenar. Todo se guarda en tu navegador; “↺ Restablecer” vuelve al orden y textos originales. Con “Comentarios” los muestras u ocultas.
   </div>
 
   <div class="toolbar">
+    <button id="btn-edit" type="button">✏️ Editar textos</button>
     <button id="btn-toggle" type="button">💬 Comentarios: ON</button>
     <button id="btn-export" type="button">📋 Copiar comentarios</button>
-    <button id="btn-resetorder" type="button">↺ Restablecer orden</button>
+    <button id="btn-resetorder" type="button">↺ Restablecer</button>
   </div>
   <div class="toast" id="toast"></div>
 
@@ -425,10 +430,18 @@
   // aplica orden guardado
   try{var ord=JSON.parse(localStorage.getItem('home-order'));if(Array.isArray(ord)){ord.forEach(function(id){var s=document.getElementById(id);if(s)main.appendChild(s);});}}catch(e){}
   function saveOrder(){try{localStorage.setItem('home-order',JSON.stringify(Array.prototype.map.call(main.querySelectorAll('section'),function(s){return s.id;})));}catch(e){}}
+  var savedContent={};try{savedContent=JSON.parse(localStorage.getItem('home-content'))||{};}catch(e){savedContent={};}
+  function saveContent(sec){var ed=sec.querySelector('.editable');if(!ed)return;savedContent[sec.id]=ed.innerHTML;try{localStorage.setItem('home-content',JSON.stringify(savedContent));}catch(e){}}
   main.querySelectorAll('section').forEach(function(sec){
+    var ed=document.createElement('div');ed.className='editable';
+    while(sec.firstChild){ ed.appendChild(sec.firstChild); }
+    if(savedContent[sec.id]!=null){ ed.innerHTML=savedContent[sec.id]; }
+    sec.appendChild(ed);
     var tools=document.createElement('div');tools.className='sec-tools';
     tools.innerHTML='<button type="button" class="up" title="Subir sección">↑</button><button type="button" class="down" title="Bajar sección">↓</button><button type="button" class="c-btn" title="Comentar">💬 <span data-cnt="'+sec.id+'">0</span></button>';
     sec.appendChild(tools);makeThread(sec);
+    if(document.body.classList.contains('editing'))ed.contentEditable='true';
+    ed.addEventListener('input',function(){clearTimeout(sec._t);sec._t=setTimeout(function(){saveContent(sec);layout();},400);});
     tools.querySelector('.up').addEventListener('click',function(){var p=sec.previousElementSibling;while(p&&p.tagName!=='SECTION')p=p.previousElementSibling;if(p){main.insertBefore(sec,p);saveOrder();layout();sec.scrollIntoView({behavior:'smooth',block:'center'});}});
     tools.querySelector('.down').addEventListener('click',function(){var n=sec.nextElementSibling;while(n&&n.tagName!=='SECTION')n=n.nextElementSibling;if(n){main.insertBefore(n,sec);saveOrder();layout();sec.scrollIntoView({behavior:'smooth',block:'center'});}});
     tools.querySelector('.c-btn').addEventListener('click',function(){var t=threads[sec.id];if(!t)return;if(window.innerWidth>1100){t.querySelector('.ct-text').focus();t.scrollIntoView({behavior:'smooth',block:'center'});}else{t.classList.toggle('open');if(t.classList.contains('open'))t.scrollIntoView({behavior:'smooth',block:'nearest'});}});
@@ -438,7 +451,9 @@
   function applyPref(){var off=localStorage.getItem('home-comments-off')==='1';document.body.classList.toggle('comments-off',off);btnToggle.textContent=off?'💬 Comentarios: OFF':'💬 Comentarios: ON';setTimeout(layout,60);}
   btnToggle.addEventListener('click',function(){var off=!(localStorage.getItem('home-comments-off')==='1');localStorage.setItem('home-comments-off',off?'1':'0');applyPref();});
   applyPref();
-  document.getElementById('btn-resetorder').addEventListener('click',function(){localStorage.removeItem('home-order');location.reload();});
+  document.getElementById('btn-resetorder').addEventListener('click',function(){if(confirm('¿Restablecer el orden y los textos a la versión original?')){localStorage.removeItem('home-order');localStorage.removeItem('home-content');location.reload();}});
+  var btnEdit=document.getElementById('btn-edit');
+  btnEdit.addEventListener('click',function(){var on=!document.body.classList.contains('editing');document.body.classList.toggle('editing',on);btnEdit.textContent=on?'✔ Terminar edición':'✏️ Editar textos';main.querySelectorAll('.editable').forEach(function(ed){ed.contentEditable=on?'true':'false';});notify(on?'Haz clic sobre cualquier texto para editarlo':'Textos guardados');setTimeout(layout,60);});
   document.getElementById('btn-export').addEventListener('click',function(){
     var out=['Comentarios — Home PUCP grises ('+new Date().toLocaleDateString('es-PE')+')',''];var total=0;
     main.querySelectorAll('section').forEach(function(sec,idx){var items=comments[sec.id]||[];if(!items.length)return;out.push((idx+1)+'. '+(sec.dataset.title||sec.id));items.forEach(function(c){total++;out.push('   - '+(c.author?c.author+': ':'')+c.body.replace(/\n+/g,' ')+' ['+new Date(c.created_at).toLocaleString('es-PE')+']');});out.push('');});
