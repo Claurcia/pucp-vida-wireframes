@@ -126,6 +126,10 @@
   .ct-meta span{flex:1;}
   .ct-del{border:none;background:none;color:#c2c2cc;cursor:pointer;font-size:12px;line-height:1;padding:0 2px;}
   .ct-del:hover{color:#c0392b;}
+  .ct-hist-toggle{width:100%;text-align:left;background:#eef1f4;border:1px solid #e2e6ea;border-radius:7px;padding:6px 10px;font:inherit;font-size:11.5px;font-weight:700;color:#5b6470;cursor:pointer;margin-bottom:7px;}
+  .ct-hist-toggle:hover{background:#e4e9ee;}
+  .ct-hist{opacity:.82;}
+  .ct-empty{font-size:11.5px;color:#9097a0;padding:2px 2px 4px;}
   .ct-add{background:#fff;border:1px dashed #b9c0c8;border-radius:9px;padding:8px;}
   .ct-add textarea{width:100%;border:1px solid #e2e6ea;border-radius:7px;padding:8px;font:inherit;font-size:12.5px;resize:none;overflow:hidden;min-height:34px;line-height:1.45;}
   .ct-row{display:flex;gap:6px;margin-top:6px;}
@@ -363,11 +367,26 @@
 
   function renderThread(sid){
     var t=threads[sid]; if(!t)return;
-    var items=comments[sid]||[];
+    var items=(comments[sid]||[]).slice().sort(function(a,b){return new Date(a.created_at)-new Date(b.created_at);});
     var list=t.querySelector('.ct-list');
-    list.innerHTML=items.map(function(c){
-      return '<div class="ct-item"><div class="ct-body">'+linkify(c.body)+'</div><div class="ct-meta"><span>'+esc(c.author||'Anónimo')+' · '+new Date(c.created_at).toLocaleString('es-PE')+'</span><button class="ct-del" data-id="'+c.id+'" title="Eliminar">✕</button></div></div>';
-    }).join('');
+    // todo lo que está hasta el último "RESUELTO/ANOTADO" (inclusive) es histórico; lo posterior es pendiente
+    var lastRes=-1;
+    items.forEach(function(c,i){ if(/RESUELTO|ANOTADO/i.test(c.body||'')) lastRes=i; });
+    var hist = lastRes>=0 ? items.slice(0,lastRes+1) : [];
+    var pend = lastRes>=0 ? items.slice(lastRes+1) : items;
+    function itemHTML(c){ return '<div class="ct-item"><div class="ct-body">'+linkify(c.body)+'</div><div class="ct-meta"><span>'+esc(c.author||'Anónimo')+' · '+new Date(c.created_at).toLocaleString('es-PE')+'</span><button class="ct-del" data-id="'+c.id+'" title="Eliminar">✕</button></div></div>'; }
+    var open = t.dataset.histopen==='1';
+    var html='';
+    if(hist.length){
+      html += '<button type="button" class="ct-hist-toggle">'+(open?'▾ Ocultar resueltos ('+hist.length+')':'▸ Ver resueltos ('+hist.length+')')+'</button>';
+      html += '<div class="ct-hist"'+(open?'':' style="display:none"')+'>'+hist.map(itemHTML).join('')+'</div>';
+    }
+    html += pend.map(itemHTML).join('');
+    if(!pend.length && !hist.length){ html += '<div class="ct-empty">Sin comentarios aún</div>'; }
+    else if(!pend.length){ html += '<div class="ct-empty">✓ Todo resuelto en esta sección</div>'; }
+    list.innerHTML=html;
+    var tg=list.querySelector('.ct-hist-toggle');
+    if(tg){ tg.addEventListener('click',function(){ t.dataset.histopen=(t.dataset.histopen==='1')?'0':'1'; renderThread(sid); layout(); }); }
     list.querySelectorAll('.ct-del').forEach(function(b){
       b.addEventListener('click',function(){
         fetch(API+'/comments/'+b.dataset.id,{method:'DELETE'}).catch(function(){});
@@ -376,7 +395,7 @@
       });
     });
     var badge=document.querySelector('[data-cnt="'+sid+'"]');
-    if(badge){ badge.textContent=items.length; badge.parentNode.classList.toggle('has',items.length>0); }
+    if(badge){ badge.textContent = pend.length ? pend.length : (hist.length?'✓':'0'); badge.parentNode.classList.toggle('has',pend.length>0); }
   }
 
   function layout(){
