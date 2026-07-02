@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wireframe — Admisión Pregrado · PUCP</title>
+<style>
+  :root{
+    --page:#ffffff;
+    --t0:#fafafa;
+    --t1:#f1f1f1;
+    --t2:#e6e6e6;
+    --t3:#d6d6d6;
+    --t4:#c2c2c2;
+    --line:#cfcfcf;
+    --line-strong:#a8a8a8;
+    --ink:#2b2b2b;
+    --ink-soft:#6c6c6c;
+    --nav:#3a3a3a;
+    --nav-util:#efefef;
+    --accent:#555555;
+    --accent-soft:#dcdcdc;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--page);font-family:'Segoe UI',Arial,sans-serif;color:var(--ink);}
+  .wrap{max-width:1200px;margin:0 auto;}
+  /* ---------- TOP NAV ---------- */
+  .util{background:var(--nav-util);border-bottom:1px solid var(--line);}
+  .util .wrap{display:flex;align-items:center;justify-content:space-between;padding:9px 26px;font-size:13px;color:var(--ink-soft);}
+  .util .profiles{display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
+  .util .profiles span{white-space:nowrap;}
+  .util .sep{color:var(--line-strong);}
+  .util .right{display:flex;align-items:center;gap:14px;}
+  .util .becas{font-weight:700;color:var(--ink);text-decoration:underline;letter-spacing:.5px;}
+  .util .ico{width:30px;height:24px;border:1px solid var(--line-strong);border-radius:5px;background:#fff;}
+  .nav{background:var(--nav);}
+  .nav .wrap{display:flex;align-items:center;gap:22px;padding:14px 26px;}
+  .logo{display:flex;align-items:center;gap:10px;color:#fff;font-weight:800;letter-spacing:1px;font-size:21px;flex:none;}
+  .nav ul{display:flex;gap:20px;list-style:none;margin:0;padding:0;flex:1;flex-wrap:wrap;align-items:center;}
+  .nav li{color:#d8d8d8;font-size:14.5px;white-space:nowrap;}
+  .nav li.active{color:#fff;font-weight:700;border-bottom:2px solid #fff;padding-bottom:4px;}
+  .search{background:#fff;color:var(--ink-soft);border-radius:8px;padding:11px 26px;font-size:14px;min-width:150px;text-align:center;flex:none;}
+  .crumb{padding:14px 26px 4px;color:var(--ink-soft);font-size:12.5px;}
+  /* ---------- BODY ---------- */
+  main{padding:8px 26px 60px;}
+  .sec{background:var(--t1);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+  .sec.alt{background:var(--t0);}
+  .sec.star{border-left:5px solid var(--accent);background:#ededed;}
+  .sec h2{margin:0 0 6px;font-size:17px;display:flex;align-items:center;gap:9px;color:var(--ink);}
+  .num{display:inline-flex;width:26px;height:26px;border-radius:6px;background:var(--t4);color:var(--ink);align-items:center;justify-content:center;font-size:13px;font-weight:700;flex:none;}
+  .star .num{background:var(--accent);color:#fff;}
+  .st{color:var(--accent);font-size:14px;}
+  .desc{color:var(--ink-soft);font-size:13px;margin:0 0 12px;}
+  .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+  .ph{background:var(--t2);border:1px dashed var(--line-strong);border-radius:7px;}
+  .banner{height:140px;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);font-size:13px;font-weight:600;
+           background:repeating-linear-gradient(45deg,var(--t2),var(--t2) 12px,var(--t1) 12px,var(--t1) 24px);border-radius:8px;margin-bottom:12px;}
+  /* rectángulos a todo el ancho: flex:1 */
+  .card{flex:1;min-width:0;height:96px;}
+  .card.sm{height:80px;}
+  .bar{height:16px;background:var(--t3);border-radius:4px;}
+  .lines{display:flex;flex-direction:column;gap:9px;}
+  .cta{background:var(--accent);color:#fff;font-weight:700;font-size:13.5px;padding:11px 20px;border-radius:7px;display:inline-block;flex:none;}
+  .cta.ghost{background:#fff;color:var(--ink);border:1.5px solid var(--accent);}
+  .tabs{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap;}
+  .tab{padding:9px 16px;border:1px solid var(--line);border-radius:6px 6px 0 0;background:#fff;color:var(--ink-soft);font-size:13px;}
+  .tab.on{background:var(--accent-soft);color:var(--ink);font-weight:700;border-bottom:2px solid var(--accent);}
+  .panel{border:1px dashed var(--line-strong);border-radius:0 7px 7px 7px;background:#fff;height:90px;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);font-size:12.5px;}
+  .grid{display:flex;gap:10px;flex-wrap:nowrap;}
+  .cell{flex:1;min-width:0;height:74px;background:var(--t2);border:1px dashed var(--line-strong);border-radius:7px;display:flex;align-items:center;justify-content:center;color:var(--ink);font-size:12px;text-align:center;padding:6px;font-weight:600;}
+  .contact{color:var(--ink);font-size:13px;line-height:1.7;}
+  .legend{max-width:1200px;margin:0 auto;padding:0 26px 50px;color:var(--ink-soft);font-size:12.5px;line-height:1.7;}
+  .legend b{color:var(--ink);}
+  /* ---------- HERRAMIENTAS DE REVISIÓN (comentarios + reordenar) ---------- */
+  .sec{position:relative;}
+  .toolbar{position:fixed;bottom:18px;right:18px;z-index:100;display:flex;gap:8px;align-items:center;
+           background:#fff;border:1px solid var(--line-strong);border-radius:10px;padding:9px 12px;box-shadow:0 4px 18px rgba(0,0,0,.18);}
+  .toolbar button{font:inherit;font-size:12.5px;font-weight:700;border:1px solid var(--line-strong);background:var(--t1);color:var(--ink);
+                  border-radius:6px;padding:7px 12px;cursor:pointer;white-space:nowrap;}
+  .toolbar button:hover{background:var(--accent-soft);}
+  .toolbar button.on{background:var(--accent);color:#fff;border-color:var(--accent);}
+  .toolbar .hint{font-size:11px;color:var(--ink-soft);max-width:150px;line-height:1.3;}
+  .sec-tools{position:absolute;top:10px;right:10px;display:flex;gap:5px;z-index:5;}
+  .sec-tools button{font:inherit;font-size:12px;font-weight:700;width:28px;height:28px;border:1px solid var(--line-strong);
+                    background:#fff;color:var(--ink);border-radius:6px;cursor:pointer;padding:0;line-height:1;}
+  .sec-tools button:hover{background:var(--accent-soft);}
+  .sec-tools .c-btn{width:auto;padding:0 8px;}
+  .sec-tools .c-btn.has{background:var(--accent);color:#fff;border-color:var(--accent);}
+  body.editing .sec-body{outline:1.5px dashed var(--accent);outline-offset:6px;border-radius:6px;}
+  body.editing .sec-body:focus-within{outline-style:solid;background:rgba(255,255,255,.4);}
+  .toast{position:fixed;bottom:78px;right:18px;z-index:101;background:var(--nav);color:#fff;font-size:12.5px;border-radius:7px;padding:9px 14px;
+         opacity:0;transition:opacity .25s;pointer-events:none;}
+  .toast.show{opacity:1;}
+  @media print{.toolbar,.sec-tools,.toast{display:none!important;}}
+  /* ===== comentarios estilo Google Docs ===== */
+  @media(min-width:1101px){ .util .wrap, .nav .wrap, .wrap, .legend{ margin-right:344px; } }
+  #crail{position:absolute;top:0;right:16px;width:312px;z-index:40;}
+  .cthread{position:absolute;right:0;width:300px;}
+  .cthread.inline{position:static;width:auto;display:none;margin:14px 0 0;}
+  .cthread.inline.open{display:block;}
+  .ct-item{background:#fff;border:1px solid #e2e6ea;border-left:3px solid #0a7d72;border-radius:9px;padding:9px 11px;margin-bottom:7px;box-shadow:0 1px 5px rgba(20,30,45,.07);font-size:12.5px;}
+  .ct-body{white-space:pre-wrap;word-wrap:break-word;overflow-wrap:anywhere;color:#22272e;line-height:1.5;}
+  .ct-body a{color:#0a7d72;font-weight:600;}
+  .ct-meta{display:flex;align-items:center;gap:8px;color:#9097a0;font-size:10.5px;margin-top:6px;}
+  .ct-meta span{flex:1;}
+  .ct-del{border:none;background:none;color:#c2c2cc;cursor:pointer;font-size:12px;line-height:1;padding:0 2px;}
+  .ct-del:hover{color:#c0392b;}
+  .ct-hist-toggle{width:100%;text-align:left;background:#eef1f4;border:1px solid #e2e6ea;border-radius:7px;padding:6px 10px;font:inherit;font-size:11.5px;font-weight:700;color:#5b6470;cursor:pointer;margin-bottom:7px;}
+  .ct-hist-toggle:hover{background:#e4e9ee;}
+  .ct-hist{opacity:.82;}
+  .ct-empty{font-size:11.5px;color:#9097a0;padding:2px 2px 4px;}
+  .ct-add{background:#fff;border:1px dashed #b9c0c8;border-radius:9px;padding:8px;}
+  .ct-add textarea{width:100%;border:1px solid #e2e6ea;border-radius:7px;padding:8px;font:inherit;font-size:12.5px;resize:none;overflow:hidden;min-height:34px;line-height:1.45;}
+  .ct-row{display:flex;gap:6px;margin-top:6px;}
+  .ct-row input{flex:1;min-width:0;border:1px solid #e2e6ea;border-radius:7px;padding:7px;font:inherit;font-size:11.5px;}
+  .ct-row button{border:none;background:#0a7d72;color:#fff;border-radius:7px;padding:7px 13px;font:inherit;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;}
+  .ct-row button:hover{background:#08645b;}
+  .cthread.flash .ct-add{box-shadow:0 0 0 3px rgba(10,125,114,.4);transition:box-shadow .2s;}
+  @media(max-width:1100px){ #crail{display:none;} }
+</style>
+</head>
+<body>
+
+  <!-- ===== UTILITY BAR ===== -->
+  <div class="util">
+    <div class="wrap">
+      <div class="profiles">
+        <span>Postulante</span><span class="sep">|</span>
+        <span>Pregrado · Posgrado</span><span class="sep">|</span>
+        <span>Egresado</span><span class="sep">|</span>
+        <span>Empresa</span><span class="sep">|</span>
+        <span>Estudiante</span><span class="sep">|</span>
+        <span>Profesor</span><span class="sep">|</span>
+        <span>Administrativo</span>
+      </div>
+      <div class="right">
+        <span class="becas">BECAS</span>
+        <span class="ico"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MAIN NAV ===== -->
+  <div class="nav">
+    <div class="wrap">
+      <div class="logo">
+        <svg width="36" height="36" viewBox="0 0 40 40" aria-hidden="true">
+          <circle cx="20" cy="20" r="18" fill="none" stroke="#fff" stroke-width="2"/>
+          <path d="M9 24 q11 6 22 0 l-3 5 h-16 z" fill="#fff"/>
+          <path d="M20 8 l7 13 h-14 z" fill="#fff"/>
+        </svg>
+        PUCP
+      </div>
+      <ul>
+        <li>Descubre la PUCP</li>
+        <li>Carreras y Programas</li>
+        <li class="active">Admisión</li>
+        <li>Internacionalización</li>
+        <li>Empleabilidad</li>
+        <li>Investigación que transforma</li>
+      </ul>
+      <div class="search">Buscador</div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="crumb">Inicio › Admisión › <b>Pregrado</b></div>
+  </div>
+
+  <!-- ===== BODY ===== -->
+  <main class="wrap" id="zones">
+
+    <!-- 1 -->
+    <section class="sec">
+      <h2><span class="num">1</span> Banner</h2>
+      <div class="banner">"Descubre por qué estudiar en la PUCP" — [ video / foto del campus ]</div>
+      <div class="row"><span class="cta">Postula ▸</span><span class="cta ghost">Conoce el proceso</span></div>
+    </section>
+
+    <!-- 2 -->
+    <section class="sec alt">
+      <h2><span class="num">2</span> Nuestras carreras</h2>
+      <p class="desc">No se despliega el catálogo aquí — enlace de salida a admisión / facultades.</p>
+      <div class="row"><span class="cta">Explora las carreras ▸</span></div>
+    </section>
+
+    <!-- 3 -->
+    <section class="sec">
+      <h2><span class="num">3</span> Modalidades de admisión</h2>
+      <div class="tabs">
+        <span class="tab on">Evaluación del Talento</span>
+        <span class="tab">Admisión por Rendimiento Superior</span>
+        <span class="tab">La Primera Opción</span>
+      </div>
+      <div class="panel">[ Descripción · requisitos · "Conoce más" de la modalidad seleccionada ]</div>
+    </section>
+
+    <!-- 4 -->
+    <section class="sec alt">
+      <h2><span class="num">4</span> Guía del postulante — ruta paso a paso</h2>
+      <div class="grid">
+        <div class="cell">1 · Requisitos</div>
+        <div class="cell">2 · Inscripción</div>
+        <div class="cell">3 · Evaluación</div>
+        <div class="cell">4 · Resultados</div>
+        <div class="cell">5 · Matrícula</div>
+      </div>
+    </section>
+
+    <!-- 5 -->
+    <section class="sec">
+      <h2><span class="num">5</span> Cronograma de admisión</h2>
+      <div class="tabs">
+        <span class="tab on">Evaluación del Talento</span>
+        <span class="tab">Admisión por Rendimiento Superior</span>
+        <span class="tab">La Primera Opción</span>
+      </div>
+      <div class="panel">[ Fechas clave de la modalidad seleccionada ]</div>
+    </section>
+
+    <!-- 6 -->
+    <section class="sec alt">
+      <h2><span class="num">6</span> Pensiones diferenciadas</h2>
+      <p class="desc">Transparencia: escalas según tus posibilidades + simulador de pensión.</p>
+      <div class="row"><span class="ph card sm"></span><span class="ph card sm"></span><span class="cta ghost">Simula tu pensión</span></div>
+    </section>
+
+    <!-- 7 -->
+    <section class="sec">
+      <h2><span class="num">7</span> Becas</h2>
+      <p class="desc">Tabla única de becas y apoyo financiero.</p>
+      <div class="row"><span class="cta">Encuentra una beca para ti ▸</span></div>
+    </section>
+
+    <!-- 8 ★ -->
+    <section class="sec star">
+      <h2><span class="num">8</span> Para padres y familias <span class="st">★</span></h2>
+      <p class="desc">Seguridad en el campus · centro médico · bienestar · empleabilidad · contacto.</p>
+      <div class="row"><span class="ph card"></span><span class="ph card"></span><span class="ph card"></span></div>
+    </section>
+
+    <!-- 9 -->
+    <section class="sec alt">
+      <h2><span class="num">9</span> Vacantes</h2>
+      <div class="lines"><div class="bar" style="width:100%"></div><div class="bar" style="width:100%"></div><div class="bar" style="width:100%"></div></div>
+    </section>
+
+    <!-- 10 ★ -->
+    <section class="sec star">
+      <h2><span class="num">10</span> Testimonios de alumnos reales <span class="st">★</span></h2>
+      <p class="desc">Video real por carrera — no publicidad.</p>
+      <div class="row"><span class="ph card"></span><span class="ph card"></span><span class="ph card"></span></div>
+    </section>
+
+    <!-- 11 -->
+    <section class="sec">
+      <h2><span class="num">11</span> Eventos informativos + visitas</h2>
+      <div class="grid">
+        <div class="cell">Feria de Emplea+habilidad</div>
+        <div class="cell">LinkING (Ingeniería)</div>
+        <div class="cell">Visitas guiadas al campus</div>
+        <div class="cell">Exámenes presenciales</div>
+      </div>
+    </section>
+
+    <!-- 12 ★ -->
+    <section class="sec star">
+      <h2><span class="num">12</span> Contacto humano nombrado <span class="st">★</span></h2>
+      <p class="desc">Un asesor con nombre y rostro responde tus dudas.</p>
+      <div class="row" style="align-items:stretch;">
+        <span class="ph card sm" style="max-width:160px;"></span>
+        <div class="cell" style="justify-content:flex-start;text-align:left;padding:14px;font-weight:400;">
+          <span class="contact">admisionpregrado@pucp.edu.pe · (01) 626 2000 · @comienzapucp</span>
+        </div>
+      </div>
+      <div class="row" style="margin-top:10px;"><span class="cta">Escríbenos por WhatsApp ▸</span></div>
+    </section>
+
+  </main>
+
+  <div class="legend">
+    <b>Wireframe de baja fidelidad</b> · escala de grises · ★ = piezas nuevas pedidas por la investigación ·
+    contenido nutrido con datos reales de admision.pucp.edu.pe (claim, modalidades, eventos, contacto).<br>
+    <b>Modo revisión:</b> con los botones de abajo a la derecha puedes reordenar secciones (↑↓), dejar comentarios por sección (💬) y editar textos. Los comentarios se guardan en la base de datos (los ven todos); el orden y los textos se guardan en este navegador.
+  </div>
+
+  <!-- ===== TOOLBAR DE REVISIÓN ===== -->
+  <div class="toolbar">
+    <button id="btn-edit" type="button">✏️ Editar textos</button>
+    <button id="btn-export" type="button">📋 Copiar comentarios</button>
+    <button id="btn-reset" type="button">↺ Restablecer</button>
+    <span class="hint">Comentarios en la base de datos · orden/textos en este navegador</span>
+  </div>
+  <div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  var KEY='wf-admision-pregrado-v1', WF='admision-pregrado', API='https://comentarios.ludik.pe';
+  var main=document.getElementById('zones'), toast=document.getElementById('toast'), tt=null;
+  function notify(m){toast.textContent=m;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('show');},2200);}
+
+  // Preparar secciones: id, título (desde el h2) y envoltura .sec-body para editar
+  main.querySelectorAll('section').forEach(function(sec,i){
+    if(!sec.id) sec.id='z-'+i;
+    if(!sec.dataset.title){ var h=sec.querySelector('h2'); sec.dataset.title = h ? h.textContent.replace(/\s+/g,' ').replace(/^\s*\d+\s*/,'').replace(/★/g,'').trim() : ('Sección '+(i+1)); }
+    if(!sec.querySelector('.sec-body')){ var b=document.createElement('div'); b.className='sec-body'; while(sec.firstChild){ b.appendChild(sec.firstChild); } sec.appendChild(b); }
+  });
+
+  function load(){try{return JSON.parse(localStorage.getItem(KEY))||{};}catch(e){return {};}}
+  function save(s){localStorage.setItem(KEY,JSON.stringify(s));}
+  var state=load(); state.content=state.content||{};
+  if(Array.isArray(state.order)){state.order.forEach(function(id){var s=document.getElementById(id);if(s)main.appendChild(s);});}
+  Object.keys(state.content).forEach(function(id){var s=document.getElementById(id);if(s&&s.querySelector('.sec-body'))s.querySelector('.sec-body').innerHTML=state.content[id];});
+  function renumber(){var n=1;main.querySelectorAll('section .num').forEach(function(e){e.textContent=n++;});}
+  function saveOrder(){state.order=Array.prototype.map.call(main.querySelectorAll('section'),function(s){return s.id;});save(state);}
+  function saveContent(s){state.content[s.id]=s.querySelector('.sec-body').innerHTML;save(state);}
+  function esc(s){var d=document.createElement('div');d.textContent=(s==null?'':s);return d.innerHTML;}
+  function linkify(s){return esc(s).replace(/(https?:\/\/[^\s<]+)/g,function(u){return '<a href="'+u+'" target="_blank" rel="noopener">'+u+'</a>';});}
+
+  var rail=document.createElement('div'); rail.id='crail'; rail.setAttribute('contenteditable','false'); document.body.appendChild(rail);
+  var comments={}, threads={};
+
+  function makeThread(sec){
+    var t=document.createElement('div'); t.className='cthread'; t.dataset.sec=sec.id; t.setAttribute('contenteditable','false');
+    t.innerHTML='<div class="ct-list"></div><form class="ct-add"><textarea class="ct-text" rows="1" placeholder="Escribe un comentario… (enlaces y saltos de línea permitidos)"></textarea><div class="ct-row"><input class="ct-author" placeholder="Tu nombre (opcional)"><button type="submit">Comentar</button></div></form>';
+    var ta=t.querySelector('.ct-text');
+    function grow(){ta.style.height='auto';ta.style.height=ta.scrollHeight+'px';}
+    ta.addEventListener('input',function(){grow();layout();});
+    t.querySelector('form').addEventListener('submit',function(ev){
+      ev.preventDefault();
+      var body=ta.value.replace(/\s+$/,''); if(!body.trim())return;
+      var author=t.querySelector('.ct-author').value.trim();
+      fetch(API+'/comments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({wf:WF,section:sec.id,author:author,body:body})})
+        .then(function(r){return r.json();}).then(function(c){
+          (comments[sec.id]=comments[sec.id]||[]).push(c);
+          ta.value=''; grow(); renderThread(sec.id); layout(); notify('Comentario guardado');
+        }).catch(function(){notify('No se pudo guardar (sin conexión)');});
+    });
+    threads[sec.id]=t; return t;
+  }
+
+  function renderThread(sid){
+    var t=threads[sid]; if(!t)return;
+    var items=(comments[sid]||[]).slice().sort(function(a,b){return new Date(a.created_at)-new Date(b.created_at);});
+    var list=t.querySelector('.ct-list');
+    var lastRes=-1;
+    items.forEach(function(c,i){ if(/RESUELTO|ANOTADO/i.test(c.body||'')) lastRes=i; });
+    var hist = lastRes>=0 ? items.slice(0,lastRes+1) : [];
+    var pend = lastRes>=0 ? items.slice(lastRes+1) : items;
+    function itemHTML(c){ return '<div class="ct-item"><div class="ct-body">'+linkify(c.body)+'</div><div class="ct-meta"><span>'+esc(c.author||'Anónimo')+' · '+new Date(c.created_at).toLocaleString('es-PE')+'</span><button class="ct-del" data-id="'+c.id+'" title="Eliminar">✕</button></div></div>'; }
+    var open = t.dataset.histopen==='1';
+    var html='';
+    if(hist.length){
+      html += '<button type="button" class="ct-hist-toggle">'+(open?'▾ Ocultar resueltos ('+hist.length+')':'▸ Ver resueltos ('+hist.length+')')+'</button>';
+      html += '<div class="ct-hist"'+(open?'':' style="display:none"')+'>'+hist.map(itemHTML).join('')+'</div>';
+    }
+    html += pend.map(itemHTML).join('');
+    if(!pend.length && !hist.length){ html += '<div class="ct-empty">Sin comentarios aún</div>'; }
+    else if(!pend.length){ html += '<div class="ct-empty">✓ Todo resuelto en esta sección</div>'; }
+    list.innerHTML=html;
+    var tg=list.querySelector('.ct-hist-toggle');
+    if(tg){ tg.addEventListener('click',function(){ t.dataset.histopen=(t.dataset.histopen==='1')?'0':'1'; renderThread(sid); layout(); }); }
+    list.querySelectorAll('.ct-del').forEach(function(b){
+      b.addEventListener('click',function(){
+        fetch(API+'/comments/'+b.dataset.id,{method:'DELETE'}).catch(function(){});
+        comments[sid]=(comments[sid]||[]).filter(function(x){return String(x.id)!==b.dataset.id;});
+        renderThread(sid); layout();
+      });
+    });
+    var badge=document.querySelector('[data-cnt="'+sid+'"]');
+    if(badge){ badge.textContent = pend.length ? pend.length : (hist.length?'✓':'0'); badge.parentNode.classList.toggle('has',pend.length>0); }
+  }
+
+  function layout(){
+    var wide=window.innerWidth>1100;
+    if(wide){
+      rail.style.display='block';
+      var prev=0;
+      main.querySelectorAll('section').forEach(function(sec){
+        var t=threads[sec.id]; if(!t)return;
+        if(t.parentNode!==rail) rail.appendChild(t);
+        t.classList.remove('inline','open');
+        var top=sec.getBoundingClientRect().top+window.scrollY;
+        if(top<prev+8) top=prev+8;
+        t.style.top=top+'px';
+        prev=top+t.offsetHeight;
+      });
+    } else {
+      rail.style.display='none';
+      main.querySelectorAll('section').forEach(function(sec){
+        var t=threads[sec.id]; if(!t)return;
+        t.style.top=''; t.classList.add('inline');
+        if(t.parentNode!==sec) sec.appendChild(t);
+      });
+    }
+  }
+
+  function loadRemote(){
+    fetch(API+'/comments?wf='+WF).then(function(r){return r.json();}).then(function(rows){
+      comments={};
+      rows.forEach(function(c){(comments[c.section]=comments[c.section]||[]).push(c);});
+      Object.keys(threads).forEach(renderThread);
+      layout();
+    }).catch(function(){});
+  }
+
+  main.querySelectorAll('section').forEach(function(sec){
+    var tools=document.createElement('div'); tools.className='sec-tools'; tools.setAttribute('contenteditable','false');
+    tools.innerHTML='<button type="button" class="up" title="Subir">↑</button><button type="button" class="down" title="Bajar">↓</button><button type="button" class="c-btn" title="Comentar">💬 <span data-cnt="'+sec.id+'">0</span></button>';
+    sec.appendChild(tools);
+    makeThread(sec);
+    tools.querySelector('.up').addEventListener('click',function(){var p=sec.previousElementSibling;if(p){main.insertBefore(sec,p);renumber();saveOrder();layout();}});
+    tools.querySelector('.down').addEventListener('click',function(){var n=sec.nextElementSibling;if(n){main.insertBefore(n,sec);renumber();saveOrder();layout();}});
+    tools.querySelector('.c-btn').addEventListener('click',function(){
+      var t=threads[sec.id]; if(!t)return;
+      if(window.innerWidth>1100){ t.querySelector('.ct-text').focus(); t.classList.add('flash'); setTimeout(function(){t.classList.remove('flash');},800); t.scrollIntoView({behavior:'smooth',block:'center'}); }
+      else { t.classList.toggle('open'); if(t.classList.contains('open')) t.scrollIntoView({behavior:'smooth',block:'nearest'}); }
+    });
+    sec.querySelector('.sec-body').addEventListener('input',function(){clearTimeout(sec._t);sec._t=setTimeout(function(){saveContent(sec);layout();},400);});
+  });
+
+  loadRemote();
+  layout();
+  window.addEventListener('resize',layout);
+  window.addEventListener('load',function(){setTimeout(layout,200);});
+  setTimeout(layout,500);
+
+  var btnEdit=document.getElementById('btn-edit');
+  btnEdit.addEventListener('click',function(){
+    var on=document.body.classList.toggle('editing');
+    btnEdit.classList.toggle('on',on);
+    btnEdit.textContent=on?'✔ Terminar edición':'✏️ Editar textos';
+    main.querySelectorAll('.sec-body').forEach(function(b){b.contentEditable=on?'true':'false';});
+    setTimeout(layout,60);
+    notify(on?'Haz clic sobre cualquier texto para editarlo':'Edición guardada');
+  });
+
+  document.getElementById('btn-export').addEventListener('click',function(){
+    var out=['Comentarios — Admisión Pregrado ('+new Date().toLocaleDateString('es-PE')+')',''];var total=0;
+    main.querySelectorAll('section').forEach(function(sec,idx){
+      var items=comments[sec.id]||[]; if(!items.length)return;
+      out.push((idx+1)+'. '+sec.dataset.title);
+      items.forEach(function(c){total++;out.push('   - '+(c.author?c.author+': ':'')+c.body.replace(/\n+/g,' ')+' ['+new Date(c.created_at).toLocaleString('es-PE')+']');});
+      out.push('');
+    });
+    if(!total){notify('No hay comentarios para copiar');return;}
+    var text=out.join('\n');
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){notify(total+' comentario(s) copiado(s)');});}
+    else{var ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();notify(total+' comentario(s) copiado(s)');}
+  });
+
+  document.getElementById('btn-reset').addEventListener('click',function(){
+    if(confirm('¿Restablecer textos y orden de este navegador? Los comentarios viven en la base de datos y NO se borran.')){localStorage.removeItem(KEY);location.reload();}
+  });
+
+  renumber();
+
+})();
+</script>
+
+</body>
+</html>
