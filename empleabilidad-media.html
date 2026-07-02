@@ -78,6 +78,12 @@
   .chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
   .chip{background:#ffffff1a;border:1px solid #ffffff44;border-radius:20px;padding:6px 14px;font-size:13px;}
   .band .btn.ghost{background:#fff;border-color:#fff;}
+  .band .events{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;width:100%;margin-top:16px;}
+  .evcard{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.20);border-radius:12px;padding:14px 16px;}
+  .evtype{display:inline-block;font-family:'Montserrat';font-weight:700;font-size:11px;letter-spacing:.4px;color:#eaf1fb;background:rgba(255,255,255,.16);border-radius:20px;padding:3px 11px;margin-bottom:9px;}
+  .evt{font-family:'Montserrat';font-weight:600;font-size:14.5px;color:#fff;line-height:1.3;margin-bottom:7px;}
+  .evd{font-size:12.5px;color:#b7c6de;}
+  @media(max-width:760px){ .band .events{grid-template-columns:1fr;} }
   /* tabs */
   .tabs{display:flex;gap:6px;margin-bottom:0;}
   .tab{font-family:'Montserrat';font-weight:600;font-size:14px;padding:11px 20px;border:1px solid var(--line);border-bottom:none;
@@ -295,13 +301,19 @@
 
     <!-- 4 NETWORKING -->
     <section data-title="Networking y eventos">
-      <div class="band">
-        <div>
-          <h2>Networking y empleabilidad para impulsar tu carrera</h2>
-          <p>Conecta, aprende y acerca tu talento al mundo laboral.</p>
-          <div class="chips"><span class="chip">Feria de Empleabilidad PUCP</span><span class="chip">Plan de Vinculación con Empleadores</span><span class="chip">Encuentros con facultades</span></div>
+      <div class="band" style="flex-direction:column;align-items:stretch;">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;">
+          <div>
+            <h2>Networking y empleabilidad para impulsar tu carrera</h2>
+            <p>Conecta, aprende y acerca tu talento al mundo laboral — próximos eventos, talleres y ferias de la DAES.</p>
+          </div>
+          <a class="btn ghost" href="https://daes.pucp.edu.pe/eventos/" target="_blank" rel="noopener">Ver todos los eventos →</a>
         </div>
-        <a class="btn ghost" href="#">Ver próximos eventos →</a>
+        <div class="events">
+          <div class="evcard"><span class="evtype">Curso/Taller</span><div class="evt">Taller de Comunicación Asertiva</div><div class="evd">14 jul 2026</div></div>
+          <div class="evcard"><span class="evtype">Curso/Taller</span><div class="evt">Taller de Elevator Pitch y Storytelling</div><div class="evd">15 jul 2026</div></div>
+          <div class="evcard"><span class="evtype">Curso/Taller</span><div class="evt">Taller de Entrevistas de Trabajo</div><div class="evd">16 jul 2026</div></div>
+        </div>
       </div>
     </section>
 
