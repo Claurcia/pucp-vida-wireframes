@@ -68,23 +68,23 @@
   .two{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;}
   .two.left{grid-template-columns:.85fr 1.15fr;}
   /* oferta big cards */
-  .bigcard{position:relative;border-radius:16px;background:#565b63;min-height:460px;padding:24px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;}
-  .bigcard::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,24,30,.6),rgba(20,24,30,.12) 60%);pointer-events:none;}
-  .bigcard.tp{justify-content:flex-start;}
-  .bigcard.tp::after{background:linear-gradient(to bottom,rgba(28,33,42,.82),rgba(28,33,42,.06) 58%);}
+  .bigcard{position:relative;border-radius:16px;background:#3d424a;min-height:460px;padding:24px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;}
+  .bigcard::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(12,15,20,.55),rgba(12,15,20,.1) 62%);pointer-events:none;}
+  .bigcard.tp,.bigcard.top{justify-content:flex-start;}
+  .bigcard.tp::after,.bigcard.top::after{background:linear-gradient(to bottom,rgba(12,15,20,.55),rgba(12,15,20,.1) 62%);}
   .bigcard h3,.bigcard p{position:relative;z-index:1;}
   .bigcard h3{font-family:'Montserrat';font-weight:700;font-size:22px;margin:0 0 8px;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.55);}
   .bigcard p{color:#eef0f2;font-size:14px;margin:0;max-width:240px;text-shadow:0 1px 6px rgba(0,0,0,.55);}
   .bigcard .ar{position:absolute;z-index:2;width:42px;height:42px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;}
-  .bigcard.tp .ar{top:24px;right:24px;}
-  .bigcard:not(.tp) .ar{bottom:24px;right:24px;}
+  .bigcard.tp .ar,.bigcard.top .ar{top:24px;right:24px;}
+  .bigcard:not(.tp):not(.top) .ar{bottom:24px;right:24px;}
   /* rankings */
-  .top{background:var(--bg2);border-radius:200px 200px 12px 12px;padding:34px 22px 26px;text-align:center;}
-  .top.alt{border-radius:50%;background:#fff;border:1px solid var(--line);aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;}
-  .top .lab{font-family:'Montserrat';font-weight:700;font-size:12px;letter-spacing:1.5px;color:var(--soft);}
-  .top .one{font-size:36px;margin:2px 0 12px;}
-  .top .ds{font-size:13.5px;color:var(--ink);min-height:54px;font-weight:600;}
-  .top .yr{color:var(--soft);font-size:12.5px;margin-top:10px;}
+  .rk{background:var(--bg2);border-radius:200px 200px 12px 12px;padding:34px 22px 26px;text-align:center;}
+  .rk.alt{border-radius:50%;background:#fff;border:1px solid var(--line);aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;}
+  .rk .lab{font-family:'Montserrat';font-weight:700;font-size:12px;letter-spacing:1.5px;color:var(--soft);}
+  .rk .one{font-size:36px;margin:2px 0 12px;}
+  .rk .ds{font-size:13.5px;color:var(--ink);min-height:54px;font-weight:600;}
+  .rk .yr{color:var(--soft);font-size:12.5px;margin-top:10px;}
   .talento{display:grid;grid-template-columns:.7fr 1fr 1fr 1fr;gap:18px;align-items:center;margin-top:34px;}
   .circstat{aspect-ratio:1;border-radius:50%;border:1.5px solid var(--ph3);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:14px;}
   .circstat.fill{background:var(--ph2);border:none;}
@@ -226,9 +226,9 @@
     <p class="eyebrow"><span class="dot">▸</span> Reconocimientos <span class="dot">◂</span></p>
     <h2 class="t">Lideramos los rankings internacionales</h2>
     <div class="g3" style="margin-top:22px;">
-      <div class="top"><div class="lab">TOP</div><div class="one em">— #1 —</div><div class="ds">Del Perú en QS World University Ranking 2027</div><div class="yr">Año: 2027</div></div>
-      <div class="top alt"><div class="lab">TOP</div><div class="one em">— #1 —</div><div class="ds">Del Perú en QS World University Rankings: Latin America &amp; The Caribbean 2026</div><div class="yr">Año: 2026</div></div>
-      <div class="top"><div class="lab">TOP</div><div class="one em">— #1 —</div><div class="ds">Del Perú en QS World University Rankings: Sustainability 2026</div><div class="yr">Año: 2026</div></div>
+      <div class="rk"><div class="lab">TOP</div><div class="one em">— #1 —</div><div class="ds">Del Perú en QS World University Ranking 2027</div><div class="yr">Año: 2027</div></div>
+      <div class="rk alt"><div class="lab">TOP</div><div class="one em">— #1 —</div><div class="ds">Del Perú en QS World University Rankings: Latin America &amp; The Caribbean 2026</div><div class="yr">Año: 2026</div></div>
+      <div class="rk"><div class="lab">TOP</div><div class="one em">— #1 —</div><div class="ds">Del Perú en QS World University Rankings: Sustainability 2026</div><div class="yr">Año: 2026</div></div>
     </div>
     <div class="talento">
       <div>
