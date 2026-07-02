@@ -160,10 +160,11 @@
   @media(max-width:760px){ .geomap-wrap{grid-template-columns:1fr;} }
   /* ===== recursos: 3 columnas ===== */
   .profiles3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
-  .pcard{border:1px solid var(--line);border-radius:12px;padding:18px 20px;border-top:4px solid var(--azul);}
+  .pcard{border:1px solid var(--line);border-radius:12px;padding:18px 20px;border-top:4px solid var(--azul);display:flex;flex-direction:column;}
   .pcard .pc-h{font-family:'Montserrat';font-weight:700;font-size:15.5px;color:var(--azul);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
   .pcard ul{margin:0;padding-left:18px;}
   .pcard li{font-size:13.5px;margin-bottom:9px;color:var(--ink);}
+  .pcard .btn{margin-top:auto;align-self:flex-start;}
   @media(max-width:760px){ .profiles3{grid-template-columns:1fr;} }
 
   /* ===== herramientas de revisión / comentarios ===== */
@@ -319,12 +320,14 @@
             <li>Feria de Empleabilidad PUCP y otros espacios de networking.</li>
             <li>Ofertas laborales y de prácticas preprofesionales.</li>
           </ul>
+          <a class="btn sm" href="https://pucp-csm.symplicity.com/students/?signin_tab=0" target="_blank" rel="noopener">Ingresar al Sistema de Oportunidades Laborales →</a>
         </div>
         <div class="pcard">
           <div class="pc-h">💼 Para egresados</div>
           <ul>
             <li>Acceso al Sistema de Oportunidades Laborales PUCP, con convocatorias exclusivas para la comunidad PUCP.</li>
           </ul>
+          <a class="btn sm" href="https://pucp-csm.symplicity.com/students/?signin_tab=0" target="_blank" rel="noopener">Ingresar al Sistema de Oportunidades Laborales →</a>
         </div>
         <div class="pcard">
           <div class="pc-h">🏢 Para empresas</div>
@@ -333,6 +336,7 @@
             <li>Plan de Vinculación con Empleadores: alianzas y acercamiento con la Universidad.</li>
             <li>Feria de Empleabilidad PUCP para identificar y reclutar talento.</li>
           </ul>
+          <a class="btn sm" href="https://pucp-csm.symplicity.com/students/?signin_tab=0" target="_blank" rel="noopener">Ingresar al Sistema de Oportunidades Laborales →</a>
         </div>
       </div>
     </section>
