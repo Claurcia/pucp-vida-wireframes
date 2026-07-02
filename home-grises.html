@@ -247,7 +247,7 @@
     <h2 class="t">Una experiencia educativa global</h2>
     <div class="two" style="grid-template-columns:1fr 2fr 1fr;align-items:center;margin-top:20px;">
       <div>
-        <div class="worldstat fill"><span class="num em">+300</span><span class="lbl">Convenios internacionales</span></div>
+        <div class="worldstat fill"><span class="num em">+ de 380</span><span class="lbl">Convenios internacionales</span></div>
         <div class="worldstat" style="margin-top:14px;"><span class="num em">11</span><span class="lbl">Alianzas con universidades Top 100 mundial</span></div>
       </div>
       <div class="mapwrap">
@@ -439,10 +439,7 @@
     var ed=blk.querySelector('.editable');if(!ed)return;
     var body=ed.innerHTML; savedContent[blk.id]=body;
     try{localStorage.setItem('home-content',JSON.stringify(savedContent));}catch(e){}
-    var prev=txtId[blk.id];
-    fetch(API+'/comments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({wf:TXTWF,section:blk.id,author:'edit',body:body})})
-      .then(function(r){return r.json();}).then(function(c){txtId[blk.id]=c.id;if(prev){fetch(API+'/comments/'+prev,{method:'DELETE'}).catch(function(){});}notify('Texto guardado');})
-      .catch(function(){notify('Guardado local (sin conexión)');});
+    notify('Texto guardado (en este navegador)');
   }
   function makeEditable(blk){
     var ed=document.createElement('div');ed.className='editable';
@@ -467,25 +464,15 @@
   });
   // footer editable
   var ftr=document.querySelector('footer'); if(ftr){ if(!ftr.id)ftr.id='sec-footer'; makeEditable(ftr); }
-  // cargar textos desde la BBDD (compartidos)
-  function loadContentRemote(){
-    fetch(API+'/comments?wf='+TXTWF).then(function(r){return r.json();}).then(function(rows){
-      var by={};rows.forEach(function(c){var cur=by[c.section];if(!cur||new Date(c.created_at)>=new Date(cur.created_at))by[c.section]=c;});
-      Object.keys(by).forEach(function(id){var blk=document.getElementById(id);if(!blk)return;var ed=blk.querySelector('.editable');if(!ed)return;txtId[id]=by[id].id;if(!document.body.classList.contains('editing')){ed.innerHTML=by[id].body;}savedContent[id]=by[id].body;});
-      try{localStorage.setItem('home-content',JSON.stringify(savedContent));}catch(e){}
-      layout();
-    }).catch(function(){});
-  }
-  loadContentRemote();
+  // (los textos editados se guardan solo en este navegador; el archivo es la fuente compartida)
   loadRemote();layout();window.addEventListener('resize',layout);window.addEventListener('load',function(){setTimeout(layout,200);});setTimeout(layout,500);
   var btnToggle=document.getElementById('btn-toggle');
   function applyPref(){var off=localStorage.getItem('home-comments-off')==='1';document.body.classList.toggle('comments-off',off);btnToggle.textContent=off?'💬 Comentarios: OFF':'💬 Comentarios: ON';setTimeout(layout,60);}
   btnToggle.addEventListener('click',function(){var off=!(localStorage.getItem('home-comments-off')==='1');localStorage.setItem('home-comments-off',off?'1':'0');applyPref();});
   applyPref();
   document.getElementById('btn-resetorder').addEventListener('click',function(){
-    if(!confirm('¿Restablecer a la versión original? Esto borra los textos editados y el orden PARA TODOS.'))return;
-    localStorage.removeItem('home-order');localStorage.removeItem('home-content');
-    fetch(API+'/comments?wf='+TXTWF).then(function(r){return r.json();}).then(function(rows){return Promise.all(rows.map(function(c){return fetch(API+'/comments/'+c.id,{method:'DELETE'}).catch(function(){});}));}).then(function(){location.reload();}).catch(function(){location.reload();});
+    if(!confirm('¿Restablecer el orden y los textos editados de este navegador a la versión original?'))return;
+    localStorage.removeItem('home-order');localStorage.removeItem('home-content');location.reload();
   });
   var btnEdit=document.getElementById('btn-edit');
   btnEdit.addEventListener('click',function(){var on=!document.body.classList.contains('editing');document.body.classList.toggle('editing',on);btnEdit.textContent=on?'✔ Terminar edición':'✏️ Editar textos';document.querySelectorAll('.editable').forEach(function(ed){ed.contentEditable=on?'true':'false';});notify(on?'Haz clic sobre cualquier texto (incluido el menú/header) para editarlo':'Textos guardados');setTimeout(layout,60);});
