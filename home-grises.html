@@ -221,26 +221,6 @@
     </div>
   </div></section>
 
-  <!-- RECONOCIMIENTOS / RANKINGS -->
-  <section data-title="Reconocimientos — Rankings + Talento"><div class="wrap">
-    <p class="eyebrow"><span class="dot">▸</span> Reconocimientos <span class="dot">◂</span></p>
-    <h2 class="t">Lideramos los rankings internacionales</h2>
-    <div class="g3" style="margin-top:22px;">
-      <div class="rk"><div class="lab">TOP</div><div class="one em">— #1 —</div><div class="ds">Del Perú en QS World University Ranking 2027</div><div class="yr">Año: 2027</div></div>
-      <div class="rk alt"><div class="lab">TOP</div><div class="one em">— #1 —</div><div class="ds">Del Perú en QS World University Rankings: Latin America &amp; The Caribbean 2026</div><div class="yr">Año: 2026</div></div>
-      <div class="rk"><div class="lab">TOP</div><div class="one em">— #1 —</div><div class="ds">Del Perú en QS World University Rankings: Sustainability 2026</div><div class="yr">Año: 2026</div></div>
-    </div>
-    <div class="talento">
-      <div>
-        <h2 class="t l" style="font-size:24px;margin-bottom:14px;">Impulsamos el talento que lidera</h2>
-        <a class="btn ghost sm" href="#">Ver más Cifras ↗</a>
-      </div>
-      <div class="circstat"><span class="num em">+175</span><span class="lbl">Programas de posgrado</span></div>
-      <div class="circstat fill"><span class="num em">80%</span><span class="lbl">Alumnos en puestos reconocidos</span></div>
-      <div class="circstat"><span class="num em">110,000</span><span class="lbl">Egresados en el mundo laboral</span></div>
-    </div>
-  </div></section>
-
   <!-- PUCP EN EL MUNDO (oscuro) -->
   <section class="darksec" data-title="PUCP en el mundo"><div class="wrap">
     <p class="eyebrow"><span class="dot">▸</span> PUCP en el mundo <span class="dot">◂</span></p>
@@ -317,6 +297,26 @@
     <div class="ocards">
       <div class="ostory dark"><span class="ar">↗</span><h3>Líderes que transforman</h3><div class="img"></div><p>Testimonios de innovación, ciencia y compromiso social.</p></div>
       <div class="ostory"><span class="ar">↗</span><h3>Historias de egresados</h3><p>Trayectorias reales de egresados que destacan en distintos campos.</p><div class="img"></div></div>
+    </div>
+  </div></section>
+
+  <!-- RECONOCIMIENTOS / RANKINGS (movido debajo de Orgullo) -->
+  <section data-title="Reconocimientos — Rankings + Talento"><div class="wrap">
+    <p class="eyebrow"><span class="dot">▸</span> Reconocimientos <span class="dot">◂</span></p>
+    <h2 class="t">Lideramos los rankings internacionales</h2>
+    <div class="g3" style="margin-top:22px;">
+      <div class="rk"><div class="lab">TOP</div><div class="one em">— #1 —</div><div class="ds">Del Perú en QS World University Ranking 2027</div><div class="yr">Año: 2027</div></div>
+      <div class="rk alt"><div class="lab">TOP</div><div class="one em">— #1 —</div><div class="ds">Del Perú en QS World University Rankings: Latin America &amp; The Caribbean 2026</div><div class="yr">Año: 2026</div></div>
+      <div class="rk"><div class="lab">TOP</div><div class="one em">— #1 —</div><div class="ds">Del Perú en QS World University Rankings: Sustainability 2026</div><div class="yr">Año: 2026</div></div>
+    </div>
+    <div class="talento">
+      <div>
+        <h2 class="t l" style="font-size:24px;margin-bottom:14px;">Impulsamos el talento que lidera</h2>
+        <a class="btn ghost sm" href="#">Ver más Cifras ↗</a>
+      </div>
+      <div class="circstat"><span class="num em">+175</span><span class="lbl">Programas de posgrado</span></div>
+      <div class="circstat fill"><span class="num em">80%</span><span class="lbl">Alumnos en puestos reconocidos</span></div>
+      <div class="circstat"><span class="num em">110,000</span><span class="lbl">Egresados en el mundo laboral</span></div>
     </div>
   </div></section>
 
@@ -431,8 +431,8 @@
   // ids estables en orden original
   Array.prototype.forEach.call(main.querySelectorAll('section'),function(sec,i){ if(!sec.id)sec.id='sec-'+i; });
   // aplica orden guardado
-  try{var ord=JSON.parse(localStorage.getItem('home-order'));if(Array.isArray(ord)){ord.forEach(function(id){var s=document.getElementById(id);if(s)main.appendChild(s);});}}catch(e){}
-  function saveOrder(){try{localStorage.setItem('home-order',JSON.stringify(Array.prototype.map.call(main.querySelectorAll('section'),function(s){return s.id;})));}catch(e){}}
+  try{var ord=JSON.parse(localStorage.getItem('home-order-v2'));if(Array.isArray(ord)){ord.forEach(function(id){var s=document.getElementById(id);if(s)main.appendChild(s);});}}catch(e){}
+  function saveOrder(){try{localStorage.setItem('home-order-v2',JSON.stringify(Array.prototype.map.call(main.querySelectorAll('section'),function(s){return s.id;})));}catch(e){}}
   var TXTWF='home-grises-txt', txtId={};
   var savedContent={};try{savedContent=JSON.parse(localStorage.getItem('home-content'))||{};}catch(e){savedContent={};}
   function saveContent(blk){
@@ -472,7 +472,7 @@
   applyPref();
   document.getElementById('btn-resetorder').addEventListener('click',function(){
     if(!confirm('¿Restablecer el orden y los textos editados de este navegador a la versión original?'))return;
-    localStorage.removeItem('home-order');localStorage.removeItem('home-content');location.reload();
+    localStorage.removeItem('home-order-v2');localStorage.removeItem('home-content');location.reload();
   });
   var btnEdit=document.getElementById('btn-edit');
   btnEdit.addEventListener('click',function(){var on=!document.body.classList.contains('editing');document.body.classList.toggle('editing',on);btnEdit.textContent=on?'✔ Terminar edición':'✏️ Editar textos';document.querySelectorAll('.editable').forEach(function(ed){ed.contentEditable=on?'true':'false';});notify(on?'Haz clic sobre cualquier texto (incluido el menú/header) para editarlo':'Textos guardados');setTimeout(layout,60);});
