@@ -25,23 +25,23 @@
   h1,h2,h3,.mont{font-family:'Montserrat',Arial,sans-serif;}
   .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
   a{color:inherit;}
-  /* ---- header ---- */
-  .util{background:var(--tint);border-bottom:1px solid var(--line);font-size:12.5px;color:var(--ink-soft);}
-  .util .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:8px 24px;flex-wrap:wrap;}
-  .util .profiles{display:flex;gap:12px;flex-wrap:wrap;}
-  .util .sep{color:var(--ph-line);}
-  .util .right{display:flex;gap:12px;align-items:center;}
-  .util .becas{font-weight:700;color:var(--azul);letter-spacing:.5px;}
-  .util .hot{background:#fff;border:1px solid var(--line);border-radius:5px;padding:4px 10px;font-weight:500;}
-  .nav{background:var(--azul);color:#fff;}
-  .nav .wrap{display:flex;align-items:center;gap:18px;padding:14px 24px;}
-  .logo{display:flex;align-items:center;gap:9px;font-family:'Montserrat';font-weight:800;letter-spacing:1px;font-size:21px;flex:none;}
-  .nav ul{display:flex;gap:15px;list-style:none;margin:0;padding:0;flex:1;flex-wrap:wrap;font-size:13px;}
-  .nav li{color:#cdd8ea;white-space:nowrap;}
-  .nav li.active{color:#fff;font-weight:700;border-bottom:2px solid #fff;padding-bottom:3px;}
-  .postula{background:#fff;color:var(--azul);font-family:'Montserrat';font-weight:700;border-radius:7px;padding:9px 16px;font-size:13px;flex:none;}
-  .lupa{width:36px;height:36px;border:1.5px solid #fff;border-radius:7px;display:flex;align-items:center;justify-content:center;flex:none;}
-  .crumb{font-size:12.5px;color:var(--ink-soft);padding:14px 0 0;}
+  /* ---- header (unificado con home-grises.html) ---- */
+  .site-header{position:sticky;top:0;z-index:50;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.06);}
+  .site-header .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+  .topnav{background:#2b2f36;color:#dfe3e8;font-size:12.5px;}
+  .topnav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:9px 24px;flex-wrap:wrap;}
+  .topnav .l,.topnav .r{display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
+  .logorow{border-bottom:1px solid #e3e6ea;}
+  .logorow .wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;}
+  .logo{display:flex;align-items:center;gap:9px;font-family:'Montserrat',Arial,sans-serif;font-weight:800;font-size:22px;letter-spacing:1px;color:#1f2530;}
+  .logo svg circle,.logo svg path{stroke:#1f2530;fill:#1f2530;}
+  .logorow .r{display:flex;align-items:center;gap:18px;}
+  .search{display:flex;align-items:center;gap:7px;font-size:14px;color:#5b6470;}
+  .postula{background:#2b2f36;color:#fff;font-family:'Montserrat',Arial,sans-serif;font-weight:700;border-radius:24px;padding:11px 22px;font-size:14px;}
+  .menu{border-bottom:1px solid #e3e6ea;}
+  .menu .wrap{display:flex;gap:18px;flex-wrap:wrap;padding:13px 24px;font-size:13.5px;color:#1f2530;}
+  .menu span.active{font-weight:700;border-bottom:2px solid #1f2530;padding-bottom:2px;}
+  .crumb{font-size:12.5px;color:#5b6470;padding:14px 0 0;}
   /* ---- secciones ---- */
   section{padding:30px 0;border-bottom:1px solid var(--tint);}
   .eyebrow{font-family:'Montserrat';font-weight:700;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--azul);margin:0 0 6px;}
@@ -185,7 +185,7 @@
   section{position:relative;}
   .toast{position:fixed;bottom:78px;right:18px;z-index:101;background:var(--azul);color:#fff;font-size:12.5px;border-radius:7px;padding:9px 14px;opacity:0;transition:opacity .25s;pointer-events:none;}
   .toast.show{opacity:1;}
-  @media(min-width:1101px){ .util .wrap,.nav .wrap,.wrap,.legend{margin-right:344px;} footer .wrap{margin-right:344px;} }
+  @media(min-width:1101px){ .site-header .wrap,.wrap,.legend{margin-right:344px;} footer .wrap{margin-right:344px;} }
   #crail{position:absolute;top:0;right:16px;width:312px;z-index:40;}
   .cthread{position:absolute;right:0;width:300px;}
   .cthread.inline{position:static;width:auto;display:none;margin:14px 0 0;}
@@ -206,8 +206,7 @@
   body.comments-off #crail{display:none!important;}
   body.comments-off .sec-tools{display:none!important;}
   @media(min-width:1101px){
-    body.comments-off .util .wrap,
-    body.comments-off .nav .wrap,
+    body.comments-off .site-header .wrap,
     body.comments-off .wrap,
     body.comments-off .legend,
     body.comments-off footer .wrap{margin-right:auto;}
@@ -217,22 +216,18 @@
 </head>
 <body>
 
-  <!-- header -->
-  <div class="util"><div class="wrap">
-    <div class="profiles"><span>Postulante</span><span class="sep">|</span><span>Pregrado · Posgrado</span><span class="sep">|</span><span>Egresado</span><span class="sep">|</span><span>Empresa</span><span class="sep">|</span><span>Estudiante</span></div>
-    <div class="right"><span class="becas">BECAS</span><span class="hot">Intranet y correo</span><span class="hot">PAIDEIA</span></div>
+  <!-- header (unificado con home-grises.html) -->
+  <header class="site-header">
+  <div class="topnav"><div class="wrap">
+    <div class="l"><span>Postulante ▾</span><span>Estudiante</span><span>Profesor</span><span>Administrativo</span><span>Egresado</span><span>Prensa</span><span>Alianza con empresa</span></div>
+    <div class="r"><span>Intranet y correo</span><span>PAIDEIA</span><span>⠿ Accesos</span><span>🌐 ES</span></div>
   </div></div>
-  <div class="nav"><div class="wrap">
-    <div class="logo">
-      <svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="none" stroke="#fff" stroke-width="2"/><path d="M9 24 q11 6 22 0 l-3 5 h-16 z" fill="#fff"/><path d="M20 8 l7 13 h-14 z" fill="#fff"/></svg>PUCP
-    </div>
-    <ul>
-      <li>Conoce la PUCP</li><li>Carreras y Programas</li><li>Admisión</li><li>Internacionalización</li>
-      <li class="active">Empleabilidad</li><li>Investigación que transforma</li><li>Vida Universitaria</li><li>Noticias</li>
-    </ul>
-    <span class="postula">Postula aquí</span>
-    <span class="lupa"><svg width="17" height="17" viewBox="0 0 20 20"><circle cx="8" cy="8" r="6" fill="none" stroke="#fff" stroke-width="2"/><line x1="12.5" y1="12.5" x2="18.5" y2="18.5" stroke="#fff" stroke-width="2"/></svg></span>
+  <div class="logorow"><div class="wrap">
+    <div class="logo"><svg width="32" height="32" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="none" stroke-width="2"/><path d="M9 24 q11 6 22 0 l-3 5 h-16 z"/><path d="M20 8 l7 13 h-14 z"/></svg>PUCP</div>
+    <div class="r"><span class="search">🔍 Buscar</span><span class="postula">Quiero postular</span></div>
   </div></div>
+  <div class="menu"><div class="wrap"><span>Conoce la PUCP</span><span>Carreras y Programas</span><span>Admisión</span><span>Internacionalización</span><span>Investigación</span><span>Vida universitaria</span><span class="active">Empleabilidad</span><span>Noticias y eventos</span></div></div>
+  </header>
   <div class="wrap"><div class="crumb">Inicio › <b>Empleabilidad</b></div></div>
 
   <main>

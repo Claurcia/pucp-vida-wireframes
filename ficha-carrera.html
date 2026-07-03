@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Wireframe — Egresados · PUCP</title>
+<title>Wireframe — Ficha de carrera · PUCP</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
@@ -23,6 +23,7 @@
     --nav-util:#efefef;
     --accent:#555555;
     --accent-soft:#dcdcdc;
+    --ok:#0a7d72;
   }
   *{box-sizing:border-box;}
   body{margin:0;background:var(--page);font-family:'Segoe UI',Arial,sans-serif;color:var(--ink);}
@@ -33,7 +34,6 @@
   .topnav{background:#2b2f36;color:#dfe3e8;font-size:12.5px;}
   .topnav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:9px 24px;flex-wrap:wrap;}
   .topnav .l,.topnav .r{display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
-  .topnav .me{color:#fff;font-weight:700;border-bottom:2px solid #fff;padding-bottom:2px;}
   .logorow{border-bottom:1px solid #e3e6ea;}
   .logorow .wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;}
   .logo{display:flex;align-items:center;gap:9px;font-family:'Montserrat',Arial,sans-serif;font-weight:800;font-size:22px;letter-spacing:1px;color:#1f2530;}
@@ -50,38 +50,45 @@
   .sec{position:relative;background:var(--t1);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
   .sec.alt{background:var(--t0);}
   .sec.star{border-left:5px solid var(--accent);background:#ededed;}
-  .sec.opc{border-style:dashed;background:#fff;}
   .sec h2{margin:0 0 6px;font-size:17px;display:flex;align-items:center;gap:9px;color:var(--ink);flex-wrap:wrap;}
   .num{display:inline-flex;width:26px;height:26px;border-radius:6px;background:var(--t4);color:var(--ink);align-items:center;justify-content:center;font-size:13px;font-weight:700;flex:none;}
   .star .num{background:var(--accent);color:#fff;}
   .st{color:var(--accent);font-size:14px;}
   .tag{background:#fff;border:1px dashed var(--line-strong);color:var(--ink-soft);font-size:11px;padding:3px 9px;border-radius:4px;font-weight:700;letter-spacing:.3px;}
+  .tag.own{border-style:solid;border-color:var(--accent);color:var(--accent);}
   .desc{color:var(--ink-soft);font-size:13px;margin:0 0 12px;}
-  .msg{font-size:13px;color:var(--ink);background:#fff;border-left:3px solid var(--accent);padding:8px 12px;margin:0 0 12px;font-style:italic;}
   .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
   .ph{background:var(--t2);border:1px dashed var(--line-strong);border-radius:7px;}
-  .banner{height:140px;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);font-size:13px;font-weight:600;text-align:center;padding:0 20px;
+  .banner{min-height:140px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--ink-soft);font-size:13px;font-weight:600;text-align:center;padding:18px 20px;
            background:repeating-linear-gradient(45deg,var(--t2),var(--t2) 12px,var(--t1) 12px,var(--t1) 24px);border-radius:8px;margin-bottom:12px;}
-  .ticker{display:flex;align-items:center;gap:12px;background:#fff;border:1px dashed var(--line-strong);border-radius:7px;padding:10px 14px;font-size:12.5px;color:var(--ink);}
-  .ticker .arr{color:var(--ink-soft);font-weight:700;}
+  .banner b{display:block;font-size:20px;color:var(--ink);margin-bottom:6px;}
   .card{flex:1;min-width:0;height:96px;}
   .card.sm{height:80px;}
   .bar{height:16px;background:var(--t3);border-radius:4px;}
   .cta{background:var(--accent);color:#fff;font-weight:700;font-size:13.5px;padding:11px 20px;border-radius:7px;display:inline-block;flex:none;}
   .cta.ghost{background:#fff;color:var(--ink);border:1.5px solid var(--accent);}
   .tabs{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap;}
-  .tab{padding:9px 16px;border:1px solid var(--line);border-radius:6px 6px 0 0;background:#fff;color:var(--ink-soft);font-size:13px;}
-  .tab.on{background:var(--accent-soft);color:var(--ink);font-weight:700;border-bottom:2px solid var(--accent);}
+  .tab{padding:9px 16px;border:1px solid var(--line);border-radius:6px;background:#fff;color:var(--ink-soft);font-size:13px;}
+  .tab.on{background:var(--nav);color:#fff;font-weight:700;border-color:var(--nav);}
   .panel{border:1px dashed var(--line-strong);border-radius:7px;background:#fff;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);font-size:12.5px;text-align:center;padding:14px;}
-  .grid{display:flex;gap:10px;flex-wrap:nowrap;}
-  .cell{flex:1;min-width:0;height:74px;background:var(--t2);border:1px dashed var(--line-strong);border-radius:7px;display:flex;align-items:center;justify-content:center;color:var(--ink);font-size:12px;text-align:center;padding:6px;font-weight:600;}
-  .cell.tall{height:108px;flex-direction:column;gap:5px;}
-  .cell .sub{font-weight:400;font-size:11px;color:var(--ink-soft);}
-  .kpi{font-size:20px;font-weight:800;color:var(--ink);}
+  .grid{display:flex;gap:10px;flex-wrap:wrap;}
+  .cell{flex:1;min-width:120px;height:74px;background:var(--t2);border:1px dashed var(--line-strong);border-radius:7px;display:flex;align-items:center;justify-content:center;color:var(--ink);font-size:12px;text-align:center;padding:6px;font-weight:600;}
+  .cell.tall{height:auto;min-height:104px;flex-direction:column;gap:6px;justify-content:center;padding:14px 10px;}
+  .cell .sub{font-weight:400;font-size:11px;color:var(--ink-soft);line-height:1.35;}
   .contact{color:var(--ink);font-size:13px;line-height:1.7;}
+  /* checklist (requisitos de la ficha) */
+  .check{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:11px 14px;margin-bottom:7px;font-size:13px;font-weight:600;color:var(--ink);}
+  .check .ok{flex:none;width:20px;height:20px;border-radius:50%;background:var(--ok);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;}
+  /* tabla de costos */
+  .costs{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:7px;overflow:hidden;font-size:13px;}
+  .costs th,.costs td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--line);}
+  .costs th{background:var(--t2);font-weight:700;color:var(--ink);}
+  .costs tr:last-child td{border-bottom:none;}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;}
+  .chip{background:#fff;border:1px solid var(--line-strong);border-radius:20px;padding:7px 14px;font-size:12px;font-weight:600;color:var(--ink);white-space:nowrap;}
   .legend{max-width:1200px;margin:0 auto;padding:0 26px 50px;color:var(--ink-soft);font-size:12.5px;line-height:1.7;}
   .legend b{color:var(--ink);}
-  /* ---------- HERRAMIENTAS DE REVISIÓN ---------- */
+  /* ---------- HERRAMIENTAS DE REVISIÓN (comentarios + reordenar) ---------- */
   .toolbar{position:fixed;bottom:18px;right:18px;z-index:100;display:flex;gap:8px;align-items:center;
            background:#fff;border:1px solid var(--line-strong);border-radius:10px;padding:9px 12px;box-shadow:0 4px 18px rgba(0,0,0,.18);}
   .toolbar button{font:inherit;font-size:12.5px;font-weight:700;border:1px solid var(--line-strong);background:var(--t1);color:var(--ink);
@@ -97,23 +104,10 @@
   .sec-tools .c-btn.has{background:var(--accent);color:#fff;border-color:var(--accent);}
   body.editing .sec-body{outline:1.5px dashed var(--accent);outline-offset:6px;border-radius:6px;}
   body.editing .sec-body:focus-within{outline-style:solid;background:rgba(255,255,255,.4);}
-  .sec-comments{display:none;margin-top:14px;border-top:1px dashed var(--line-strong);padding-top:12px;}
-  .sec-comments.open{display:block;}
-  .sec-comments .c-item{background:#fff;border:1px solid var(--line);border-radius:7px;padding:8px 10px;margin-bottom:7px;
-                        font-size:12.5px;display:flex;gap:10px;align-items:flex-start;justify-content:space-between;}
-  .sec-comments .c-meta{color:var(--ink-soft);font-size:11px;display:block;margin-top:3px;}
-  .sec-comments .c-del{border:none;background:none;color:var(--ink-soft);cursor:pointer;font-size:13px;padding:0 2px;flex:none;}
-  .sec-comments .c-del:hover{color:#a33;}
-  .sec-comments form{display:flex;gap:7px;flex-wrap:wrap;}
-  .sec-comments input,.sec-comments textarea{font:inherit;font-size:12.5px;border:1px solid var(--line-strong);border-radius:6px;padding:7px 9px;}
-  .sec-comments input{width:140px;}
-  .sec-comments textarea{flex:1;min-width:220px;resize:vertical;min-height:36px;}
-  .sec-comments form button{font:inherit;font-size:12.5px;font-weight:700;background:var(--accent);color:#fff;border:none;border-radius:6px;padding:7px 14px;cursor:pointer;}
   .toast{position:fixed;bottom:78px;right:18px;z-index:101;background:var(--nav);color:#fff;font-size:12.5px;border-radius:7px;padding:9px 14px;
          opacity:0;transition:opacity .25s;pointer-events:none;}
   .toast.show{opacity:1;}
   @media print{.toolbar,.sec-tools,.toast{display:none!important;}}
-
   /* ===== comentarios estilo Google Docs ===== */
   @media(min-width:1101px){ .site-header .wrap, .wrap, .legend{ margin-right:344px; } }
   #crail{position:absolute;top:0;right:16px;width:312px;z-index:40;}
@@ -146,137 +140,131 @@
   <!-- HEADER (unificado con home-grises.html) -->
   <header class="site-header">
   <div class="topnav"><div class="wrap">
-    <div class="l"><span>Postulante ▾</span><span>Estudiante</span><span>Profesor</span><span>Administrativo</span><span class="me">Egresado</span><span>Prensa</span><span>Alianza con empresa</span></div>
+    <div class="l"><span>Postulante ▾</span><span>Estudiante</span><span>Profesor</span><span>Administrativo</span><span>Egresado</span><span>Prensa</span><span>Alianza con empresa</span></div>
     <div class="r"><span>Intranet y correo</span><span>PAIDEIA</span><span>⠿ Accesos</span><span>🌐 ES</span></div>
   </div></div>
   <div class="logorow"><div class="wrap">
     <div class="logo"><svg width="32" height="32" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="none" stroke-width="2"/><path d="M9 24 q11 6 22 0 l-3 5 h-16 z"/><path d="M20 8 l7 13 h-14 z"/></svg>PUCP</div>
     <div class="r"><span class="search">🔍 Buscar</span><span class="postula">Quiero postular</span></div>
   </div></div>
-  <div class="menu"><div class="wrap"><span>Conoce la PUCP</span><span>Carreras y Programas</span><span>Admisión</span><span>Internacionalización</span><span>Investigación</span><span>Vida universitaria</span><span>Empleabilidad</span><span>Noticias y eventos</span></div></div>
+  <div class="menu"><div class="wrap"><span>Conoce la PUCP</span><span class="active">Carreras y Programas</span><span>Admisión</span><span>Internacionalización</span><span>Investigación</span><span>Vida universitaria</span><span>Empleabilidad</span><span>Noticias y eventos</span></div></div>
   </header>
 
   <div class="wrap">
-    <div class="crumb">Inicio › <b>Egresados</b></div>
+    <div class="crumb">Inicio › Carreras y Programas › <b>Ingeniería Informática</b></div>
   </div>
 
   <!-- ===== BODY ===== -->
   <main class="wrap" id="zones">
 
-    <!-- 1 — banner video encabeza (Claudia, 18/06) -->
-    <section class="sec star" id="z-historia" data-title="La PUCP es parte de tu historia">
-      <div class="sec-body">
-      <h2><span class="num">1</span> La PUCP es parte de tu historia <span class="st">★</span> <span class="tag">conexión emocional + pertenencia</span></h2>
-      <p class="msg">"Te graduaste, pero nunca dejaste de ser parte de nuestra comunidad. La PUCP sigue siendo tuya, y nosotros seguimos siendo parte de tu historia."</p>
-      <p class="desc">Hablamos desde el "nosotros": somos una comunidad, no una institución que informa. Video o imagen de alta carga emocional: campus, graduaciones, rostros reales de egresados.</p>
-      <div class="banner">[ video / foto emocional: campus · graduaciones · rostros reales de egresados ]</div>
-      <div class="row" style="margin-bottom:12px;"><span class="cta">Cuéntanos dónde estás hoy ▸</span><span class="contact" style="color:var(--ink-soft);font-size:12px;">→ CTA principal: actualiza tus datos · definir qué tipos de datos y capturarlos vía DTI</span></div>
+    <!-- 1 ★ -->
+    <section class="sec star">
+      <h2><span class="num">1</span> Perfil de la carrera <span class="st">★</span> <span class="tag own">T9 · ficha replicable</span> <span class="tag">patrón para 54+ carreras</span></h2>
+      <div class="banner"><b>Ingeniería Informática</b>Facultad de Ciencias e Ingeniería — [ foto/video real de estudiantes en laboratorio ]</div>
       <div class="grid">
-        <div class="cell tall"><span class="kpi">+XX,000</span><span class="sub">egresados PUCP</span></div>
-        <div class="cell tall"><span class="kpi">+XX</span><span class="sub">países con presencia de egresados</span></div>
-        <div class="cell tall"><span class="kpi">XX%</span><span class="sub">de egresados con empleo a 12 meses</span></div>
-        <div class="cell tall"><span class="kpi">+100</span><span class="sub">años al servicio del país</span></div>
+        <div class="cell">Grado y título<div class="sub">Bachiller + Título Profesional</div></div>
+        <div class="cell">Duración<div class="sub">5 años · 10 ciclos</div></div>
+        <div class="cell">Modalidad<div class="sub">Presencial</div></div>
+        <div class="cell">Vacantes 2026-2<div class="sub">[ N° por modalidad de ingreso ]</div></div>
       </div>
-      <p class="desc" style="margin:10px 0 0;">Cifras breves, visuales y emocionales: una comunidad que transforma. <span class="tag">usar cifras marketeras del Home</span> <span class="tag">⚠ pendiente: pedir información de egresados a DTI</span></p>
-      </div>
+      <div class="row" style="margin-top:12px;"><span class="cta">Postula a esta carrera ▸</span><span class="cta ghost">Descarga el brochure</span></div>
     </section>
 
-    <!-- 2 — campus sube al puesto 2 (comentario 14) -->
-    <section class="sec" id="z-campus" data-title="Tu campus te espera">
-      <div class="sec-body">
-      <h2><span class="num">2</span> Tu campus te espera <span class="tag">reconexión con la comunidad</span></h2>
-      <p class="msg">"Tu comunidad sigue creciendo. Y siempre tendrá un lugar para ti."</p>
+    <!-- 2 -->
+    <section class="sec">
+      <h2><span class="num">2</span> Sobre la carrera</h2>
+      <p class="desc">Perfil del egresado: qué problemas aprende a resolver, con qué herramientas y en qué sectores se desempeña. Texto curado por la facultad — no genérico.</p>
+      <div class="row"><span class="ph card sm"></span><span class="ph card sm"></span></div>
+    </section>
+
+    <!-- 3 ★ -->
+    <section class="sec alt star">
+      <h2><span class="num">3</span> Malla curricular descargable <span class="st">★</span></h2>
+      <p class="desc">El plan de estudios completo, ciclo por ciclo, en dos formatos: para leer en la misma página o para llevar en PDF.</p>
+      <div class="row" style="margin-bottom:12px;"><span class="cta">Descargar malla en PDF ⬇</span><span class="cta ghost">Ver malla completa aquí ▾</span></div>
       <div class="grid">
-        <div class="cell tall">Agenda PUCP<span class="sub">participa en las actividades</span></div>
-        <div class="cell tall">Trámites para egresados<span class="sub">estamos para facilitarte el camino</span></div>
-        <div class="cell tall">Servicios para egresados<span class="sub">todo en un solo lugar · por construir</span></div>
-        <div class="cell tall">Medios PUCP<span class="sub">sigue el pulso de la Universidad</span></div>
-        <div class="cell tall">Visitas guiadas<span class="sub">redescubre el campus · por construir</span></div>
-      </div>
-      <p class="desc" style="margin:10px 0 0;">Carnet alumni: biblioteca · descuentos · intranet &nbsp;·&nbsp; acceso a campus + instalaciones deportivas + publicaciones <span class="tag">servicios alumni — fusionado aquí</span></p>
+        <div class="cell">Ciclo 1</div><div class="cell">Ciclo 2</div><div class="cell">Ciclo 3</div><div class="cell">Ciclo 4</div><div class="cell">Ciclo 5</div>
       </div>
     </section>
 
-    <!-- 3 — novedades pasa a tercero -->
-    <section class="sec alt" id="z-novedades" data-title="Banner de novedades (rotativo)">
-      <div class="sec-body">
-      <h2><span class="num">3</span> Banner de novedades — rotativo <span class="tag">anuncios temporales (Ligia)</span></h2>
-      <p class="desc">Franja delgada para campañas con fecha: encuestas, convocatorias, eventos. Rota automáticamente.</p>
-      <div class="ticker"><span class="arr">‹</span><span style="flex:1;text-align:center;">📢 Encuesta de egresados 2026 — tu opinión construye la PUCP del futuro · <b>Participa aquí ▸</b></span><span class="arr">›</span></div>
-      </div>
+    <!-- 4 -->
+    <section class="sec">
+      <h2><span class="num">4</span> Costos exactos por ciclo</h2>
+      <p class="desc">Transparencia total: montos reales por categoría de pensión, no rangos aproximados.</p>
+      <table class="costs">
+        <tr><th>Ciclo</th><th>Categoría A</th><th>Categoría C</th><th>Categoría F</th></tr>
+        <tr><td>1.º ciclo</td><td>S/ [monto]</td><td>S/ [monto]</td><td>S/ [monto]</td></tr>
+        <tr><td>2.º ciclo</td><td>S/ [monto]</td><td>S/ [monto]</td><td>S/ [monto]</td></tr>
+        <tr><td>… hasta el 10.º ciclo</td><td>—</td><td>—</td><td>—</td></tr>
+      </table>
+      <div class="row" style="margin-top:12px;"><span class="cta ghost">Simula tu pensión ▸</span></div>
     </section>
 
-    <!-- 4 — formación sube a #4 (comentario 25/06): mantener el vínculo vía capacitación permanente -->
-    <section class="sec alt" id="z-formacion" data-title="Queremos seguir acompañándote">
-      <div class="sec-body">
-      <h2><span class="num">4</span> Queremos seguir acompañándote <span class="tag">continúa formándote + beneficios</span></h2>
-      <p class="msg">"Tu formación no terminó el día que te graduaste. Para nosotros, ese fue solo el comienzo."</p>
+    <!-- 5 ★ -->
+    <section class="sec alt star">
+      <h2><span class="num">5</span> Testimonios en video reales <span class="st">★</span> <span class="tag">3 testimonios por carrera</span></h2>
+      <p class="desc">Historias reales de estudiantes y egresados de esta carrera — no material publicitario genérico.</p>
+      <div class="row">
+        <span class="ph card"></span><span class="ph card"></span><span class="ph card"></span>
+      </div>
+      <p class="desc" style="margin-top:8px;">Ej.: "Cómo llegué a [empresa]" — Nombre, ciclo o año de egreso.</p>
+    </section>
+
+    <!-- 6 -->
+    <section class="sec">
+      <h2><span class="num">6</span> Campo laboral — empresas que contratan egresados</h2>
+      <p class="desc">Top de organizaciones donde trabajan nuestros egresados, según data de Empleabilidad/Symplicity para esta carrera.</p>
       <div class="grid">
-        <div class="cell tall">Posgrados<span class="sub">descuento alumni (% concreto) · programas acelerados de 1 año por experiencia · doble titulación con universidades específicas</span></div>
-        <div class="cell tall">Formación Continua<span class="sub">el mundo cambia, tu formación también</span></div>
-        <div class="cell tall">Beneficios PUCP<span class="sub">ventajas de seguir siendo comunidad</span></div>
-        <div class="cell tall">Biblioteca<span class="sub">sigue investigando, seguimos siendo tu respaldo</span></div>
-      </div>
-      <div class="panel" style="height:auto;margin-top:10px;">[ Caso de éxito embebido: ex analista → Cencosud post-MBA ]</div>
-      <p class="desc" style="margin:10px 0 0;">Enlaces: posgrado.pucp.edu.pe · educacioncontinua.pucp.edu.pe · beneficios (Punto Edu) · biblioteca.pucp.edu.pe/servicios</p>
+        <div class="cell">Logo 1</div><div class="cell">Logo 2</div><div class="cell">Logo 3</div><div class="cell">Logo 4</div><div class="cell">Logo 5</div><div class="cell">Logo 6</div>
       </div>
     </section>
 
-    <!-- 5 — testimonios baja de #4 a #5 -->
-    <section class="sec" id="z-testimonios" data-title="Testimonios — impacto de vida">
-      <div class="sec-body">
-      <h2><span class="num">2</span> Testimonios de egresados <span class="tag">impacto de vida, no logros académicos</span></h2>
-      <p class="desc">Pregunta guía para cada testimonio: <b>"¿Qué te dio la PUCP que ningún título puede resumir?"</b>. Complementa con perfiles destacados: 4–6 con foto en su lugar de trabajo real, cargo + empresa + carrera + año y "¿cómo llegué?" en 2–3 párrafos. Diversidad explícita: sector público · privado · social · internacional · investigación.</p>
-      <div class="row"><span class="ph card"></span><span class="ph card"></span><span class="ph card"></span></div>
-      <div class="row" style="margin-top:10px;"><span class="cta ghost">Líderes que transforman ▸</span><span class="contact" style="color:var(--ink-soft);font-size:12px;">→ enlaza a la serie de Punto Edu "Orgullo PUCP"</span></div>
-      </div>
-    </section>
-
-    <!-- 6 · conectados (Alumni en el mundo retirado — comentario 54) -->
-    <section class="sec star" id="z-conectados" data-title="Sigamos conectados">
-      <div class="sec-body">
-      <h2><span class="num">7</span> Sigamos conectados <span class="st">★</span> <span class="tag">conversión — vínculo de largo plazo</span></h2>
-      <p class="desc">Miles de egresados ya son parte. ¿Y tú? Asesoría profesional: CV · LinkedIn · entrevistas · bolsa de empleo (recién egresados) · programa de mentoring.</p>
-      <div class="grid" style="margin-bottom:12px;">
-        <div class="cell tall">Asociación de Egresados (AEG)<span class="sub">aeg.pucp.edu.pe</span></div>
-        <div class="cell tall">Red de egresados por facultad<span class="sub">reconéctate con tu promoción · por construir</span></div>
-        <div class="cell tall">Bolsa de empleo alumni<span class="sub">para recién egresados (hasta 2 años) · Sistema de Oportunidades Laborales</span></div>
-        <div class="cell tall">Mentoring Empleabilidad<span class="sub">tu experiencia abre puertas · sé mentor o agenda una sesión</span></div>
-      </div>
-      <div class="row"><span class="cta">Únete a la AEG — Regístrate aquí ▸</span><span class="cta ghost">Ir a la bolsa de empleo alumni ▸</span></div>
-      </div>
-    </section>
-
-    <!-- 8 opcional -->
-    <section class="sec opc" id="z-mentoring" data-title="Mentoring (opcional — etapa posterior)">
-      <div class="sec-body">
-      <h2><span class="num">8</span> Mentoring Empleabilidad <span class="tag">bloque opcional — etapa posterior (acuerdo reunión 10/06)</span></h2>
-      <p class="desc">"Tu experiencia puede abrir puertas a las nuevas generaciones." Programa formal: X mentores activos, Y horas/mes. CTA tentativo: "Agenda sesión con un mentor" (calendario abierto, 30 min — se evalúa Calendly). Se activa cuando el programa de mentoring esté validado con la Oficina de Empleabilidad.</p>
-      <div class="row"><span class="cta ghost">Quiero ser mentor</span><span class="cta ghost">Agenda sesión con un mentor</span></div>
-      </div>
-    </section>
-
-    <!-- footer -->
-    <section class="sec" id="z-footer" data-title="Footer">
-      <div class="sec-body">
-      <h2><span class="num">10</span> Footer</h2>
+    <!-- 7 -->
+    <section class="sec alt">
+      <h2><span class="num">7</span> Convenios internacionales</h2>
+      <p class="desc">Universidades y programas de doble grado / intercambio disponibles para esta carrera.</p>
       <div class="row" style="align-items:stretch;">
-        <div class="cell" style="justify-content:flex-start;text-align:left;padding:14px;font-weight:400;">
-          <span class="contact">Contacto humano · mapa del sitio · redes · enlaces secundarios</span>
+        <span class="ph card" style="flex:1.4;"></span>
+        <div class="chips" style="flex:1;align-content:flex-start;">
+          <span class="chip">🇪🇸 España</span><span class="chip">🇫🇷 Francia</span><span class="chip">🇩🇪 Alemania</span>
+          <span class="chip">🇺🇸 Estados Unidos</span><span class="chip">🇲🇽 México</span><span class="chip">🇨🇱 Chile</span>
+          <span class="chip">+ [N] universidades más ▸</span>
         </div>
       </div>
+    </section>
+
+    <!-- 8 -->
+    <section class="sec">
+      <h2><span class="num">8</span> Modalidad y compatibilidad laboral</h2>
+      <div class="grid">
+        <div class="cell tall">Horarios<div class="sub">Mañana, tarde y algunos cursos en la noche</div></div>
+        <div class="cell tall">Presencialidad<div class="sub">100% presencial en el campus</div></div>
+        <div class="cell tall">Compatible con trabajo<div class="sub">Sí, con planificación desde ciclos intermedios</div></div>
+        <div class="cell tall">Prácticas preprofesionales<div class="sub">Desde el [ciclo X], convenio con empresas</div></div>
       </div>
+    </section>
+
+    <!-- 9 ★ -->
+    <section class="sec star">
+      <h2><span class="num">9</span> Coordinador de la carrera <span class="st">★</span></h2>
+      <p class="desc">Un coordinador con nombre y rostro responde dudas sobre esta carrera puntual — no una mesa de partes genérica.</p>
+      <div class="row" style="align-items:stretch;">
+        <span class="ph card sm" style="max-width:160px;"></span>
+        <div class="cell" style="justify-content:flex-start;text-align:left;padding:14px;font-weight:400;">
+          <span class="contact">[Nombre del coordinador] · coordinador.informatica@pucp.edu.pe · (01) 626 2000 anexo [xxx]</span>
+        </div>
+      </div>
+      <div class="row" style="margin-top:10px;"><span class="cta">Escríbenos por WhatsApp ▸</span><span class="cta ghost">Postula a esta carrera</span></div>
     </section>
 
   </main>
 
   <div class="legend">
-    <b>Wireframe de baja fidelidad — Egresados (primera etapa)</b> · escala de grises · ★ = pieza central de la narrativa · bordes punteados = bloques opcionales / etapa posterior.<br>
-    <b>Marco narrativo (doc Ligia):</b> la PUCP le habla directamente a sus egresados, como una conversación cercana desde el "nosotros" — reconoce su trayectoria, ofrece valor real y los invita a seguir siendo comunidad.<br>
-    <b>Historia que cuenta el orden propuesto (actualizado 01/07):</b> pertenencia (tu historia + cifras) → reconexión (tu campus, #2) → novedades (#3) → seguir formándote (#4) → orgullo (testimonios, #5) → vínculo (AEG, redes, bolsa para recién egresados y mentoring, #6) → contribución (mentoring, opcional). <b>Cambios de esta ronda (01/07):</b> se retira "Alumni en el mundo"; en "Sigamos conectados" sale "Eventos para alumni", la bolsa se acota a recién egresados (hasta 2 años) y se suma "Mentoring Empleabilidad".<br>
-    <b>Fusión de fuentes:</b> los 5 bloques del doc de Ligia (peso principal) + nuestra propuesta (cifra protagonista, empleabilidad alumni con tasas 6/12/24, egresados destacados, alumni en el mundo, servicios alumni — fusionados en "Tu campus te espera") + acuerdos de la reunión 10/06 (banner rotativo de novedades, CTA "Cuéntanos dónde estás hoy", mentoring como opcional posterior).<br>
-    <b>Pendientes:</b> cifras exactas (correo de Sara) · data AEG para el mapa · "Servicios para egresados" y "Visitas guiadas" por construir.<br>
-    <b>Modo revisión:</b> con los botones de abajo a la derecha puedes editar textos, reordenar zonas (↑↓) y dejar comentarios por sección (💬). Todo se guarda en este navegador.
+    <b>Wireframe de baja fidelidad — Ficha de carrera estándar (T9)</b> · escala de grises · ★ = piezas nuevas pedidas por la investigación ·
+    contenido de ejemplo con datos de Ingeniería Informática; esta misma estructura se replica —vía plantilla CPT "carrera"— para las 54+ carreras de pregrado, cambiando solo los datos.<br>
+    <b>Requisitos cubiertos por esta ficha:</b> malla descargable (texto + PDF) · costos exactos por ciclo · 3 testimonios en video reales · top de empresas que contratan egresados ·
+    mapa/lista de convenios internacionales · modalidad y compatibilidad laboral · CTA de postulación + WhatsApp del coordinador.<br>
+    <b>Modo revisión:</b> con los botones de abajo a la derecha puedes reordenar secciones (↑↓), dejar comentarios por sección (💬) y editar textos. Los comentarios se guardan en la base de datos (los ven todos); el orden y los textos se guardan en este navegador.
   </div>
 
   <!-- ===== TOOLBAR DE REVISIÓN ===== -->
@@ -284,20 +272,27 @@
     <button id="btn-edit" type="button">✏️ Editar textos</button>
     <button id="btn-export" type="button">📋 Copiar comentarios</button>
     <button id="btn-reset" type="button">↺ Restablecer</button>
-    <span class="hint">Cambios y comentarios se guardan en este navegador</span>
+    <span class="hint">Comentarios en la base de datos · orden/textos en este navegador</span>
   </div>
   <div class="toast" id="toast"></div>
 
 <script>
 (function(){
-  var KEY='wf-egresados-v1', WF='egresados', API='https://comentarios.ludik.pe';
+  var KEY='wf-ficha-carrera-v1', WF='ficha-carrera', API='https://comentarios.ludik.pe';
   var main=document.getElementById('zones'), toast=document.getElementById('toast'), tt=null;
   function notify(m){toast.textContent=m;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('show');},2200);}
+
+  main.querySelectorAll('section').forEach(function(sec,i){
+    if(!sec.id) sec.id='z-'+i;
+    if(!sec.dataset.title){ var h=sec.querySelector('h2'); sec.dataset.title = h ? h.textContent.replace(/\s+/g,' ').replace(/^\s*\d+\s*/,'').replace(/★/g,'').trim() : ('Sección '+(i+1)); }
+    if(!sec.querySelector('.sec-body')){ var b=document.createElement('div'); b.className='sec-body'; while(sec.firstChild){ b.appendChild(sec.firstChild); } sec.appendChild(b); }
+  });
+
   function load(){try{return JSON.parse(localStorage.getItem(KEY))||{};}catch(e){return {};}}
   function save(s){localStorage.setItem(KEY,JSON.stringify(s));}
   var state=load(); state.content=state.content||{};
   if(Array.isArray(state.order)){state.order.forEach(function(id){var s=document.getElementById(id);if(s)main.appendChild(s);});}
-  Object.keys(state.content).forEach(function(id){var s=document.getElementById(id);if(s)s.querySelector('.sec-body').innerHTML=state.content[id];});
+  Object.keys(state.content).forEach(function(id){var s=document.getElementById(id);if(s&&s.querySelector('.sec-body'))s.querySelector('.sec-body').innerHTML=state.content[id];});
   function renumber(){var n=1;main.querySelectorAll('section .num').forEach(function(e){e.textContent=n++;});}
   function saveOrder(){state.order=Array.prototype.map.call(main.querySelectorAll('section'),function(s){return s.id;});save(state);}
   function saveContent(s){state.content[s.id]=s.querySelector('.sec-body').innerHTML;save(state);}
@@ -330,7 +325,6 @@
     var t=threads[sid]; if(!t)return;
     var items=(comments[sid]||[]).slice().sort(function(a,b){return new Date(a.created_at)-new Date(b.created_at);});
     var list=t.querySelector('.ct-list');
-    // todo lo que está hasta el último "RESUELTO/ANOTADO" (inclusive) es histórico; lo posterior es pendiente
     var lastRes=-1;
     items.forEach(function(c,i){ if(/RESUELTO|ANOTADO/i.test(c.body||'')) lastRes=i; });
     var hist = lastRes>=0 ? items.slice(0,lastRes+1) : [];
@@ -424,7 +418,7 @@
   });
 
   document.getElementById('btn-export').addEventListener('click',function(){
-    var out=['Comentarios — Egresados ('+new Date().toLocaleDateString('es-PE')+')',''];var total=0;
+    var out=['Comentarios — Ficha de carrera ('+new Date().toLocaleDateString('es-PE')+')',''];var total=0;
     main.querySelectorAll('section').forEach(function(sec,idx){
       var items=comments[sec.id]||[]; if(!items.length)return;
       out.push((idx+1)+'. '+sec.dataset.title);
