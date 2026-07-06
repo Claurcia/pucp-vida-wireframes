@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wireframe media — Vida Universitaria · PUCP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --azul:#042354; --azul-2:#0a3a7a; --tint:#eef2f8; --tint-2:#f6f8fb;
+    --line:#d7dee8; --ink:#1d2430; --ink-soft:#5b6675; --ph:#dde3ec; --ph-line:#b6c1d2; --ok:#0a7d72;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:#fff;font-family:'Roboto',Arial,sans-serif;color:var(--ink);line-height:1.55;}
+  h1,h2,h3,.mont{font-family:'Montserrat',Arial,sans-serif;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+  a{color:var(--azul);}
+  /* header (unificado con home-grises.html) */
+  .site-header{position:sticky;top:0;z-index:50;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.06);}
+  .site-header .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+  .topnav{background:#2b2f36;color:#dfe3e8;font-size:12.5px;}
+  .topnav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:9px 24px;flex-wrap:wrap;}
+  .topnav .l,.topnav .r{display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
+  .logorow{border-bottom:1px solid #e3e6ea;}
+  .logorow .wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;}
+  .logo{display:flex;align-items:center;gap:9px;font-family:'Montserrat',Arial,sans-serif;font-weight:800;font-size:22px;letter-spacing:1px;color:#1f2530;}
+  .logo svg circle,.logo svg path{stroke:#1f2530;fill:#1f2530;}
+  .logorow .r{display:flex;align-items:center;gap:18px;}
+  .search{display:flex;align-items:center;gap:7px;font-size:14px;color:#5b6470;}
+  .postula{background:#2b2f36;color:#fff;font-family:'Montserrat',Arial,sans-serif;font-weight:700;border-radius:24px;padding:11px 22px;font-size:14px;}
+  .menu{border-bottom:1px solid #e3e6ea;}
+  .menu .wrap{display:flex;gap:18px;flex-wrap:wrap;padding:13px 24px;font-size:13.5px;color:#1f2530;}
+  .menu span.active{font-weight:700;border-bottom:2px solid #1f2530;padding-bottom:2px;}
+  .crumb{font-size:12.5px;color:#5b6470;padding:14px 0 0;}
+  /* panel de notas de revisión — compartido en BBDD, no forma parte del mockup */
+  #notes-panel{position:fixed;left:18px;top:90px;width:300px;max-width:calc(100vw - 36px);max-height:70vh;overflow-y:auto;
+               background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;box-shadow:0 10px 30px rgba(0,0,0,.16);z-index:60;display:none;}
+  body.notes-on #notes-panel{display:block;}
+  #notes-panel .nh{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px;}
+  #notes-panel .nh b{font-family:'Montserrat';font-size:11.5px;color:var(--azul);text-transform:uppercase;letter-spacing:.6px;}
+  #notes-panel .ntxt{font-size:12.5px;color:var(--ink-soft);line-height:1.6;}
+  #notes-panel textarea{width:100%;min-height:160px;font:inherit;font-size:12.5px;border:1px solid var(--line);border-radius:8px;padding:8px;resize:vertical;}
+  #notes-panel .nbtns{display:flex;gap:6px;margin-top:8px;}
+  #notes-panel .nbtns button{font:inherit;font-size:11.5px;font-weight:700;border:1px solid var(--ph-line);background:var(--tint);color:var(--ink);border-radius:6px;padding:6px 10px;cursor:pointer;}
+  @media(min-width:1101px){ body.notes-on .site-header .wrap,body.notes-on .wrap,body.notes-on footer .wrap{margin-left:340px;} }
+  @media(max-width:1100px){ #notes-panel{display:none!important;} }
+  /* ---------- BODY ---------- */
+  main{padding:8px 0 20px;}
+  section{padding:34px 0;border-bottom:1px solid var(--tint);position:relative;}
+  .eyebrow{font-family:'Montserrat';font-weight:700;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--azul);margin:0 0 6px;}
+  h2.t{font-size:27px;font-weight:800;letter-spacing:-.3px;margin:0 0 8px;color:var(--ink);line-height:1.2;}
+  p.sub{font-size:15px;color:var(--ink-soft);margin:0 0 18px;max-width:760px;}
+  .btn{display:inline-flex;align-items:center;gap:7px;background:var(--azul);color:#fff;font-family:'Montserrat';font-weight:600;font-size:14px;padding:12px 22px;border-radius:8px;text-decoration:none;}
+  .btn.ghost{background:#fff;color:var(--azul);border:1.5px solid var(--azul);}
+  .btn.sm{padding:9px 16px;font-size:13px;}
+  .note{color:var(--ink-soft);font-size:12px;}
+  /* fotos simuladas */
+  .photo{position:relative;border-radius:10px;overflow:hidden;min-height:120px;display:flex;align-items:flex-end;}
+  .photo .cap{position:relative;z-index:2;color:#fff;font-size:12.5px;font-weight:700;padding:10px 12px;text-shadow:0 1px 3px rgba(0,0,0,.5);}
+  .photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(4,20,45,.68));}
+  .photo.p1{background:linear-gradient(180deg,#c7d3e6 0%,#94a8cc 55%,#5c74a3 56%,#33447a 100%);}
+  .photo.p2{background:radial-gradient(circle at 30% 25%,#dbe4f4 0 18%,transparent 19%),linear-gradient(180deg,#b7c5e2 0%,#7c8fc0 60%,#495d92 61%,#293a6b 100%);}
+  .photo.p3{background:linear-gradient(115deg,#cdd9ee 0%,#9baed6 45%,#6577ab 46%,#465a91 75%,#2c3d70 76%,#1f2c55 100%);}
+  .photo.p4{background:radial-gradient(ellipse at 70% 80%,#5c6ea3 0 30%,transparent 31%),linear-gradient(180deg,#d3ddf2 0%,#9caed8 65%,#5b6ea3 66%,#374882 100%);}
+  .photo.p5{background:repeating-linear-gradient(90deg,#7d90c2 0 14px,#6a7fb5 14px 28px),linear-gradient(180deg,rgba(219,228,244,.9) 0 40%,transparent 41%);}
+  .photo.p6{background:radial-gradient(circle at 75% 20%,#e6ecf9 0 12%,transparent 13%),linear-gradient(165deg,#b9c7e6 0%,#8296c9 50%,#4d5f96 51%,#2e3f77 100%);}
+  .photo .ic{position:absolute;top:10px;left:12px;z-index:2;font-size:11px;background:rgba(255,255,255,.9);color:var(--ink);border-radius:4px;padding:2px 7px;font-weight:700;letter-spacing:.5px;}
+  /* hero */
+  .hero{position:relative;border-radius:14px;overflow:hidden;height:400px;display:flex;align-items:center;
+        background:linear-gradient(180deg,#1a2c58 0%,#12224a 45%,#0c1a3c 78%,#081430 100%);}
+  .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,10,25,.75) 0%,rgba(4,10,25,.4) 48%,rgba(4,10,25,.1) 100%);}
+  .hero .skyline{position:absolute;bottom:0;left:0;right:0;opacity:.45;}
+  .hero .inner{position:relative;z-index:2;padding:0 44px;max-width:640px;}
+  .hero .eyebrow{color:#cfdcea;}
+  .hero h1{color:#fff;font-size:40px;font-weight:800;letter-spacing:-.6px;margin:6px 0 12px;line-height:1.1;}
+  .hero p{color:#dfe6ee;font-size:15.5px;margin:0 0 18px;line-height:1.55;max-width:560px;}
+  .hero .play{position:absolute;right:50px;top:50%;transform:translateY(-50%);z-index:2;width:78px;height:78px;border-radius:50%;
+              background:rgba(255,255,255,.16);border:2.5px solid #fff;display:flex;align-items:center;justify-content:center;}
+  .hero .play::after{content:"";display:block;border-style:solid;border-width:13px 0 13px 22px;border-color:transparent transparent transparent #fff;margin-left:5px;}
+  .hero .videotag{position:absolute;left:44px;bottom:16px;z-index:2;color:#c3cdd8;font-size:11.5px;letter-spacing:.3px;}
+  /* agenda */
+  .tabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;}
+  .tab{padding:9px 18px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--ink-soft);font-size:13px;cursor:pointer;user-select:none;}
+  .tab.on{background:var(--azul);color:#fff;font-weight:700;border-color:var(--azul);}
+  .ev-list{display:flex;flex-direction:column;gap:10px;}
+  .ev{display:flex;gap:16px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 16px;}
+  .ev .date{flex:none;width:58px;text-align:center;background:var(--tint);border-radius:8px;padding:8px 0;}
+  .ev .date b{display:block;font-size:21px;color:var(--azul);line-height:1;}
+  .ev .date span{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--azul);font-weight:700;}
+  .ev .info{flex:1;min-width:0;}
+  .ev .info b{font-size:14.5px;display:block;margin-bottom:2px;}
+  .ev .meta{font-size:12px;color:var(--ink-soft);}
+  .chip{flex:none;font-size:11px;font-weight:700;border-radius:999px;padding:4px 12px;background:var(--tint);color:var(--ink-soft);border:1px solid var(--line);}
+  /* slider */
+  .slider{position:relative;overflow:hidden;border-radius:10px;}
+  .slider .track{display:flex;gap:12px;transition:transform .35s ease;}
+  .slider .slide{flex:0 0 calc(33.333% - 8px);}
+  .slider .slide .photo{height:170px;}
+  .s-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:38px;height:38px;border-radius:50%;border:none;background:rgba(255,255,255,.92);
+         box-shadow:0 2px 8px rgba(0,0,0,.25);font-size:17px;font-weight:700;color:var(--azul);cursor:pointer;display:flex;align-items:center;justify-content:center;}
+  .s-nav.prev{left:10px;} .s-nav.next{right:10px;}
+  .dots{display:flex;gap:6px;justify-content:center;margin-top:10px;}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--line);}
+  .dot.on{background:var(--azul);width:22px;border-radius:999px;}
+  /* mapa */
+  .split{display:flex;gap:16px;align-items:stretch;flex-wrap:wrap;}
+  .split .col{flex:1.5;min-width:340px;}
+  .split .colmap{flex:1;min-width:300px;background:var(--tint-2);border:1px solid var(--line);border-radius:10px;padding:10px;display:flex;flex-direction:column;}
+  .colmap svg{width:100%;height:auto;flex:1;}
+  .colmap .maptitle{font-size:12px;font-weight:700;color:var(--ink-soft);margin:2px 4px 8px;letter-spacing:.5px;}
+  /* cards genéricas */
+  .cards{display:flex;gap:14px;flex-wrap:wrap;}
+  .scard{flex:1;min-width:200px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;display:flex;flex-direction:column;}
+  .scard .icw{width:44px;height:44px;border-radius:10px;background:var(--tint);display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
+  .scard b{display:block;font-size:15px;margin-bottom:4px;}
+  .scard p{margin:0 0 10px;font-size:12.5px;color:var(--ink-soft);line-height:1.5;}
+  .scard a{font-size:12.5px;font-weight:700;margin-top:auto;}
+  .kpis{display:flex;gap:14px;flex-wrap:wrap;}
+  .kpi-card{flex:1;min-width:160px;background:var(--tint);border-radius:12px;padding:18px 20px;text-align:center;}
+  .kpi-card .n{font-size:30px;font-weight:800;color:var(--azul);letter-spacing:-.5px;font-family:'Montserrat';}
+  .kpi-card .l{font-size:12.5px;color:var(--ink);margin-top:2px;line-height:1.4;}
+  .pillrow{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+  .pill{font-size:12.5px;font-weight:700;background:#fff;border:1.5px solid var(--azul);color:var(--azul);border-radius:999px;padding:8px 16px;}
+  /* sostenible band */
+  .band{position:relative;border-radius:14px;overflow:hidden;padding:34px 32px;
+        background:linear-gradient(120deg,#0a3a7a 0%,#042354 60%,#031840 100%);}
+  .band .display,.band h2{color:#fff;}
+  .band .sub{color:#cfd9ea;}
+  .band .kpi-card{background:rgba(255,255,255,.95);}
+  /* masonry mi campus */
+  .masonry{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:90px;gap:12px;}
+  .masonry .photo{min-height:0;height:100%;}
+  .masonry .tall2{grid-row:span 2;}
+  .credit{margin:12px 0 0;font-size:11.5px;color:var(--ink-soft);font-style:italic;}
+  .social-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:14px;}
+  .social-row .chip{background:#fff;border:1px solid var(--azul);color:var(--azul);}
+  /* footer */
+  footer{background:var(--azul);color:#cdd8ea;padding:34px 0;}
+  footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:13px;}
+  footer b{color:#fff;font-family:'Montserrat';}
+  footer a{color:#cdd8ea;}
+  @media (max-width:900px){
+    .hero h1{font-size:28px;} .hero .play{display:none;}
+    .slider .slide{flex-basis:calc(50% - 6px);}
+    .masonry{grid-template-columns:repeat(2,1fr);}
+    .split{flex-direction:column;}
+  }
+  /* herramientas comentarios */
+  .toolbar{position:fixed;bottom:18px;right:18px;z-index:100;display:flex;gap:8px;align-items:center;background:#fff;border:1px solid var(--ph-line);border-radius:10px;padding:9px 12px;box-shadow:0 4px 18px rgba(0,0,0,.18);}
+  .toolbar button{font:inherit;font-size:12.5px;font-weight:700;border:1px solid var(--ph-line);background:var(--tint);color:var(--ink);border-radius:6px;padding:7px 12px;cursor:pointer;}
+  .sec-tools{position:absolute;top:10px;right:10px;display:flex;gap:5px;z-index:5;}
+  .sec-tools button{font:inherit;font-size:12px;font-weight:700;border:1px solid var(--ph-line);background:#fff;color:var(--ink);border-radius:6px;cursor:pointer;padding:4px 8px;}
+  .sec-tools .c-btn.has{background:var(--azul);color:#fff;border-color:var(--azul);}
+  .toast{position:fixed;bottom:78px;right:18px;z-index:101;background:var(--azul);color:#fff;font-size:12.5px;border-radius:7px;padding:9px 14px;opacity:0;transition:opacity .25s;pointer-events:none;}
+  .toast.show{opacity:1;}
+  @media(min-width:1101px){ .site-header .wrap,.wrap,footer .wrap{margin-right:344px;} }
+  #crail{position:absolute;top:0;right:16px;width:312px;z-index:40;}
+  .cthread{position:absolute;right:0;width:300px;}
+  .cthread.inline{position:static;width:auto;display:none;margin:14px 0 0;}
+  .cthread.inline.open{display:block;}
+  .ct-item{background:#fff;border:1px solid #e2e6ea;border-left:3px solid var(--ok);border-radius:9px;padding:9px 11px;margin-bottom:7px;box-shadow:0 1px 5px rgba(20,30,45,.07);font-size:12.5px;}
+  .ct-body{white-space:pre-wrap;word-wrap:break-word;overflow-wrap:anywhere;color:#22272e;line-height:1.5;}
+  .ct-body a{color:var(--ok);font-weight:600;}
+  .ct-meta{display:flex;align-items:center;gap:8px;color:#9097a0;font-size:10.5px;margin-top:6px;}
+  .ct-meta span{flex:1;}
+  .ct-del{border:none;background:none;color:#c2c2cc;cursor:pointer;font-size:12px;}
+  .ct-add{background:#fff;border:1px dashed #b9c0c8;border-radius:9px;padding:8px;}
+  .ct-add textarea{width:100%;border:1px solid #e2e6ea;border-radius:7px;padding:8px;font:inherit;font-size:12.5px;resize:none;overflow:hidden;min-height:34px;line-height:1.45;}
+  .ct-row{display:flex;gap:6px;margin-top:6px;}
+  .ct-row input{flex:1;min-width:0;border:1px solid #e2e6ea;border-radius:7px;padding:7px;font:inherit;font-size:11.5px;}
+  .ct-row button{border:none;background:var(--ok);color:#fff;border-radius:7px;padding:7px 13px;font:inherit;font-size:12px;font-weight:700;cursor:pointer;}
+  body.comments-off #crail{display:none!important;}
+  body.comments-off .sec-tools{display:none!important;}
+  @media(min-width:1101px){ body.comments-off .site-header .wrap,body.comments-off .wrap,body.comments-off footer .wrap{margin-right:auto;} }
+  @media(max-width:1100px){ #crail{display:none;} }
+  @media print{.toolbar,.sec-tools,.toast{display:none!important;}}
+</style>
+</head>
+<body>
+
+  <!-- header (unificado con home-grises.html) -->
+  <header class="site-header">
+  <div class="topnav"><div class="wrap">
+    <div class="l"><span>Postulante ▾</span><span>Estudiante</span><span>Profesor</span><span>Administrativo</span><span>Egresado</span><span>Prensa</span><span>Alianza con empresa</span></div>
+    <div class="r"><span>Intranet y correo</span><span>PAIDEIA</span><span>⠿ Accesos</span><span>🌐 ES</span></div>
+  </div></div>
+  <div class="logorow"><div class="wrap">
+    <div class="logo"><svg width="32" height="32" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="none" stroke-width="2"/><path d="M9 24 q11 6 22 0 l-3 5 h-16 z"/><path d="M20 8 l7 13 h-14 z"/></svg>PUCP</div>
+    <div class="r"><span class="search">🔍 Buscar</span><span class="postula">Quiero postular</span></div>
+  </div></div>
+  <div class="menu"><div class="wrap"><span>Conoce la PUCP</span><span>Carreras y Programas</span><span>Admisión</span><span>Internacionalización</span><span>Investigación</span><span class="active">Vida universitaria</span><span>Empleabilidad</span><span>Noticias y eventos</span></div></div>
+  </header>
+  <div class="wrap"><div class="crumb">Inicio › <b>Vida Universitaria</b></div></div>
+
+  <main>
+  <div class="wrap">
+
+    <!-- 1 HERO -->
+    <section id="z-banner" data-title="Banner vivencial">
+      <div class="hero">
+        <svg class="skyline" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
+          <rect x="0" y="70" width="130" height="50" fill="#0a1a3c"/>
+          <rect x="140" y="45" width="90" height="75" fill="#0d2148"/>
+          <rect x="240" y="80" width="160" height="40" fill="#0a1a3c"/>
+          <rect x="420" y="55" width="70" height="65" fill="#0f2650"/>
+          <circle cx="540" cy="95" r="26" fill="#091737"/>
+          <circle cx="590" cy="100" r="20" fill="#0b1c40"/>
+          <rect x="640" y="65" width="120" height="55" fill="#0d2148"/>
+          <rect x="780" y="85" width="200" height="35" fill="#0a1a3c"/>
+          <circle cx="1020" cy="98" r="24" fill="#091737"/>
+          <rect x="1060" y="50" width="80" height="70" fill="#0f2650"/>
+          <rect x="1150" y="78" width="50" height="42" fill="#0b1c40"/>
+        </svg>
+        <div class="inner">
+          <p class="eyebrow">Vida universitaria</p>
+          <h1>Vive la PUCP</h1>
+          <p>La vida universitaria ocurre dentro y fuera del aula. Ven y conoce el campus: jardines, deporte, cultura y los espacios donde pasa todo.</p>
+          <a class="btn" style="background:#fff;color:var(--azul)" href="#">Regístrate a una visita guiada →</a>
+          <p style="color:#b9c5d2;font-size:11.5px;margin:10px 0 0;">Visitas guiadas para escolares de 3.º a 5.º de secundaria, gestionadas por Admisión.</p>
+        </div>
+        <div class="play" title="Reproducir video"></div>
+        <div class="videotag">▶ Video: estudiantes, jardines, cafeterías, deporte y cultura</div>
+      </div>
+    </section>
+
+    <!-- 2 AGENDA VIVA -->
+    <section id="z-agenda" data-title="Agenda viva">
+      <p class="eyebrow">Agenda viva</p>
+      <h2 class="t">Encuentra qué hacer esta semana en el campus</h2>
+      <div class="tabs" data-group="agenda">
+        <span class="tab on">Hoy</span>
+        <span class="tab">Esta semana</span>
+        <span class="tab">Próxima semana</span>
+        <span class="tab">Jueves Cultural</span>
+      </div>
+      <div class="row" style="display:flex;gap:6px;margin:2px 0 14px;flex-wrap:wrap;align-items:center;"><span class="note" style="margin:0 4px 0 0;">Filtrar por tipo:</span><span class="chip">Todos</span><span class="chip">Cultural</span><span class="chip">Deportivo</span><span class="chip">Estudiantil</span><span class="chip">Bienestar</span></div>
+      <div class="ev-list">
+        <div class="ev">
+          <div class="date"><b>12</b><span>jun</span></div>
+          <div class="info"><b>Concierto de mediodía — CEMDUC</b><div class="meta">13:00 · Anfiteatro de Derecho · ingreso libre</div></div>
+          <span class="chip">Cultural</span>
+        </div>
+        <div class="ev">
+          <div class="date"><b>12</b><span>jun</span></div>
+          <div class="info"><b>Final Interfacultades: vóley mixto</b><div class="meta">18:00 · Coliseo Polideportivo</div></div>
+          <span class="chip">Deportivo</span>
+        </div>
+        <div class="ev">
+          <div class="date"><b>13</b><span>jun</span></div>
+          <div class="info"><b>Feria de iniciativas estudiantiles</b><div class="meta">11:00–16:00 · Jardines de Ciencias</div></div>
+          <span class="chip">Estudiantil</span>
+        </div>
+        <div class="ev">
+          <div class="date"><b>14</b><span>jun</span></div>
+          <div class="info"><b>Charla: vida saludable en época de exámenes</b><div class="meta">12:00 · Auditorio DAES · previa inscripción</div></div>
+          <span class="chip">Bienestar</span>
+        </div>
+        <div class="ev">
+          <div class="date"><b>16</b><span>jun</span></div>
+          <div class="info"><b>Feria de la Semana de Ingeniería</b><div class="meta">10:00–18:00 · Patio de Ingeniería</div></div>
+          <span class="chip">Estudiantil</span>
+        </div>
+        <div class="ev">
+          <div class="date"><b>18</b><span>jun</span></div>
+          <div class="info"><b>La Barra PUCP alienta en el Clásico Universitario</b><div class="meta">16:00 · Coliseo Polideportivo</div></div>
+          <span class="chip">Deportivo</span>
+        </div>
+      </div>
+      <div class="row" style="display:flex;margin-top:14px;"><a class="btn ghost sm" href="#">Ver toda la agenda →</a></div>
+    </section>
+
+    <!-- 3 ESPACIOS DEL CAMPUS -->
+    <section id="z-espacios" data-title="Espacios del campus">
+      <p class="eyebrow">Infraestructura</p>
+      <h2 class="t">Encuentra tu lugar en el campus</h2>
+      <p class="sub">Salas de estudio, bibliotecas, comedores, laboratorios y espacios para compartir: descubre dónde estudiar, comer, entrenar y reunirte, y ubica cada lugar en el mapa del campus.</p>
+      <div class="tabs" data-group="espacios">
+        <span class="tab on">Espacios para compartir</span>
+        <span class="tab">Laboratorios e innovación</span>
+        <span class="tab">Espacios deportivos</span>
+        <span class="tab">Comedores PUCP</span>
+        <span class="tab">Espacios de estudio</span>
+        <span class="tab">Espacios culturales</span>
+        <span class="tab">Bienestar y CAPU</span>
+      </div>
+      <div class="split">
+        <div class="col">
+          <div class="slider" id="slider-espacios">
+            <button class="s-nav prev" type="button" aria-label="Anterior">‹</button>
+            <div class="track">
+              <div class="slide"><div class="photo p1"><span class="ic">VIDEO</span><span class="cap">Rotonda de Generales Letras</span></div></div>
+              <div class="slide"><div class="photo p2"><span class="ic">FOTO</span><span class="cap">Jardines de Humanidades</span></div></div>
+              <div class="slide"><div class="photo p4"><span class="ic">FOTO</span><span class="cap">Pileta del pabellón Z</span></div></div>
+              <div class="slide"><div class="photo p3"><span class="ic">VIDEO</span><span class="cap">Primer piso de GG.CC.</span></div></div>
+              <div class="slide"><div class="photo p6"><span class="ic">FOTO</span><span class="cap">Mesas por Digimundo</span></div></div>
+              <div class="slide"><div class="photo p5"><span class="ic">FOTO</span><span class="cap">Mesas junto al Diodo</span></div></div>
+              <div class="slide"><div class="photo p1"><span class="ic">FOTO</span><span class="cap">CAPU — Centro de Atención Psicológica</span></div></div>
+            </div>
+            <button class="s-nav next" type="button" aria-label="Siguiente">›</button>
+          </div>
+          <div class="dots" id="dots-espacios"></div>
+          <p class="note" style="margin:10px 0 0;">Laboratorios e innovación → laboratorios por facultad · Open PUCP &nbsp;·&nbsp; Deportivos → polideportivo, gimnasio y campos &nbsp;·&nbsp; Comedores → Central · Arte · Letras &nbsp;·&nbsp; Estudio → bibliotecas y salas &nbsp;·&nbsp; Culturales → DACU y CCPUCP &nbsp;·&nbsp; Bienestar y CAPU → acompañamiento psicológico y de salud.</p>
+        </div>
+        <div class="colmap">
+          <div class="maptitle">📍 MAPA DEL CAMPUS — los pines cambian según la categoría</div>
+          <svg viewBox="0 0 400 290" aria-hidden="true">
+            <rect x="0" y="0" width="400" height="290" rx="8" fill="#eef1f7"/>
+            <path d="M0 150 h400 M180 0 v290 M70 60 h240 M300 60 v170" stroke="#fff" stroke-width="10" fill="none"/>
+            <rect x="20" y="20" width="70" height="34" rx="3" fill="#c3cde5"/>
+            <rect x="105" y="20" width="60" height="34" rx="3" fill="#ccd5ea"/>
+            <rect x="200" y="22" width="80" height="30" rx="3" fill="#c3cde5"/>
+            <rect x="320" y="20" width="60" height="34" rx="3" fill="#d3dbee"/>
+            <rect x="20" y="80" width="55" height="55" rx="3" fill="#ccd5ea"/>
+            <ellipse cx="135" cy="108" rx="38" ry="26" fill="#aebcae"/>
+            <rect x="200" y="80" width="85" height="52" rx="3" fill="#c3cde5"/>
+            <rect x="320" y="80" width="60" height="52" rx="3" fill="#ccd5ea"/>
+            <rect x="20" y="170" width="70" height="44" rx="3" fill="#d3dbee"/>
+            <ellipse cx="140" cy="200" rx="42" ry="30" fill="#aebcae"/>
+            <rect x="200" y="170" width="80" height="44" rx="3" fill="#c3cde5"/>
+            <rect x="320" y="170" width="60" height="90" rx="3" fill="#c3cde5"/>
+            <rect x="20" y="230" width="140" height="36" rx="3" fill="#ccd5ea"/>
+            <rect x="200" y="230" width="80" height="36" rx="3" fill="#d3dbee"/>
+            <g font-size="10" font-weight="700" fill="#fff" text-anchor="middle">
+              <g><circle cx="135" cy="100" r="11" fill="#042354"/><text x="135" y="104">1</text></g>
+              <g><circle cx="240" cy="100" r="11" fill="#042354"/><text x="240" y="104">2</text></g>
+              <g><circle cx="55" cy="105" r="11" fill="#042354"/><text x="55" y="109">3</text></g>
+              <g><circle cx="140" cy="195" r="11" fill="#042354"/><text x="140" y="199">4</text></g>
+              <g><circle cx="350" cy="210" r="11" fill="#042354"/><text x="350" y="214">5</text></g>
+              <g><circle cx="240" cy="245" r="11" fill="#042354"/><text x="240" y="249">6</text></g>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 SALUD Y BIENESTAR -->
+    <section id="z-salud" data-title="Salud y bienestar (DAES)">
+      <p class="eyebrow">Acompañamiento integral</p>
+      <h2 class="t">Tu bienestar es lo primero</h2>
+      <div class="cards">
+        <div class="scard">
+          <div class="icw"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#042354" stroke-width="2"><path d="M12 21s-7-4.6-9.5-9C.8 8.6 2.6 5 6 5c2.2 0 3.6 1.2 6 3.8C14.4 6.2 15.8 5 18 5c3.4 0 5.2 3.6 3.5 7-2.5 4.4-9.5 9-9.5 9z"/></svg></div>
+          <b>Atención médica en campus</b>
+          <p>Te acompañamos con servicios de salud pensados para prevenir, orientar y atender tus necesidades durante la vida universitaria.</p>
+          <a href="#">Agenda una atención →</a>
+        </div>
+        <div class="scard">
+          <div class="icw"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#042354" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-6.5 8-6.5s8 2.5 8 6.5"/></svg></div>
+          <b>Apoyo psicológico</b>
+          <p>Encuentra escucha, orientación y acompañamiento con el CAPU (Centro de Atención Psicológica) durante toda tu experiencia universitaria.</p>
+          <a href="#">Conoce el CAPU →</a>
+        </div>
+        <div class="scard">
+          <div class="icw"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#042354" stroke-width="2"><circle cx="8" cy="9" r="3"/><circle cx="16" cy="9" r="3"/><path d="M2 20c0-3 2.7-5 6-5s6 2 6 5M12 20c0-3 2.7-5 6-5"/></svg></div>
+          <b>Iniciativas estudiantiles</b>
+          <p>Proyectos, campañas y espacios creados por y para estudiantes: aquí tu iniciativa también tiene un lugar.</p>
+          <a href="#">Súmate a una iniciativa →</a>
+        </div>
+        <div class="scard">
+          <div class="icw"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#042354" stroke-width="2"><path d="M12 2v20M5 8l7-6 7 6M5 14h14"/></svg></div>
+          <b>Asesoría pastoral</b>
+          <p>Un espacio de acompañamiento espiritual abierto a toda la comunidad universitaria, sin importar tu credo.</p>
+          <a href="#">Habla con pastoral →</a>
+        </div>
+      </div>
+      <div class="row" style="display:flex;margin-top:16px;"><a class="btn" href="#">Explora los servicios de bienestar →</a></div>
+    </section>
+
+    <!-- 5 CAMPUS ACTIVO — DEPORTES -->
+    <section id="z-deporte" data-title="Campus activo — Deportes (DAES)">
+      <p class="eyebrow">Vida activa</p>
+      <h2 class="t">Encuentra tu deporte en el campus</h2>
+      <div class="row" style="display:flex;align-items:stretch;margin-bottom:14px;gap:12px;flex-wrap:wrap;">
+        <div class="photo p3" style="flex:2;min-width:280px;height:190px;"><span class="ic">FOTO</span><span class="cap">Coliseo Polideportivo — final de Interfacultades</span></div>
+        <div class="photo p5" style="flex:1;min-width:180px;height:190px;"><span class="ic">FOTO</span><span class="cap">Gimnasio PUCP</span></div>
+      </div>
+      <p class="sub">Entrena, compite y mantente activo: gimnasio, selecciones deportivas, juegos interfacultades y talleres para todos los niveles, con entrenadores de trayectoria.</p>
+      <div class="pillrow">
+        <span class="pill">Gimnasio</span>
+        <span class="pill">Juegos Interfacultades</span>
+        <span class="pill">Reserva de espacios deportivos</span>
+        <span class="pill">Selección PUCP</span>
+        <span class="pill">Talleres deportivos</span>
+        <span class="pill">Barra PUCP</span>
+      </div>
+      <div class="row" style="display:flex;margin-top:16px;"><a class="btn" href="#">Conoce Deportes PUCP →</a></div>
+    </section>
+
+    <!-- 6 CULTURA Y EXPERIENCIAS -->
+    <section id="z-cultura" data-title="Cultura y experiencias">
+      <p class="eyebrow">DACU · CCPUCP · Cultura PUCP</p>
+      <h2 class="t">Vive el arte y las experiencias del campus</h2>
+      <div class="tabs" data-group="cultura">
+        <span class="tab on">Talleres y cursos</span>
+        <span class="tab">Elencos</span>
+        <span class="tab">Museos y colecciones</span>
+      </div>
+      <div class="cards">
+        <div class="scard" style="flex:1.2;padding:0;overflow:hidden;">
+          <div class="photo p6" style="height:130px;border-radius:0;"><span class="ic">DESTACADO</span><span class="cap">Talleres y cursos — DACU</span></div>
+          <div style="padding:14px 16px;"><b>Talleres y cursos</b><p style="margin:0;">Danza, música, teatro y artes visuales, con inscripciones abiertas cada ciclo en DACU.</p></div>
+        </div>
+        <div class="scard"><b>Elencos</b><p>CEMDUC, coros, tuna y el elenco de teatro PUCP abren audiciones cada semestre.</p></div>
+        <div class="scard"><b>Museos y colecciones</b><p>Museos, galerías y colecciones de la PUCP, con muestras temporales en el campus y en el CCPUCP.</p></div>
+      </div>
+      <div class="row" style="display:flex;margin-top:16px;"><a class="btn" href="#">Explora Cultura PUCP →</a></div>
+    </section>
+
+    <!-- 7 COMUNIDAD Y PARTICIPACIÓN -->
+    <section id="z-comunidad" data-title="Comunidad y participación (DARS)">
+      <p class="eyebrow">DARS</p>
+      <h2 class="t">Contribuye a la transformación social del país desde la PUCP</h2>
+      <div class="cards">
+        <div class="scard" style="padding:0;overflow:hidden;">
+          <div class="photo p4" style="height:120px;border-radius:0;"><span class="ic">FOTO</span><span class="cap">Ruta RSU del estudiante</span></div>
+          <div style="padding:14px 16px;"><b>Ruta RSU del estudiante PUCP</b><p style="margin:0;">Tu compromiso genera cambios.</p></div>
+        </div>
+        <div class="scard" style="padding:0;overflow:hidden;">
+          <div class="photo p2" style="height:120px;border-radius:0;"><span class="ic">FOTO</span><span class="cap">Voluntariado en acción</span></div>
+          <div style="padding:14px 16px;"><b>Voluntariado RSU</b><p style="margin:0;">Ciudadanía en acción.</p></div>
+        </div>
+      </div>
+      <div class="row" style="display:flex;margin-top:16px;gap:12px;"><a class="btn" href="#">¿Qué es la RSU?</a><a class="btn ghost" href="#">Descubre cómo participar</a></div>
+    </section>
+
+    <!-- 8 CAMPUS SOSTENIBLE -->
+    <section id="z-sostenible" data-title="Campus sostenible" style="padding:0;border:none;">
+      <div class="band">
+        <p class="eyebrow" style="color:#cfd9ea;">Clima de Cambios</p>
+        <h2 class="t">Un campus más verde para tu día a día</h2>
+        <p class="sub">Cuidamos el entorno donde estudias: arborización, amplias áreas verdes y edificaciones sostenibles. Conoce cómo la PUCP reduce su impacto ambiental con el programa Clima de Cambios.</p>
+        <div class="kpis">
+          <div class="kpi-card"><div class="n">+3,200</div><div class="l">árboles</div></div>
+          <div class="kpi-card"><div class="n">167,000 m²</div><div class="l">de áreas verdes</div></div>
+          <div class="kpi-card"><div class="n">7</div><div class="l">edificios con certificación LEED</div></div>
+        </div>
+        <div class="row" style="display:flex;margin-top:18px;"><a class="btn" style="background:#fff;color:var(--azul)" href="#">Visita Clima de Cambios →</a></div>
+      </div>
+    </section>
+
+    <!-- 9 MI CAMPUS PUCP -->
+    <section id="z-micampus" data-title="Mi Campus PUCP">
+      <p class="eyebrow">Mi Campus PUCP</p>
+      <h2 class="t">Las novedades, en un solo lugar</h2>
+      <div class="masonry">
+        <div class="photo p1 tall2"><span class="cap">Campaña de bienestar emocional</span></div>
+        <div class="photo p4"><span class="cap">Beneficios de tu carnet PUCP</span></div>
+        <div class="photo p6"><span class="cap">Agenda cultural de la semana</span></div>
+        <div class="photo p2 tall2"><span class="cap">Nueva sala de estudio 24 h</span></div>
+        <div class="photo p5"><span class="cap">Convocatoria de voluntariado RSU</span></div>
+        <div class="photo p3"><span class="cap">Novedades deportivas</span></div>
+        <div class="photo p6"><span class="cap">Feria de salud y prevención</span></div>
+        <div class="photo p1"><span class="cap">Tips para época de exámenes</span></div>
+      </div>
+      <p class="credit">Contenido gestionado por la Dirección de Comunicación Institucional (DCI): novedades, campañas y avisos pensados para estudiantes.</p>
+      <div class="social-row"><span class="note">Síguenos también en:</span><span class="chip">DAES</span><span class="chip">DACU</span><span class="chip">DARS</span></div>
+    </section>
+
+  </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer><div class="wrap">
+    <div><b>Vida Universitaria PUCP</b><br>DAES · DARS · DACU · vidauniversitaria@pucp.edu.pe</div>
+    <div><b>Enlaces</b><br><a href="#">Agenda PUCP</a> · <a href="#">Mapa del campus</a> · <a href="#">daes.pucp.edu.pe</a></div>
+    <div><b>Síguenos</b><br>Redes sociales · Libro de reclamaciones</div>
+  </div></footer>
+
+  <div id="notes-panel">
+    <div class="nh"><b>ⓘ Notas de revisión</b></div>
+    <div class="ntxt" id="notes-view">Cargando…</div>
+    <textarea id="notes-edit" style="display:none;"></textarea>
+    <div class="nbtns">
+      <button type="button" id="notes-editbtn">✎ Editar</button>
+      <button type="button" id="notes-savebtn" style="display:none;">Guardar</button>
+      <button type="button" id="notes-cancelbtn" style="display:none;">Cancelar</button>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <button id="btn-notes" type="button">ⓘ Notas: ON</button>
+    <button id="btn-toggle" type="button">💬 Comentarios: ON</button>
+    <button id="btn-export" type="button">📋 Copiar comentarios</button>
+  </div>
+  <div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  var WF='vida-media', API='https://comentarios.ludik.pe';
+  var main=document.querySelector('main'), container=main.querySelector('.wrap'), toast=document.getElementById('toast'), tt=null;
+  function notify(m){toast.textContent=m;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('show');},2200);}
+  function esc(s){var d=document.createElement('div');d.textContent=(s==null?'':s);return d.innerHTML;}
+  function linkify(s){return esc(s).replace(/(https?:\/\/[^\s<]+)/g,function(u){return '<a href="'+u+'" target="_blank" rel="noopener">'+u+'</a>';});}
+  var rail=document.createElement('div'); rail.id='crail'; document.body.appendChild(rail);
+  var comments={}, threads={}, orderId=null, notesId=null;
+
+  function latestOf(rows){return rows.slice().sort(function(a,b){return new Date(b.created_at)-new Date(a.created_at);})[0];}
+
+  function applyOrderFromRemote(){
+    var rows=comments['__order__']||[]; if(!rows.length)return;
+    var latest=latestOf(rows); orderId=latest.id;
+    try{ var ord=JSON.parse(latest.body); if(Array.isArray(ord)){ ord.forEach(function(id){var s=document.getElementById(id);if(s)container.appendChild(s);}); } }catch(e){}
+  }
+  function saveOrderRemote(){
+    var ids=Array.prototype.map.call(main.querySelectorAll('section'),function(s){return s.id;});
+    var prev=orderId;
+    fetch(API+'/comments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({wf:WF,section:'__order__',author:'system',body:JSON.stringify(ids)})})
+      .then(function(r){return r.json();}).then(function(c){orderId=c.id;if(prev)fetch(API+'/comments/'+prev,{method:'DELETE'}).catch(function(){});notify('Orden guardado para todos');})
+      .catch(function(){notify('No se pudo guardar el orden (sin conexión)');});
+  }
+
+  function applyNotesFromRemote(){
+    var rows=comments['__notes__']||[], view=document.getElementById('notes-view');
+    if(!rows.length){ view.textContent='Sin notas aún. Haz clic en "Editar" para agregar contexto de este wireframe.'; return; }
+    var latest=latestOf(rows); notesId=latest.id;
+    view.innerHTML=linkify(latest.body).replace(/\n/g,'<br>');
+  }
+  function saveNotesRemote(text){
+    var prev=notesId;
+    fetch(API+'/comments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({wf:WF,section:'__notes__',author:'system',body:text})})
+      .then(function(r){return r.json();}).then(function(c){notesId=c.id;if(prev)fetch(API+'/comments/'+prev,{method:'DELETE'}).catch(function(){});document.getElementById('notes-view').innerHTML=linkify(text).replace(/\n/g,'<br>');notify('Notas guardadas para todos');})
+      .catch(function(){notify('No se pudo guardar (sin conexión)');});
+  }
+
+  function makeThread(sec){
+    var t=document.createElement('div'); t.className='cthread'; t.dataset.sec=sec.id;
+    t.innerHTML='<div class="ct-list"></div><form class="ct-add"><textarea class="ct-text" rows="1" placeholder="Escribe un comentario…"></textarea><div class="ct-row"><input class="ct-author" placeholder="Tu nombre (opcional)"><button type="submit">Comentar</button></div></form>';
+    var ta=t.querySelector('.ct-text');
+    function grow(){ta.style.height='auto';ta.style.height=ta.scrollHeight+'px';}
+    ta.addEventListener('input',function(){grow();layout();});
+    t.querySelector('form').addEventListener('submit',function(ev){ev.preventDefault();var body=ta.value.replace(/\s+$/,'');if(!body.trim())return;var author=t.querySelector('.ct-author').value.trim();
+      fetch(API+'/comments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({wf:WF,section:sec.id,author:author,body:body})}).then(function(r){return r.json();}).then(function(c){(comments[sec.id]=comments[sec.id]||[]).push(c);ta.value='';grow();renderThread(sec.id);layout();notify('Comentario guardado');}).catch(function(){notify('No se pudo guardar (sin conexión)');});});
+    threads[sec.id]=t; return t;
+  }
+  function renderThread(sid){
+    var t=threads[sid];if(!t)return;
+    var items=(comments[sid]||[]).slice().sort(function(a,b){return new Date(a.created_at)-new Date(b.created_at);});
+    var list=t.querySelector('.ct-list');
+    var lastRes=-1;
+    items.forEach(function(c,i){ if(/RESUELTO|ANOTADO/i.test(c.body||'')) lastRes=i; });
+    var hist = lastRes>=0 ? items.slice(0,lastRes+1) : [];
+    var pend = lastRes>=0 ? items.slice(lastRes+1) : items;
+    function itemHTML(c){ return '<div class="ct-item"><div class="ct-body">'+linkify(c.body)+'</div><div class="ct-meta"><span>'+esc(c.author||'Anónimo')+' · '+new Date(c.created_at).toLocaleString('es-PE')+'</span><button class="ct-del" data-id="'+c.id+'">✕</button></div></div>'; }
+    var open = t.dataset.histopen==='1';
+    var html='';
+    if(hist.length){
+      html += '<button type="button" class="ct-hist-toggle" style="width:100%;text-align:left;background:#eef1f4;border:1px solid #e2e6ea;border-radius:7px;padding:6px 10px;font:inherit;font-size:11.5px;font-weight:700;color:#5b6470;cursor:pointer;margin-bottom:7px;">'+(open?'▾ Ocultar resueltos ('+hist.length+')':'▸ Ver resueltos ('+hist.length+')')+'</button>';
+      html += '<div class="ct-hist" style="opacity:.82;'+(open?'':'display:none;')+'">'+hist.map(itemHTML).join('')+'</div>';
+    }
+    html += pend.map(itemHTML).join('');
+    if(!pend.length && !hist.length){ html += '<div class="ct-empty" style="font-size:11.5px;color:#9097a0;padding:2px 2px 4px;">Sin comentarios aún</div>'; }
+    else if(!pend.length){ html += '<div class="ct-empty" style="font-size:11.5px;color:#9097a0;padding:2px 2px 4px;">✓ Todo resuelto en esta sección</div>'; }
+    list.innerHTML=html;
+    var tg=list.querySelector('.ct-hist-toggle');
+    if(tg){ tg.addEventListener('click',function(){ t.dataset.histopen=(t.dataset.histopen==='1')?'0':'1'; renderThread(sid); layout(); }); }
+    list.querySelectorAll('.ct-del').forEach(function(b){b.addEventListener('click',function(){fetch(API+'/comments/'+b.dataset.id,{method:'DELETE'}).catch(function(){});comments[sid]=(comments[sid]||[]).filter(function(x){return String(x.id)!==b.dataset.id;});renderThread(sid);layout();});});
+    var badge=document.querySelector('[data-cnt="'+sid+'"]');if(badge){badge.textContent = pend.length ? pend.length : (hist.length?'✓':'0'); badge.parentNode.classList.toggle('has',pend.length>0);}
+  }
+  function layout(){
+    if(document.body.classList.contains('comments-off')){rail.style.display='none';return;}
+    var wide=window.innerWidth>1100;
+    if(wide){rail.style.display='block';var prev=0;main.querySelectorAll('section').forEach(function(sec){var t=threads[sec.id];if(!t)return;if(t.parentNode!==rail)rail.appendChild(t);t.classList.remove('inline','open');var top=sec.getBoundingClientRect().top+window.scrollY;if(top<prev+8)top=prev+8;t.style.top=top+'px';prev=top+t.offsetHeight;});}
+    else{rail.style.display='none';main.querySelectorAll('section').forEach(function(sec){var t=threads[sec.id];if(!t)return;t.style.top='';t.classList.add('inline');if(t.parentNode!==sec)sec.appendChild(t);});}
+  }
+  function loadRemote(){
+    fetch(API+'/comments?wf='+WF).then(function(r){return r.json();}).then(function(rows){
+      comments={};
+      rows.forEach(function(c){(comments[c.section]=comments[c.section]||[]).push(c);});
+      Object.keys(threads).forEach(renderThread);
+      applyOrderFromRemote();
+      applyNotesFromRemote();
+      layout();
+    }).catch(function(){document.getElementById('notes-view').textContent='No se pudo conectar con la base de datos.';});
+  }
+  main.querySelectorAll('section').forEach(function(sec,i){
+    if(!sec.id)sec.id='sec-'+i;
+    var tools=document.createElement('div');tools.className='sec-tools';
+    tools.innerHTML='<button type="button" class="up" title="Subir">↑</button><button type="button" class="down" title="Bajar">↓</button><button type="button" class="c-btn" title="Comentar">💬 <span data-cnt="'+sec.id+'">0</span></button>';
+    sec.appendChild(tools);makeThread(sec);
+    tools.querySelector('.up').addEventListener('click',function(){var p=sec.previousElementSibling;if(p){container.insertBefore(sec,p);layout();saveOrderRemote();}});
+    tools.querySelector('.down').addEventListener('click',function(){var n=sec.nextElementSibling;if(n){container.insertBefore(n,sec);layout();saveOrderRemote();}});
+    tools.querySelector('.c-btn').addEventListener('click',function(){var t=threads[sec.id];if(!t)return;if(window.innerWidth>1100){t.querySelector('.ct-text').focus();t.scrollIntoView({behavior:'smooth',block:'center'});}else{t.classList.toggle('open');if(t.classList.contains('open'))t.scrollIntoView({behavior:'smooth',block:'nearest'});}});
+  });
+  loadRemote();layout();window.addEventListener('resize',layout);window.addEventListener('load',function(){setTimeout(layout,200);});setTimeout(layout,500);
+
+  var btnToggle=document.getElementById('btn-toggle'), commentsOn=true;
+  function applyCommentsPref(){document.body.classList.toggle('comments-off',!commentsOn);btnToggle.textContent=commentsOn?'💬 Comentarios: ON':'💬 Comentarios: OFF';setTimeout(layout,60);}
+  btnToggle.addEventListener('click',function(){commentsOn=!commentsOn;applyCommentsPref();});
+  applyCommentsPref();
+
+  var btnNotes=document.getElementById('btn-notes'), notesOn=true;
+  function applyNotesPref(){document.body.classList.toggle('notes-on',notesOn);btnNotes.textContent=notesOn?'ⓘ Notas: ON':'ⓘ Notas: OFF';}
+  btnNotes.addEventListener('click',function(){notesOn=!notesOn;applyNotesPref();});
+  applyNotesPref();
+
+  var notesView=document.getElementById('notes-view'), notesEdit=document.getElementById('notes-edit');
+  var notesEditBtn=document.getElementById('notes-editbtn'), notesSaveBtn=document.getElementById('notes-savebtn'), notesCancelBtn=document.getElementById('notes-cancelbtn');
+  function notesEnterEdit(){
+    var rows=comments['__notes__']||[];
+    notesEdit.value = rows.length ? latestOf(rows).body : '';
+    notesView.style.display='none'; notesEdit.style.display='block';
+    notesEditBtn.style.display='none'; notesSaveBtn.style.display='inline-block'; notesCancelBtn.style.display='inline-block';
+  }
+  function notesExitEdit(){
+    notesView.style.display='block'; notesEdit.style.display='none';
+    notesEditBtn.style.display='inline-block'; notesSaveBtn.style.display='none'; notesCancelBtn.style.display='none';
+  }
+  notesEditBtn.addEventListener('click',notesEnterEdit);
+  notesCancelBtn.addEventListener('click',notesExitEdit);
+  notesSaveBtn.addEventListener('click',function(){
+    var text=notesEdit.value;
+    comments['__notes__']=[{id:notesId,body:text,created_at:new Date().toISOString()}];
+    saveNotesRemote(text);
+    notesExitEdit();
+  });
+
+  document.getElementById('btn-export').addEventListener('click',function(){
+    var out=['Comentarios — Vida Universitaria (media) ('+new Date().toLocaleDateString('es-PE')+')',''];var total=0;
+    main.querySelectorAll('section').forEach(function(sec,idx){var items=comments[sec.id]||[];if(!items.length)return;out.push((idx+1)+'. '+(sec.dataset.title||sec.id));items.forEach(function(c){total++;out.push('   - '+(c.author?c.author+': ':'')+c.body.replace(/\n+/g,' ')+' ['+new Date(c.created_at).toLocaleString('es-PE')+']');});out.push('');});
+    if(!total){notify('No hay comentarios para copiar');return;}
+    var text=out.join('\n');
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){notify(total+' comentario(s) copiado(s)');});}
+    else{var ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();notify(total+' comentario(s) copiado(s)');}
+  });
+
+  document.addEventListener('click',function(ev){
+    var tab=ev.target.closest('.tab');
+    if(!tab)return;
+    var group=tab.closest('.tabs'); if(!group)return;
+    group.querySelectorAll('.tab').forEach(function(t){t.classList.remove('on');});
+    tab.classList.add('on');
+  });
+  (function(){
+    var slider=document.getElementById('slider-espacios'); if(!slider)return;
+    var track=slider.querySelector('.track'); var slides=track.children.length; var visible=3, idx=0;
+    var dots=document.getElementById('dots-espacios');
+    function pages(){return Math.max(1,slides-visible+1);}
+    function render(){
+      var slideW=track.children[0].getBoundingClientRect().width+12;
+      track.style.transform='translateX('+(-idx*slideW)+'px)';
+      dots.innerHTML='';
+      for(var i=0;i<pages();i++){var d=document.createElement('span');d.className='dot'+(i===idx?' on':'');dots.appendChild(d);}
+    }
+    slider.querySelector('.prev').addEventListener('click',function(){idx=(idx-1+pages())%pages();render();});
+    slider.querySelector('.next').addEventListener('click',function(){idx=(idx+1)%pages();render();});
+    window.addEventListener('resize',render); render();
+  })();
+})();
+</script>
+</body>
+</html>
