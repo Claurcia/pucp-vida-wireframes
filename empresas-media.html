@@ -105,7 +105,19 @@
   footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:13px;}
   footer b{color:#fff;font-family:'Montserrat';}
   footer a{color:#cdd8ea;}
-  .legend{max-width:1180px;margin:0 auto;padding:22px 24px 60px;color:var(--ink-soft);font-size:12.5px;line-height:1.7;}
+  /* panel de notas de revisión — compartido en BBDD, no forma parte del mockup */
+  #notes-panel{position:fixed;left:18px;top:90px;width:300px;max-width:calc(100vw - 36px);max-height:70vh;overflow-y:auto;
+               background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;box-shadow:0 10px 30px rgba(0,0,0,.16);z-index:60;display:none;}
+  body.notes-on #notes-panel{display:block;}
+  #notes-panel .nh{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px;}
+  #notes-panel .nh b{font-family:'Montserrat';font-size:11.5px;color:var(--azul);text-transform:uppercase;letter-spacing:.6px;}
+  #notes-panel .ntxt{font-size:12.5px;color:var(--ink-soft);line-height:1.6;}
+  #notes-panel textarea{width:100%;min-height:160px;font:inherit;font-size:12.5px;border:1px solid var(--line);border-radius:8px;padding:8px;resize:vertical;}
+  #notes-panel .nbtns{display:flex;gap:6px;margin-top:8px;}
+  #notes-panel .nbtns button{font:inherit;font-size:11.5px;font-weight:700;border:1px solid var(--ph-line);background:var(--tint);color:var(--ink);border-radius:6px;padding:6px 10px;cursor:pointer;}
+  @media(min-width:1101px){ body.notes-on .site-header .wrap,body.notes-on .wrap,body.notes-on footer .wrap{margin-left:340px;} }
+  @media(max-width:1100px){ #notes-panel{display:none!important;} }
+  .legend{color:var(--ink-soft);font-size:12.5px;line-height:1.7;}
   .legend b{color:var(--ink);}
   @media(max-width:860px){ .hub,.cards{grid-template-columns:1fr 1fr;} .logos{grid-template-columns:repeat(3,1fr);} .contactbox{grid-template-columns:1fr;} }
   @media(max-width:560px){ .hub,.cards,.cards.c3{grid-template-columns:1fr;} }
@@ -117,7 +129,7 @@
   .sec-tools .c-btn.has{background:var(--azul);color:#fff;border-color:var(--azul);}
   .toast{position:fixed;bottom:78px;right:18px;z-index:101;background:var(--azul);color:#fff;font-size:12.5px;border-radius:7px;padding:9px 14px;opacity:0;transition:opacity .25s;pointer-events:none;}
   .toast.show{opacity:1;}
-  @media(min-width:1101px){ .site-header .wrap,.wrap,.legend,footer .wrap{margin-right:344px;} }
+  @media(min-width:1101px){ .site-header .wrap,.wrap,footer .wrap{margin-right:344px;} }
   #crail{position:absolute;top:0;right:16px;width:312px;z-index:40;}
   .cthread{position:absolute;right:0;width:300px;}
   .cthread.inline{position:static;width:auto;display:none;margin:14px 0 0;}
@@ -135,7 +147,7 @@
   .ct-row button{border:none;background:var(--ok);color:#fff;border-radius:7px;padding:7px 13px;font:inherit;font-size:12px;font-weight:700;cursor:pointer;}
   body.comments-off #crail{display:none!important;}
   body.comments-off .sec-tools{display:none!important;}
-  @media(min-width:1101px){ body.comments-off .site-header .wrap,body.comments-off .wrap,body.comments-off .legend,body.comments-off footer .wrap{margin-right:auto;} }
+  @media(min-width:1101px){ body.comments-off .site-header .wrap,body.comments-off .wrap,body.comments-off footer .wrap{margin-right:auto;} }
   @media(max-width:1100px){ #crail{display:none;} }
   @media print{.toolbar,.sec-tools,.toast{display:none!important;}}
 </style>
@@ -391,12 +403,19 @@
     <div><b>Síguenos</b><br>Redes sociales · Libro de reclamaciones</div>
   </div></footer>
 
-  <div class="legend">
-    <b>Wireframe de media fidelidad — Empresas.</b> Color institucional (#042354), Montserrat + Roboto. Contenido y enlaces reales según los comentarios de Sara (VRI) y las webs del Vicerrectorado de Investigación. Las cifras del banner son las del VRI (a confirmar unidad/año).<br>
-    <b>Modo revisión.</b> Usa el botón 💬 de cada sección para comentar. Con el botón “Comentarios” de abajo a la derecha puedes mostrar u ocultar los componentes de comentarios.
+  <div id="notes-panel">
+    <div class="nh"><b>ⓘ Notas de revisión</b></div>
+    <div class="ntxt" id="notes-view">Cargando…</div>
+    <textarea id="notes-edit" style="display:none;"></textarea>
+    <div class="nbtns">
+      <button type="button" id="notes-editbtn">✎ Editar</button>
+      <button type="button" id="notes-savebtn" style="display:none;">Guardar</button>
+      <button type="button" id="notes-cancelbtn" style="display:none;">Cancelar</button>
+    </div>
   </div>
 
   <div class="toolbar">
+    <button id="btn-notes" type="button">ⓘ Notas: ON</button>
     <button id="btn-toggle" type="button">💬 Comentarios: ON</button>
     <button id="btn-export" type="button">📋 Copiar comentarios</button>
   </div>
@@ -425,12 +444,40 @@
 
   // comentarios
   var WF='empresas-media', API='https://comentarios.ludik.pe';
-  var main=document.querySelector('main'), toast=document.getElementById('toast'), tt=null;
+  var main=document.querySelector('main'), container=main.querySelector('.wrap'), toast=document.getElementById('toast'), tt=null;
   function notify(m){toast.textContent=m;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('show');},2200);}
   function esc(s){var d=document.createElement('div');d.textContent=(s==null?'':s);return d.innerHTML;}
   function linkify(s){return esc(s).replace(/(https?:\/\/[^\s<]+)/g,function(u){return '<a href="'+u+'" target="_blank" rel="noopener">'+u+'</a>';});}
   var rail=document.createElement('div'); rail.id='crail'; document.body.appendChild(rail);
-  var comments={}, threads={};
+  var comments={}, threads={}, orderId=null, notesId=null;
+
+  function latestOf(rows){return rows.slice().sort(function(a,b){return new Date(b.created_at)-new Date(a.created_at);})[0];}
+
+  function applyOrderFromRemote(){
+    var rows=comments['__order__']||[]; if(!rows.length)return;
+    var latest=latestOf(rows); orderId=latest.id;
+    try{ var ord=JSON.parse(latest.body); if(Array.isArray(ord)){ ord.forEach(function(id){var s=document.getElementById(id);if(s)container.appendChild(s);}); } }catch(e){}
+  }
+  function saveOrderRemote(){
+    var ids=Array.prototype.map.call(main.querySelectorAll('section'),function(s){return s.id;});
+    var prev=orderId;
+    fetch(API+'/comments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({wf:WF,section:'__order__',author:'system',body:JSON.stringify(ids)})})
+      .then(function(r){return r.json();}).then(function(c){orderId=c.id;if(prev)fetch(API+'/comments/'+prev,{method:'DELETE'}).catch(function(){});notify('Orden guardado para todos');})
+      .catch(function(){notify('No se pudo guardar el orden (sin conexión)');});
+  }
+
+  function applyNotesFromRemote(){
+    var rows=comments['__notes__']||[], view=document.getElementById('notes-view');
+    if(!rows.length){ view.textContent='Sin notas aún. Haz clic en "Editar" para agregar contexto de este wireframe.'; return; }
+    var latest=latestOf(rows); notesId=latest.id;
+    view.innerHTML=linkify(latest.body).replace(/\n/g,'<br>');
+  }
+  function saveNotesRemote(text){
+    var prev=notesId;
+    fetch(API+'/comments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({wf:WF,section:'__notes__',author:'system',body:text})})
+      .then(function(r){return r.json();}).then(function(c){notesId=c.id;if(prev)fetch(API+'/comments/'+prev,{method:'DELETE'}).catch(function(){});document.getElementById('notes-view').innerHTML=linkify(text).replace(/\n/g,'<br>');notify('Notas guardadas para todos');})
+      .catch(function(){notify('No se pudo guardar (sin conexión)');});
+  }
   function makeThread(sec){
     var t=document.createElement('div'); t.className='cthread'; t.dataset.sec=sec.id;
     t.innerHTML='<div class="ct-list"></div><form class="ct-add"><textarea class="ct-text" rows="1" placeholder="Escribe un comentario…"></textarea><div class="ct-row"><input class="ct-author" placeholder="Tu nombre (opcional)"><button type="submit">Comentar</button></div></form>';
@@ -451,19 +498,57 @@
     if(wide){rail.style.display='block';var prev=0;main.querySelectorAll('section').forEach(function(sec){var t=threads[sec.id];if(!t)return;if(t.parentNode!==rail)rail.appendChild(t);t.classList.remove('inline','open');var top=sec.getBoundingClientRect().top+window.scrollY;if(top<prev+8)top=prev+8;t.style.top=top+'px';prev=top+t.offsetHeight;});}
     else{rail.style.display='none';main.querySelectorAll('section').forEach(function(sec){var t=threads[sec.id];if(!t)return;t.style.top='';t.classList.add('inline');if(t.parentNode!==sec)sec.appendChild(t);});}
   }
-  function loadRemote(){fetch(API+'/comments?wf='+WF).then(function(r){return r.json();}).then(function(rows){comments={};rows.forEach(function(c){(comments[c.section]=comments[c.section]||[]).push(c);});Object.keys(threads).forEach(renderThread);layout();}).catch(function(){});}
+  function loadRemote(){
+    fetch(API+'/comments?wf='+WF).then(function(r){return r.json();}).then(function(rows){
+      comments={};
+      rows.forEach(function(c){(comments[c.section]=comments[c.section]||[]).push(c);});
+      Object.keys(threads).forEach(renderThread);
+      applyOrderFromRemote();
+      applyNotesFromRemote();
+      layout();
+    }).catch(function(){document.getElementById('notes-view').textContent='No se pudo conectar con la base de datos.';});
+  }
   main.querySelectorAll('section').forEach(function(sec,i){
     if(!sec.id)sec.id='sec-'+i;
-    var tools=document.createElement('div');tools.className='sec-tools';tools.innerHTML='<button type="button" class="c-btn" title="Comentar">💬 <span data-cnt="'+sec.id+'">0</span></button>';
+    var tools=document.createElement('div');tools.className='sec-tools';
+    tools.innerHTML='<button type="button" class="up" title="Subir">↑</button><button type="button" class="down" title="Bajar">↓</button><button type="button" class="c-btn" title="Comentar">💬 <span data-cnt="'+sec.id+'">0</span></button>';
     sec.appendChild(tools);makeThread(sec);
+    tools.querySelector('.up').addEventListener('click',function(){var p=sec.previousElementSibling;if(p){container.insertBefore(sec,p);layout();saveOrderRemote();}});
+    tools.querySelector('.down').addEventListener('click',function(){var n=sec.nextElementSibling;if(n){container.insertBefore(n,sec);layout();saveOrderRemote();}});
     tools.querySelector('.c-btn').addEventListener('click',function(){var t=threads[sec.id];if(!t)return;if(window.innerWidth>1100){t.querySelector('.ct-text').focus();t.scrollIntoView({behavior:'smooth',block:'center'});}else{t.classList.toggle('open');if(t.classList.contains('open'))t.scrollIntoView({behavior:'smooth',block:'nearest'});}});
   });
   loadRemote();layout();window.addEventListener('resize',layout);window.addEventListener('load',function(){setTimeout(layout,200);});setTimeout(layout,500);
 
-  var btnToggle=document.getElementById('btn-toggle');
-  function applyCommentsPref(){var off=localStorage.getItem('emp-comments-off')==='1';document.body.classList.toggle('comments-off',off);btnToggle.textContent=off?'💬 Comentarios: OFF':'💬 Comentarios: ON';setTimeout(layout,60);}
-  btnToggle.addEventListener('click',function(){var off=!(localStorage.getItem('emp-comments-off')==='1');localStorage.setItem('emp-comments-off',off?'1':'0');applyCommentsPref();});
+  var btnToggle=document.getElementById('btn-toggle'), commentsOn=true;
+  function applyCommentsPref(){document.body.classList.toggle('comments-off',!commentsOn);btnToggle.textContent=commentsOn?'💬 Comentarios: ON':'💬 Comentarios: OFF';setTimeout(layout,60);}
+  btnToggle.addEventListener('click',function(){commentsOn=!commentsOn;applyCommentsPref();});
   applyCommentsPref();
+
+  var btnNotes=document.getElementById('btn-notes'), notesOn=true;
+  function applyNotesPref(){document.body.classList.toggle('notes-on',notesOn);btnNotes.textContent=notesOn?'ⓘ Notas: ON':'ⓘ Notas: OFF';}
+  btnNotes.addEventListener('click',function(){notesOn=!notesOn;applyNotesPref();});
+  applyNotesPref();
+
+  var notesView=document.getElementById('notes-view'), notesEdit=document.getElementById('notes-edit');
+  var notesEditBtn=document.getElementById('notes-editbtn'), notesSaveBtn=document.getElementById('notes-savebtn'), notesCancelBtn=document.getElementById('notes-cancelbtn');
+  function notesEnterEdit(){
+    var rows=comments['__notes__']||[];
+    notesEdit.value = rows.length ? latestOf(rows).body : '';
+    notesView.style.display='none'; notesEdit.style.display='block';
+    notesEditBtn.style.display='none'; notesSaveBtn.style.display='inline-block'; notesCancelBtn.style.display='inline-block';
+  }
+  function notesExitEdit(){
+    notesView.style.display='block'; notesEdit.style.display='none';
+    notesEditBtn.style.display='inline-block'; notesSaveBtn.style.display='none'; notesCancelBtn.style.display='none';
+  }
+  notesEditBtn.addEventListener('click',notesEnterEdit);
+  notesCancelBtn.addEventListener('click',notesExitEdit);
+  notesSaveBtn.addEventListener('click',function(){
+    var text=notesEdit.value;
+    comments['__notes__']=[{id:notesId,body:text,created_at:new Date().toISOString()}];
+    saveNotesRemote(text);
+    notesExitEdit();
+  });
 
   document.getElementById('btn-export').addEventListener('click',function(){
     var out=['Comentarios — Empresas (media) ('+new Date().toLocaleDateString('es-PE')+')',''];var total=0;
