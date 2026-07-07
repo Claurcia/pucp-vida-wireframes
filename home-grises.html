@@ -414,7 +414,24 @@
   function esc(s){var d=document.createElement('div');d.textContent=(s==null?'':s);return d.innerHTML;}
   function linkify(s){return esc(s).replace(/(https?:\/\/[^\s<]+)/g,function(u){return '<a href="'+u+'" target="_blank" rel="noopener">'+u+'</a>';});}
   var rail=document.createElement('div'); rail.id='crail'; document.body.appendChild(rail);
-  var comments={}, threads={};
+  var comments={}, threads={}, settingsId=null, commentsOff=false, annivOn=true;
+  function applySettingsFromRemote(){
+    var rows=comments['__settings__']||[]; if(!rows.length)return;
+    var latest=rows.slice().sort(function(a,b){return new Date(b.created_at)-new Date(a.created_at);})[0];
+    settingsId=latest.id;
+    try{
+      var s=JSON.parse(latest.body);
+      if(typeof s.commentsOff==='boolean')commentsOff=s.commentsOff;
+      if(typeof s.annivOn==='boolean')annivOn=s.annivOn;
+    }catch(e){}
+    applyCommentsPref(); applyAnnivPref();
+  }
+  function saveSettingsRemote(){
+    var prev=settingsId;
+    fetch(API+'/comments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({wf:WF,section:'__settings__',author:'system',body:JSON.stringify({commentsOff:commentsOff,annivOn:annivOn})})})
+      .then(function(r){return r.json();}).then(function(c){settingsId=c.id;if(prev)fetch(API+'/comments/'+prev,{method:'DELETE'}).catch(function(){});})
+      .catch(function(){notify('No se pudo guardar la preferencia (sin conexión)');});
+  }
   function makeThread(sec){
     var t=document.createElement('div'); t.className='cthread'; t.dataset.sec=sec.id;
     t.innerHTML='<div class="ct-list"></div><form class="ct-add"><textarea class="ct-text" rows="1" placeholder="Escribe un comentario…"></textarea><div class="ct-row"><input class="ct-author" placeholder="Tu nombre (opcional)"><button type="submit">Comentar</button></div></form>';
@@ -435,7 +452,7 @@
     if(wide){document.body.classList.add('crpad');rail.style.display='block';var prev=0;main.querySelectorAll('section').forEach(function(sec){var t=threads[sec.id];if(!t)return;if(t.parentNode!==rail)rail.appendChild(t);t.classList.remove('inline','open');var top=sec.getBoundingClientRect().top+window.scrollY;if(top<prev+8)top=prev+8;t.style.top=top+'px';prev=top+t.offsetHeight;});}
     else{document.body.classList.remove('crpad');rail.style.display='none';main.querySelectorAll('section').forEach(function(sec){var t=threads[sec.id];if(!t)return;t.style.top='';t.classList.add('inline');if(t.parentNode!==sec)sec.appendChild(t);});}
   }
-  function loadRemote(){fetch(API+'/comments?wf='+WF).then(function(r){return r.json();}).then(function(rows){comments={};rows.forEach(function(c){(comments[c.section]=comments[c.section]||[]).push(c);});Object.keys(threads).forEach(renderThread);layout();}).catch(function(){});}
+  function loadRemote(){fetch(API+'/comments?wf='+WF).then(function(r){return r.json();}).then(function(rows){comments={};rows.forEach(function(c){(comments[c.section]=comments[c.section]||[]).push(c);});Object.keys(threads).forEach(renderThread);applySettingsFromRemote();layout();}).catch(function(){});}
   // ids estables en orden original
   Array.prototype.forEach.call(main.querySelectorAll('section'),function(sec,i){ if(!sec.id)sec.id='sec-'+i; });
   // aplica orden guardado
@@ -475,9 +492,9 @@
   // (los textos editados se guardan solo en este navegador; el archivo es la fuente compartida)
   loadRemote();layout();window.addEventListener('resize',layout);window.addEventListener('load',function(){setTimeout(layout,200);});setTimeout(layout,500);
   var btnToggle=document.getElementById('btn-toggle');
-  function applyPref(){var off=localStorage.getItem('home-comments-off')==='1';document.body.classList.toggle('comments-off',off);btnToggle.textContent=off?'💬 Comentarios: OFF':'💬 Comentarios: ON';setTimeout(layout,60);}
-  btnToggle.addEventListener('click',function(){var off=!(localStorage.getItem('home-comments-off')==='1');localStorage.setItem('home-comments-off',off?'1':'0');applyPref();});
-  applyPref();
+  function applyCommentsPref(){document.body.classList.toggle('comments-off',commentsOff);btnToggle.textContent=commentsOff?'💬 Comentarios: OFF':'💬 Comentarios: ON';setTimeout(layout,60);}
+  btnToggle.addEventListener('click',function(){commentsOff=!commentsOff;applyCommentsPref();saveSettingsRemote();notify(commentsOff?'Comentarios ocultos para todos':'Comentarios visibles para todos');});
+  applyCommentsPref();
   document.getElementById('btn-resetorder').addEventListener('click',function(){
     if(!confirm('¿Restablecer el orden y los textos editados de este navegador a la versión original?'))return;
     localStorage.removeItem('home-order-v2');localStorage.removeItem('home-content');location.reload();
@@ -493,14 +510,11 @@
     else{var ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();notify(total+' comentario(s) copiado(s)');}
   });
 
-  // logo/badge de aniversario (110 años) — activar/desactivar
-  (function(){
-    var btnAnniv=document.getElementById('btn-anniv');
-    var on=true;
-    function apply(){document.body.classList.toggle('anniv-on',on);btnAnniv.textContent=on?'🎉 110 años: ON':'🎉 110 años: OFF';}
-    btnAnniv.addEventListener('click',function(){on=!on;apply();});
-    apply();
-  })();
+  // logo/badge de aniversario (110 años) — activar/desactivar, compartido en BBDD
+  var btnAnniv=document.getElementById('btn-anniv');
+  function applyAnnivPref(){document.body.classList.toggle('anniv-on',annivOn);btnAnniv.textContent=annivOn?'🎉 110 años: ON':'🎉 110 años: OFF';}
+  btnAnniv.addEventListener('click',function(){annivOn=!annivOn;applyAnnivPref();saveSettingsRemote();notify(annivOn?'Badge activado para todos':'Badge desactivado para todos');});
+  applyAnnivPref();
 
   // tarjetas del hero = controles del carrusel (hasta 5: Bienvenida + 4 categorías)
   (function(){
