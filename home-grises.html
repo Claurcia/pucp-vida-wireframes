@@ -47,9 +47,10 @@
   .btn.sm{padding:9px 16px;font-size:13px;}
   .ph{background:var(--ph);border-radius:10px;}
   /* HERO carrusel */
-  .hero{position:relative;background:var(--ph2);border-radius:0;min-height:540px;display:flex;align-items:center;padding:0 24px;overflow:hidden;}
+  .hero{position:relative;background:var(--ph2);border-radius:0;min-height:540px;overflow:hidden;}
   .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,rgba(0,0,0,.45),rgba(0,0,0,.05) 60%);}
-  .hero .in{position:relative;z-index:1;max-width:1180px;margin:0 auto;width:100%;}
+  .hero .in{position:absolute;top:50%;left:0;right:0;transform:translateY(-50%);max-width:1180px;margin:0 auto;padding:0 24px;z-index:1;}
+  @media(min-width:1101px){ body.crpad .hero .in{margin-right:344px;} }
   .hero h1{font-family:'Montserrat';font-weight:800;font-size:34px;color:#fff;margin:0 0 18px;text-shadow:0 1px 10px rgba(0,0,0,.5);}
   .hero .pause{position:absolute;right:36px;bottom:96px;z-index:2;width:44px;height:44px;border-radius:50%;background:rgba(0,0,0,.3);color:#fff;display:flex;align-items:center;justify-content:center;}
   .anniv-badge{position:absolute;top:26px;right:36px;z-index:3;width:92px;height:92px;border-radius:50%;background:#fff;color:var(--dark);
