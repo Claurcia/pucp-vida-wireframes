@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Wireframe — Home PUCP (grises, sin foto)</title>
+<title>Wireframe — Home PUCP v2 (tarjetas con miniatura, enlaces reales)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&family=Source+Serif+Pro:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
@@ -61,13 +61,23 @@
   .anniv-badge .n{font-family:'Montserrat';font-weight:800;font-size:26px;line-height:1;}
   .anniv-badge .l{font-family:'Montserrat';font-weight:700;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-top:2px;}
   @media(max-width:900px){ .anniv-badge{width:70px;height:70px;top:16px;right:12px;} .anniv-badge .n{font-size:19px;} .anniv-badge .l{font-size:9px;} }
-  .news3{max-width:1180px;margin:-60px auto 0;padding:0 24px;position:relative;z-index:3;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;}
-  .ncard{background:var(--ph);border-radius:12px;padding:18px;min-height:150px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;box-shadow:0 0 0 0 var(--dark);transition:box-shadow .15s,background .15s;}
+  .news3{max-width:1180px;margin:-60px auto 0;padding:0 24px 6px;position:relative;z-index:3;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  .ncard{background:var(--ph);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;cursor:pointer;text-decoration:none;box-shadow:0 0 0 0 var(--dark);transition:box-shadow .15s,background .15s;}
   .ncard:hover{background:#dde0e4;}
-  .ncard.on{background:#fff;box-shadow:0 0 0 2px var(--dark) inset;}
-  .ncard .ctag{display:inline-block;font-family:'Montserrat';font-size:10.5px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--dark);background:var(--t2);border-radius:4px;padding:3px 9px;margin-bottom:10px;align-self:flex-start;}
-  .ncard h3{font-family:'Montserrat';font-weight:700;font-size:15px;margin:0;}
-  .ncard .meta{font-size:12.5px;color:var(--ink2);margin-top:14px;}
+  .ncard .thumb{height:84px;flex:none;position:relative;background:linear-gradient(135deg,var(--ph2),var(--ph3));}
+  .ncard .thumb .ic{position:absolute;top:8px;left:8px;font-size:9.5px;font-weight:700;letter-spacing:.4px;background:rgba(255,255,255,.9);color:var(--ink);padding:2px 7px;border-radius:4px;}
+  .hero .vtag{position:absolute;top:20px;left:24px;z-index:2;font-family:'Montserrat';font-size:10.5px;font-weight:700;letter-spacing:.4px;background:rgba(255,255,255,.9);color:var(--ink);padding:4px 10px;border-radius:4px;}
+  .ncard .body{padding:14px 16px 16px;display:flex;flex-direction:column;flex:1;}
+  .ncard.on{background:var(--dark);}
+  .ncard.on .thumb{background:linear-gradient(135deg,#4a5058,#2b2f36);}
+  .ncard.on h3{color:#fff;}
+  .ncard.on .meta{color:#c7cbd1;}
+  .ncard.on .ctag{background:#fff;color:var(--dark);}
+  .ncard .ctag{display:inline-block;font-family:'Montserrat';font-size:10px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--dark);background:var(--t2);border-radius:4px;padding:3px 9px;margin-bottom:9px;align-self:flex-start;}
+  .ncard h3{font-family:'Montserrat';font-weight:600;font-size:13.5px;line-height:1.4;margin:0;color:var(--ink);}
+  .ncard .meta{font-size:11px;color:var(--ink2);margin-top:auto;padding-top:12px;}
+  @media(max-width:900px){ .news3{grid-template-columns:repeat(2,1fr);} }
+  @media(max-width:600px){ .news3{grid-template-columns:1fr;} }
   .novstrip{max-width:1180px;margin:26px auto 0;padding:18px 24px;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;border-top:1px solid var(--line);}
   .novstrip .ttl{font-family:'Montserrat';font-weight:700;font-size:14px;}
   /* grids */
@@ -208,6 +218,7 @@
   <!-- HERO carrusel comercial -->
   <section style="padding:0;border:none;" data-title="Hero — carrusel comercial">
     <div class="hero" id="hero-slider">
+      <span class="vtag">VIDEO</span>
       <div class="in">
         <h1>Bienvenido a la PUCP</h1>
         <a class="btn" style="background:#fff;color:var(--ink)" href="#">Descubre la vida universitaria ↗</a>
@@ -218,11 +229,22 @@
       </div>
     </div>
     <div class="news3" id="hero-cards">
-      <div class="ncard on" data-title="Bienvenido a la PUCP" data-cta="Descubre la vida universitaria ↗" data-href="#"><span class="ctag">Video</span><h3>Bienvenido a la PUCP</h3><div><span class="meta">Página de inicio</span></div></div>
-      <div class="ncard" data-kicker="Campus y comunidad · Institucional" data-title="Consorcio de Universidades: 30 años aportando al país" data-cta="Leer la nota ↗" data-href="https://puntoedu.pucp.edu.pe/vida-universitaria/institucional/consorcio-de-universidades-conmemora-30-aniversario-trabajo/"><span class="ctag">Institucional</span><h3>Consorcio de Universidades: 30 años aportando al país</h3><div><span class="meta">Campus y comunidad · 30 junio, 2026</span></div></div>
-      <div class="ncard" data-kicker="Cultura y creación · Artes" data-title="Julia Codesido: la retrospectiva de una artista clave del arte peruano" data-cta="Leer la nota ↗" data-href="https://puntoedu.pucp.edu.pe/vida-universitaria/institucional/julia-codesido-retrospectiva-redescubre-arte-peruano-moderno/"><span class="ctag">Artes</span><h3>Julia Codesido: la retrospectiva de una artista clave del arte peruano</h3><div><span class="meta">Cultura y creación · 10 junio, 2026</span></div></div>
-      <div class="ncard" data-kicker="Cultura y creación · Humanidades" data-title="«El alcalde de Zalamea» regresa a Lima tras 40 años" data-cta="Leer la nota ↗" data-href="https://puntoedu.pucp.edu.pe/vida-universitaria/alcalde-de-zalamea-obra-de-calderon-de-la-barca-se-repone-en-lima/"><span class="ctag">Humanidades</span><h3>«El alcalde de Zalamea» regresa a Lima tras 40 años</h3><div><span class="meta">Cultura y creación · 19 mayo, 2026</span></div></div>
-      <div class="ncard" data-kicker="Orgullo PUCP · Ciencias" data-title="NonHuman: PUCP entre las mejores del mundo en robótica" data-cta="Leer la nota ↗" data-href="https://puntoedu.pucp.edu.pe/orgullo-pucp/nonhuman-ciencias-e-ingenieria-pucp-en-el-top-mundial-de-robotica/"><span class="ctag">Ciencias</span><h3>NonHuman: PUCP entre las mejores del mundo en robótica</h3><div><span class="meta">Orgullo PUCP · 06 julio, 2026</span></div></div>
+      <a class="ncard" target="_blank" rel="noopener" href="https://puntoedu.pucp.edu.pe/vida-universitaria/institucional/consorcio-de-universidades-conmemora-30-aniversario-trabajo/">
+        <div class="thumb"><span class="ic">FOTO</span></div>
+        <div class="body"><span class="ctag">Institucional</span><h3>Consorcio de Universidades: 30 años aportando al país</h3><span class="meta">Campus y comunidad · 30 junio, 2026</span></div>
+      </a>
+      <a class="ncard" target="_blank" rel="noopener" href="https://puntoedu.pucp.edu.pe/vida-universitaria/institucional/julia-codesido-retrospectiva-redescubre-arte-peruano-moderno/">
+        <div class="thumb"><span class="ic">FOTO</span></div>
+        <div class="body"><span class="ctag">Artes</span><h3>Julia Codesido: la retrospectiva de una artista clave del arte peruano</h3><span class="meta">Cultura y creación · 10 junio, 2026</span></div>
+      </a>
+      <a class="ncard" target="_blank" rel="noopener" href="https://puntoedu.pucp.edu.pe/vida-universitaria/alcalde-de-zalamea-obra-de-calderon-de-la-barca-se-repone-en-lima/">
+        <div class="thumb"><span class="ic">FOTO</span></div>
+        <div class="body"><span class="ctag">Humanidades</span><h3>«El alcalde de Zalamea» regresa a Lima tras 40 años</h3><span class="meta">Cultura y creación · 19 mayo, 2026</span></div>
+      </a>
+      <a class="ncard" target="_blank" rel="noopener" href="https://puntoedu.pucp.edu.pe/orgullo-pucp/nonhuman-ciencias-e-ingenieria-pucp-en-el-top-mundial-de-robotica/">
+        <div class="thumb"><span class="ic">FOTO</span></div>
+        <div class="body"><span class="ctag">Ciencias</span><h3>NonHuman: PUCP entre las mejores del mundo en robótica</h3><span class="meta">Orgullo PUCP · 06 julio, 2026</span></div>
+      </a>
     </div>
     <div class="novstrip"><span class="ttl">Conoce las novedades de la PUCP:</span><a class="btn ghost sm" href="#">Ver más noticias ↗</a><a class="btn ghost sm" href="#">Ver agenda PUCP ↗</a></div>
   </section>
@@ -408,7 +430,7 @@
   </div>
 
   <div class="toolbar">
-    <span class="vswitch"><a class="on" href="home-grises.html">Versión 1</a><a href="home-grises-v2.html">Versión 2</a></span>
+    <span class="vswitch"><a href="home-grises.html">Versión 1</a><a class="on" href="home-grises-v2.html">Versión 2</a></span>
     <button id="btn-anniv" type="button">🎉 110 años: ON</button>
     <button id="btn-edit" type="button">✏️ Editar textos</button>
     <button id="btn-toggle" type="button">💬 Comentarios: ON</button>
@@ -419,7 +441,7 @@
 
 <script>
 (function(){
-  var WF='home-grises', API='https://comentarios.ludik.pe';
+  var WF='home-grises-v2', API='https://comentarios.ludik.pe';
   var main=document.querySelector('main'), toast=document.getElementById('toast'), tt=null;
   function notify(m){toast.textContent=m;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('show');},2200);}
   function esc(s){var d=document.createElement('div');d.textContent=(s==null?'':s);return d.innerHTML;}
@@ -527,19 +549,7 @@
   btnAnniv.addEventListener('click',function(){annivOn=!annivOn;applyAnnivPref();saveSettingsRemote();notify(annivOn?'Badge activado para todos':'Badge desactivado para todos');});
   applyAnnivPref();
 
-  // tarjetas del hero = controles del carrusel (hasta 5: Bienvenida + 4 categorías)
-  (function(){
-    var heroIn=document.querySelector('#hero-slider .in');
-    var cards=document.querySelectorAll('#hero-cards .ncard');
-    if(!heroIn||!cards.length)return;
-    function activate(card){
-      cards.forEach(function(c){c.classList.remove('on');});
-      card.classList.add('on');
-      var kicker=card.dataset.kicker, title=card.dataset.title, cta=card.dataset.cta, href=card.dataset.href||'#';
-      heroIn.innerHTML=(kicker?'<p style="color:#fff;opacity:.85;font-size:12px;letter-spacing:2px;text-transform:uppercase;margin:0 0 10px;">'+kicker+'</p>':'')+'<h1>'+title+'</h1><a class="btn" style="background:#fff;color:var(--ink)" href="'+href+'">'+cta+'</a>';
-    }
-    cards.forEach(function(c){c.addEventListener('click',function(){if(document.body.classList.contains('editing'))return;activate(c);});});
-  })();
+  // las tarjetas ahora son enlaces reales a cada nota (se abren en pestaña nueva); no cambian el hero
 })();
 </script>
 </body>
