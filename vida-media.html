@@ -136,6 +136,16 @@
   .credit{margin:12px 0 0;font-size:11.5px;color:var(--ink-soft);font-style:italic;}
   .social-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:14px;}
   .social-row .chip{background:#fff;border:1px solid var(--azul);color:var(--azul);}
+  /* comunidad pucp (redes sociales) */
+  .comunidad-flex{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+  .social-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;}
+  .s-ic{width:44px;height:44px;border-radius:10px;background:var(--azul);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Montserrat';font-weight:700;font-size:15px;text-decoration:none;}
+  .s-ic:hover{background:var(--azul-2);}
+  .mc-collage{position:relative;}
+  .mc-collage .masonry{grid-template-columns:repeat(3,1fr);grid-auto-rows:100px;}
+  .mc-tag{position:absolute;top:22%;left:-14px;background:var(--azul);color:#fff;font-family:'Montserrat';font-weight:700;font-size:12.5px;padding:8px 16px;transform:rotate(-8deg);border-radius:4px;z-index:3;box-shadow:0 4px 10px rgba(0,0,0,.25);}
+  .mc-badge{position:absolute;bottom:-14px;right:14%;width:46px;height:46px;border-radius:50%;background:var(--azul);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;z-index:3;box-shadow:0 4px 10px rgba(0,0,0,.25);}
+  @media(max-width:900px){ .comunidad-flex{grid-template-columns:1fr;} }
   /* footer */
   footer{background:var(--azul);color:#cdd8ea;padding:34px 0;}
   footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:13px;}
@@ -442,20 +452,35 @@
 
     <!-- 9 MI CAMPUS PUCP -->
     <section id="z-micampus" data-title="Mi Campus PUCP">
-      <p class="eyebrow">Mi Campus PUCP</p>
-      <h2 class="t">Las novedades, en un solo lugar</h2>
-      <div class="masonry">
-        <div class="photo p1 tall2"><span class="cap">Campaña de bienestar emocional</span></div>
-        <div class="photo p4"><span class="cap">Beneficios de tu carnet PUCP</span></div>
-        <div class="photo p6"><span class="cap">Agenda cultural de la semana</span></div>
-        <div class="photo p2 tall2"><span class="cap">Nueva sala de estudio 24 h</span></div>
-        <div class="photo p5"><span class="cap">Convocatoria de voluntariado RSU</span></div>
-        <div class="photo p3"><span class="cap">Novedades deportivas</span></div>
-        <div class="photo p6"><span class="cap">Feria de salud y prevención</span></div>
-        <div class="photo p1"><span class="cap">Tips para época de exámenes</span></div>
+      <div class="comunidad-flex">
+        <div>
+          <p class="eyebrow">Mi Campus PUCP</p>
+          <h2 class="t l">Las novedades, en un solo lugar</h2>
+          <p class="sub l">Contenido gestionado por la Dirección de Comunicación Institucional (DCI): novedades, campañas y avisos pensados para estudiantes.</p>
+          <div class="social-links">
+            <a class="s-ic" href="https://www.linkedin.com/school/pucp/" target="_blank" rel="noopener" title="LinkedIn">in</a>
+            <a class="s-ic" href="https://twitter.com/pucp" target="_blank" rel="noopener" title="X">𝕏</a>
+            <a class="s-ic" href="https://www.facebook.com/PUCP" target="_blank" rel="noopener" title="Facebook">f</a>
+            <a class="s-ic" href="https://www.youtube.com/@PUCP" target="_blank" rel="noopener" title="YouTube">▶</a>
+            <a class="s-ic" href="https://www.instagram.com/pucp/" target="_blank" rel="noopener" title="Instagram">◎</a>
+            <a class="s-ic" href="#" title="Spotify">♫</a>
+            <a class="s-ic" href="https://www.tiktok.com/@pucp" target="_blank" rel="noopener" title="TikTok">♪</a>
+          </div>
+          <div class="social-row"><span class="note">Síguenos también en:</span><span class="chip">DAES</span><span class="chip">DACU</span><span class="chip">DARS</span></div>
+        </div>
+        <div class="mc-collage">
+          <span class="mc-tag">#teampucp 🐻</span>
+          <div class="masonry">
+            <div class="photo p1 tall2"><span class="cap">Campaña de bienestar emocional</span></div>
+            <div class="photo p4"><span class="cap">Beneficios de tu carnet PUCP</span></div>
+            <div class="photo p6"><span class="cap">Agenda cultural de la semana</span></div>
+            <div class="photo p2 tall2"><span class="cap">Nueva sala de estudio 24&nbsp;h</span></div>
+            <div class="photo p5"><span class="cap">Convocatoria de voluntariado RSU</span></div>
+            <div class="photo p3"><span class="cap">Novedades deportivas</span></div>
+          </div>
+          <span class="mc-badge">🐻</span>
+        </div>
       </div>
-      <p class="credit">Contenido gestionado por la Dirección de Comunicación Institucional (DCI): novedades, campañas y avisos pensados para estudiantes.</p>
-      <div class="social-row"><span class="note">Síguenos también en:</span><span class="chip">DAES</span><span class="chip">DACU</span><span class="chip">DARS</span></div>
     </section>
 
   </div>
