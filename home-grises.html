@@ -51,15 +51,20 @@
   .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,rgba(0,0,0,.45),rgba(0,0,0,.05) 60%);}
   .hero .in{position:relative;z-index:1;max-width:1180px;margin:0 auto;width:100%;}
   .hero h1{font-family:'Montserrat';font-weight:800;font-size:34px;color:#fff;margin:0 0 18px;text-shadow:0 1px 10px rgba(0,0,0,.5);}
-  .hero .dots{position:absolute;left:50%;bottom:96px;transform:translateX(-50%);z-index:2;display:flex;gap:8px;align-items:center;color:#fff;background:rgba(0,0,0,.25);border-radius:20px;padding:7px 14px;}
-  .hero .dots b{width:8px;height:8px;border-radius:50%;background:#fff;display:inline-block;opacity:.5;}
-  .hero .dots b.on{opacity:1;}
   .hero .pause{position:absolute;right:36px;bottom:96px;z-index:2;width:44px;height:44px;border-radius:50%;background:rgba(0,0,0,.3);color:#fff;display:flex;align-items:center;justify-content:center;}
-  .news3{max-width:1180px;margin:-60px auto 0;padding:0 24px;position:relative;z-index:3;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
-  .ncard{background:var(--ph);border-radius:12px;padding:18px;min-height:150px;display:flex;flex-direction:column;justify-content:space-between;}
+  .anniv-badge{position:absolute;top:26px;right:36px;z-index:3;width:92px;height:92px;border-radius:50%;background:#fff;color:var(--dark);
+               display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;box-shadow:0 4px 16px rgba(0,0,0,.3);border:2px solid var(--dark);}
+  body.anniv-on .anniv-badge{display:flex;}
+  .anniv-badge .n{font-family:'Montserrat';font-weight:800;font-size:26px;line-height:1;}
+  .anniv-badge .l{font-family:'Montserrat';font-weight:700;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-top:2px;}
+  @media(max-width:900px){ .anniv-badge{width:70px;height:70px;top:16px;right:16px;} .anniv-badge .n{font-size:19px;} .anniv-badge .l{font-size:9px;} }
+  .news3{max-width:1180px;margin:-60px auto 0;padding:0 24px;position:relative;z-index:3;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;}
+  .ncard{background:var(--ph);border-radius:12px;padding:18px;min-height:150px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;box-shadow:0 0 0 0 var(--dark);transition:box-shadow .15s,background .15s;}
+  .ncard:hover{background:#dde0e4;}
+  .ncard.on{background:#fff;box-shadow:0 0 0 2px var(--dark) inset;}
+  .ncard .ctag{display:inline-block;font-family:'Montserrat';font-size:10.5px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--dark);background:var(--t2);border-radius:4px;padding:3px 9px;margin-bottom:10px;align-self:flex-start;}
   .ncard h3{font-family:'Montserrat';font-weight:700;font-size:15px;margin:0;}
   .ncard .meta{font-size:12.5px;color:var(--ink2);margin-top:14px;}
-  .ncard .ar{align-self:flex-end;width:30px;height:30px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;}
   .novstrip{max-width:1180px;margin:26px auto 0;padding:18px 24px;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;border-top:1px solid var(--line);}
   .novstrip .ttl{font-family:'Montserrat';font-weight:700;font-size:14px;}
   /* grids */
@@ -194,18 +199,20 @@
 
   <!-- HERO carrusel comercial -->
   <section style="padding:0;border:none;" data-title="Hero — carrusel comercial">
-    <div class="hero">
+    <div class="hero" id="hero-slider">
+      <div class="anniv-badge" id="anniv-badge"><span class="n">110</span><span class="l">años</span></div>
       <div class="in">
         <h1>Bienvenido a la PUCP</h1>
-        <a class="btn" style="background:#fff;color:var(--ink)" href="#">Conoce a la PUCP ↗</a>
+        <a class="btn" style="background:#fff;color:var(--ink)" href="#">Descubre la vida universitaria ↗</a>
       </div>
-      <div class="dots">‹ <b class="on"></b><b></b><b></b><b></b> ›</div>
       <div class="pause">❚❚</div>
     </div>
-    <div class="news3">
-      <div class="ncard"><h3>Inti Kallpa: un sistema fotovoltaico que convierte a la Universidad en un laboratorio de energía solar</h3><div style="display:flex;justify-content:space-between;align-items:flex-end;"><span class="meta">Orgullo PUCP · 05 junio, 2026</span><span class="ar">↗</span></div></div>
-      <div class="ncard"><h3>Analizar el cuerpo más allá de lo clínico: Dante Elías, y la data del movimiento para atletas y terapistas</h3><div style="display:flex;justify-content:space-between;align-items:flex-end;"><span class="meta">Orgullo PUCP · 05 junio, 2026</span><span class="ar">↗</span></div></div>
-      <div class="ncard"><h3>Líderes del concreto: estudiantes PUCP ganan concurso internacional de Ingeniería en Estados Unidos</h3><div style="display:flex;justify-content:space-between;align-items:flex-end;"><span class="meta">Orgullo PUCP · 05 junio, 2026</span><span class="ar">↗</span></div></div>
+    <div class="news3" id="hero-cards">
+      <div class="ncard on" data-title="Bienvenido a la PUCP" data-cta="Descubre la vida universitaria ↗" data-href="#"><span class="ctag">Video</span><h3>Bienvenido a la PUCP</h3><div><span class="meta">Página de inicio</span></div></div>
+      <div class="ncard" data-kicker="Orgullo PUCP · Institucional" data-title="Consorcio de Universidades: conmemoramos 30 años de trabajo reflexionando sobre cómo seguir aportando al país" data-cta="Leer la nota ↗" data-href="https://puntoedu.pucp.edu.pe/vida-universitaria/institucional/consorcio-de-universidades-conmemora-30-aniversario-trabajo/"><span class="ctag">Institucional</span><h3>Consorcio de Universidades: conmemoramos 30 años de trabajo reflexionando sobre cómo seguir aportando al país</h3><div><span class="meta">Orgullo PUCP · 30 junio, 2026</span></div></div>
+      <div class="ncard" data-kicker="Orgullo PUCP · Artes" data-title="Julia Codesido: la retrospectiva que redescubre a una artista clave del arte peruano moderno" data-cta="Leer la nota ↗" data-href="https://puntoedu.pucp.edu.pe/vida-universitaria/institucional/julia-codesido-retrospectiva-redescubre-arte-peruano-moderno/"><span class="ctag">Artes</span><h3>Julia Codesido: la retrospectiva que redescubre a una artista clave del arte peruano moderno</h3><div><span class="meta">Orgullo PUCP · 10 junio, 2026</span></div></div>
+      <div class="ncard" data-kicker="Orgullo PUCP · Humanidades" data-title="«El alcalde de Zalamea»: obra de Calderón de la Barca se repone después de 40 años en Lima" data-cta="Leer la nota ↗" data-href="https://puntoedu.pucp.edu.pe/vida-universitaria/alcalde-de-zalamea-obra-de-calderon-de-la-barca-se-repone-en-lima/"><span class="ctag">Humanidades</span><h3>«El alcalde de Zalamea»: obra de Calderón de la Barca se repone después de 40 años en Lima</h3><div><span class="meta">Orgullo PUCP · 19 mayo, 2026</span></div></div>
+      <div class="ncard" data-kicker="Orgullo PUCP · Ciencias" data-title="NonHuman: Ciencias e Ingeniería PUCP en el top mundial de robótica" data-cta="Leer la nota ↗" data-href="https://puntoedu.pucp.edu.pe/orgullo-pucp/nonhuman-ciencias-e-ingenieria-pucp-en-el-top-mundial-de-robotica/"><span class="ctag">Ciencias</span><h3>NonHuman: Ciencias e Ingeniería PUCP en el top mundial de robótica</h3><div><span class="meta">Orgullo PUCP · 06 julio, 2026</span></div></div>
     </div>
     <div class="novstrip"><span class="ttl">Conoce las novedades de la PUCP:</span><a class="btn ghost sm" href="#">Ver más noticias ↗</a><a class="btn ghost sm" href="#">Ver agenda PUCP ↗</a></div>
   </section>
@@ -269,12 +276,12 @@
   <!-- INVESTIGACIÓN E INNOVACIÓN -->
   <section data-title="Investigación e innovación"><div class="wrap">
     <p class="eyebrow"><span class="dot">▸</span> Investigación, innovación y creación <span class="dot">◂</span></p>
-    <h2 class="t">Investigación que impulsa la <span class="em">transformación</span></h2>
+    <h2 class="t">Conocimiento que impulsa la <span class="em">transformación</span></h2>
     <div class="g3" style="margin-top:8px;grid-template-columns:repeat(4,1fr);">
       <div class="rcard"><div class="imgtop"></div><span class="ar">↗</span><h3>Investigación</h3><p>Generamos conocimiento científico, tecnológico y social que responde a los retos del país.</p></div>
       <div class="rcard"><div class="imgtop"></div><span class="ar">↗</span><h3>Innovación</h3><p>Convertimos ideas y proyectos en soluciones con impacto real para la sociedad.</p></div>
       <div class="rcard"><div class="imgtop"></div><span class="ar">↗</span><h3>Creación</h3><p>Producimos obra artística, cultural y de diseño que enriquece la vida del país.</p></div>
-      <div class="rcard"><div class="imgtop"></div><span class="ar">↗</span><h3>Transformar el entorno</h3><p>Llevamos la investigación a proyectos que mejoran las comunidades y el ambiente.</p></div>
+      <div class="rcard"><div class="imgtop"></div><span class="ar">↗</span><h3>Transformar el entorno</h3><p>Convertimos el conocimiento en proyectos que mejoran las comunidades y el ambiente.</p></div>
     </div>
     <div class="invstats">
       <div><h2 class="t l" style="font-size:22px;margin:0;">Ciencia, cultura y pensamiento en acción</h2></div>
@@ -391,6 +398,7 @@
   </div>
 
   <div class="toolbar">
+    <button id="btn-anniv" type="button">🎉 110 años: ON</button>
     <button id="btn-edit" type="button">✏️ Editar textos</button>
     <button id="btn-toggle" type="button">💬 Comentarios: ON</button>
     <button id="btn-export" type="button">📋 Copiar comentarios</button>
@@ -484,6 +492,29 @@
     if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){notify(total+' comentario(s) copiado(s)');});}
     else{var ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();notify(total+' comentario(s) copiado(s)');}
   });
+
+  // logo/badge de aniversario (110 años) — activar/desactivar
+  (function(){
+    var btnAnniv=document.getElementById('btn-anniv');
+    var on=true;
+    function apply(){document.body.classList.toggle('anniv-on',on);btnAnniv.textContent=on?'🎉 110 años: ON':'🎉 110 años: OFF';}
+    btnAnniv.addEventListener('click',function(){on=!on;apply();});
+    apply();
+  })();
+
+  // tarjetas del hero = controles del carrusel (hasta 5: Bienvenida + 4 categorías)
+  (function(){
+    var heroIn=document.querySelector('#hero-slider .in');
+    var cards=document.querySelectorAll('#hero-cards .ncard');
+    if(!heroIn||!cards.length)return;
+    function activate(card){
+      cards.forEach(function(c){c.classList.remove('on');});
+      card.classList.add('on');
+      var kicker=card.dataset.kicker, title=card.dataset.title, cta=card.dataset.cta, href=card.dataset.href||'#';
+      heroIn.innerHTML=(kicker?'<p style="color:#fff;opacity:.85;font-size:12px;letter-spacing:2px;text-transform:uppercase;margin:0 0 10px;">'+kicker+'</p>':'')+'<h1>'+title+'</h1><a class="btn" style="background:#fff;color:var(--ink)" href="'+href+'">'+cta+'</a>';
+    }
+    cards.forEach(function(c){c.addEventListener('click',function(){if(document.body.classList.contains('editing'))return;activate(c);});});
+  })();
 })();
 </script>
 </body>
