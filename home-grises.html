@@ -86,7 +86,12 @@
   @media(max-width:900px){ .anniv-badge{width:70px;height:70px;top:16px;right:12px;} .anniv-badge .n{font-size:19px;} .anniv-badge .l{font-size:9px;} }
   .news3{position:absolute;left:0;right:0;bottom:0;max-width:1180px;margin:0 auto;padding:0 24px 18px;z-index:3;display:flex;flex-wrap:wrap;gap:10px;}
   @media(min-width:1101px){ body.crpad .news3{margin-right:344px;} }
-  .ncard{flex:1 1 130px;background:rgba(255,255,255,.92);border-radius:10px;padding:9px 12px;min-height:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;text-align:center;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.15);transition:box-shadow .15s,background .15s;}
+  .ncard{position:relative;flex:1 1 130px;background:rgba(255,255,255,.92);border-radius:10px;padding:9px 12px;min-height:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;text-align:center;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.15);transition:box-shadow .15s,background .15s;}
+  .ncard .prog{position:absolute;left:6px;right:6px;bottom:4px;height:3px;border-radius:2px;background:rgba(0,0,0,.12);overflow:hidden;}
+  .ncard .prog i{display:block;height:100%;width:0%;background:var(--dark);border-radius:2px;}
+  .ncard.on .prog i{animation:heroprog 6s linear forwards;}
+  body.hero-hold .ncard.on .prog i{animation-play-state:paused;}
+  @keyframes heroprog{from{width:0%}to{width:100%}}
   .ncard.vid{flex:0 0 56px;padding:9px 6px;}
   .ncard:hover{background:#fff;}
   .ncard.on{background:#fff;box-shadow:0 0 0 2px var(--dark);}
@@ -458,11 +463,11 @@
         <div class="pause">❚❚</div>
       </div>
       <div class="news3" id="hero-cards">
-        <div class="ncard vid on" data-title="Bienvenido a la PUCP" data-cta="Descubre la vida universitaria ↗" data-href="#"><span class="vicon">▶</span></div>
-        <div class="ncard" data-kicker="Campus y comunidad · Institucional" data-title="Consorcio de Universidades: 30 años aportando al país" data-cta="Leer la nota ↗" data-href="https://puntoedu.pucp.edu.pe/vida-universitaria/institucional/consorcio-de-universidades-conmemora-30-aniversario-trabajo/"><span class="ctag">Institucional</span><h3>30 años aportando</h3></div>
-        <div class="ncard" data-kicker="Cultura y creación · Humanidades" data-title="«El alcalde de Zalamea» regresa a Lima tras 40 años" data-cta="Leer la nota ↗" data-href="https://puntoedu.pucp.edu.pe/vida-universitaria/alcalde-de-zalamea-obra-de-calderon-de-la-barca-se-repone-en-lima/"><span class="ctag">Humanidades</span><h3>El alcalde de Zalamea</h3></div>
-        <div class="ncard" data-kicker="Orgullo PUCP · Ciencias" data-title="NonHuman: La PUCP entre las mejores del mundo en robótica" data-cta="Leer la nota ↗" data-href="https://puntoedu.pucp.edu.pe/orgullo-pucp/nonhuman-ciencias-e-ingenieria-pucp-en-el-top-mundial-de-robotica/"><span class="ctag">Ciencias</span><h3>Top mundial robótica</h3></div>
-        <div class="ncard" data-kicker="Cultura y creación · Artes" data-title="Julia Codesido: retrospectiva de una artista clave" data-cta="Leer la nota ↗" data-href="https://puntoedu.pucp.edu.pe/vida-universitaria/institucional/julia-codesido-retrospectiva-redescubre-arte-peruano-moderno/"><span class="ctag">Artes</span><h3>Retrospectiva de Codesido</h3></div>
+        <div class="ncard vid on" data-title="Bienvenido a la PUCP" data-cta="Descubre la vida universitaria ↗" data-href="#"><span class="vicon">▶</span><span class="prog"><i></i></span></div>
+        <div class="ncard" data-kicker="Campus y comunidad · Institucional" data-title="Consorcio de Universidades: 30 años aportando al país" data-cta="Leer la nota ↗" data-href="https://puntoedu.pucp.edu.pe/vida-universitaria/institucional/consorcio-de-universidades-conmemora-30-aniversario-trabajo/"><span class="ctag">Institucional</span><h3>30 años aportando</h3><span class="prog"><i></i></span></div>
+        <div class="ncard" data-kicker="Cultura y creación · Humanidades" data-title="«El alcalde de Zalamea» regresa a Lima tras 40 años" data-cta="Leer la nota ↗" data-href="https://puntoedu.pucp.edu.pe/vida-universitaria/alcalde-de-zalamea-obra-de-calderon-de-la-barca-se-repone-en-lima/"><span class="ctag">Humanidades</span><h3>El alcalde de Zalamea</h3><span class="prog"><i></i></span></div>
+        <div class="ncard" data-kicker="Orgullo PUCP · Ciencias" data-title="NonHuman: La PUCP entre las mejores del mundo en robótica" data-cta="Leer la nota ↗" data-href="https://puntoedu.pucp.edu.pe/orgullo-pucp/nonhuman-ciencias-e-ingenieria-pucp-en-el-top-mundial-de-robotica/"><span class="ctag">Ciencias</span><h3>Top mundial robótica</h3><span class="prog"><i></i></span></div>
+        <div class="ncard" data-kicker="Cultura y creación · Artes" data-title="Julia Codesido: retrospectiva de una artista clave" data-cta="Leer la nota ↗" data-href="https://puntoedu.pucp.edu.pe/vida-universitaria/institucional/julia-codesido-retrospectiva-redescubre-arte-peruano-moderno/"><span class="ctag">Artes</span><h3>Retrospectiva de Codesido</h3><span class="prog"><i></i></span></div>
       </div>
     </div>
     <div class="novstrip"><span class="ttl">Conoce las novedades de la PUCP:</span><a class="btn ghost sm" href="#">Ver más noticias ↗</a><a class="btn ghost sm" href="#">Ver agenda PUCP ↗</a></div>
@@ -769,17 +774,38 @@
   applyAnnivPref();
 
   // tarjetas del hero = controles del carrusel (hasta 5: Bienvenida + 4 categorías)
+  // al pasar el cursor sobre una tarjeta, cambia el slide; cada tarjeta activa tiene una
+  // barra que se llena y al completarse avanza sola a la siguiente; pausa si el mouse
+  // esta sobre el banner o si se activa manualmente con el boton de pausa.
   (function(){
     var heroIn=document.querySelector('#hero-slider .in');
-    var cards=document.querySelectorAll('#hero-cards .ncard');
+    var heroEl=document.getElementById('hero-slider');
+    var cards=Array.prototype.slice.call(document.querySelectorAll('#hero-cards .ncard'));
     if(!heroIn||!cards.length)return;
     function activate(card){
       cards.forEach(function(c){c.classList.remove('on');});
+      var bar=card.querySelector('.prog i');
+      if(bar){ bar.style.animation='none'; void bar.offsetWidth; bar.style.animation=''; }
       card.classList.add('on');
       var kicker=card.dataset.kicker, title=card.dataset.title, cta=card.dataset.cta, href=card.dataset.href||'#';
       heroIn.innerHTML=(kicker?'<p style="color:#fff;opacity:.85;font-size:12px;letter-spacing:2px;text-transform:uppercase;margin:0 0 10px;">'+kicker+'</p>':'')+'<h1>'+title+'</h1><a class="btn" style="background:#fff;color:var(--ink)" href="'+href+'">'+cta+'</a>';
     }
-    cards.forEach(function(c){c.addEventListener('click',function(){if(document.body.classList.contains('editing'))return;activate(c);});});
+    function goNext(current){
+      var idx=cards.indexOf(current);
+      activate(cards[(idx+1)%cards.length]);
+    }
+    cards.forEach(function(c){
+      c.addEventListener('mouseenter',function(){if(document.body.classList.contains('editing'))return;activate(c);});
+      c.addEventListener('click',function(){if(document.body.classList.contains('editing'))return;activate(c);});
+      var bar=c.querySelector('.prog i');
+      if(bar){ bar.addEventListener('animationend',function(){ if(c.classList.contains('on'))goNext(c); }); }
+    });
+    var pauseBtn=heroEl.querySelector('.pause');
+    var manualPause=false, hovering=false;
+    function sync(){ document.body.classList.toggle('hero-hold',manualPause||hovering); if(pauseBtn)pauseBtn.textContent=manualPause?'▶':'❚❚'; }
+    if(pauseBtn){ pauseBtn.style.cursor='pointer'; pauseBtn.addEventListener('click',function(ev){ev.stopPropagation();manualPause=!manualPause;sync();}); }
+    heroEl.addEventListener('mouseenter',function(){hovering=true;sync();});
+    heroEl.addEventListener('mouseleave',function(){hovering=false;sync();});
   })();
 })();
 </script>
