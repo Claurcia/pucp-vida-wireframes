@@ -71,8 +71,9 @@
   .ph{background:var(--ph);border-radius:10px;}
   /* HERO carrusel */
   .hero{position:relative;background:var(--ph2);border-radius:0;min-height:620px;overflow:hidden;}
-  .hero .wave{position:absolute;left:0;right:0;bottom:-1px;z-index:2;line-height:0;pointer-events:none;}
-  .hero .wave svg{display:block;width:100%;height:110px;}
+  .hero .wave{position:absolute;left:0;right:0;bottom:-1px;z-index:2;line-height:0;pointer-events:none;max-width:1180px;margin:0 auto;}
+  .hero .wave svg{display:block;width:100%;height:70px;}
+  @media(min-width:1101px){ body.crpad .hero .wave{margin-right:344px;} }
   .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,rgba(0,0,0,.45),rgba(0,0,0,.05) 60%);}
   .hero .in{position:absolute;top:50%;left:0;right:0;transform:translateY(-50%);max-width:1180px;margin:0 auto;padding:0 24px;z-index:1;}
   @media(min-width:1101px){ body.crpad .hero .in{margin-right:344px;} }
@@ -468,7 +469,7 @@
         <div class="anniv-badge" id="anniv-badge"><span class="n">110</span><span class="l">años</span></div>
         <div class="pause">❚❚</div>
       </div>
-      <div class="wave"><svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,70 Q720,0 1440,70 L1440,100 L0,100 Z" fill="#fff"/></svg></div>
+      <div class="wave"><svg viewBox="0 0 1180 100" preserveAspectRatio="none"><path d="M0,100 C0,60 20,20 60,20 L1120,20 C1160,20 1180,60 1180,100 Z" fill="#fff"/></svg></div>
     </div>
     <div class="news3" id="hero-cards">
       <a class="ncard" target="_blank" rel="noopener" href="https://puntoedu.pucp.edu.pe/vida-universitaria/institucional/consorcio-de-universidades-conmemora-30-aniversario-trabajo/">
