@@ -194,6 +194,9 @@
   .sec-tools{position:absolute;top:10px;right:10px;display:flex;gap:5px;z-index:5;}
   .sec-tools button{font:inherit;font-size:12px;font-weight:700;border:1px solid var(--ph-line);background:#fff;color:var(--ink);border-radius:6px;cursor:pointer;padding:4px 8px;}
   .sec-tools .c-btn.has{background:var(--azul);color:#fff;border-color:var(--azul);}
+  body.editing .editable{outline:1.5px dashed #9aa2ac;outline-offset:6px;border-radius:8px;}
+  body.editing .editable:focus-within{outline-style:solid;outline-color:var(--azul);}
+  body.editing [contenteditable="true"]{cursor:text;}
   section{position:relative;}
   .toast{position:fixed;bottom:78px;right:18px;z-index:101;background:var(--azul);color:#fff;font-size:12.5px;border-radius:7px;padding:9px 14px;opacity:0;transition:opacity .25s;pointer-events:none;}
   .toast.show{opacity:1;}
@@ -283,7 +286,7 @@
       <h2 class="t">Las cifras que respaldan tu futuro profesional</h2>
       <p class="sub">Estos datos muestran lo que significa formarte en la PUCP.</p>
       <div class="cifras">
-        <div class="stat"><div class="big">9 de 10</div><div class="lbl">egresados trabajan en su carrera</div></div>
+        <div class="stat"><div class="big">9 de cada 10</div><div class="lbl">egresados trabajan en su carrera hasta 6 meses después de egresar</div></div>
         <div class="stat"><div class="big">N°1</div><div class="lbl">del Perú en reputación entre empleadores y sector empresarial</div></div>
         <div class="stat"><div class="big">+10,000</div><div class="lbl">organizaciones empleadoras en el Sistema de Oportunidades Laborales</div></div>
         <div class="stat"><div class="big">+12,600</div><div class="lbl">convocatorias de empleo y prácticas difundidas cada año</div></div>
@@ -424,6 +427,7 @@
 
   <div class="toolbar">
     <button id="btn-notes" type="button">ⓘ Notas: ON</button>
+    <button id="btn-edit" type="button">✏️ Editar textos</button>
     <button id="btn-toggle" type="button">💬 Comentarios: ON</button>
     <button id="btn-export" type="button">📋 Copiar comentarios</button>
   </div>
@@ -466,7 +470,7 @@
   function esc(s){var d=document.createElement('div');d.textContent=(s==null?'':s);return d.innerHTML;}
   function linkify(s){return esc(s).replace(/(https?:\/\/[^\s<]+)/g,function(u){return '<a href="'+u+'" target="_blank" rel="noopener">'+u+'</a>';});}
   var rail=document.createElement('div'); rail.id='crail'; document.body.appendChild(rail);
-  var comments={}, threads={}, orderId=null, notesId=null;
+  var comments={}, threads={}, orderId=null, notesId=null, contentId=null, savedContent={};
 
   function latestOf(rows){return rows.slice().sort(function(a,b){return new Date(b.created_at)-new Date(a.created_at);})[0];}
 
@@ -494,6 +498,41 @@
     fetch(API+'/comments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({wf:WF,section:'__notes__',author:'system',body:text})})
       .then(function(r){return r.json();}).then(function(c){notesId=c.id;if(prev)fetch(API+'/comments/'+prev,{method:'DELETE'}).catch(function(){});document.getElementById('notes-view').innerHTML=linkify(text).replace(/\n/g,'<br>');notify('Notas guardadas para todos');})
       .catch(function(){notify('No se pudo guardar (sin conexión)');});
+  }
+
+  function applyContentFromRemote(){
+    var rows=comments['__content__']||[]; if(!rows.length)return;
+    var latest=latestOf(rows); contentId=latest.id;
+    try{
+      var c=JSON.parse(latest.body);
+      Object.keys(c).forEach(function(id){
+        savedContent[id]=c[id];
+        var blk=document.getElementById(id);
+        var ed=blk&&blk.querySelector('.editable');
+        if(ed) ed.innerHTML=c[id];
+      });
+    }catch(e){}
+  }
+  function saveContentRemote(){
+    var prev=contentId;
+    fetch(API+'/comments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({wf:WF,section:'__content__',author:'system',body:JSON.stringify(savedContent)})})
+      .then(function(r){return r.json();}).then(function(c){contentId=c.id;if(prev)fetch(API+'/comments/'+prev,{method:'DELETE'}).catch(function(){});})
+      .catch(function(){notify('No se pudo guardar el texto (sin conexión)');});
+  }
+  function saveContent(blk){
+    var ed=blk.querySelector('.editable'); if(!ed)return;
+    savedContent[blk.id]=ed.innerHTML;
+    saveContentRemote();
+    notify('Texto guardado para todos');
+  }
+  function makeEditable(blk){
+    var ed=document.createElement('div'); ed.className='editable';
+    while(blk.firstChild){ ed.appendChild(blk.firstChild); }
+    if(savedContent[blk.id]!=null){ ed.innerHTML=savedContent[blk.id]; }
+    blk.appendChild(ed);
+    if(document.body.classList.contains('editing')) ed.contentEditable='true';
+    ed.addEventListener('input',function(){clearTimeout(blk._t);blk._t=setTimeout(function(){saveContent(blk);layout();},900);});
+    return ed;
   }
 
   function makeThread(sec){
@@ -535,12 +574,17 @@
       Object.keys(threads).forEach(renderThread);
       applyOrderFromRemote();
       applyNotesFromRemote();
+      applyContentFromRemote();
       layout();
     }).catch(function(){document.getElementById('notes-view').textContent='No se pudo conectar con la base de datos.';});
   }
 
+  var hdr=document.querySelector('.site-header'); if(hdr){ if(!hdr.id)hdr.id='sec-header'; makeEditable(hdr); }
+  var ftr=document.querySelector('footer'); if(ftr){ if(!ftr.id)ftr.id='sec-footer'; makeEditable(ftr); }
+
   main.querySelectorAll('section').forEach(function(sec,i){
     if(!sec.id) sec.id='sec-'+i;
+    makeEditable(sec);
     var tools=document.createElement('div'); tools.className='sec-tools';
     tools.innerHTML='<button type="button" class="up" title="Subir">↑</button><button type="button" class="down" title="Bajar">↓</button><button type="button" class="c-btn" title="Comentar">💬 <span data-cnt="'+sec.id+'">0</span></button>';
     sec.appendChild(tools); makeThread(sec);
@@ -563,6 +607,15 @@
   }
   btnToggle.addEventListener('click',function(){ commentsOn=!commentsOn; applyCommentsPref(); });
   applyCommentsPref();
+
+  var btnEdit=document.getElementById('btn-edit');
+  btnEdit.addEventListener('click',function(){
+    var on=!document.body.classList.contains('editing');
+    document.body.classList.toggle('editing',on);
+    btnEdit.textContent=on?'✔ Terminar edición':'✏️ Editar textos';
+    document.querySelectorAll('.editable').forEach(function(ed){ed.contentEditable=on?'true':'false';});
+    notify(on?'Haz clic sobre cualquier texto (incluido el menú/header) para editarlo':'Textos guardados');
+  });
 
   var btnNotes=document.getElementById('btn-notes'), notesOn=true;
   function applyNotesPref(){document.body.classList.toggle('notes-on',notesOn);btnNotes.textContent=notesOn?'ⓘ Notas: ON':'ⓘ Notas: OFF';}
