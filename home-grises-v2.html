@@ -87,7 +87,7 @@
   .news3{max-width:1180px;margin:-60px auto 0;padding:0 24px 6px;position:relative;z-index:3;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
   .ncard{background:var(--ph);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;cursor:pointer;text-decoration:none;box-shadow:0 0 0 0 var(--dark);transition:box-shadow .15s,background .15s;}
   .ncard:hover{background:#dde0e4;}
-  .ncard .thumb{height:84px;flex:none;position:relative;background:linear-gradient(135deg,var(--ph2),var(--ph3));}
+  .ncard .thumb{height:220px;flex:none;position:relative;background:linear-gradient(135deg,var(--ph2),var(--ph3));}
   .ncard .thumb .ic{position:absolute;top:8px;left:8px;font-size:9.5px;font-weight:700;letter-spacing:.4px;background:rgba(255,255,255,.9);color:var(--ink);padding:2px 7px;border-radius:4px;}
   .hero .vtag{position:absolute;top:20px;left:24px;z-index:2;font-family:'Montserrat';font-size:10.5px;font-weight:700;letter-spacing:.4px;background:rgba(255,255,255,.9);color:var(--ink);padding:4px 10px;border-radius:4px;}
   .ncard .body{padding:14px 16px 16px;display:flex;flex-direction:column;flex:1;}
@@ -459,7 +459,7 @@
     <div class="hero" id="hero-slider">
       <span class="vtag">VIDEO</span>
       <div class="in">
-        <h1>Bienvenido a la PUCP</h1>
+        <h1>Sé grande</h1>
         <a class="btn" style="background:#fff;color:var(--ink)" href="#">Descubre la vida universitaria ↗</a>
       </div>
       <div class="edge">
@@ -724,7 +724,28 @@
     if(wide){document.body.classList.add('crpad');rail.style.display='block';var prev=0;main.querySelectorAll('section').forEach(function(sec){var t=threads[sec.id];if(!t)return;if(t.parentNode!==rail)rail.appendChild(t);t.classList.remove('inline','open');var top=sec.getBoundingClientRect().top+window.scrollY;if(top<prev+8)top=prev+8;t.style.top=top+'px';prev=top+t.offsetHeight;});}
     else{document.body.classList.remove('crpad');rail.style.display='none';main.querySelectorAll('section').forEach(function(sec){var t=threads[sec.id];if(!t)return;t.style.top='';t.classList.add('inline');if(t.parentNode!==sec)sec.appendChild(t);});}
   }
-  function loadRemote(){fetch(API+'/comments?wf='+WF).then(function(r){return r.json();}).then(function(rows){comments={};rows.forEach(function(c){(comments[c.section]=comments[c.section]||[]).push(c);});Object.keys(threads).forEach(renderThread);applySettingsFromRemote();layout();}).catch(function(){});}
+  function loadRemote(){fetch(API+'/comments?wf='+WF).then(function(r){return r.json();}).then(function(rows){comments={};rows.forEach(function(c){(comments[c.section]=comments[c.section]||[]).push(c);});Object.keys(threads).forEach(renderThread);applySettingsFromRemote();applyContentFromRemote();layout();}).catch(function(){});}
+  var contentId=null;
+  function applyContentFromRemote(){
+    var rows=comments['__content__']||[]; if(!rows.length)return;
+    var latest=rows.slice().sort(function(a,b){return new Date(b.created_at)-new Date(a.created_at);})[0];
+    contentId=latest.id;
+    try{
+      var c=JSON.parse(latest.body);
+      Object.keys(c).forEach(function(id){
+        savedContent[id]=c[id];
+        var blk=document.getElementById(id);
+        var ed=blk&&blk.querySelector('.editable');
+        if(ed) ed.innerHTML=c[id];
+      });
+    }catch(e){}
+  }
+  function saveContentRemote(){
+    var prev=contentId;
+    fetch(API+'/comments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({wf:WF,section:'__content__',author:'system',body:JSON.stringify(savedContent)})})
+      .then(function(r){return r.json();}).then(function(c){contentId=c.id;if(prev)fetch(API+'/comments/'+prev,{method:'DELETE'}).catch(function(){});})
+      .catch(function(){notify('No se pudo guardar el texto (sin conexión)');});
+  }
   // ids estables en orden original
   Array.prototype.forEach.call(main.querySelectorAll('section'),function(sec,i){ if(!sec.id)sec.id='sec-'+i; });
   // aplica orden guardado
@@ -735,8 +756,8 @@
   function saveContent(blk){
     var ed=blk.querySelector('.editable');if(!ed)return;
     var body=ed.innerHTML; savedContent[blk.id]=body;
-    try{localStorage.setItem('home-content',JSON.stringify(savedContent));}catch(e){}
-    notify('Texto guardado (en este navegador)');
+    saveContentRemote();
+    notify('Texto guardado para todos');
   }
   function makeEditable(blk){
     var ed=document.createElement('div');ed.className='editable';
@@ -761,15 +782,17 @@
   });
   // footer editable
   var ftr=document.querySelector('footer'); if(ftr){ if(!ftr.id)ftr.id='sec-footer'; makeEditable(ftr); }
-  // (los textos editados se guardan solo en este navegador; el archivo es la fuente compartida)
+  // los textos editados se guardan en la base de datos y los ve todo el que entre a la pagina
   loadRemote();layout();window.addEventListener('resize',layout);window.addEventListener('load',function(){setTimeout(layout,200);});setTimeout(layout,500);
   var btnToggle=document.getElementById('btn-toggle');
   function applyCommentsPref(){document.body.classList.toggle('comments-off',commentsOff);btnToggle.textContent=commentsOff?'💬 Comentarios: OFF':'💬 Comentarios: ON';setTimeout(layout,60);}
   btnToggle.addEventListener('click',function(){commentsOff=!commentsOff;applyCommentsPref();saveSettingsRemote();notify(commentsOff?'Comentarios ocultos para todos':'Comentarios visibles para todos');});
   applyCommentsPref();
   document.getElementById('btn-resetorder').addEventListener('click',function(){
-    if(!confirm('¿Restablecer el orden y los textos editados de este navegador a la versión original?'))return;
-    localStorage.removeItem('home-order-v2');localStorage.removeItem('home-content');location.reload();
+    if(!confirm('¿Restablecer el orden y los textos editados (para todos) a la versión original?'))return;
+    localStorage.removeItem('home-order-v2');localStorage.removeItem('home-content');
+    if(contentId){fetch(API+'/comments/'+contentId,{method:'DELETE'}).catch(function(){});}
+    location.reload();
   });
   var btnEdit=document.getElementById('btn-edit');
   btnEdit.addEventListener('click',function(){var on=!document.body.classList.contains('editing');document.body.classList.toggle('editing',on);btnEdit.textContent=on?'✔ Terminar edición':'✏️ Editar textos';document.querySelectorAll('.editable').forEach(function(ed){ed.contentEditable=on?'true':'false';});notify(on?'Haz clic sobre cualquier texto (incluido el menú/header) para editarlo':'Textos guardados');setTimeout(layout,60);});
