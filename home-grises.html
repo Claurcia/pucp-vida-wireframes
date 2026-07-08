@@ -77,19 +77,21 @@
   .hero h1{font-family:'Montserrat';font-weight:800;font-size:34px;color:#fff;margin:0 0 18px;text-shadow:0 1px 10px rgba(0,0,0,.5);}
   .hero .edge{position:absolute;inset:0;max-width:1180px;margin:0 auto;padding:0 24px;z-index:2;pointer-events:none;}
   @media(min-width:1101px){ body.crpad .hero .edge{margin-right:344px;} }
-  .hero .pause{position:absolute;right:12px;bottom:96px;pointer-events:auto;width:44px;height:44px;border-radius:50%;background:rgba(0,0,0,.3);color:#fff;display:flex;align-items:center;justify-content:center;}
+  .hero .pause{position:absolute;right:12px;bottom:84px;pointer-events:auto;width:44px;height:44px;border-radius:50%;background:rgba(0,0,0,.3);color:#fff;display:flex;align-items:center;justify-content:center;}
   .anniv-badge{position:absolute;top:26px;right:12px;pointer-events:auto;width:92px;height:92px;border-radius:50%;background:#fff;color:var(--dark);
                display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;box-shadow:0 4px 16px rgba(0,0,0,.3);border:2px solid var(--dark);}
   body.anniv-on .anniv-badge{display:flex;}
   .anniv-badge .n{font-family:'Montserrat';font-weight:800;font-size:26px;line-height:1;}
   .anniv-badge .l{font-family:'Montserrat';font-weight:700;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-top:2px;}
   @media(max-width:900px){ .anniv-badge{width:70px;height:70px;top:16px;right:12px;} .anniv-badge .n{font-size:19px;} .anniv-badge .l{font-size:9px;} }
-  .news3{max-width:1180px;margin:-60px auto 0;padding:0 24px;position:relative;z-index:3;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;}
-  .ncard{background:var(--ph);border-radius:12px;padding:22px 18px;min-height:96px;display:flex;align-items:center;justify-content:center;text-align:center;cursor:pointer;box-shadow:0 0 0 0 var(--dark);transition:box-shadow .15s,background .15s;}
-  .ncard h3{line-height:1.35;}
-  .ncard:hover{background:#dde0e4;}
-  .ncard.on{background:#fff;box-shadow:0 0 0 2px var(--dark) inset;}
-  .ncard h3{font-family:'Montserrat';font-weight:700;font-size:15px;margin:0;}
+  .news3{position:absolute;left:0;right:0;bottom:0;max-width:1180px;margin:0 auto;padding:0 24px 18px;z-index:3;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;}
+  @media(min-width:1101px){ body.crpad .news3{margin-right:344px;} }
+  .ncard{background:rgba(255,255,255,.92);border-radius:10px;padding:9px 12px;min-height:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;text-align:center;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.15);transition:box-shadow .15s,background .15s;}
+  .ncard:hover{background:#fff;}
+  .ncard.on{background:#fff;box-shadow:0 0 0 2px var(--dark);}
+  .ncard .ctag{display:inline-block;font-family:'Montserrat';font-size:9px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--ink2);background:var(--t2);border-radius:999px;padding:2px 9px;}
+  .ncard h3{font-family:'Montserrat';font-weight:700;font-size:13px;margin:0;line-height:1.2;}
+  .ncard .vicon{font-size:19px;line-height:1;}
   .novstrip{max-width:1180px;margin:26px auto 0;padding:18px 24px;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;border-top:1px solid var(--line);}
   .novstrip .ttl{font-family:'Montserrat';font-weight:700;font-size:14px;}
   /* grids */
@@ -454,13 +456,13 @@
         <div class="anniv-badge" id="anniv-badge"><span class="n">110</span><span class="l">años</span></div>
         <div class="pause">❚❚</div>
       </div>
-    </div>
-    <div class="news3" id="hero-cards">
-      <div class="ncard on" data-title="Bienvenido a la PUCP" data-cta="Descubre la vida universitaria ↗" data-href="#"><h3>Bienvenida</h3></div>
-      <div class="ncard" data-kicker="Campus y comunidad · Institucional" data-title="Consorcio de Universidades: 30 años aportando al país" data-cta="Leer la nota ↗" data-href="https://puntoedu.pucp.edu.pe/vida-universitaria/institucional/consorcio-de-universidades-conmemora-30-aniversario-trabajo/"><h3>Institucional:<br>Consorcio</h3></div>
-      <div class="ncard" data-kicker="Cultura y creación · Humanidades" data-title="«El alcalde de Zalamea» regresa a Lima tras 40 años" data-cta="Leer la nota ↗" data-href="https://puntoedu.pucp.edu.pe/vida-universitaria/alcalde-de-zalamea-obra-de-calderon-de-la-barca-se-repone-en-lima/"><h3>Humanidades:<br>Teatro</h3></div>
-      <div class="ncard" data-kicker="Orgullo PUCP · Ciencias" data-title="NonHuman: PUCP entre las mejores del mundo en robótica" data-cta="Leer la nota ↗" data-href="https://puntoedu.pucp.edu.pe/orgullo-pucp/nonhuman-ciencias-e-ingenieria-pucp-en-el-top-mundial-de-robotica/"><h3>Ciencias:<br>Robótica</h3></div>
-      <div class="ncard" data-kicker="Cultura y creación · Artes" data-title="Julia Codesido: la retrospectiva de una artista clave del arte peruano" data-cta="Leer la nota ↗" data-href="https://puntoedu.pucp.edu.pe/vida-universitaria/institucional/julia-codesido-retrospectiva-redescubre-arte-peruano-moderno/"><h3>Artes:<br>Codesido</h3></div>
+      <div class="news3" id="hero-cards">
+        <div class="ncard on" data-title="Bienvenido a la PUCP" data-cta="Descubre la vida universitaria ↗" data-href="#"><span class="vicon">▶</span></div>
+        <div class="ncard" data-kicker="Campus y comunidad · Institucional" data-title="Consorcio de Universidades: 30 años aportando al país" data-cta="Leer la nota ↗" data-href="https://puntoedu.pucp.edu.pe/vida-universitaria/institucional/consorcio-de-universidades-conmemora-30-aniversario-trabajo/"><span class="ctag">Institucional</span><h3>Consorcio</h3></div>
+        <div class="ncard" data-kicker="Cultura y creación · Humanidades" data-title="«El alcalde de Zalamea» regresa a Lima tras 40 años" data-cta="Leer la nota ↗" data-href="https://puntoedu.pucp.edu.pe/vida-universitaria/alcalde-de-zalamea-obra-de-calderon-de-la-barca-se-repone-en-lima/"><span class="ctag">Humanidades</span><h3>Teatro</h3></div>
+        <div class="ncard" data-kicker="Orgullo PUCP · Ciencias" data-title="NonHuman: PUCP entre las mejores del mundo en robótica" data-cta="Leer la nota ↗" data-href="https://puntoedu.pucp.edu.pe/orgullo-pucp/nonhuman-ciencias-e-ingenieria-pucp-en-el-top-mundial-de-robotica/"><span class="ctag">Ciencias</span><h3>Robótica</h3></div>
+        <div class="ncard" data-kicker="Cultura y creación · Artes" data-title="Julia Codesido: la retrospectiva de una artista clave del arte peruano" data-cta="Leer la nota ↗" data-href="https://puntoedu.pucp.edu.pe/vida-universitaria/institucional/julia-codesido-retrospectiva-redescubre-arte-peruano-moderno/"><span class="ctag">Artes</span><h3>Codesido</h3></div>
+      </div>
     </div>
     <div class="novstrip"><span class="ttl">Conoce las novedades de la PUCP:</span><a class="btn ghost sm" href="#">Ver más noticias ↗</a><a class="btn ghost sm" href="#">Ver agenda PUCP ↗</a></div>
   </section>
