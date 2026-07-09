@@ -89,6 +89,7 @@
   .ev .date{flex:none;width:58px;text-align:center;background:var(--tint);border-radius:8px;padding:8px 0;}
   .ev .date b{display:block;font-size:21px;color:var(--azul);line-height:1;}
   .ev .date span{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--azul);font-weight:700;}
+  .ev .photo{flex:none;width:64px;height:64px;border-radius:8px;min-height:0;margin:0;}
   .ev .info{flex:1;min-width:0;}
   .ev .info b{font-size:14.5px;display:block;margin-bottom:2px;}
   .ev .meta{font-size:12px;color:var(--ink-soft);}
@@ -263,21 +264,25 @@
       <div class="ev-list" id="ev-list">
         <div class="ev">
           <div class="date"><b>12</b><span>jun</span></div>
+          <div class="photo p6"></div>
           <div class="info"><b>Concierto de mediodía — CEMDUC</b><div class="meta">13:00 · Anfiteatro de Derecho · ingreso libre</div></div>
           <span class="chip">Cultural</span>
         </div>
         <div class="ev">
           <div class="date"><b>12</b><span>jun</span></div>
+          <div class="photo p3"></div>
           <div class="info"><b>Final Interfacultades: vóley mixto</b><div class="meta">18:00 · Coliseo Polideportivo</div></div>
           <span class="chip">Deportivo</span>
         </div>
         <div class="ev">
           <div class="date"><b>13</b><span>jun</span></div>
+          <div class="photo p5"></div>
           <div class="info"><b>Feria de iniciativas estudiantiles</b><div class="meta">11:00–16:00 · Jardines de Ciencias</div></div>
           <span class="chip">Estudiantil</span>
         </div>
         <div class="ev">
           <div class="date"><b>14</b><span>jun</span></div>
+          <div class="photo p4"></div>
           <div class="info"><b>Charla: vida saludable en época de exámenes</b><div class="meta">12:00 · Auditorio DAES · previa inscripción</div></div>
           <span class="chip">Bienestar</span>
         </div>
@@ -298,6 +303,7 @@
         <span class="tab">Espacios de estudio</span>
         <span class="tab">Espacios culturales</span>
         <span class="tab">Bienestar y CAPU</span>
+        <span class="tab">Lugares favoritos</span>
       </div>
       <div class="split">
         <div class="col">
@@ -315,7 +321,7 @@
             <button class="s-nav next" type="button" aria-label="Siguiente">›</button>
           </div>
           <div class="dots" id="dots-espacios"></div>
-          <p class="note" style="margin:10px 0 0;">Laboratorios e innovación → laboratorios por facultad · Open PUCP &nbsp;·&nbsp; Deportivos → polideportivo, gimnasio y campos &nbsp;·&nbsp; Comedores → Central · Arte · Letras &nbsp;·&nbsp; Estudio → bibliotecas y salas &nbsp;·&nbsp; Culturales → DACU y CCPUCP &nbsp;·&nbsp; Bienestar y CAPU → acompañamiento psicológico y de salud.</p>
+          <p class="note" style="margin:10px 0 0;">Laboratorios e innovación → laboratorios por facultad · Open PUCP &nbsp;·&nbsp; Deportivos → polideportivo, gimnasio y campos &nbsp;·&nbsp; Comedores → Central · Arte · Letras &nbsp;·&nbsp; Estudio → bibliotecas y salas &nbsp;·&nbsp; Culturales → DACU y CCPUCP &nbsp;·&nbsp; Bienestar y CAPU → acompañamiento psicológico y de salud &nbsp;·&nbsp; Lugares favoritos → los rincones más queridos por la comunidad PUCP.</p>
         </div>
         <div class="colmap">
           <div class="maptitle">📍 MAPA DEL CAMPUS — los pines cambian según la categoría</div>
@@ -410,6 +416,7 @@
         <span class="tab on">Talleres y cursos</span>
         <span class="tab">Elencos</span>
         <span class="tab">Museos y colecciones</span>
+        <span class="tab">Cine y teatro</span>
       </div>
       <div class="cards">
         <div class="scard" style="flex:1.2;padding:0;overflow:hidden;">
@@ -418,6 +425,7 @@
         </div>
         <div class="scard"><b>Elencos</b><p>CEMDUC, coros, tuna y el elenco de teatro PUCP abren audiciones cada semestre.</p></div>
         <div class="scard"><b>Museos y colecciones</b><p>Museos, galerías y colecciones de la PUCP, con muestras temporales en el campus y en el CCPUCP.</p></div>
+        <a class="scard" href="https://centrocultural.pucp.edu.pe/" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;"><b>Cine y teatro</b><p>Cartelera de cine, obras de teatro y la programación completa del CCPUCP.</p></a>
       </div>
       <div class="row" style="display:flex;margin-top:16px;"><a class="btn" href="#">Explora Cultura PUCP →</a></div>
     </section>
@@ -459,15 +467,6 @@
       <p class="eyebrow">Comunidad PUCP</p>
       <h2 class="t">Cada espacio de tu vida universitaria tiene su propia comunidad</h2>
       <p class="sub">Mi Campus PUCP y las unidades que acompañan tu día a día en el campus comparten sus novedades por separado: síguelas en Instagram para no perderte nada.</p>
-      <div class="social-links">
-        <a class="s-ic" href="https://www.linkedin.com/school/pucp/" target="_blank" rel="noopener" title="LinkedIn">in</a>
-        <a class="s-ic" href="https://twitter.com/pucp" target="_blank" rel="noopener" title="X">𝕏</a>
-        <a class="s-ic" href="https://www.facebook.com/PUCP" target="_blank" rel="noopener" title="Facebook">f</a>
-        <a class="s-ic" href="https://www.youtube.com/@PUCP" target="_blank" rel="noopener" title="YouTube">▶</a>
-        <a class="s-ic" href="https://www.instagram.com/pucp/" target="_blank" rel="noopener" title="Instagram">◎</a>
-        <a class="s-ic" href="#" title="Spotify">♫</a>
-        <a class="s-ic" href="https://www.tiktok.com/@pucp" target="_blank" rel="noopener" title="TikTok">♪</a>
-      </div>
       <div class="mc-cards">
         <a class="mc-card" href="https://www.instagram.com/pucp/" target="_blank" rel="noopener">
           <div class="photo p1"><span class="ic">FOTO</span></div>
