@@ -148,6 +148,15 @@
   .mc-tag{position:absolute;top:22%;left:-14px;background:var(--azul);color:#fff;font-family:'Montserrat';font-weight:700;font-size:12.5px;padding:8px 16px;transform:rotate(-8deg);border-radius:4px;z-index:3;box-shadow:0 4px 10px rgba(0,0,0,.25);}
   .mc-badge{position:absolute;bottom:-14px;right:14%;width:46px;height:46px;border-radius:50%;background:var(--azul);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;z-index:3;box-shadow:0 4px 10px rgba(0,0,0,.25);}
   @media(max-width:900px){ .comunidad-flex{grid-template-columns:1fr;} }
+  .mc-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:24px;}
+  .mc-card{display:block;text-decoration:none;color:inherit;border:1px solid var(--ph-line);border-radius:12px;overflow:hidden;background:#fff;transition:box-shadow .15s;}
+  .mc-card:hover{box-shadow:0 6px 16px rgba(0,0,0,.12);}
+  .mc-card .photo{border-radius:0;min-height:110px;margin:0;}
+  .mc-card .mc-body{padding:12px 14px;}
+  .mc-card .mc-body b{display:block;font-family:'Montserrat';font-size:13px;line-height:1.3;color:var(--ink);margin-bottom:6px;}
+  .mc-card .mc-ig{font-size:12px;color:var(--azul);font-weight:700;}
+  @media(max-width:900px){ .mc-cards{grid-template-columns:repeat(2,1fr);} }
+  @media(max-width:600px){ .mc-cards{grid-template-columns:1fr;} }
   /* footer */
   footer{background:var(--azul);color:#cdd8ea;padding:34px 0;}
   footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:13px;}
@@ -447,34 +456,35 @@
 
     <!-- 9 MI CAMPUS PUCP -->
     <section id="z-micampus" data-title="Mi Campus PUCP">
-      <div class="comunidad-flex">
-        <div>
-          <p class="eyebrow">Mi Campus PUCP</p>
-          <h2 class="t l">Las novedades, en un solo lugar</h2>
-          <p class="sub l">Contenido gestionado por la Dirección de Comunicación Institucional (DCI): novedades, campañas y avisos pensados para estudiantes.</p>
-          <div class="social-links">
-            <a class="s-ic" href="https://www.linkedin.com/school/pucp/" target="_blank" rel="noopener" title="LinkedIn">in</a>
-            <a class="s-ic" href="https://twitter.com/pucp" target="_blank" rel="noopener" title="X">𝕏</a>
-            <a class="s-ic" href="https://www.facebook.com/PUCP" target="_blank" rel="noopener" title="Facebook">f</a>
-            <a class="s-ic" href="https://www.youtube.com/@PUCP" target="_blank" rel="noopener" title="YouTube">▶</a>
-            <a class="s-ic" href="https://www.instagram.com/pucp/" target="_blank" rel="noopener" title="Instagram">◎</a>
-            <a class="s-ic" href="#" title="Spotify">♫</a>
-            <a class="s-ic" href="https://www.tiktok.com/@pucp" target="_blank" rel="noopener" title="TikTok">♪</a>
-          </div>
-          <div class="social-row"><span class="note">Síguenos también en:</span><span class="chip">DAES</span><span class="chip">DACU</span><span class="chip">DARS</span></div>
-        </div>
-        <div class="mc-collage">
-          <span class="mc-tag">#teampucp 🐻</span>
-          <div class="masonry">
-            <div class="photo p1 tall2"><span class="cap">Campaña de bienestar emocional</span></div>
-            <div class="photo p4"><span class="cap">Beneficios de tu carnet PUCP</span></div>
-            <div class="photo p6"><span class="cap">Agenda cultural de la semana</span></div>
-            <div class="photo p2 tall2"><span class="cap">Nueva sala de estudio 24&nbsp;h</span></div>
-            <div class="photo p5"><span class="cap">Convocatoria de voluntariado RSU</span></div>
-            <div class="photo p3"><span class="cap">Novedades deportivas</span></div>
-          </div>
-          <span class="mc-badge">🐻</span>
-        </div>
+      <p class="eyebrow">Comunidad PUCP</p>
+      <h2 class="t">Cada espacio de tu vida universitaria tiene su propia comunidad</h2>
+      <p class="sub">Mi Campus PUCP y las unidades que acompañan tu día a día en el campus comparten sus novedades por separado: síguelas en Instagram para no perderte nada.</p>
+      <div class="social-links">
+        <a class="s-ic" href="https://www.linkedin.com/school/pucp/" target="_blank" rel="noopener" title="LinkedIn">in</a>
+        <a class="s-ic" href="https://twitter.com/pucp" target="_blank" rel="noopener" title="X">𝕏</a>
+        <a class="s-ic" href="https://www.facebook.com/PUCP" target="_blank" rel="noopener" title="Facebook">f</a>
+        <a class="s-ic" href="https://www.youtube.com/@PUCP" target="_blank" rel="noopener" title="YouTube">▶</a>
+        <a class="s-ic" href="https://www.instagram.com/pucp/" target="_blank" rel="noopener" title="Instagram">◎</a>
+        <a class="s-ic" href="#" title="Spotify">♫</a>
+        <a class="s-ic" href="https://www.tiktok.com/@pucp" target="_blank" rel="noopener" title="TikTok">♪</a>
+      </div>
+      <div class="mc-cards">
+        <a class="mc-card" href="https://www.instagram.com/pucp/" target="_blank" rel="noopener">
+          <div class="photo p1"><span class="ic">FOTO</span></div>
+          <div class="mc-body"><b>Mi Campus PUCP</b><span class="mc-ig">◎ Síguenos en Instagram</span></div>
+        </a>
+        <a class="mc-card" href="https://www.instagram.com/bienestarpucp/" target="_blank" rel="noopener">
+          <div class="photo p4"><span class="ic">FOTO</span></div>
+          <div class="mc-body"><b>Dirección de Asuntos Estudiantiles (DAES)</b><span class="mc-ig">◎ Síguenos en Instagram</span></div>
+        </a>
+        <a class="mc-card" href="https://www.instagram.com/dacupucp/" target="_blank" rel="noopener">
+          <div class="photo p6"><span class="ic">FOTO</span></div>
+          <div class="mc-body"><b>Dirección de Asuntos Culturales (DACU)</b><span class="mc-ig">◎ Síguenos en Instagram</span></div>
+        </a>
+        <a class="mc-card" href="https://www.instagram.com/rsu.pucp/" target="_blank" rel="noopener">
+          <div class="photo p2"><span class="ic">FOTO</span></div>
+          <div class="mc-body"><b>Dirección Académica de Responsabilidad Social (DARS)</b><span class="mc-ig">◎ Síguenos en Instagram</span></div>
+        </a>
       </div>
     </section>
 
