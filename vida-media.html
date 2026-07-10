@@ -205,6 +205,18 @@
   @media(min-width:1101px){ body.comments-off .site-header .wrap,body.comments-off .wrap,body.comments-off footer .wrap{margin-right:auto;} }
   @media(max-width:1100px){ #crail{display:none;} }
   @media print{.toolbar,.sec-tools,.toast{display:none!important;}}
+
+  /* ===== footer unificado (igual a home) ===== */
+  footer{background:#2b2f36;color:#c3c9d0;padding:40px 0 24px;}
+  footer .wrap{display:block;margin-left:auto;margin-right:auto;}
+  footer .cols{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:24px;}
+  footer b,footer .h{color:#fff;font-family:'Montserrat';font-weight:700;display:block;margin-bottom:12px;font-size:14px;}
+  footer a,footer div.li{color:#c3c9d0;font-size:13px;display:block;margin-bottom:8px;text-decoration:none;}
+  footer .soc2{display:flex;gap:12px;margin-top:14px;font-size:15px;}
+  footer .badge{background:#3a3f47;border-radius:6px;padding:12px 18px;font-size:11px;color:#c3c9d0;display:inline-block;margin-top:6px;}
+  footer .copy{border-top:1px solid #3a3f47;padding-top:16px;margin-top:24px;font-size:12.5px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+  @media(max-width:900px){footer .cols{grid-template-columns:1fr 1fr;}}
+  @media(max-width:560px){footer .cols{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -496,9 +508,33 @@
 
   <!-- FOOTER -->
   <footer><div class="wrap">
-    <div><b>Vida Universitaria PUCP</b><br>DAES · DARS · DACU · vidauniversitaria@pucp.edu.pe</div>
-    <div><b>Enlaces</b><br><a href="#">Agenda PUCP</a> · <a href="#">Mapa del campus</a> · <a href="#">daes.pucp.edu.pe</a></div>
-    <div><b>Síguenos</b><br>Redes sociales · Libro de reclamaciones</div>
+    <div class="cols">
+      <div>
+        <span class="h">Contacto</span>
+        <div class="li">📍 Av. Universitaria 1801, San Miguel, Lima, Perú</div>
+        <div class="li">✉ admision.direccion@pucp.pe</div>
+        <div class="li">📞 01 626-2000</div>
+        <div class="li">📞 0800-1-7827</div>
+        <div class="soc2"><span>in</span><span>X</span><span>f</span><span>▶</span><span>◎</span><span>♫</span><span>♪</span></div>
+      </div>
+      <div>
+        <span class="h">Estudia en la PUCP</span>
+        <a href="#">Carreras</a><a href="#">Posgrado</a><a href="#">Formación continua</a><a href="#">Idiomas</a><a href="#">Becas y financiamiento</a><a href="#">Cómo postular</a>
+      </div>
+      <div>
+        <span class="h">Descubre la PUCP</span>
+        <a href="#">Vida universitaria</a><a href="#">Internacional</a><a href="#">Investigación</a><a href="#">Campus y sedes</a>
+      </div>
+      <div>
+        <span class="h">Institucional</span>
+        <a href="#">Gobierno y autoridades</a><a href="#">Transparencia</a><a href="#">Documentos institucionales</a>
+        <span class="badge">📖 Libro de Reclamaciones</span>
+      </div>
+    </div>
+    <div class="copy">
+      <span>© 2026 Pontificia Universidad Católica del Perú — Todos los derechos reservados</span>
+      <span>Términos y condiciones de uso · Política de privacidad · Mapa del sitio</span>
+    </div>
   </div></footer>
 
   <div id="notes-panel">
