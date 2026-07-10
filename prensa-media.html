@@ -314,7 +314,7 @@
   function esc(s){var d=document.createElement('div');d.textContent=(s==null?'':s);return d.innerHTML;}
   function linkify(s){return esc(s).replace(/(https?:\/\/[^\s<]+)/g,function(u){return '<a href="'+u+'" target="_blank" rel="noopener">'+u+'</a>';});}
   var rail=document.createElement('div'); rail.id='crail'; document.body.appendChild(rail);
-  var comments={}, threads={}, orderId=null, notesId=null, contentId=null, savedContent={};
+  var comments={}, threads={}, orderId=null, notesId=null, contentId=null, savedContent={}, contentIds={};
 
   function latestOf(rows){return rows.slice().sort(function(a,b){return new Date(b.created_at)-new Date(a.created_at);})[0];}
 
@@ -344,28 +344,30 @@
       .catch(function(){notify('No se pudo guardar (sin conexión)');});
   }
   function applyContentFromRemote(){
-    var rows=comments['__content__']||[]; if(!rows.length)return;
-    var latest=latestOf(rows); contentId=latest.id;
-    try{
-      var c=JSON.parse(latest.body);
-      Object.keys(c).forEach(function(id){
-        savedContent[id]=c[id];
-        var blk=document.getElementById(id);
-        var ed=blk&&blk.querySelector('.editable');
-        if(ed) ed.innerHTML=c[id];
-      });
-    }catch(e){}
+    // Compat: formato antiguo (un solo blob '__content__')
+    var blob=comments['__content__']||[];
+    if(blob.length){ try{ var c=JSON.parse(latestOf(blob).body); Object.keys(c).forEach(function(id){ savedContent[id]=c[id]; }); }catch(e){} }
+    // Formato nuevo: una fila por seccion ('__c_'+id) -> no se pisan ni se truncan
+    Object.keys(comments).forEach(function(sec){
+      if(sec.indexOf('__c_')!==0) return;
+      var id=sec.slice(4), latest=latestOf(comments[sec]);
+      savedContent[id]=latest.body; contentIds[id]=latest.id;
+    });
+    Object.keys(savedContent).forEach(function(id){
+      var blk=document.getElementById(id), ed=blk&&blk.querySelector('.editable');
+      if(ed) ed.innerHTML=savedContent[id];
+    });
   }
-  function saveContentRemote(){
-    var prev=contentId;
-    fetch(API+'/comments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({wf:WF,section:'__content__',author:'system',body:JSON.stringify(savedContent)})})
-      .then(function(r){return r.json();}).then(function(c){contentId=c.id;if(prev)fetch(API+'/comments/'+prev,{method:'DELETE'}).catch(function(){});})
+  function saveContentRemote(id){
+    var prev=contentIds[id];
+    fetch(API+'/comments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({wf:WF,section:'__c_'+id,author:'system',body:savedContent[id]})})
+      .then(function(r){return r.json();}).then(function(c){contentIds[id]=c.id;if(prev)fetch(API+'/comments/'+prev,{method:'DELETE'}).catch(function(){});})
       .catch(function(){notify('No se pudo guardar el texto (sin conexión)');});
   }
   function saveContent(blk){
     var ed=blk.querySelector('.editable'); if(!ed)return;
     savedContent[blk.id]=ed.innerHTML;
-    saveContentRemote();
+    saveContentRemote(blk.id);
     notify('Texto guardado para todos');
   }
   function makeEditable(blk){
