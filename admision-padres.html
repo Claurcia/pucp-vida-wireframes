@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Wireframe — Admisión Pregrado · PUCP</title>
+<title>Wireframe — Admisión: Para padres y familias · PUCP</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
@@ -44,9 +44,11 @@
   .menu .wrap{display:flex;gap:18px;flex-wrap:wrap;padding:13px 24px;font-size:13.5px;color:#1f2530;}
   .menu span.active{font-weight:700;border-bottom:2px solid #1f2530;padding-bottom:2px;}
   .crumb{padding:14px 24px 4px;color:#5b6470;font-size:12.5px;}
+  .crumb a{color:#5b6470;text-decoration:none;}
+  .crumb a:hover{text-decoration:underline;}
   /* ---------- BODY ---------- */
   main{padding:8px 26px 60px;}
-  .sec{background:var(--t1);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin-bottom:16px;scroll-margin-top:190px;}
+  .sec{background:var(--t1);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
   .sec.alt{background:var(--t0);}
   .sec.star{border-left:5px solid var(--accent);background:#ededed;}
   .sec h2{margin:0 0 6px;font-size:17px;display:flex;align-items:center;gap:9px;color:var(--ink);}
@@ -58,33 +60,17 @@
   .ph{background:var(--t2);border:1px dashed var(--line-strong);border-radius:7px;}
   .banner{height:140px;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);font-size:13px;font-weight:600;
            background:repeating-linear-gradient(45deg,var(--t2),var(--t2) 12px,var(--t1) 12px,var(--t1) 24px);border-radius:8px;margin-bottom:12px;}
-  /* rectángulos a todo el ancho: flex:1 */
   .card{flex:1;min-width:0;height:96px;}
   .card.sm{height:80px;}
   .bar{height:16px;background:var(--t3);border-radius:4px;}
   .lines{display:flex;flex-direction:column;gap:9px;}
   .cta{background:var(--accent);color:#fff;font-weight:700;font-size:13.5px;padding:11px 20px;border-radius:7px;display:inline-block;flex:none;}
   .cta.ghost{background:#fff;color:var(--ink);border:1.5px solid var(--accent);}
-  .tabs{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap;}
-  .tab{padding:9px 16px;border:1px solid var(--line);border-radius:6px 6px 0 0;background:#fff;color:var(--ink-soft);font-size:13px;}
-  .tab.on{background:var(--accent-soft);color:var(--ink);font-weight:700;border-bottom:2px solid var(--accent);}
-  .panel{border:1px dashed var(--line-strong);border-radius:0 7px 7px 7px;background:#fff;height:90px;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);font-size:12.5px;}
   .grid{display:flex;gap:10px;flex-wrap:nowrap;}
   .cell{flex:1;min-width:0;height:74px;background:var(--t2);border:1px dashed var(--line-strong);border-radius:7px;display:flex;align-items:center;justify-content:center;color:var(--ink);font-size:12px;text-align:center;padding:6px;font-weight:600;}
   .contact{color:var(--ink);font-size:13px;line-height:1.7;}
   .legend{max-width:1200px;margin:0 auto;padding:0 26px 50px;color:var(--ink-soft);font-size:12.5px;line-height:1.7;}
   .legend b{color:var(--ink);}
-  .chip{display:inline-flex;font-size:12px;font-weight:600;color:var(--ink);background:var(--t2);border:1px solid var(--line);border-radius:999px;padding:6px 13px;}
-  .subnav{position:sticky;top:132px;z-index:40;background:#fff;border:1px solid var(--line);border-radius:8px;padding:9px 12px;margin-bottom:16px;display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;}
-  .subnav a{color:var(--ink-soft);text-decoration:none;font-weight:600;}
-  .subnav a:hover{color:var(--accent);text-decoration:underline;}
-  .cols{display:flex;gap:20px;align-items:flex-start;}
-  .col-main{flex:1;min-width:0;}
-  .col-form{flex:0 0 240px;position:sticky;top:180px;}
-  .form-card{background:var(--t0);border:1px solid var(--line);border-radius:10px;padding:16px;}
-  .form-card .field{height:34px;margin-bottom:10px;}
-  .callout{background:var(--t0);border:1px dashed var(--line-strong);border-radius:10px;padding:16px 18px;margin-bottom:16px;}
-  @media(max-width:900px){ .cols{flex-direction:column;} .col-form{position:static;flex:none;width:100%;} }
   /* ---------- HERRAMIENTAS DE REVISIÓN (comentarios + reordenar) ---------- */
   .sec{position:relative;}
   .toolbar{position:fixed;bottom:18px;right:18px;z-index:100;display:flex;gap:8px;align-items:center;
@@ -149,7 +135,7 @@
   </header>
 
   <div class="wrap">
-    <div class="crumb">Inicio › Admisión › <b>Pregrado</b></div>
+    <div class="crumb"><a href="admision-pregrado.html">Inicio › Admisión › Pregrado</a> › <b>Para padres y familias</b></div>
   </div>
 
   <!-- ===== BODY ===== -->
@@ -158,92 +144,42 @@
     <!-- 1 -->
     <section class="sec">
       <h2><span class="num">1</span> Banner</h2>
-      <div class="banner">"Sé parte de la PUCP: empieza aquí tu historia" — [ video / foto del campus ]</div>
-      <div class="row" style="margin-bottom:12px;">
-        <span class="chip">Artes, Arquitectura y Diseño</span>
-        <span class="chip">Ciencias</span>
-        <span class="chip">Ciencias Sociales y Humanidades</span>
-        <span class="chip">Comunicación y Medios</span>
-        <span class="chip">Derecho y Política</span>
-        <span class="chip">Educación y Pedagogía</span>
-        <span class="chip">Gastronomía, Turismo y Hotelería</span>
-        <span class="chip">Ingeniería y Tecnología</span>
-        <span class="chip">Medio Ambiente y Sostenibilidad</span>
-        <span class="chip">Negocios y Economía</span>
-      </div>
-      <div class="row"><span class="cta">Postula ▸</span><span class="cta ghost">Conoce las modalidades de admisión ▸</span></div>
+      <div class="banner">"Acompaña a tu hijo o hija en su camino en la PUCP" — [ video / foto del campus ]</div>
+      <div class="row"><span class="cta">Postula ▸</span><a class="cta ghost" href="admision-pregrado.html" style="text-decoration:none;">Volver a Admisión Pregrado ↩</a></div>
     </section>
-
-    <!-- submenú de esta landing -->
-    <nav class="subnav" id="subnav" aria-label="Secciones de esta página"></nav>
-
-    <div class="cols">
-      <div class="col-main">
 
     <!-- 2 -->
     <section class="sec alt">
-      <h2><span class="num">2</span> Nuestras carreras</h2>
-      <p class="desc">No se despliega el catálogo aquí — enlace de salida a admisión / facultades.</p>
-      <div class="row"><span class="cta">Explora las carreras ▸</span></div>
+      <h2><span class="num">2</span> Seguridad en el campus</h2>
+      <p class="desc">Control de acceso, cámaras, seguridad física y protocolos ante emergencias dentro del campus.</p>
+      <div class="row"><span class="ph card"></span><span class="ph card"></span></div>
     </section>
 
     <!-- 3 -->
     <section class="sec">
-      <h2><span class="num">3</span> Modalidades de admisión</h2>
-      <div class="tabs">
-        <span class="tab on">Evaluación del Talento</span>
-        <span class="tab">Admisión por Rendimiento Superior</span>
-        <span class="tab">La Primera Opción</span>
-      </div>
-      <div class="panel">[ Descripción · requisitos · "Conoce más" de la modalidad seleccionada ]</div>
+      <h2><span class="num">3</span> Centro médico</h2>
+      <p class="desc">Atención médica y de salud disponible para todos los estudiantes dentro del campus.</p>
+      <div class="row"><span class="ph card"></span><span class="ph card"></span></div>
     </section>
 
     <!-- 4 -->
     <section class="sec alt">
-      <h2><span class="num">4</span> Cronograma de admisión</h2>
-      <div class="tabs">
-        <span class="tab on">Evaluación del Talento</span>
-        <span class="tab">Admisión por Rendimiento Superior</span>
-        <span class="tab">La Primera Opción</span>
-      </div>
-      <div class="panel">[ Fechas clave de la modalidad seleccionada ]</div>
+      <h2><span class="num">4</span> Bienestar y acompañamiento</h2>
+      <p class="desc">Acompañamiento psicológico, becas y apoyo socioeconómico para sostener la permanencia de tu hijo o hija.</p>
+      <div class="row"><span class="ph card"></span><span class="ph card"></span></div>
     </section>
 
     <!-- 5 -->
     <section class="sec">
-      <h2><span class="num">5</span> Pensiones diferenciadas</h2>
-      <p class="desc">Transparencia: escalas según tus posibilidades + simulador de pensión.</p>
-      <div class="row"><span class="ph card sm"></span><span class="ph card sm"></span><span class="cta ghost">Simula tu pensión</span></div>
+      <h2><span class="num">5</span> Empleabilidad</h2>
+      <p class="desc">Cómo la PUCP prepara a los estudiantes para su primera experiencia laboral y su futuro profesional.</p>
+      <div class="row"><span class="ph card"></span><span class="ph card"></span></div>
     </section>
 
-    <!-- 6 -->
-    <section class="sec alt">
-      <h2><span class="num">6</span> Becas</h2>
-      <p class="desc">Tabla única de becas y apoyo financiero.</p>
-      <div class="row"><span class="cta">Encuentra una beca para ti ▸</span></div>
-    </section>
-
-    <!-- 7 -->
-    <section class="sec">
-      <h2><span class="num">7</span> Vacantes</h2>
-      <div class="lines"><div class="bar" style="width:100%"></div><div class="bar" style="width:100%"></div><div class="bar" style="width:100%"></div></div>
-    </section>
-
-    <!-- 8 -->
-    <section class="sec alt">
-      <h2><span class="num">8</span> Eventos informativos + visitas</h2>
-      <div class="grid">
-        <div class="cell">Feria de Emplea+habilidad</div>
-        <div class="cell">LinkING (Ingeniería)</div>
-        <div class="cell">Visitas guiadas al campus</div>
-        <div class="cell">Exámenes presenciales</div>
-      </div>
-    </section>
-
-    <!-- 9 ★ -->
+    <!-- 6 ★ -->
     <section class="sec star">
-      <h2><span class="num">9</span> Contacto humano nombrado <span class="st">★</span></h2>
-      <p class="desc">Un asesor con nombre y rostro responde tus dudas.</p>
+      <h2><span class="num">6</span> Contacto humano nombrado <span class="st">★</span></h2>
+      <p class="desc">Un asesor con nombre y rostro responde las dudas de los padres y familias.</p>
       <div class="row" style="align-items:stretch;">
         <span class="ph card sm" style="max-width:160px;"></span>
         <div class="cell" style="justify-content:flex-start;text-align:left;padding:14px;font-weight:400;">
@@ -253,31 +189,11 @@
       <div class="row" style="margin-top:10px;"><span class="cta">Escríbenos por WhatsApp ▸</span></div>
     </section>
 
-    <div class="callout">
-      <b>¿Eres padre o familiar de un postulante?</b>
-      <p class="desc" style="margin:4px 0 10px;">Seguridad en el campus, centro médico, bienestar, empleabilidad y contacto — ahora en su propia página.</p>
-      <a class="cta ghost" href="admision-padres.html">Visita la página para padres y familias ▸</a>
-    </div>
-
-      </div>
-      <aside class="col-form" id="col-form">
-        <div class="form-card">
-          <b>Formulario de interés</b>
-          <p class="desc" style="margin:6px 0 10px;">Déjanos tus datos y te contactamos.</p>
-          <div class="ph field"></div>
-          <div class="ph field"></div>
-          <div class="ph field"></div>
-          <div class="ph field"></div>
-          <span class="cta" style="width:100%;text-align:center;margin-top:4px;">Enviar ▸</span>
-        </div>
-      </aside>
-    </div>
-
   </main>
 
   <div class="legend">
     <b>Wireframe de baja fidelidad</b> · escala de grises · ★ = piezas nuevas pedidas por la investigación ·
-    contenido nutrido con datos reales de admision.pucp.edu.pe (claim, modalidades, eventos, contacto).<br>
+    página independiente desprendida de admisión pregrado, para el público "padres y familias".<br>
     <b>Modo revisión:</b> con los botones de abajo a la derecha puedes reordenar secciones (↑↓), dejar comentarios por sección (💬) y editar textos. Los comentarios se guardan en la base de datos (los ven todos); el orden y los textos se guardan en este navegador.
   </div>
 
@@ -292,7 +208,7 @@
 
 <script>
 (function(){
-  var KEY='wf-admision-pregrado-v1', WF='admision-pregrado', API='https://comentarios.ludik.pe';
+  var KEY='wf-admision-padres-v1', WF='admision-padres', API='https://comentarios.ludik.pe';
   var main=document.getElementById('zones'), toast=document.getElementById('toast'), tt=null;
   function notify(m){toast.textContent=m;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('show');},2200);}
 
@@ -302,14 +218,6 @@
     if(!sec.dataset.title){ var h=sec.querySelector('h2'); sec.dataset.title = h ? h.textContent.replace(/\s+/g,' ').replace(/^\s*\d+\s*/,'').replace(/★/g,'').trim() : ('Sección '+(i+1)); }
     if(!sec.querySelector('.sec-body')){ var b=document.createElement('div'); b.className='sec-body'; while(sec.firstChild){ b.appendChild(sec.firstChild); } sec.appendChild(b); }
   });
-
-  // Submenú con los nombres de todas las secciones de esta página
-  var subnav=document.getElementById('subnav');
-  if(subnav){
-    subnav.innerHTML = Array.prototype.map.call(main.querySelectorAll('section'),function(sec,i){
-      return '<a href="#'+sec.id+'">'+(i+1)+'. '+sec.dataset.title+'</a>';
-    }).join('');
-  }
 
   function load(){try{return JSON.parse(localStorage.getItem(KEY))||{};}catch(e){return {};}}
   function save(s){localStorage.setItem(KEY,JSON.stringify(s));}
@@ -441,7 +349,7 @@
   });
 
   document.getElementById('btn-export').addEventListener('click',function(){
-    var out=['Comentarios — Admisión Pregrado ('+new Date().toLocaleDateString('es-PE')+')',''];var total=0;
+    var out=['Comentarios — Admisión: Para padres y familias ('+new Date().toLocaleDateString('es-PE')+')',''];var total=0;
     main.querySelectorAll('section').forEach(function(sec,idx){
       var items=comments[sec.id]||[]; if(!items.length)return;
       out.push((idx+1)+'. '+sec.dataset.title);
