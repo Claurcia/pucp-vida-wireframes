@@ -58,6 +58,8 @@
   .note{color:var(--ink-soft);font-size:12px;}
   /* fotos simuladas */
   .photo{position:relative;border-radius:10px;overflow:hidden;min-height:120px;display:flex;align-items:flex-end;}
+  /* Manda sobre el HTML guardado en la API (que puede traer alturas viejas inline) */
+  #z-comunidad .photo{aspect-ratio:3/4;height:auto!important;max-height:360px!important;}
   .photo .cap{position:relative;z-index:2;color:#fff;font-size:12.5px;font-weight:700;padding:10px 12px;text-shadow:0 1px 3px rgba(0,0,0,.5);}
   .photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(4,20,45,.68));}
   .photo.p1{background:linear-gradient(180deg,#c7d3e6 0%,#94a8cc 55%,#5c74a3 56%,#33447a 100%);}
@@ -452,11 +454,11 @@
       <h2 class="t">Contribuye a la transformación social del país desde la PUCP</h2>
       <div class="cards">
         <div class="scard" style="padding:0;overflow:hidden;">
-          <div class="photo p4" style="aspect-ratio:3/4;height:auto;max-height:420px;border-radius:0;"><span class="ic">FOTO</span><span class="cap">Ruta RSU del estudiante</span></div>
+          <div class="photo p4" style="aspect-ratio:3/4;height:auto;max-height:360px;border-radius:0;"><span class="ic">FOTO</span><span class="cap">Ruta RSU del estudiante</span></div>
           <div style="padding:14px 16px;"><b>Ruta RSU del estudiante PUCP</b><p style="margin:0;">Tu compromiso genera cambios.</p></div>
         </div>
         <div class="scard" style="padding:0;overflow:hidden;">
-          <div class="photo p2" style="aspect-ratio:3/4;height:auto;max-height:420px;border-radius:0;"><span class="ic">FOTO</span><span class="cap">Voluntariado en acción</span></div>
+          <div class="photo p2" style="aspect-ratio:3/4;height:auto;max-height:360px;border-radius:0;"><span class="ic">FOTO</span><span class="cap">Voluntariado en acción</span></div>
           <div style="padding:14px 16px;"><b>Voluntariado RSU</b><p style="margin:0;">Ciudadanía en acción.</p></div>
         </div>
       </div>
