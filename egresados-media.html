@@ -68,9 +68,16 @@
   .cifras .big{font-family:'Montserrat';font-weight:800;font-size:23px;color:var(--azul);line-height:1;}
   .cifras .lbl{font-size:12.5px;color:var(--ink-soft);margin-top:5px;}
   /* ticker de novedades */
-  .ticker{display:flex;align-items:center;gap:14px;background:var(--tint);border:1px solid var(--line);border-radius:12px;padding:14px 20px;}
+  .ticker{display:flex;align-items:center;gap:14px;background:var(--tint);border:1px solid var(--line);border-radius:12px;padding:28px 22px;}
   .ticker .arr{color:var(--azul);font-weight:800;flex:none;}
-  .ticker .msg{flex:1;text-align:center;font-size:14px;color:var(--ink);}
+  .ticker .msg{flex:1;text-align:center;font-size:15.5px;color:var(--ink);}
+  /* encuesta de egresados (bloque propio) */
+  .survey{display:flex;gap:22px;align-items:center;flex-wrap:wrap;background:var(--tint);border:1px solid var(--line);border-left:5px solid var(--azul);border-radius:14px;padding:22px 26px;}
+  .survey .stxt{flex:1;min-width:280px;}
+  .survey details{margin-top:10px;font-size:13px;color:var(--ink-soft);max-width:680px;}
+  .survey summary{cursor:pointer;color:var(--azul);font-weight:600;font-size:13px;list-style-position:inside;}
+  .survey details p{margin:8px 0 0;}
+  .btn.lg{padding:16px 32px;font-size:16px;border-radius:10px;}
   .ticker .msg b{color:var(--azul);}
   /* hub / cards */
   .hub{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;}
@@ -169,12 +176,12 @@
   <div class="wrap">
 
     <!-- 1 HERO -->
-    <section data-title="La PUCP es parte de tu historia">
+    <section id="sec-0" data-title="La PUCP es parte de tu historia">
       <div class="hero">
         <span class="imgnote">▣ Foto/video real: campus, graduaciones, rostros de egresados</span>
         <div class="ov">
           <div class="ey">Comunidad PUCP</div>
-          <h1>Te graduaste, pero nunca dejaste de ser parte de nuestra comunidad</h1>
+          <h1>Ser PUCP es para siempre.</h1>
           <p>Sigue siendo parte de la PUCP y nosotros seguimos siendo parte de tu historia.</p>
           <a class="btn" style="background:#fff;color:var(--azul)" href="#">Cuéntanos dónde estás hoy →</a>
         </div>
@@ -182,7 +189,7 @@
     </section>
 
     <!-- 2 TU CAMPUS TE ESPERA -->
-    <section data-title="Tu campus te espera">
+    <section id="sec-1" data-title="Tu campus te espera">
       <p class="eyebrow">Reconexión</p>
       <h2 class="t">Tu campus te espera</h2>
       <p class="sub">Tu comunidad sigue creciendo, y siempre tendrá un lugar para ti.</p>
@@ -197,16 +204,32 @@
     </section>
 
     <!-- 3 NOVEDADES -->
-    <section data-title="Banner de novedades (rotativo)">
+    <section id="sec-2" data-title="Banner de novedades (rotativo)">
       <div class="ticker">
         <span class="arr">‹</span>
-        <span class="msg">📢 Encuesta de egresados 2026 — tu opinión construye la PUCP del futuro. <b>Participa aquí →</b></span>
+        <span class="msg">📢 Novedades para egresados — convocatorias, beneficios y eventos destacados. <b>Ver más →</b></span>
         <span class="arr">›</span>
       </div>
     </section>
 
+    <!-- 3b ENCUESTA DE EGRESADOS -->
+    <section id="sec-encuesta" data-title="Encuesta de egresados">
+      <div class="survey">
+        <div class="stxt">
+          <p class="eyebrow">Encuesta de egresados 2026</p>
+          <h2 class="t" style="font-size:22px;">Tu opinión construye la PUCP del futuro</h2>
+          <p class="sub" style="margin:0;">Queremos saber cómo te va: tu situación laboral, tu experiencia profesional y lo que la PUCP puede hacer mejor. Con tus respuestas mejoramos los planes de estudio y los servicios para egresados.</p>
+          <details>
+            <summary>¿Por qué es importante esta encuesta?</summary>
+            <p>La Encuesta de Egresados es la principal fuente de información sobre la trayectoria de nuestra comunidad: empleabilidad, continuidad de estudios y pertinencia de la formación recibida. Sus resultados alimentan la mejora de los planes de estudio, la acreditación de las carreras y el diseño de nuevos servicios y beneficios para egresados. Responderla toma unos 10 minutos y tus datos se tratan de forma confidencial.</p>
+          </details>
+        </div>
+        <a class="btn lg" href="#">Participa en la encuesta →</a>
+      </div>
+    </section>
+
     <!-- 4 QUEREMOS SEGUIR ACOMPAÑÁNDOTE -->
-    <section data-title="Queremos seguir acompañándote">
+    <section id="sec-3" data-title="Queremos seguir acompañándote">
       <p class="eyebrow">Formación continua</p>
       <h2 class="t">Queremos seguir acompañándote</h2>
       <p class="sub">Tu formación no terminó el día que te graduaste. Para nosotros, ese fue solo el comienzo.</p>
@@ -220,7 +243,7 @@
     </section>
 
     <!-- 5 TESTIMONIOS -->
-    <section data-title="Testimonios — impacto de vida">
+    <section id="sec-4" data-title="Testimonios — impacto de vida">
       <p class="eyebrow">Orgullo PUCP</p>
       <h2 class="t">¿Qué te dio la PUCP que ningún título puede resumir?</h2>
       <p class="sub">Estas son las historias de egresados que hoy transforman su sector, desde lo público, lo privado, lo social, la investigación y el mundo internacional.</p>
@@ -242,7 +265,7 @@
     </section>
 
     <!-- 6 SIGAMOS CONECTADOS -->
-    <section data-title="Sigamos conectados">
+    <section id="sec-5" data-title="Sigamos conectados">
       <p class="eyebrow">Vínculo de largo plazo</p>
       <h2 class="t">Sigamos conectados</h2>
       <p class="sub">Miles de egresados ya son parte de esta red. Súmate con asesoría profesional, bolsa de empleo y la fuerza de tu comunidad.</p>
@@ -251,7 +274,7 @@
         <div class="card"><div class="ti">Red de egresados por facultad</div><div class="ds">Reconéctate con tu promoción.</div></div>
         <div class="card"><div class="ti">Bolsa de empleo alumni</div><div class="ds">Para recién egresados (hasta 2 años), en el Sistema de Oportunidades Laborales.</div></div>
       </div>
-      <div class="ctas"><a class="btn" href="#">Únete a la AEG →</a><a class="btn ghost" href="#">Ir a la bolsa de empleo alumni →</a></div>
+      <div class="ctas"><a class="btn lg" href="#">Únete a la AEG →</a><a class="btn ghost" href="#">Ir a la bolsa de empleo alumni →</a></div>
     </section>
 
   </div>
