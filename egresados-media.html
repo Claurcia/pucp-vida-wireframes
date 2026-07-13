@@ -75,6 +75,15 @@
   .survey details p{margin:8px 0 0;}
   .btn.lg{padding:16px 32px;font-size:16px;border-radius:10px;}
   .ctas{display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+  /* tarjeta AEG destacada (pedido del cliente); manda sobre el HTML guardado en la API */
+  #sec-5 .cards.c3{grid-template-columns:1.4fr 1fr 1fr;align-items:stretch;}
+  #sec-5 .card:first-child{background:var(--tint);border:1.5px solid var(--azul);border-top:5px solid var(--azul);padding:24px 22px;}
+  #sec-5 .card:first-child .ti{font-size:18px;}
+  #sec-5 .card:first-child .ds{font-size:14px;}
+  @media(max-width:860px){ #sec-5 .cards.c3{grid-template-columns:1fr 1fr;} }
+  @media(max-width:560px){ #sec-5 .cards.c3{grid-template-columns:1fr;} }
+  /* el boton AEG vuelve al tamano normal (lo grande era la tarjeta) */
+  #sec-5 .btn.lg{padding:12px 22px;font-size:14px;border-radius:8px;}
   .ticker .msg b{color:var(--azul);}
   /* hub / cards */
   .hub{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;}
