@@ -41,6 +41,36 @@
   .menu{border-bottom:1px solid #e3e6ea;}
   .menu .wrap{display:flex;gap:18px;flex-wrap:wrap;padding:13px 24px;font-size:13.5px;color:#1f2530;}
   .menu span.active{font-weight:700;border-bottom:2px solid #1f2530;padding-bottom:2px;}
+  /* ===== mega-menu unificado (igual al home) ===== */
+  .menu .wrap{position:relative;}
+  .menu .active{font-weight:700;border-bottom:2px solid #1f2530;padding-bottom:2px;}
+  .topnav a{color:inherit;text-decoration:none;}
+  .menu a{color:inherit;text-decoration:none;}
+  .menu .mi{cursor:pointer;}
+  .menu .mi:hover{color:#1f2530;font-weight:700;}
+  .megamenu{display:none;position:absolute;top:calc(100% + 13px);left:0;background:#fff;border:1px solid #e3e6ea;border-top:3px solid #2b2f36;border-radius:0 0 12px 12px;box-shadow:0 16px 32px rgba(0,0,0,.14);padding:26px;z-index:60;grid-template-columns:repeat(4,220px);gap:28px;max-width:calc(100vw - 48px);color:#1f2530;}
+  .megamenu.cols3{grid-template-columns:repeat(3,220px);}
+  .megamenu.cols2{grid-template-columns:repeat(2,240px);}
+  .menu .mi:hover .megamenu{display:grid;}
+  .menu .mi:hover .megamenu.pills{display:flex;}
+  .megamenu .banner{grid-column:1/-1;font-family:'Montserrat';font-weight:700;font-size:12.5px;letter-spacing:.4px;color:#fff;background:#2b2f36;padding:10px 14px;border-radius:6px;margin:-4px 0 4px;text-align:center;}
+  .megamenu .banner a{color:#fff;}
+  .mm-col h4{font-family:'Montserrat';font-size:12px;font-weight:700;letter-spacing:.3px;color:#fff;background:#2b2f36;padding:10px 14px;border-radius:6px;margin:0 0 10px;}
+  .mm-col.c-teal h4{background:#4a5058;}
+  .mm-col.c-purple h4{background:#6b7280;}
+  .mm-col ul{list-style:none;margin:0;padding:10px 14px;background:#eef1f5;border-radius:6px;}
+  .mm-col li{font-size:13px;font-weight:400;padding:5px 4px;color:#5b6470;}
+  .mm-col li a{text-decoration:none;color:inherit;}
+  .mm-col li a:hover{color:#1f2530;text-decoration:underline;}
+  .mm-col li ul{margin:2px 0 2px 14px;padding:0;background:none;}
+  .mm-col li ul li{font-size:12px;color:#8a93a0;}
+  .mm-col .mm-note{font-size:12.5px;font-weight:400;color:#5b6470;background:#eef1f5;border-radius:6px;padding:12px 14px;}
+  .mm-col .mm-note a{color:inherit;}
+  .megamenu .mm-hint{font-size:11.5px;font-weight:400;color:#8a93a0;margin:8px 2px 0;grid-column:1/-1;}
+  .megamenu.pills{gap:12px;flex-wrap:wrap;width:max-content;max-width:80vw;}
+  .megamenu.align-r{left:auto;right:0;}
+  .mm-pill{background:#2b2f36;color:#fff;font-family:'Montserrat';font-weight:700;font-size:13px;padding:12px 20px;border-radius:6px;text-decoration:none;white-space:nowrap;}
+  .mm-pill:hover{background:#23262c;}
   .crumb{font-size:12.5px;color:#5b6470;padding:14px 0 0;}
   /* ---- secciones ---- */
   section{padding:30px 0;border-bottom:1px solid var(--tint);}
@@ -245,14 +275,231 @@
   <!-- header (unificado con home-grises.html) -->
   <header class="site-header">
   <div class="topnav"><div class="wrap">
-    <div class="l"><span>Postulante ▾</span><span>Estudiante</span><span>Profesor</span><span>Administrativo</span><span>Egresado</span><span>Prensa</span><span>Alianza con empresa</span></div>
+    <div class="l"><a href="admision-pregrado-media.html">Postulante ▾</a><span>Estudiante</span><span>Profesor</span><span>Administrativo</span><a href="egresados-media.html">Egresado</a><a href="prensa-media.html">Prensa</a><a href="empresas-media.html">Alianza con empresa</a></div>
     <div class="r"><span>Intranet y correo</span><span>PAIDEIA</span><span>⠿ Accesos</span><span>🌐 ES</span></div>
   </div></div>
   <div class="logorow"><div class="wrap">
-    <div class="logo"><svg width="32" height="32" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="none" stroke-width="2"/><path d="M9 24 q11 6 22 0 l-3 5 h-16 z"/><path d="M20 8 l7 13 h-14 z"/></svg>PUCP</div>
+    <a class="logo" href="home-grises.html" style="text-decoration:none;"><svg width="32" height="32" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="none" stroke-width="2"/><path d="M9 24 q11 6 22 0 l-3 5 h-16 z"/><path d="M20 8 l7 13 h-14 z"/></svg>PUCP</a>
     <div class="r"><span class="search">🔍 Buscar</span><span class="postula">Quiero postular</span></div>
   </div></div>
-  <div class="menu"><div class="wrap"><span>Conoce la PUCP</span><span>Carreras y Programas</span><span>Admisión</span><span>Internacionalización</span><span>Investigación</span><span>Vida universitaria</span><span class="active">Empleabilidad</span><span>Noticias y eventos</span></div></div>
+  <div class="menu"><div class="wrap">
+    <span class="mi">Conoce la PUCP
+      <div class="megamenu">
+        <div class="mm-col">
+          <h4>Identidad y prestigio</h4>
+          <ul>
+            <li><a href="#">Misión, Visión, Valores</a></li>
+            <li><a href="#">Modelo Educativo</a></li>
+            <li><a href="#">Estatuto</a></li>
+            <li><a href="#">Identidad Católica</a></li>
+            <li><a href="#">Acreditación Institucional</a></li>
+            <li><a href="#">Defensoría Universitaria</a></li>
+            <li><a href="#">Asociaciones y redes</a></li>
+            <li><a href="#">Comité Electoral Universitario</a></li>
+            <li><a href="pucp-en-cifras.html">PUCP en Cifras</a>
+              <ul><li><a href="pucp-en-cifras.html">Ranking y cifras destacadas</a></li></ul>
+            </li>
+            <li><a href="#">Distinciones</a></li>
+            <li><a href="#">Historia</a></li>
+            <li><a href="#">Impacto en la sociedad</a></li>
+          </ul>
+        </div>
+        <div class="mm-col">
+          <h4>Gobierno y autoridades</h4>
+          <ul>
+            <li><a href="#">Asamblea Universitaria</a></li>
+            <li><a href="#">Consejo Universitario</a></li>
+            <li><a href="#">Rector y Vicerrectores</a></li>
+            <li><a href="#">Decanos</a></li>
+            <li><a href="#">Jefes de Departamento</a></li>
+            <li><a href="#">Directores Académicos</a></li>
+            <li><a href="#">Autoridades de la Iglesia</a></li>
+          </ul>
+        </div>
+        <div class="mm-col">
+          <h4>Transparencia y normas</h4>
+          <ul>
+            <li><a href="#">Reglamento unificado de procedimientos disciplinarios</a>
+              <ul><li><a href="#">Reglamentos y documentos</a></li></ul>
+            </li>
+            <li><a href="#">Portal de Transparencia</a></li>
+          </ul>
+        </div>
+        <div class="mm-col">
+          <h4>Unidades y servicios</h4>
+          <ul>
+            <li><a href="#">Directorio de personas</a></li>
+            <li><a href="#">Directorio de servicios</a></li>
+            <li><a href="#">Directorio de unidades</a></li>
+            <li><a href="#">Vicerrectorados</a></li>
+            <li><a href="#">Direcciones</a></li>
+            <li><a href="#">Facultades</a></li>
+            <li><a href="#">Departamentos</a></li>
+            <li><a href="#">Centros e Institutos</a></li>
+            <li><a href="#">Oficinas</a></li>
+          </ul>
+        </div>
+      </div>
+    </span>
+    <span class="mi">Carreras y Programas
+      <div class="megamenu cols3">
+        <div class="mm-col">
+          <h4>Pregrado</h4>
+          <ul>
+            <li><a href="admision-pregrado-media.html">Admisión</a></li>
+            <li><a href="#">Carreras</a></li>
+            <li><a href="#">Becas y financiamiento</a></li>
+            <li><a href="#">Facultades</a></li>
+            <li><a href="#">Guía del postulante</a></li>
+          </ul>
+        </div>
+        <div class="mm-col c-teal">
+          <h4>Posgrado</h4>
+          <ul>
+            <li><a href="#">Maestrías</a></li>
+            <li><a href="#">Doctorados</a></li>
+            <li><a href="#">CENTRUM Católica</a></li>
+            <li><a href="#">Escuela de Gobierno</a></li>
+            <li><a href="#">Posgrado internacional</a></li>
+            <li><a href="#">Becas posgrado</a></li>
+          </ul>
+        </div>
+        <div class="mm-col c-purple">
+          <h4>Educación Continua</h4>
+          <ul>
+            <li><a href="#">Diplomaturas y programas</a></li>
+            <li><a href="#">Cursos y talleres</a></li>
+            <li><a href="#">Cursos de idiomas</a></li>
+          </ul>
+        </div>
+      </div>
+    </span>
+    <span class="mi">Admisión
+      <div class="megamenu cols2">
+        <div class="mm-col">
+          <h4>Pregrado</h4>
+          <div class="mm-note"><a href="admision-pregrado-media.html">Landing Admisión en el home + formulario →</a></div>
+        </div>
+        <div class="mm-col c-teal">
+          <h4>Posgrado</h4>
+          <ul>
+            <li><a href="#">Admisión posgrado</a></li>
+            <li><a href="#">Admisión para alumnos libres</a></li>
+            <li><a href="#">Admisión Centrum</a></li>
+          </ul>
+        </div>
+      </div>
+    </span>
+    <span class="mi">Internacionalización
+      <div class="megamenu cols3">
+        <div class="mm-col">
+          <h4>Estudia en el extranjero</h4>
+          <ul>
+            <li><a href="https://internacional.pucp.edu.pe/" target="_blank" rel="noopener">Intercambio estudiantil</a></li>
+            <li><a href="https://internacional.pucp.edu.pe/" target="_blank" rel="noopener">Programas de corta duración</a></li>
+            <li><a href="https://internacional.pucp.edu.pe/" target="_blank" rel="noopener">Internacionalización en casa</a></li>
+            <li><a href="https://internacional.pucp.edu.pe/" target="_blank" rel="noopener">Doble grado</a></li>
+            <li><a href="https://internacional.pucp.edu.pe/" target="_blank" rel="noopener">Erasmus</a></li>
+          </ul>
+        </div>
+        <div class="mm-col c-teal">
+          <h4>Estudia en la PUCP</h4>
+          <div class="mm-note">Enlaces a internacional.pucp.edu.pe</div>
+        </div>
+        <div class="mm-col c-purple">
+          <h4>Internacionalización docente</h4>
+          <div class="mm-note">Enlaces a internacional.pucp.edu.pe</div>
+        </div>
+        <p class="mm-hint">Todos son enlaces a <a href="https://internacional.pucp.edu.pe/" target="_blank" rel="noopener">internacional.pucp.edu.pe</a></p>
+      </div>
+    </span>
+    <span class="mi">Investigación
+      <div class="megamenu cols2">
+        <div class="mm-col">
+          <h4>Construimos conocimiento</h4>
+          <ul>
+            <li><a href="#">Líneas de investigación</a></li>
+            <li><a href="#">Investigación</a></li>
+            <li><a href="#">Innovación</a></li>
+            <li><a href="#">Creación</a></li>
+            <li><a href="#">Convocatorias y financiamiento</a></li>
+            <li><a href="#">Grupos de investigación</a></li>
+            <li><a href="#">Vinculación con empresas</a></li>
+            <li><a href="#">Portafolio de tecnologías</a></li>
+            <li><a href="#">Propiedad intelectual</a></li>
+            <li><a href="#">Ética de la investigación</a></li>
+            <li><a href="https://investigacion.pucp.edu.pe/directorio-de-proyectos/" target="_blank" rel="noopener">Proyectos de investigación en curso</a></li>
+          </ul>
+        </div>
+        <div class="mm-col">
+          <h4>Publicaciones</h4>
+          <ul>
+            <li><a href="#">Fondo Editorial</a></li>
+            <li><a href="#">Repositorio abierto</a></li>
+            <li><a href="#">Revistas PUCP</a></li>
+          </ul>
+        </div>
+      </div>
+    </span>
+    <span class="mi">Vida universitaria
+      <div class="megamenu">
+        <div class="banner"><a href="vida-media.html" style="color:#fff;">Vida universitaria →</a></div>
+        <div class="mm-col">
+          <h4>Experiencia PUCP</h4>
+          <ul>
+            <li><a href="#">Bienvenido cachimbo</a></li>
+          </ul>
+        </div>
+        <div class="mm-col">
+          <h4>Salud y bienestar</h4>
+          <ul>
+            <li><a href="#">Bienestar psicológico (DAES)</a></li>
+            <li><a href="#">Servicios de salud (DAES)</a></li>
+            <li><a href="#">Deporte y vida activa (DAES)</a></li>
+            <li><a href="#">Servicios de alimentación</a></li>
+            <li><a href="#">Apoyo social (DAES)</a></li>
+            <li><a href="#">Diversidad e inclusión (OIGD)</a></li>
+          </ul>
+        </div>
+        <div class="mm-col">
+          <h4>Arte y Cultura</h4>
+          <ul>
+            <li><a href="#">Agenda cultural (DACU)</a></li>
+            <li><a href="#">Talleres y cursos (DACU)</a></li>
+            <li><a href="#">Elencos PUCP (DACU)</a></li>
+            <li><a href="#">Museos y colecciones (DACU)</a></li>
+            <li><a href="#">Cine, teatro y galería (CCPUC)</a></li>
+          </ul>
+        </div>
+        <div class="mm-col">
+          <h4>Campus y comunidad</h4>
+          <ul>
+            <li><a href="#">Bibliotecas y espacios de estudio</a></li>
+            <li><a href="#">Campus sostenible</a></li>
+            <li><a href="#">Agrupaciones estudiantiles</a></li>
+            <li><a href="#">Comunidad que transforma (DARS)</a></li>
+            <li><a href="#">Librería PUCP</a></li>
+            <li><a href="#">Asesoría Pastoral</a></li>
+            <li><a href="#">Agenda PUCP</a></li>
+            <li><a href="#">Servicios para estudiantes</a></li>
+            <li><a href="#">MiCampus PUCP (IG)</a></li>
+            <li><a href="#">Mapa del campus</a></li>
+          </ul>
+        </div>
+        <p class="mm-hint">"Servicios para estudiantes" es el directorio general que unifica todos los servicios para estudiantes.</p>
+      </div>
+    </span>
+    <a class="mi active" href="empleabilidad-media.html">Empleabilidad</a>
+    <span class="mi">Noticias y eventos
+      <div class="megamenu pills align-r">
+        <a class="mm-pill" href="https://puntoedu.pucp.edu.pe/" target="_blank" rel="noopener">PuntoEdu</a>
+        <a class="mm-pill" href="#">Novedades institucionales</a>
+        <a class="mm-pill" href="#">PUCP en las noticias</a>
+        <a class="mm-pill" href="#">Entre Pares</a>
+        <a class="mm-pill" href="#">Agenda PUCP</a>
+      </div>
+    </span>
+  </div></div>
   </header>
   <div class="wrap"><div class="crumb">Inicio › <b>Empleabilidad</b></div></div>
 

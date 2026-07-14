@@ -24,6 +24,7 @@
   .topnav{background:var(--dark);color:#dfe3e8;font-size:12.5px;}
   .topnav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:9px 24px;flex-wrap:wrap;}
   .topnav .l,.topnav .r{display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
+  .topnav a,.menu a{color:inherit;text-decoration:none;}
   .logorow{border-bottom:1px solid var(--line);}
   .logorow .wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;}
   .logo{display:flex;align-items:center;gap:9px;font-family:'Montserrat';font-weight:800;font-size:22px;letter-spacing:1px;color:var(--ink);}
@@ -226,7 +227,7 @@
   <!-- HEADER -->
   <header class="site-header">
   <div class="topnav"><div class="wrap">
-    <div class="l"><span>Postulante ▾</span><span>Estudiante</span><span>Profesor</span><span>Administrativo</span><span>Egresado</span><span>Prensa</span><span>Alianza con empresa</span></div>
+    <div class="l"><a href="admision-pregrado-media.html">Postulante ▾</a><span>Estudiante</span><span>Profesor</span><span>Administrativo</span><a href="egresados-media.html">Egresado</a><a href="prensa-media.html">Prensa</a><a href="empresas-media.html">Alianza con empresa</a></div>
     <div class="r"><span>Intranet y correo</span><span>PAIDEIA</span><span>⠿ Accesos</span><span>🌐 ES</span></div>
   </div></div>
   <div class="logorow"><div class="wrap">
@@ -247,8 +248,8 @@
             <li><a href="#">Defensoría Universitaria</a></li>
             <li><a href="#">Asociaciones y redes</a></li>
             <li><a href="#">Comité Electoral Universitario</a></li>
-            <li><a href="#">PUCP en Cifras</a>
-              <ul><li><a href="#">Ranking y cifras destacadas</a></li></ul>
+            <li><a href="pucp-en-cifras.html">PUCP en Cifras</a>
+              <ul><li><a href="pucp-en-cifras.html">Ranking y cifras destacadas</a></li></ul>
             </li>
             <li><a href="#">Distinciones</a></li>
             <li><a href="#">Historia</a></li>
@@ -297,7 +298,7 @@
         <div class="mm-col">
           <h4>Pregrado</h4>
           <ul>
-            <li><a href="#">Admisión</a></li>
+            <li><a href="admision-pregrado-media.html">Admisión</a></li>
             <li><a href="#">Carreras</a></li>
             <li><a href="#">Becas y financiamiento</a></li>
             <li><a href="#">Facultades</a></li>
@@ -329,7 +330,7 @@
       <div class="megamenu cols2">
         <div class="mm-col">
           <h4>Pregrado</h4>
-          <div class="mm-note">Landing Admisión en el home + formulario</div>
+          <div class="mm-note"><a href="admision-pregrado-media.html">Landing Admisión en el home + formulario →</a></div>
         </div>
         <div class="mm-col c-teal">
           <h4>Posgrado</h4>
@@ -367,32 +368,34 @@
     <span class="mi">Investigación
       <div class="megamenu cols2">
         <div class="mm-col">
-          <h4>Creamos conocimiento</h4>
+          <h4>Construimos conocimiento</h4>
           <ul>
-            <li><a href="#">Investigación con impacto</a></li>
+            <li><a href="#">Líneas de investigación</a></li>
+            <li><a href="#">Investigación</a></li>
+            <li><a href="#">Innovación</a></li>
             <li><a href="#">Creación</a></li>
-            <li><a href="#">Innovación aplicada</a></li>
-            <li><a href="#">Convocatorias y fondos</a></li>
+            <li><a href="#">Convocatorias y financiamiento</a></li>
             <li><a href="#">Grupos de investigación</a></li>
-            <li><a href="#">Innovación con empresas</a></li>
-            <li><a href="#">Patentes y Licenciamiento</a></li>
-            <li><a href="#">Ética en la investigación</a></li>
+            <li><a href="#">Vinculación con empresas</a></li>
+            <li><a href="#">Portafolio de tecnologías</a></li>
+            <li><a href="#">Propiedad intelectual</a></li>
+            <li><a href="#">Ética de la investigación</a></li>
+            <li><a href="https://investigacion.pucp.edu.pe/directorio-de-proyectos/" target="_blank" rel="noopener">Proyectos de investigación en curso</a></li>
           </ul>
         </div>
         <div class="mm-col">
-          <h4>Compartimos conocimiento</h4>
+          <h4>Publicaciones</h4>
           <ul>
             <li><a href="#">Fondo Editorial</a></li>
             <li><a href="#">Repositorio abierto</a></li>
-            <li><a href="#">Revistas académicas PUCP</a></li>
-            <li><a href="#">Resultados de investigación (CRISPUCP)</a></li>
+            <li><a href="#">Revistas PUCP</a></li>
           </ul>
         </div>
       </div>
     </span>
     <span class="mi">Vida universitaria
       <div class="megamenu">
-        <div class="banner">Vida universitaria</div>
+        <div class="banner"><a href="vida-media.html" style="color:#fff;">Vida universitaria →</a></div>
         <div class="mm-col">
           <h4>Experiencia PUCP</h4>
           <ul>
@@ -438,7 +441,7 @@
         <p class="mm-hint">"Servicios para estudiantes" es el directorio general que unifica todos los servicios para estudiantes.</p>
       </div>
     </span>
-    <span>Empleabilidad</span>
+    <a class="mi" href="empleabilidad-media.html">Empleabilidad</a>
     <span class="mi">Noticias y eventos
       <div class="megamenu pills align-r">
         <a class="mm-pill" href="https://puntoedu.pucp.edu.pe/" target="_blank" rel="noopener">PuntoEdu</a>
@@ -656,7 +659,8 @@
   </div>
 
   <div class="toolbar">
-    <span class="vswitch"><a class="on" href="home-grises.html">Versión 1</a><a href="home-grises-v2.html">Versión 2</a></span>
+    <!-- Versión 2 oculta a pedido del cliente -->
+    <span class="vswitch" style="display:none;"><a class="on" href="home-grises.html">Versión 1</a><a href="home-grises-v2.html">Versión 2</a></span>
     <button id="btn-anniv" type="button">🎉 110 años: ON</button>
     <button id="btn-edit" type="button">✏️ Editar textos</button>
     <button id="btn-toggle" type="button">💬 Comentarios: ON</button>
@@ -712,19 +716,37 @@
     if(wide){document.body.classList.add('crpad');rail.style.display='block';var prev=0;main.querySelectorAll('section').forEach(function(sec){var t=threads[sec.id];if(!t)return;if(t.parentNode!==rail)rail.appendChild(t);t.classList.remove('inline','open');var top=sec.getBoundingClientRect().top+window.scrollY;if(top<prev+8)top=prev+8;t.style.top=top+'px';prev=top+t.offsetHeight;});}
     else{document.body.classList.remove('crpad');rail.style.display='none';main.querySelectorAll('section').forEach(function(sec){var t=threads[sec.id];if(!t)return;t.style.top='';t.classList.add('inline');if(t.parentNode!==sec)sec.appendChild(t);});}
   }
-  function loadRemote(){fetch(API+'/comments?wf='+WF).then(function(r){return r.json();}).then(function(rows){comments={};rows.forEach(function(c){(comments[c.section]=comments[c.section]||[]).push(c);});Object.keys(threads).forEach(renderThread);applySettingsFromRemote();layout();}).catch(function(){});}
+  function loadRemote(){fetch(API+'/comments?wf='+WF).then(function(r){return r.json();}).then(function(rows){comments={};rows.forEach(function(c){(comments[c.section]=comments[c.section]||[]).push(c);});Object.keys(threads).forEach(renderThread);applySettingsFromRemote();applyContentFromRemote();layout();}).catch(function(){});}
   // ids estables en orden original
   Array.prototype.forEach.call(main.querySelectorAll('section'),function(sec,i){ if(!sec.id)sec.id='sec-'+i; });
   // aplica orden guardado
   try{var ord=JSON.parse(localStorage.getItem('home-order-v2'));if(Array.isArray(ord)){ord.forEach(function(id){var s=document.getElementById(id);if(s)main.appendChild(s);});}}catch(e){}
   function saveOrder(){try{localStorage.setItem('home-order-v2',JSON.stringify(Array.prototype.map.call(main.querySelectorAll('section'),function(s){return s.id;})));}catch(e){}}
-  var TXTWF='home-grises-txt', txtId={};
-  var savedContent={};try{savedContent=JSON.parse(localStorage.getItem('home-content'))||{};}catch(e){savedContent={};}
+  // Textos editados: una fila por seccion ('__c_'+id) en la BBDD -> compartido y sin chancarse
+  var savedContent={}, contentIds={};
+  function applyContentFromRemote(){
+    Object.keys(comments).forEach(function(sec){
+      if(sec.indexOf('__c_')!==0) return;
+      var latest=comments[sec].slice().sort(function(a,b){return new Date(b.created_at)-new Date(a.created_at);})[0];
+      var id=sec.slice(4);
+      savedContent[id]=latest.body; contentIds[id]=latest.id;
+    });
+    Object.keys(savedContent).forEach(function(id){
+      var blk=document.getElementById(id), ed=blk&&blk.querySelector('.editable');
+      if(ed) ed.innerHTML=savedContent[id];
+    });
+  }
+  function saveContentRemote(id){
+    var prev=contentIds[id];
+    fetch(API+'/comments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({wf:WF,section:'__c_'+id,author:'system',body:savedContent[id]})})
+      .then(function(r){return r.json();}).then(function(c){contentIds[id]=c.id;if(prev)fetch(API+'/comments/'+prev,{method:'DELETE'}).catch(function(){});})
+      .catch(function(){notify('No se pudo guardar el texto (sin conexión)');});
+  }
   function saveContent(blk){
     var ed=blk.querySelector('.editable');if(!ed)return;
-    var body=ed.innerHTML; savedContent[blk.id]=body;
-    try{localStorage.setItem('home-content',JSON.stringify(savedContent));}catch(e){}
-    notify('Texto guardado (en este navegador)');
+    savedContent[blk.id]=ed.innerHTML;
+    saveContentRemote(blk.id);
+    notify('Texto guardado para todos');
   }
   function makeEditable(blk){
     var ed=document.createElement('div');ed.className='editable';
@@ -756,8 +778,9 @@
   btnToggle.addEventListener('click',function(){commentsOff=!commentsOff;applyCommentsPref();saveSettingsRemote();notify(commentsOff?'Comentarios ocultos para todos':'Comentarios visibles para todos');});
   applyCommentsPref();
   document.getElementById('btn-resetorder').addEventListener('click',function(){
-    if(!confirm('¿Restablecer el orden y los textos editados de este navegador a la versión original?'))return;
-    localStorage.removeItem('home-order-v2');localStorage.removeItem('home-content');location.reload();
+    if(!confirm('¿Restablecer el orden y los textos editados a la versión original (para todos)?'))return;
+    localStorage.removeItem('home-order-v2');localStorage.removeItem('home-content');
+    Promise.all(Object.keys(contentIds).map(function(id){return fetch(API+'/comments/'+contentIds[id],{method:'DELETE'}).catch(function(){});})).then(function(){location.reload();});
   });
   var btnEdit=document.getElementById('btn-edit');
   btnEdit.addEventListener('click',function(){var on=!document.body.classList.contains('editing');document.body.classList.toggle('editing',on);btnEdit.textContent=on?'✔ Terminar edición':'✏️ Editar textos';document.querySelectorAll('.editable').forEach(function(ed){ed.contentEditable=on?'true':'false';});notify(on?'Haz clic sobre cualquier texto (incluido el menú/header) para editarlo':'Textos guardados');setTimeout(layout,60);});
