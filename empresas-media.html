@@ -111,6 +111,12 @@
   .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
   .cards.c3{grid-template-columns:repeat(3,1fr);}
   .card{border:1px solid var(--line);border-radius:11px;padding:16px;background:#fff;}
+  .card.perfil{cursor:pointer;transition:border-color .15s,background .15s;}
+  .card.perfil:hover{border-color:var(--azul);}
+  .card.perfil.on{border:1.5px solid var(--azul);background:var(--tint);}
+  .card.perfil.on .ti::after{content:" ✓";color:var(--azul);}
+  #svc-perfil-chip{display:none;align-items:center;gap:10px;background:var(--tint);border:1px solid var(--azul);color:var(--ink);font-size:12.5px;border-radius:20px;padding:6px 14px;margin:0 0 10px;}
+  #svc-perfil-chip button{border:none;background:none;color:var(--azul);font-weight:700;cursor:pointer;font:inherit;font-size:12px;}
   .card .ti{font-family:'Montserrat';font-weight:700;font-size:14.5px;margin-bottom:5px;}
   .card .ds{font-size:12.5px;color:var(--ink-soft);}
   .card a{font-size:12.5px;}
@@ -455,14 +461,14 @@
 
     <!-- 2 HUB -->
     <section data-title="¿Qué buscas resolver? — hub por intención">
-      <p class="eyebrow">El corazón de la landing</p>
+      <p class="eyebrow">Conectamos tus retos con soluciones</p>
       <h2 class="t">¿Qué buscas resolver?</h2>
-      <p class="sub">Organizamos toda la oferta de la PUCP según tu necesidad, no según nuestro organigrama. Elige tu intención y te llevamos directo a la unidad o el servicio adecuado.</p>
+      <p class="sub">Explora cómo la PUCP puede ayudarte a innovar, investigar, formar talento o desarrollar nuevos proyectos. Elige una opción y te llevamos directo al servicio adecuado.</p>
       <div class="hub">
 
         <div class="hubcard">
           <h3>Servicios especializados</h3>
-          <div class="d">Innovación abierta, consultoría, servicios tecnológicos y soporte especializado (fusiona Innovar + Resolver desafíos).</div>
+          <div class="d">Innovación abierta, consultoría, servicios tecnológicos y soporte especializado.</div>
           <ul>
             <li><a href="https://investigacion.pucp.edu.pe/vinculacion-con-el-entorno/vinculacion-universidad-empresa/">Innovación abierta ↗</a></li>
             <li><a href="https://investigacion.pucp.edu.pe/convocatorias/?_s=&_fuentes%5B%5D=externo&_publicos%5B%5D=empresas&f=1">Financiamiento para proyectos ↗</a></li>
@@ -512,15 +518,17 @@
       </div>
 
       <p class="eyebrow" style="margin-top:26px;">¿Qué perfil tiene tu empresa?</p>
-      <div class="cards c3">
-        <div class="card"><div class="ti">Gran empresa / corporación</div><div class="ds">Servicios especializados · Proyectos I+D+i · Portafolio de Tecnologías.</div></div>
-        <div class="card"><div class="ti">Mediana empresa</div><div class="ds">Desarrollo tecnológico · ProInnóvate: financia tu proyecto de innovación aliándote con la PUCP.</div></div>
-        <div class="card"><div class="ti">Emprendedor / startup</div><div class="ds">Te motivamos, capacitamos y acompañamos con talleres e incubación, de la mano del CIDE.</div></div>
+      <p style="font-size:13px;color:var(--ink-soft);margin:0 0 12px;">Opcional: elige tu perfil y el buscador de abajo te mostrará los servicios recomendados para ti. Vuelve a hacer clic para quitar el filtro.</p>
+      <div class="cards c3" id="perfil-cards">
+        <div class="card perfil" data-perfil="gran" role="button" tabindex="0"><div class="ti">Gran empresa / corporación</div><div class="ds">Servicios especializados, proyectos I+D+i y Portafolio de Tecnologías.</div></div>
+        <div class="card perfil" data-perfil="mediana" role="button" tabindex="0"><div class="ti">Mediana empresa</div><div class="ds">Desarrollo tecnológico y financiamiento ProInnóvate para innovar aliándote con la PUCP.</div></div>
+        <div class="card perfil" data-perfil="startup" role="button" tabindex="0"><div class="ti">Emprendedor / startup</div><div class="ds">Talleres, incubación y acompañamiento de la mano del CIDE.</div></div>
       </div>
 
       <div class="searchwrap">
-        <div class="eyebrow" style="margin-bottom:6px;">Nivel 2 — encuentra un servicio</div>
-        <p style="font-size:13px;color:var(--ink-soft);margin:0 0 12px;">Filtra por categoría o busca por nombre. Marca “Me interesa” y el servicio se suma a tu consulta de contacto.</p>
+        <div class="eyebrow" style="margin-bottom:6px;">Encuentra un servicio</div>
+        <p style="font-size:13px;color:var(--ink-soft);margin:0 0 12px;">Busca por nombre o filtra por categoría; si elegiste un perfil arriba, los filtros se combinan. Marca “Me interesa” y el servicio se suma a tu consulta de contacto.</p>
+        <div id="svc-perfil-chip"></div>
         <div class="searchbar">
           <input id="svc-search" type="text" placeholder="🔍  Escribe lo que necesitas… (ej. ensayos, capacitación, investigadores)">
         </div>
@@ -533,15 +541,17 @@
           <span class="stab" data-cat="conecta">Conecta con la PUCP</span>
         </div>
         <div id="svc-list">
-          <div class="svc" data-cat="tecnologias"><b>Análisis y ensayos de laboratorio</b><span class="cat">Tecnologías e infraestructura</span><button class="me" type="button">Me interesa</button></div>
-          <div class="svc" data-cat="servicios"><b>Consultoría e innovación abierta</b><span class="cat">Servicios especializados</span><button class="me" type="button">Me interesa</button></div>
-          <div class="svc" data-cat="servicios"><b>Acreditaciones ISO/IEC 17025</b><span class="cat">Servicios especializados</span><button class="me" type="button">Me interesa</button></div>
-          <div class="svc" data-cat="servicios"><b>Caracterización de procesos y operaciones</b><span class="cat">Servicios especializados</span><button class="me" type="button">Me interesa</button></div>
-          <div class="svc" data-cat="investigar"><b>Proyectos de investigación aplicada</b><span class="cat">Investigar</span><button class="me" type="button">Me interesa</button></div>
-          <div class="svc" data-cat="investigar"><b>Acceso a investigadores y grupos de investigación</b><span class="cat">Investigar</span><button class="me" type="button">Me interesa</button></div>
-          <div class="svc" data-cat="tecnologias"><b>Acceso a laboratorios y equipamiento científico</b><span class="cat">Tecnologías e infraestructura</span><button class="me" type="button">Me interesa</button></div>
-          <div class="svc" data-cat="talento"><b>Capacitación in-house y certificaciones</b><span class="cat">Desarrollar talento</span><button class="me" type="button">Me interesa</button></div>
-          <div class="svc" data-cat="conecta"><b>Postulación a convocatorias conjuntas</b><span class="cat">Conecta con la PUCP</span><button class="me" type="button">Me interesa</button></div>
+          <div class="svc" data-cat="tecnologias" data-perfil="gran mediana"><b>Análisis y ensayos de laboratorio</b><span class="cat">Tecnologías e infraestructura</span><button class="me" type="button">Me interesa</button></div>
+          <div class="svc" data-cat="servicios" data-perfil="gran mediana"><b>Consultoría e innovación abierta</b><span class="cat">Servicios especializados</span><button class="me" type="button">Me interesa</button></div>
+          <div class="svc" data-cat="servicios" data-perfil="gran mediana"><b>Acreditaciones ISO/IEC 17025</b><span class="cat">Servicios especializados</span><button class="me" type="button">Me interesa</button></div>
+          <div class="svc" data-cat="servicios" data-perfil="gran mediana"><b>Caracterización de procesos y operaciones</b><span class="cat">Servicios especializados</span><button class="me" type="button">Me interesa</button></div>
+          <div class="svc" data-cat="investigar" data-perfil="gran"><b>Proyectos de investigación aplicada</b><span class="cat">Investigar</span><button class="me" type="button">Me interesa</button></div>
+          <div class="svc" data-cat="investigar" data-perfil="gran mediana"><b>Acceso a investigadores y grupos de investigación</b><span class="cat">Investigar</span><button class="me" type="button">Me interesa</button></div>
+          <div class="svc" data-cat="tecnologias" data-perfil="gran mediana startup"><b>Acceso a laboratorios y equipamiento científico</b><span class="cat">Tecnologías e infraestructura</span><button class="me" type="button">Me interesa</button></div>
+          <div class="svc" data-cat="talento" data-perfil="gran mediana"><b>Capacitación in-house y certificaciones</b><span class="cat">Desarrollar talento</span><button class="me" type="button">Me interesa</button></div>
+          <div class="svc" data-cat="conecta" data-perfil="mediana startup"><b>Postulación a convocatorias conjuntas</b><span class="cat">Conecta con la PUCP</span><button class="me" type="button">Me interesa</button></div>
+          <div class="svc" data-cat="servicios" data-perfil="mediana startup"><b>Financiamiento ProInnóvate para innovar con la PUCP</b><span class="cat">Servicios especializados</span><button class="me" type="button">Me interesa</button></div>
+          <div class="svc" data-cat="servicios" data-perfil="startup"><b>Incubación y aceleración de startups (CIDE)</b><span class="cat">Servicios especializados</span><button class="me" type="button">Me interesa</button></div>
         </div>
         <p id="svc-none" style="display:none;color:var(--ink-soft);font-size:13px;margin:8px 0 0;">No encontramos servicios con ese criterio. Prueba con otra palabra o categoría.</p>
       </div>
@@ -549,9 +559,9 @@
 
     <!-- 3 MODALIDADES -->
     <section data-title="Cómo trabajamos contigo">
-      <p class="eyebrow">Modalidades + proceso</p>
+      <p class="eyebrow">Modalidades de colaboración</p>
       <h2 class="t">Cómo trabajamos contigo</h2>
-      <p class="sub">Cuéntanos tu necesidad → te conectamos con la unidad o el investigador adecuado → definimos juntos la modalidad de trabajo.</p>
+      <p class="sub">Cuéntanos tu necesidad: te conectamos con la unidad o el investigador adecuado y definimos juntos la modalidad de trabajo.</p>
       <div class="cards">
         <div class="card"><div class="ti">Consultoría y servicios</div><div class="ds">Contrato directo con la unidad especializada.</div></div>
         <div class="card"><div class="ti">Proyectos I+D+i</div><div class="ds">Desarrollo conjunto universidad–empresa. <a href="https://investigacion.pucp.edu.pe/vinculacion-con-el-entorno/vinculacion-universidad-empresa/">Ver más ↗</a></div></div>
@@ -621,14 +631,14 @@
         <div class="card"><div class="ti">Egresados destacados</div></div>
         <div class="card"><div class="ti">Investigadores</div></div>
       </div>
-      <div class="ctas" style="margin-top:14px;"><a class="btn ghost sm" href="#">Recluta en la PUCP → Sistema de Oportunidades Laborales</a></div>
+      <div class="ctas" style="margin-top:14px;"><a class="btn ghost sm" href="#">Recluta en la PUCP a través del Sistema de Oportunidades Laborales →</a></div>
     </section>
 
     <!-- 9 CASOS -->
     <section data-title="Casos de éxito y empresas aliadas">
-      <p class="eyebrow">Prueba social</p>
+      <p class="eyebrow">Confían en la PUCP</p>
       <h2 class="t">Casos de éxito y empresas aliadas</h2>
-      <p class="sub">Estos son proyectos reales universidad–empresa con resultados concretos: 35 empresas mantienen una relación de compra recurrente con la PUCP.</p>
+      <p class="sub">Proyectos reales universidad–empresa con resultados concretos: 35 empresas trabajan con la PUCP de manera recurrente.</p>
       <div class="logos">
         <div class="logo-ph">Alicorp</div><div class="logo-ph">Statkraft Perú</div><div class="logo-ph">AGP Perú</div>
         <div class="logo-ph">+ logo</div><div class="logo-ph">+ logo</div><div class="logo-ph">+ logo</div>
@@ -646,7 +656,7 @@
         <div>
           <h3>Nombre y apellido</h3>
           <div class="who">Oficina de Innovación · Vinculación universidad–empresa</div>
-          <div class="det">Correo directo · teléfono · agenda una reunión · WhatsApp. Cuéntanos tu empresa, tu intención (las 6 del hub) y tu mensaje.</div>
+          <div class="det">Escríbenos por correo o WhatsApp, llámanos o agenda una reunión. Cuéntanos sobre tu empresa y qué buscas resolver.</div>
           <div class="ctas">
             <a class="btn" href="https://pucp.kissflow.com/public/Process/Pf2fb9a820-4c3c-40cb-a75e-aef0fd48cf55">Agenda una reunión →</a>
             <a class="btn ghost" href="https://pucp.kissflow.com/public/Process/Pf2fb9a820-4c3c-40cb-a75e-aef0fd48cf55">Escríbenos</a>
@@ -712,21 +722,40 @@
 (function(){
   // buscador de servicios (nivel 2) — funcional
   (function(){
-    var tabs=document.getElementById('svc-tabs'), list=document.getElementById('svc-list'), search=document.getElementById('svc-search'), none=document.getElementById('svc-none');
-    if(!tabs)return;
-    var cat='todos';
+    // Buscador (texto), categorías y perfil de empresa son filtros INDEPENDIENTES
+    // que se combinan (AND). Elegir perfil es opcional: solo acota la lista a lo
+    // recomendado para ese perfil. Delegación de eventos: sobrevive a la
+    // reinyección de HTML del modo "Editar textos".
+    var PERFIL_NOMBRES={gran:'Gran empresa / corporación',mediana:'Mediana empresa',startup:'Emprendedor / startup'};
+    var cat='todos', perfil='';
     function apply(){
-      var q=(search.value||'').trim().toLowerCase(), shown=0;
+      var list=document.getElementById('svc-list'), search=document.getElementById('svc-search'), none=document.getElementById('svc-none'), chip=document.getElementById('svc-perfil-chip');
+      if(!list)return;
+      var q=(search&&search.value||'').trim().toLowerCase(), shown=0;
       list.querySelectorAll('.svc').forEach(function(s){
         var okCat=(cat==='todos'||s.dataset.cat===cat);
         var okTxt=!q||s.textContent.toLowerCase().indexOf(q)>=0;
-        var vis=okCat&&okTxt; s.style.display=vis?'':'none'; if(vis)shown++;
+        var okPerfil=!perfil||(' '+(s.dataset.perfil||'')+' ').indexOf(' '+perfil+' ')>=0;
+        var vis=okCat&&okTxt&&okPerfil; s.style.display=vis?'':'none'; if(vis)shown++;
       });
-      none.style.display=shown?'none':'block';
+      if(none)none.style.display=shown?'none':'block';
+      if(chip){
+        if(perfil){chip.style.display='inline-flex';chip.innerHTML='Mostrando servicios recomendados para <b>'+PERFIL_NOMBRES[perfil]+'</b><button type="button" id="svc-chip-clear">quitar ✕</button>';}
+        else{chip.style.display='none';chip.innerHTML='';}
+      }
+      document.querySelectorAll('#perfil-cards .card').forEach(function(c){c.classList.toggle('on',c.dataset.perfil===perfil);});
     }
-    tabs.querySelectorAll('.stab').forEach(function(t){t.addEventListener('click',function(){tabs.querySelectorAll('.stab').forEach(function(x){x.classList.remove('on');});t.classList.add('on');cat=t.dataset.cat;apply();});});
-    search.addEventListener('input',apply);
-    list.querySelectorAll('.me').forEach(function(b){b.addEventListener('click',function(){var on=b.classList.toggle('on');b.textContent=on?'✓ Te interesa':'Me interesa';});});
+    document.addEventListener('click',function(e){
+      var t=e.target;
+      var stab=t.closest&&t.closest('#svc-tabs .stab');
+      if(stab){document.querySelectorAll('#svc-tabs .stab').forEach(function(x){x.classList.remove('on');});stab.classList.add('on');cat=stab.dataset.cat;apply();return;}
+      var pc=t.closest&&t.closest('#perfil-cards .card');
+      if(pc){perfil=(perfil===pc.dataset.perfil)?'':pc.dataset.perfil;apply();return;}
+      if(t.closest&&t.closest('#svc-chip-clear')){perfil='';apply();return;}
+      var me=t.closest&&t.closest('#svc-list .me');
+      if(me){var on=me.classList.toggle('on');me.textContent=on?'✓ Te interesa':'Me interesa';return;}
+    });
+    document.addEventListener('input',function(e){ if(e.target&&e.target.id==='svc-search')apply(); });
   })();
 
   // comentarios
