@@ -576,7 +576,7 @@
     <button id="btn-edit" type="button">✏️ Editar textos</button>
     <button id="btn-export" type="button">📋 Copiar comentarios</button>
     <button id="btn-reset" type="button">↺ Restablecer</button>
-    <span class="hint">Cambios y comentarios se guardan en este navegador</span>
+    <span class="hint">Cambios y comentarios se guardan en la base de datos: los ven todos</span>
   </div>
   <div class="toast" id="toast"></div>
 
@@ -587,12 +587,48 @@
   function notify(m){toast.textContent=m;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('show');},2200);}
   function load(){try{return JSON.parse(localStorage.getItem(KEY))||{};}catch(e){return {};}}
   function save(s){localStorage.setItem(KEY,JSON.stringify(s));}
-  var state=load(); state.content=state.content||{};
-  if(Array.isArray(state.order)){state.order.forEach(function(id){var s=document.getElementById(id);if(s)main.appendChild(s);});}
-  Object.keys(state.content).forEach(function(id){var s=document.getElementById(id);if(s)s.querySelector('.sec-body').innerHTML=state.content[id];});
+  var state=load(); state.content=state.content||{}; // legado local: se migra a la BBDD al cargar
   function renumber(){var n=1;main.querySelectorAll('section .num').forEach(function(e){e.textContent=n++;});}
-  function saveOrder(){state.order=Array.prototype.map.call(main.querySelectorAll('section'),function(s){return s.id;});save(state);}
-  function saveContent(s){state.content[s.id]=s.querySelector('.sec-body').innerHTML;save(state);}
+  // Textos y orden compartidos en la BBDD: una fila por seccion ('__c_'+id) -> no se pisan ni se truncan
+  var orderId=null, savedContent={}, contentIds={};
+  function latestOf(rows){return rows.slice().sort(function(a,b){return new Date(b.created_at)-new Date(a.created_at);})[0];}
+  function saveOrder(){
+    var ids=Array.prototype.map.call(main.querySelectorAll('section'),function(s){return s.id;});
+    var prev=orderId;
+    fetch(API+'/comments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({wf:WF,section:'__order__',author:'system',body:JSON.stringify(ids)})})
+      .then(function(r){return r.json();}).then(function(c){orderId=c.id;if(prev)fetch(API+'/comments/'+prev,{method:'DELETE'}).catch(function(){});notify('Orden guardado para todos');})
+      .catch(function(){notify('No se pudo guardar el orden (sin conexión)');});
+  }
+  function saveContentRemote(id){
+    var prev=contentIds[id];
+    fetch(API+'/comments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({wf:WF,section:'__c_'+id,author:'system',body:savedContent[id]})})
+      .then(function(r){return r.json();}).then(function(c){contentIds[id]=c.id;if(prev)fetch(API+'/comments/'+prev,{method:'DELETE'}).catch(function(){});})
+      .catch(function(){notify('No se pudo guardar el texto (sin conexión)');});
+  }
+  function saveContent(s){savedContent[s.id]=s.querySelector('.sec-body').innerHTML;saveContentRemote(s.id);notify('Texto guardado para todos');}
+  function applyRemoteState(){
+    // orden: remoto manda; si no hay, migra el orden local guardado en este navegador
+    var rows=comments['__order__']||[];
+    if(rows.length){
+      var latest=latestOf(rows); orderId=latest.id;
+      try{var ord=JSON.parse(latest.body);if(Array.isArray(ord)){ord.forEach(function(id){var s=document.getElementById(id);if(s)main.appendChild(s);});}}catch(e){}
+    } else if(Array.isArray(state.order)&&state.order.length){
+      state.order.forEach(function(id){var s=document.getElementById(id);if(s)main.appendChild(s);});
+      saveOrder();
+    }
+    renumber();
+    // textos: remoto manda; si una seccion solo tiene edicion local, se sube (migracion unica)
+    Object.keys(comments).forEach(function(secKey){
+      if(secKey.indexOf('__c_')!==0)return;
+      var id=secKey.slice(4), latest=latestOf(comments[secKey]);
+      savedContent[id]=latest.body; contentIds[id]=latest.id;
+    });
+    main.querySelectorAll('section').forEach(function(sec){
+      var body=sec.querySelector('.sec-body'); if(!body)return;
+      if(savedContent[sec.id]!=null){ body.innerHTML=savedContent[sec.id]; }
+      else if(state.content[sec.id]!=null){ body.innerHTML=state.content[sec.id]; savedContent[sec.id]=state.content[sec.id]; saveContentRemote(sec.id); }
+    });
+  }
   function esc(s){var d=document.createElement('div');d.textContent=(s==null?'':s);return d.innerHTML;}
   function linkify(s){return esc(s).replace(/(https?:\/\/[^\s<]+)/g,function(u){return '<a href="'+u+'" target="_blank" rel="noopener">'+u+'</a>';});}
 
@@ -665,6 +701,7 @@
       comments={};
       rows.forEach(function(c){(comments[c.section]=comments[c.section]||[]).push(c);});
       Object.keys(threads).forEach(renderThread);
+      applyRemoteState();
       layout();
     }).catch(function(){});
   }
@@ -715,7 +752,11 @@
   });
 
   document.getElementById('btn-reset').addEventListener('click',function(){
-    if(confirm('¿Restablecer textos y orden de este navegador? Los comentarios viven en la base de datos y NO se borran.')){localStorage.removeItem(KEY);location.reload();}
+    if(!confirm('¿Restablecer textos y orden a la versión original (para todos)? Los comentarios NO se borran.'))return;
+    localStorage.removeItem(KEY);
+    var dels=Object.keys(contentIds).map(function(id){return fetch(API+'/comments/'+contentIds[id],{method:'DELETE'}).catch(function(){});});
+    if(orderId)dels.push(fetch(API+'/comments/'+orderId,{method:'DELETE'}).catch(function(){}));
+    Promise.all(dels).then(function(){location.reload();});
   });
 
   renumber();
