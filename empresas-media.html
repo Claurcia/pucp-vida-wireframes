@@ -117,8 +117,17 @@
   .card.perfil:hover{border-color:var(--azul);}
   .card.perfil.on{border:1.5px solid var(--azul);background:var(--tint);}
   .card.perfil.on .ti::after{content:" ✓";color:var(--azul);}
-  #svc-perfil-chip{display:none;align-items:center;gap:10px;background:var(--tint);border:1px solid var(--azul);color:var(--ink);font-size:12.5px;border-radius:20px;padding:6px 14px;margin:0 0 10px;}
-  #svc-perfil-chip button{border:none;background:none;color:var(--azul);font-weight:700;cursor:pointer;font:inherit;font-size:12px;}
+  .hubcard.int{cursor:pointer;transition:border-color .15s,background .15s;}
+  .hubcard.int:hover{border-color:var(--azul);}
+  .hubcard.int.on{background:var(--tint);border-color:var(--azul);}
+  .hubcard.int.on h3::after{content:" ✓";color:var(--azul);}
+  .step{font-family:'Montserrat';font-weight:700;font-size:14px;color:var(--ink);margin:26px 0 10px;display:flex;align-items:center;}
+  .step .num{display:inline-flex;flex:none;width:23px;height:23px;border-radius:50%;background:var(--azul);color:#fff;align-items:center;justify-content:center;font-size:12.5px;margin-right:9px;}
+  .step .opt{font-weight:400;color:var(--ink-soft);font-size:12px;margin-left:6px;}
+  #svc-filter-chips{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px;}
+  .fchip{display:inline-flex;align-items:center;gap:8px;background:var(--tint);border:1px solid var(--azul);color:var(--ink);font-size:12.5px;border-radius:20px;padding:6px 14px;}
+  .fchip button{border:none;background:none;color:var(--azul);font-weight:700;cursor:pointer;font:inherit;font-size:12px;}
+  #svc-quick{display:none;background:var(--tint);border-left:4px solid var(--azul);border-radius:8px;padding:12px 16px;font-size:13px;margin:0 0 12px;line-height:1.7;}
   .card .ti{font-family:'Montserrat';font-weight:700;font-size:14.5px;margin-bottom:5px;}
   .card .ds{font-size:12.5px;color:var(--ink-soft);}
   .card a{font-size:12.5px;}
@@ -465,62 +474,39 @@
     <section data-title="¿Qué buscas resolver? — hub por intención">
       <p class="eyebrow">Conectamos tus retos con soluciones</p>
       <h2 class="t">¿Qué buscas resolver?</h2>
-      <p class="sub">Explora cómo la PUCP puede ayudarte a innovar, investigar, formar talento o desarrollar nuevos proyectos. Elige una opción y te llevamos directo al servicio adecuado.</p>
-      <div class="hub">
+      <p class="sub">Explora cómo la PUCP puede ayudarte a innovar, investigar, formar talento o desarrollar nuevos proyectos. Elige qué necesitas, cuéntanos el perfil de tu empresa y te mostramos los servicios y accesos indicados.</p>
 
-        <div class="hubcard">
+      <p class="step"><span class="num">1</span>¿Qué necesitas? <span class="opt">— elige una opción para filtrar</span></p>
+      <div class="hub" id="intent-cards">
+
+        <div class="hubcard int" data-cat="servicios" role="button" tabindex="0">
           <h3>Servicios especializados</h3>
           <div class="d">Innovación abierta, consultoría, servicios tecnológicos y soporte especializado.</div>
-          <ul>
-            <li><a href="https://investigacion.pucp.edu.pe/vinculacion-con-el-entorno/vinculacion-universidad-empresa/">Innovación abierta ↗</a></li>
-            <li><a href="https://investigacion.pucp.edu.pe/convocatorias/?_s=&_fuentes%5B%5D=externo&_publicos%5B%5D=empresas&f=1">Financiamiento para proyectos ↗</a></li>
-            <li><a href="https://investigacion.pucp.edu.pe/directorio-de-proyectos/?_s&_lineas-estrategicas%5B0%5D=Innovaci%C3%B3n&f=1">Proyectos de innovación en curso ↗</a></li>
-            <li class="txt">InnovaPUCP · ICP · CIAC · CMEC</li>
-            <li class="txt">CIDE — Centro de Innovación y Desarrollo Emprendedor</li>
-          </ul>
         </div>
 
-        <div class="hubcard">
+        <div class="hubcard int" data-cat="investigar" role="button" tabindex="0">
           <h3>Investigar</h3>
           <div class="d">Investigación aplicada y generación de conocimiento.</div>
-          <ul>
-            <li><a href="https://investigacion.pucp.edu.pe/centros-e-institutos/directorio-de-centros-e-institutos/">Centros e institutos ↗</a></li>
-            <li><a href="https://investigacion.pucp.edu.pe/grupos-vri/directorio-de-grupos/">Grupos de investigación ↗</a></li>
-            <li><a href="https://investigacion.pucp.edu.pe/nosotros/directorio-de-perfiles/">Investigadores ↗</a></li>
-          </ul>
         </div>
 
-        <div class="hubcard">
+        <div class="hubcard int" data-cat="tecnologias" role="button" tabindex="0">
           <h3>Acceder a tecnologías e infraestructura</h3>
           <div class="d">Laboratorios, equipamiento y tecnologías disponibles.</div>
-          <ul>
-            <li><a href="https://investigacion.pucp.edu.pe/vinculacion-con-el-entorno/portafolio-de-tecnologias/">Portafolio de Tecnologías ↗</a></li>
-            <li><a href="https://tecnologiaconimpacto.pucp.edu.pe/">Tecnología con Impacto ↗</a></li>
-          </ul>
         </div>
 
-        <div class="hubcard">
+        <div class="hubcard int" data-cat="talento" role="button" tabindex="0">
           <h3>Desarrollar talento</h3>
           <div class="d">Capacitación, formación ejecutiva y certificación.</div>
-          <ul>
-            <li class="txt">Educación Continua PUCP</li>
-            <li class="txt">Instituto para la Calidad</li>
-            <li class="txt">Centrum PUCP</li>
-          </ul>
         </div>
 
-        <div class="hubcard">
+        <div class="hubcard int" data-cat="conecta" role="button" tabindex="0">
           <h3>Conecta con la PUCP</h3>
           <div class="d">Proyectos conjuntos, convocatorias y acceso a expertos.</div>
-          <ul>
-            <li><a href="https://pucp.kissflow.com/public/Process/Pf2fb9a820-4c3c-40cb-a75e-aef0fd48cf55">Contacta a la Oficina de Innovación ↗</a></li>
-          </ul>
         </div>
 
       </div>
 
-      <p class="eyebrow" style="margin-top:26px;">¿Qué perfil tiene tu empresa?</p>
-      <p style="font-size:13px;color:var(--ink-soft);margin:0 0 12px;">Opcional: elige tu perfil y el buscador de abajo te mostrará los servicios recomendados para ti. Vuelve a hacer clic para quitar el filtro.</p>
+      <p class="step"><span class="num">2</span>¿Qué perfil tiene tu empresa? <span class="opt">— opcional, afina las recomendaciones (clic de nuevo para quitar)</span></p>
       <div class="cards c3" id="perfil-cards">
         <div class="card perfil" data-perfil="gran" role="button" tabindex="0"><div class="ti">Gran empresa / corporación</div><div class="ds">Servicios especializados, proyectos I+D+i y Portafolio de Tecnologías.</div></div>
         <div class="card perfil" data-perfil="mediana" role="button" tabindex="0"><div class="ti">Mediana empresa</div><div class="ds">Desarrollo tecnológico y financiamiento ProInnóvate para innovar aliándote con la PUCP.</div></div>
@@ -528,20 +514,13 @@
       </div>
 
       <div class="searchwrap">
-        <div class="eyebrow" style="margin-bottom:6px;">Encuentra un servicio</div>
-        <p style="font-size:13px;color:var(--ink-soft);margin:0 0 12px;">Busca por nombre o filtra por categoría; si elegiste un perfil arriba, los filtros se combinan. Marca “Me interesa” y el servicio se suma a tu consulta de contacto.</p>
-        <div id="svc-perfil-chip"></div>
+        <p class="step" style="margin-top:0;"><span class="num">3</span>Servicios y accesos para ti</p>
+        <p style="font-size:13px;color:var(--ink-soft);margin:0 0 12px;">La lista responde a lo que elegiste en los pasos 1 y 2; también puedes buscar por nombre. Marca “Me interesa” y el servicio se suma a tu consulta de contacto.</p>
+        <div id="svc-filter-chips"></div>
         <div class="searchbar">
           <input id="svc-search" type="text" placeholder="🔍  Escribe lo que necesitas… (ej. ensayos, capacitación, investigadores)">
         </div>
-        <div class="stabs" id="svc-tabs">
-          <span class="stab on" data-cat="todos">Todos</span>
-          <span class="stab" data-cat="servicios">Servicios especializados</span>
-          <span class="stab" data-cat="investigar">Investigar</span>
-          <span class="stab" data-cat="tecnologias">Tecnologías e infraestructura</span>
-          <span class="stab" data-cat="talento">Desarrollar talento</span>
-          <span class="stab" data-cat="conecta">Conecta con la PUCP</span>
-        </div>
+        <div id="svc-quick"></div>
         <div id="svc-list">
           <div class="svc" data-cat="tecnologias" data-perfil="gran mediana"><b>Análisis y ensayos de laboratorio</b><span class="cat">Tecnologías e infraestructura</span><button class="me" type="button">Me interesa</button></div>
           <div class="svc" data-cat="servicios" data-perfil="gran mediana"><b>Consultoría e innovación abierta</b><span class="cat">Servicios especializados</span><button class="me" type="button">Me interesa</button></div>
@@ -724,36 +703,54 @@
 (function(){
   // buscador de servicios (nivel 2) — funcional
   (function(){
-    // Buscador (texto), categorías y perfil de empresa son filtros INDEPENDIENTES
-    // que se combinan (AND). Elegir perfil es opcional: solo acota la lista a lo
-    // recomendado para ese perfil. Delegación de eventos: sobrevive a la
+    // Flujo integrado "¿Qué buscas resolver?": (1) intención, (2) perfil de empresa,
+    // (3) resultados. Los tres conversan: intención y perfil filtran la misma lista
+    // (combinables, opcionales, clic de nuevo para quitar) y la intención muestra
+    // además sus accesos directos. Delegación de eventos: sobrevive a la
     // reinyección de HTML del modo "Editar textos".
+    var CAT_NOMBRES={servicios:'Servicios especializados',investigar:'Investigar',tecnologias:'Tecnologías e infraestructura',talento:'Desarrollar talento',conecta:'Conecta con la PUCP'};
     var PERFIL_NOMBRES={gran:'Gran empresa / corporación',mediana:'Mediana empresa',startup:'Emprendedor / startup'};
-    var cat='todos', perfil='';
+    var QUICK={
+      servicios:'<a href="https://investigacion.pucp.edu.pe/vinculacion-con-el-entorno/vinculacion-universidad-empresa/">Innovación abierta ↗</a> · <a href="https://investigacion.pucp.edu.pe/convocatorias/?_s=&_fuentes%5B%5D=externo&_publicos%5B%5D=empresas&f=1">Financiamiento para proyectos ↗</a> · <a href="https://investigacion.pucp.edu.pe/directorio-de-proyectos/?_s&_lineas-estrategicas%5B0%5D=Innovaci%C3%B3n&f=1">Proyectos de innovación en curso ↗</a> · InnovaPUCP · ICP · CIAC · CMEC · CIDE',
+      investigar:'<a href="https://investigacion.pucp.edu.pe/centros-e-institutos/directorio-de-centros-e-institutos/">Centros e institutos ↗</a> · <a href="https://investigacion.pucp.edu.pe/grupos-vri/directorio-de-grupos/">Grupos de investigación ↗</a> · <a href="https://investigacion.pucp.edu.pe/nosotros/directorio-de-perfiles/">Investigadores ↗</a>',
+      tecnologias:'<a href="https://investigacion.pucp.edu.pe/vinculacion-con-el-entorno/portafolio-de-tecnologias/">Portafolio de Tecnologías ↗</a> · <a href="https://tecnologiaconimpacto.pucp.edu.pe/">Tecnología con Impacto ↗</a>',
+      talento:'Educación Continua PUCP · Instituto para la Calidad · Centrum PUCP',
+      conecta:'<a href="https://pucp.kissflow.com/public/Process/Pf2fb9a820-4c3c-40cb-a75e-aef0fd48cf55">Contacta a la Oficina de Innovación ↗</a>'
+    };
+    var cat='', perfil='';
     function apply(){
-      var list=document.getElementById('svc-list'), search=document.getElementById('svc-search'), none=document.getElementById('svc-none'), chip=document.getElementById('svc-perfil-chip');
+      var list=document.getElementById('svc-list'), search=document.getElementById('svc-search'), none=document.getElementById('svc-none');
+      var chips=document.getElementById('svc-filter-chips'), quick=document.getElementById('svc-quick');
       if(!list)return;
       var q=(search&&search.value||'').trim().toLowerCase(), shown=0;
       list.querySelectorAll('.svc').forEach(function(s){
-        var okCat=(cat==='todos'||s.dataset.cat===cat);
+        var okCat=(!cat||s.dataset.cat===cat);
         var okTxt=!q||s.textContent.toLowerCase().indexOf(q)>=0;
         var okPerfil=!perfil||(' '+(s.dataset.perfil||'')+' ').indexOf(' '+perfil+' ')>=0;
         var vis=okCat&&okTxt&&okPerfil; s.style.display=vis?'':'none'; if(vis)shown++;
       });
       if(none)none.style.display=shown?'none':'block';
-      if(chip){
-        if(perfil){chip.style.display='inline-flex';chip.innerHTML='Mostrando servicios recomendados para <b>'+PERFIL_NOMBRES[perfil]+'</b><button type="button" id="svc-chip-clear">quitar ✕</button>';}
-        else{chip.style.display='none';chip.innerHTML='';}
+      if(chips){
+        var h='';
+        if(cat)h+='<span class="fchip">'+CAT_NOMBRES[cat]+'<button type="button" data-clear="cat">quitar ✕</button></span>';
+        if(perfil)h+='<span class="fchip">'+PERFIL_NOMBRES[perfil]+'<button type="button" data-clear="perfil">quitar ✕</button></span>';
+        chips.innerHTML=h;
       }
+      if(quick){
+        if(cat){quick.style.display='block';quick.innerHTML='<b>Accesos directos — '+CAT_NOMBRES[cat]+':</b><br>'+QUICK[cat];}
+        else{quick.style.display='none';quick.innerHTML='';}
+      }
+      document.querySelectorAll('#intent-cards .hubcard').forEach(function(c){c.classList.toggle('on',c.dataset.cat===cat);});
       document.querySelectorAll('#perfil-cards .card').forEach(function(c){c.classList.toggle('on',c.dataset.perfil===perfil);});
     }
     document.addEventListener('click',function(e){
       var t=e.target;
-      var stab=t.closest&&t.closest('#svc-tabs .stab');
-      if(stab){document.querySelectorAll('#svc-tabs .stab').forEach(function(x){x.classList.remove('on');});stab.classList.add('on');cat=stab.dataset.cat;apply();return;}
+      var clear=t.closest&&t.closest('[data-clear]');
+      if(clear){if(clear.dataset.clear==='cat')cat='';else perfil='';apply();return;}
+      var ic=t.closest&&t.closest('#intent-cards .hubcard');
+      if(ic){if(t.closest('a'))return;cat=(cat===ic.dataset.cat)?'':ic.dataset.cat;apply();return;}
       var pc=t.closest&&t.closest('#perfil-cards .card');
       if(pc){perfil=(perfil===pc.dataset.perfil)?'':pc.dataset.perfil;apply();return;}
-      if(t.closest&&t.closest('#svc-chip-clear')){perfil='';apply();return;}
       var me=t.closest&&t.closest('#svc-list .me');
       if(me){var on=me.classList.toggle('on');me.textContent=on?'✓ Te interesa':'Me interesa';return;}
     });
