@@ -97,6 +97,10 @@
   @keyframes heroprog{from{width:0%}to{width:100%}}
   .ncard.vid{flex:0 0 56px;padding:9px 6px;}
   .ncard:hover{background:#fff;}
+  .ncard::after{content:"\2197";position:absolute;top:5px;right:9px;font-size:13px;font-weight:700;color:var(--ink2);opacity:0;transition:opacity .15s;}
+  .ncard:hover::after{opacity:1;}
+  .ncard.vid::after{content:none;}
+  .hero .btn.slide-cta{text-transform:uppercase;font-size:12px;letter-spacing:1px;font-weight:700;}
   .ncard.on{background:#fff;box-shadow:0 0 0 2px var(--dark);}
   .ncard .ctag{display:inline-block;font-family:'Montserrat';font-size:9px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--ink2);background:var(--t2);border-radius:999px;padding:2px 9px;}
   .ncard h3{font-family:'Montserrat';font-weight:700;font-size:12.5px;margin:0;line-height:1.25;}
@@ -473,7 +477,7 @@
         <div class="ncard vid on" data-title="Sé grande" data-cta="Descubre la vida universitaria ↗" data-href="#"><span class="vicon">▶</span><span class="prog"><i></i></span></div>
         <a class="ncard" target="_blank" rel="noopener" data-kicker="Campus y comunidad · Institucional" data-title="Consorcio de Universidades: conmemoramos 30 años de trabajo reflexionando sobre cómo seguir aportando al país" href="https://puntoedu.pucp.edu.pe/vida-universitaria/institucional/consorcio-de-universidades-conmemora-30-aniversario-trabajo/"><span class="ctag">Institucional</span><h3>Consorcio de Universidades: 30 años aportando al país</h3><span class="prog"><i></i></span></a>
         <a class="ncard" target="_blank" rel="noopener" data-kicker="Cultura y creación · Humanidades" data-title="«El alcalde de Zalamea»: obra de Calderón de la Barca se repone después de 40 años en Lima" href="https://puntoedu.pucp.edu.pe/vida-universitaria/alcalde-de-zalamea-obra-de-calderon-de-la-barca-se-repone-en-lima/"><span class="ctag">Humanidades</span><h3>«El alcalde de Zalamea» regresa a Lima tras 40 años</h3><span class="prog"><i></i></span></a>
-        <a class="ncard" target="_blank" rel="noopener" data-kicker="Orgullo PUCP · Ciencias" data-title="NonHuman: Ciencias e Ingeniería PUCP en el top mundial de robótica" href="https://puntoedu.pucp.edu.pe/orgullo-pucp/nonhuman-ciencias-e-ingenieria-pucp-en-el-top-mundial-de-robotica/"><span class="ctag">Ciencias</span><h3>NonHuman: La PUCP entre las mejores del mundo en robótica</h3><span class="prog"><i></i></span></a>
+        <a class="ncard" target="_blank" rel="noopener" data-kicker="Orgullo PUCP · Ciencias" data-title="NonHuman: Ciencias e Ingeniería PUCP en el top mundial de robótica" data-cta="Explorar Centro de Robótica ↗" href="https://puntoedu.pucp.edu.pe/orgullo-pucp/nonhuman-ciencias-e-ingenieria-pucp-en-el-top-mundial-de-robotica/"><span class="ctag">Ciencias</span><h3>NonHuman: La PUCP entre las mejores del mundo en robótica</h3><span class="prog"><i></i></span></a>
         <a class="ncard" target="_blank" rel="noopener" data-kicker="Cultura y creación · Artes" data-title="Julia Codesido: la retrospectiva que redescubre a una artista clave del arte peruano moderno" href="https://puntoedu.pucp.edu.pe/vida-universitaria/institucional/julia-codesido-retrospectiva-redescubre-arte-peruano-moderno/"><span class="ctag">Artes</span><h3>Julia Codesido: retrospectiva de una artista clave</h3><span class="prog"><i></i></span></a>
       </div>
     </div>
@@ -815,10 +819,10 @@
       var bar=card.querySelector('.prog i');
       if(bar){ bar.style.animation='none'; void bar.offsetWidth; bar.style.animation=''; }
       card.classList.add('on');
-      var kicker=card.dataset.kicker, title=card.dataset.title, cta=card.dataset.cta, href=card.dataset.href||'#';
-      // si la tarjeta tiene categoria (noticia), el clic en la tarjeta ya lleva a la nota;
-      // el boton dentro del banner solo aparece para el slide de bienvenida (sin categoria).
-      var ctaHtml=kicker?'':'<a class="btn" style="background:#fff;color:var(--ink)" href="'+href+'">'+cta+'</a>';
+      var kicker=card.dataset.kicker, title=card.dataset.title, href=card.dataset.href||card.getAttribute('href')||'#';
+      var cta=card.dataset.cta||'Leer la nota completa \u2197';
+      // todos los slides llevan boton; en las noticias abre la nota en pestana nueva
+      var ctaHtml='<a class="btn slide-cta" style="background:#fff;color:var(--ink)" href="'+href+'"'+(kicker?' target="_blank" rel="noopener"':'')+'>'+cta+'</a>';
       heroIn.innerHTML=(kicker?'<p style="color:#fff;opacity:.85;font-size:12px;letter-spacing:2px;text-transform:uppercase;margin:0 0 10px;">'+kicker+'</p>':'')+'<h1>'+title+'</h1>'+ctaHtml;
     }
     function goNext(current){
