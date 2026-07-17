@@ -142,8 +142,13 @@
   .darksec p.sub{color:#c6cbd2;}
   .mapwrap{position:relative;}
   .wmap{display:block;width:100%;height:auto;opacity:.95;}
-  .mapwrap .rg{position:absolute;transform:translate(-50%,-50%);background:#fff;color:var(--ink);border-radius:8px;padding:5px 11px;font-size:12.5px;font-weight:700;box-shadow:0 2px 7px rgba(0,0,0,.35);white-space:nowrap;}
+  .mapwrap .rg{position:absolute;transform:translate(-50%,-50%);background:#fff;color:var(--ink);border-radius:8px;padding:5px 11px;font-size:12.5px;font-weight:700;box-shadow:0 2px 7px rgba(0,0,0,.35);white-space:nowrap;cursor:pointer;transition:background .15s,color .15s;}
   .mapwrap .rg::after{content:"";position:absolute;left:50%;bottom:-6px;transform:translateX(-50%);border:5px solid transparent;border-top-color:#fff;}
+  .mapwrap .rg:hover{background:var(--ink);color:#fff;}
+  .mapwrap .rg:hover::after{border-top-color:var(--ink);}
+  .mapwrap .rg .tip{display:none;position:absolute;bottom:calc(100% + 9px);left:50%;transform:translateX(-50%);background:#fff;color:var(--ink);border-radius:8px;padding:5px 11px;font-size:12px;font-weight:700;white-space:nowrap;box-shadow:0 2px 7px rgba(0,0,0,.35);}
+  .mapwrap .rg .tip::after{content:"";position:absolute;left:50%;bottom:-6px;transform:translateX(-50%);border:5px solid transparent;border-top-color:#fff;}
+  .mapwrap .rg:hover .tip{display:block;}
   .worldstat{border:1px solid #3a3f47;border-radius:18px;padding:18px;text-align:center;}
   .worldstat.fill{background:#3a3f47;border:none;}
   .worldstat .num{font-size:30px;color:#fff;}
@@ -162,7 +167,7 @@
   .rcard{border-radius:16px;padding:20px;background:var(--ph2);min-height:340px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;}
   .rcard .imgtop{position:absolute;top:18px;left:18px;right:18px;height:150px;border-radius:10px;background:rgba(255,255,255,.35);}
   .rcard h3{font-family:'Montserrat';font-weight:700;font-size:19px;margin:0 0 8px;color:var(--ink);}
-  .rcard p{color:var(--ink2);font-size:13px;margin:0;max-width:210px;}
+  .rcard p{color:var(--ink2);font-size:13px;margin:0;padding-right:52px;}
   .rcard .ar{position:absolute;bottom:18px;right:18px;width:42px;height:42px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;}
   .invstats{display:grid;grid-template-columns:.7fr 1fr 1fr 1fr 1fr;gap:16px;align-items:center;margin-top:30px;}
   /* orgullo */
@@ -227,7 +232,7 @@
   @media(max-width:1100px){ #crail{display:none;} }
   @media print{.toolbar,.sec-tools,.toast{display:none!important;}}
 </style>
-<script src="menu.js" defer></script>
+<script src="menu.js?v=20260716" defer></script>
 </head>
 <body>
 
@@ -373,18 +378,18 @@
         <p class="mm-hint">Todos son enlaces a <a href="https://internacional.pucp.edu.pe/" target="_blank" rel="noopener">internacional.pucp.edu.pe</a></p>
       </div>
     </span>
-    <span class="mi">Investigación
+    <span class="mi">Investigación y publicaciones
       <div class="megamenu cols2">
         <div class="mm-col">
           <h4>Creamos conocimiento</h4>
           <ul>
             <li><a href="#">Investigación con impacto</a></li>
-            <li><a href="#">Creación</a></li>
             <li><a href="#">Innovación aplicada</a></li>
+            <li><a href="#">Creación artística</a></li>
             <li><a href="#">Convocatorias y fondos</a></li>
             <li><a href="#">Grupos de investigación</a></li>
             <li><a href="#">Innovación con empresas</a></li>
-            <li><a href="#">Patentes y Licenciamiento</a></li>
+            <li><a href="#">Licenciamiento</a></li>
             <li><a href="#">Ética en la investigación</a></li>
             <li><a href="#">Propiedad intelectual</a></li>
           </ul>
@@ -501,21 +506,21 @@
     <h2 class="t">Una experiencia educativa global</h2>
     <div class="two" style="grid-template-columns:1fr 2fr 1fr;align-items:center;margin-top:20px;">
       <div>
-        <div class="worldstat fill"><span class="num em">+ de 380</span><span class="lbl">Convenios internacionales</span></div>
-        <div class="worldstat" style="margin-top:14px;"><span class="num em">11</span><span class="lbl">Alianzas con universidades Top 100 mundial</span></div>
+        <div class="worldstat fill"><span class="num em">+380&nbsp;</span><span class="lbl">Convenios internacionales</span></div>
+        <div class="worldstat" style="margin-top:14px;"><span class="num em">11 </span><span class="lbl">alianzas con universidades del Top 100 mundial</span></div>
       </div>
       <div class="mapwrap">
         <img class="wmap" src="world-map-dots.svg" alt="Mapa mundial punteado">
-        <span class="rg" style="left:21%;top:27%;">Norteamérica</span>
-        <span class="rg" style="left:32%;top:62%;">Sudamérica</span>
-        <span class="rg" style="left:52%;top:22%;">Europa</span>
-        <span class="rg" style="left:55%;top:50%;">África</span>
-        <span class="rg" style="left:74%;top:30%;">Asia</span>
-        <span class="rg" style="left:85%;top:66%;">Australia</span>
+        <span class="rg" style="left:21%;top:27%;">Norteamérica<span class="tip">+50 convenios</span></span>
+        <span class="rg" style="left:32%;top:62%;">Sudamérica<span class="tip">+90 convenios</span></span>
+        <span class="rg" style="left:52%;top:22%;">Europa<span class="tip">+160 convenios</span></span>
+        <span class="rg" style="left:55%;top:50%;">África<span class="tip">+10 convenios</span></span>
+        <span class="rg" style="left:74%;top:30%;">Asia<span class="tip">+55 convenios</span></span>
+        <span class="rg" style="left:85%;top:66%;">Australia<span class="tip">+15 convenios</span></span>
       </div>
       <div>
-        <div class="worldstat"><span class="num em">60</span><span class="lbl">Países para estudiar fuera</span></div>
-        <div class="worldstat fill" style="margin-top:14px;"><span class="num em">400</span><span class="lbl">Estudiantes extranjeros nos eligen cada año</span></div>
+        <div class="worldstat"><span class="num em">60 </span><span class="lbl">países para vivir una experiencia internacional</span></div>
+        <div class="worldstat fill" style="margin-top:14px;"><span class="num em">400 </span><span class="lbl">estudiantes extranjeros nos eligen cada año</span></div>
       </div>
     </div>
     <div style="text-align:center;margin-top:20px;"><a class="btn" style="background:#fff;color:var(--ink)" href="#">Ver programas ↗</a></div>
@@ -576,37 +581,37 @@
 
   <!-- RECONOCIMIENTOS / RANKINGS (movido debajo de Orgullo) -->
   <section data-title="Reconocimientos — Rankings + Talento"><div class="wrap">
-    <p class="eyebrow"><span class="dot">▸</span> Reconocimientos <span class="dot">◂</span></p>
-    <h2 class="t">Lideramos los rankings internacionales</h2>
-    <div class="g3" style="margin-top:22px;">
-      <div class="rk"><div class="lab">TOP</div><div class="one em">— #1 —</div><div class="ds">Del Perú en QS World University Ranking 2027</div><div class="yr">Año: 2027</div></div>
-      <div class="rk alt"><div class="lab">TOP</div><div class="one em">— #1 —</div><div class="ds">Del Perú en QS World University Rankings: Latin America &amp; The Caribbean 2026</div><div class="yr">Año: 2026</div></div>
-      <div class="rk"><div class="lab">TOP</div><div class="one em">— #1 —</div><div class="ds">Del Perú en QS World University Rankings: Sustainability 2026</div><div class="yr">Año: 2026</div></div>
-    </div>
+    <p class="eyebrow"><span class="dot">▸</span> PUCP en CIFRAS <span class="dot">◂</span></p>
     <div class="talento">
       <div>
         <h2 class="t l" style="font-size:24px;margin-bottom:14px;">Impulsamos el talento que lidera</h2>
-        <a class="btn ghost sm" href="#">Ver más Cifras ↗</a>
+        <a class="btn ghost sm" href="empleabilidad-media.html">Ver más sobre empleabilidad ↗</a>
       </div>
-      <div class="circstat"><span class="num em">xxx</span><span class="lbl">Programas de posgrado</span></div>
-      <div class="circstat fill"><span class="num em">xxx</span><span class="lbl">Alumnos en puestos reconocidos</span></div>
-      <div class="circstat"><span class="num em">xxx</span><span class="lbl">Egresados en el mundo laboral</span></div>
+      <div class="circstat"><span class="num em">9 de cada 10</span><span class="lbl">egresados consigue empleo en su profesión en menos de 6 meses</span></div>
+      <div class="circstat fill"><span class="num em">N.º 1</span><span class="lbl">en reputación en Perú entre empleadores — QS World University Ranking 2027</span></div>
     </div>
+    <h2 class="t" style="margin-top:44px;">Excelencia académica con reconocimiento internacional</h2>
+    <div class="g3" style="margin-top:22px;">
+      <div class="rk"><div class="lab">TOP</div><div class="one em">— #1 —</div><div class="ds">En el Perú por 14 años consecutivos — QS World University Ranking</div><div class="yr">Año: 2027</div></div>
+      <div class="rk alt"><div class="lab">TOP</div><div class="one em">— #1 —</div><div class="ds">Del Perú — THE University Impact Rankings</div><div class="yr">Año: 2026</div></div>
+      <div class="rk"><div class="lab">TOP</div><div class="one em">— #1 —</div><div class="ds">Del Perú en QS World University Rankings: Sustainability</div><div class="yr">Año: 2026</div></div>
+    </div>
+    <div style="text-align:center;margin-top:26px;"><a class="btn ghost sm" href="pucp-en-cifras-media.html">Ver más cifras ↗</a></div>
   </div></section>
 
   <!-- CAMPUS VERDE (oscuro) -->
   <section class="darksec" data-title="Campus Verde"><div class="wrap">
-    <p class="eyebrow l"><span class="dot">▸</span> Campus Verde</p>
-    <h2 class="t l">Conoce nuestro campus</h2>
+    <p class="eyebrow l"><span class="dot">▸</span> Campus sostenible</p>
+    <h2 class="t l">Espacios que inspiran</h2>
     <div class="two" style="grid-template-columns:1fr 2fr;align-items:center;">
       <div>
-        <p class="sub l" style="color:#c6cbd2;">Un ecosistema verde y moderno diseñado para que explores tu potencial, trabajes en equipo y disfrutes cada día de tu vida universitaria.</p>
+        <p class="sub l" style="color:#c6cbd2;">Descubre un campus diseñado para aprender, crear, colaborar y vivir al máximo tu experiencia universitaria.</p>
         <a class="btn" style="background:#fff;color:var(--ink)" href="#">Visita al campus ↗</a>
       </div>
       <div class="g4" style="gap:14px;grid-template-columns:repeat(3,1fr);">
         <div class="worldstat"><span class="num em">167,000m²</span><span class="lbl">de áreas verdes</span></div>
-        <div class="worldstat fill"><span class="num em">+3,200</span><span class="lbl">árboles</span></div>
-        <div class="worldstat"><span class="lbl" style="font-size:15px;color:#fff;font-weight:600;line-height:1.35;">7 edificios con certificación LEED</span></div>
+        <div class="worldstat fill"><span class="num em">+3,200&nbsp;</span><span class="lbl">árboles</span></div>
+        <div class="worldstat"><span class="num em">7</span><span class="lbl">edificios con certificación LEED</span></div>
       </div>
     </div>
     <div class="ph" style="height:300px;margin-top:24px;background:#23262c;"></div>
