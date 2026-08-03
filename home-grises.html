@@ -52,6 +52,8 @@
   .mm-col li{font-size:13px;font-weight:400;padding:5px 4px;color:var(--ink2);}
   .mm-col li a{text-decoration:none;}
   .mm-col li a:hover{color:var(--ink);text-decoration:underline;}
+  .mm-col li.mm-low{font-size:12px;color:var(--soft);}
+  .mm-col li:not(.mm-low)+li.mm-low{border-top:1px solid var(--line);margin-top:6px;padding-top:10px;}
   .mm-col li ul{margin:2px 0 2px 14px;padding:0;background:none;}
   .mm-col li ul li{font-size:12px;color:var(--soft);}
   .mm-col .mm-note{font-size:12.5px;color:var(--ink2);background:#eef1f5;border-radius:6px;padding:12px 14px;}
@@ -292,15 +294,15 @@
         <div class="mm-col">
           <h4>Unidades y servicios</h4>
           <ul>
-            <li><a href="#">Directorio de personas</a></li>
-            <li><a href="#">Directorio de servicios</a></li>
-            <li><a href="#">Directorio de unidades</a></li>
             <li><a href="#">Vicerrectorados</a></li>
             <li><a href="#">Direcciones</a></li>
             <li><a href="#">Facultades</a></li>
             <li><a href="#">Departamentos</a></li>
             <li><a href="#">Centros e Institutos</a></li>
             <li><a href="#">Oficinas</a></li>
+            <li class="mm-low"><a href="#">Directorio de personas</a></li>
+            <li class="mm-low"><a href="#">Directorio de servicios</a></li>
+            <li class="mm-low"><a href="#">Directorio de unidades</a></li>
           </ul>
         </div>
       </div>
