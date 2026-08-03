@@ -202,7 +202,7 @@
   @media(max-width:900px){footer .cols{grid-template-columns:1fr 1fr;}}
   @media(max-width:560px){footer .cols{grid-template-columns:1fr;}}
 </style>
-<script src="menu.js?v=20260803" defer></script>
+<script src="menu.js?v=20260804" defer></script>
 </head>
 <body>
 
@@ -626,7 +626,7 @@
   function applyOrderFromRemote(){
     var rows=comments['__order__']||[]; if(!rows.length)return;
     var latest=latestOf(rows); orderId=latest.id;
-    try{ var ord=JSON.parse(latest.body); if(Array.isArray(ord)){ ord.forEach(function(id){var s=document.getElementById(id);if(s)container.appendChild(s);}); } }catch(e){}
+    try{ var ord=JSON.parse(latest.body); if(Array.isArray(ord)){ ord.forEach(function(id){var s=document.getElementById(id);if(s)container.appendChild(s);}); Array.prototype.forEach.call(main.querySelectorAll('section'),function(s){ if(ord.indexOf(s.id)===-1) container.appendChild(s); }); } }catch(e){} // secciones nuevas (no listadas) van al final, no arriba
   }
   function saveOrderRemote(){
     var ids=Array.prototype.map.call(main.querySelectorAll('section'),function(s){return s.id;});

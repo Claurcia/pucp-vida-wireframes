@@ -21,6 +21,9 @@ Presentacion-Inversion-Home-PUCP.md
 Esquema-Infraestructura-Ludik-DigitalOcean.md
 Guia-Acceso-Despliegue-Servidor-Ludik.md
 
+# Nota interna de continuidad de sesión (aprendizajes, avance, código de reanudación)
+CONTINUAR.md
+
 # Secretos / entorno
 .env
 .env.*
