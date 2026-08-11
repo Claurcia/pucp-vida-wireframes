@@ -185,13 +185,13 @@
   .soc span{width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff;}
   .comgrid{display:grid;grid-template-columns:.8fr 1.4fr .8fr;gap:20px;align-items:center;}
   .agrow{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px;}
-  .aev{display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:14px 16px;}
-  .aev .d{min-width:52px;text-align:center;background:#fff;color:var(--ink);border-radius:10px;padding:6px 4px;font-family:'Montserrat';font-weight:700;line-height:1.1;}
+  .aev{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:12px;overflow:hidden;}
+  .aev .ph{position:relative;height:120px;background:rgba(255,255,255,.22);border-bottom:1px dashed rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:1px;color:#d9d3de;}
+  .aev .d{position:absolute;top:10px;left:10px;min-width:52px;text-align:center;background:#fff;color:var(--ink);border-radius:10px;padding:6px 4px;font-family:'Montserrat';font-weight:700;line-height:1.1;}
   .aev .d b{font-size:18px;display:block;}
   .aev .d span{font-size:10px;text-transform:uppercase;}
-  .aev .ph{flex:none;width:56px;height:56px;border-radius:10px;background:rgba(255,255,255,.22);border:1px dashed rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center;font-size:8.5px;letter-spacing:.5px;color:#d9d3de;}
+  .aev .inf{padding:12px 16px 14px;font-size:11.5px;color:#d9d3de;}
   .aev .inf b{display:block;font-size:13.5px;color:#fff;margin-bottom:2px;}
-  .aev .inf{font-size:11.5px;color:#d9d3de;}
   .comgrid .circ{aspect-ratio:1;border-radius:50%;background:rgba(255,255,255,.25);}
   /* footer */
   footer{background:var(--dark);color:#c3c9d0;padding:40px 0 24px;}
@@ -630,9 +630,9 @@
       <a class="btn" style="background:#fff;color:var(--ink);margin-top:8px;" href="#">Ver toda la agenda ↗</a>
     </div>
     <div class="agrow">
-      <div class="aev"><div class="d"><b>12</b><span>jun</span></div><div class="ph">FOTO</div><div class="inf"><b>Concierto de mediodía — CEMDUC</b>13:00 · Anfiteatro de Derecho · ingreso libre</div></div>
-      <div class="aev"><div class="d"><b>13</b><span>jun</span></div><div class="ph">FOTO</div><div class="inf"><b>Feria de iniciativas estudiantiles</b>11:00–16:00 · Jardines de Ciencias</div></div>
-      <div class="aev"><div class="d"><b>14</b><span>jun</span></div><div class="ph">FOTO</div><div class="inf"><b>Final Interfacultades: vóley mixto</b>18:00 · Coliseo Polideportivo</div></div>
+      <div class="aev"><div class="ph">FOTO DEL EVENTO<div class="d"><b>12</b><span>jun</span></div></div><div class="inf"><b>Concierto de mediodía — CEMDUC</b>13:00 · Anfiteatro de Derecho · ingreso libre</div></div>
+      <div class="aev"><div class="ph">FOTO DEL EVENTO<div class="d"><b>13</b><span>jun</span></div></div><div class="inf"><b>Feria de iniciativas estudiantiles</b>11:00–16:00 · Jardines de Ciencias</div></div>
+      <div class="aev"><div class="ph">FOTO DEL EVENTO<div class="d"><b>14</b><span>jun</span></div></div><div class="inf"><b>Final Interfacultades: vóley mixto</b>18:00 · Coliseo Polideportivo</div></div>
     </div>
     <div class="comgrid" style="margin-top:28px;">
       <div class="circ"></div>
