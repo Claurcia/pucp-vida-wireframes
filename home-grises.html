@@ -184,6 +184,12 @@
   .soc{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
   .soc span{width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff;}
   .comgrid{display:grid;grid-template-columns:.8fr 1.4fr .8fr;gap:20px;align-items:center;}
+  /* bot Kt-0 flotante */
+  .bot{position:fixed;right:20px;bottom:20px;z-index:70;display:flex;flex-direction:column;align-items:flex-end;gap:10px;}
+  .bot .bub{max-width:250px;background:#fff;border:1px solid var(--line);border-radius:14px 14px 2px 14px;box-shadow:0 10px 24px rgba(0,0,0,.18);padding:12px 14px;font-size:12.5px;color:var(--ink2);position:relative;}
+  .bot .bub b{color:var(--ink);}
+  .bot .bub .x{position:absolute;top:6px;right:9px;cursor:pointer;color:var(--soft);font-size:11px;}
+  .bot .face{width:58px;height:58px;border-radius:50%;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Montserrat';font-weight:700;font-size:13px;border:3px solid #fff;box-shadow:0 8px 20px rgba(0,0,0,.25);cursor:pointer;}
   .agrow{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px;}
   .aev{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:12px;overflow:hidden;}
   .aev .ph{position:relative;height:120px;background:rgba(255,255,255,.22);border-bottom:1px dashed rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:1px;color:#d9d3de;}
@@ -647,6 +653,12 @@
   </div></section>
 
   </main>
+
+  <!-- BOT Kt-0 (flotante) -->
+  <div class="bot">
+    <div class="bub"><span class="x" onclick="this.parentNode.style.display='none'">✕</span><b>¡Hola! Soy Kt-0</b>, el asistente virtual de la PUCP. Te ayudo a encontrar lo que buscas.</div>
+    <div class="face">Kt-0</div>
+  </div>
 
   <!-- FOOTER -->
   <footer><div class="wrap">
