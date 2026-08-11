@@ -184,6 +184,13 @@
   .soc{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
   .soc span{width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff;}
   .comgrid{display:grid;grid-template-columns:.8fr 1.4fr .8fr;gap:20px;align-items:center;}
+  .agrow{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px;}
+  .aev{display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:14px 16px;}
+  .aev .d{min-width:52px;text-align:center;background:#fff;color:var(--ink);border-radius:10px;padding:6px 4px;font-family:'Montserrat';font-weight:700;line-height:1.1;}
+  .aev .d b{font-size:18px;display:block;}
+  .aev .d span{font-size:10px;text-transform:uppercase;}
+  .aev .inf b{display:block;font-size:13.5px;color:#fff;margin-bottom:2px;}
+  .aev .inf{font-size:11.5px;color:#d9d3de;}
   .comgrid .circ{aspect-ratio:1;border-radius:50%;background:rgba(255,255,255,.25);}
   /* footer */
   footer{background:var(--dark);color:#c3c9d0;padding:40px 0 24px;}
@@ -195,8 +202,8 @@
   footer .copy{border-top:1px solid #3a3f47;padding-top:16px;margin-top:24px;font-size:12.5px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
   .legend{max-width:1180px;margin:0 auto;padding:22px 24px 60px;color:var(--ink2);font-size:12.5px;line-height:1.7;}
   .legend b{color:var(--ink);}
-  @media(max-width:900px){ .g3,.g4,.two,.two.left,.news3,.ocards,footer .cols,.talento,.invstats,.comgrid{grid-template-columns:1fr 1fr;} .accrow{grid-template-columns:1fr;} }
-  @media(max-width:600px){ .g3,.g4,.two,.two.left,.news3,.ocards,footer .cols,.talento,.invstats,.comgrid{grid-template-columns:1fr;} }
+  @media(max-width:900px){ .g3,.g4,.two,.two.left,.news3,.ocards,footer .cols,.talento,.invstats,.comgrid,.agrow{grid-template-columns:1fr 1fr;} .accrow{grid-template-columns:1fr;} }
+  @media(max-width:600px){ .g3,.g4,.two,.two.left,.news3,.ocards,footer .cols,.talento,.invstats,.comgrid,.agrow{grid-template-columns:1fr;} }
   /* comentarios */
   .wa-btn{position:fixed;bottom:76px;right:18px;z-index:99;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.25);text-decoration:none;}
   .wa-btn svg{width:29px;height:29px;fill:#fff;}
@@ -577,9 +584,9 @@
       <a class="btn" href="#" style="margin-top:8px;">Ver más historias ↗</a>
     </div>
     <div class="ocards">
-      <div class="ostory dark"><span class="ar">↗</span><h3>Estudiantes que crean</h3><div class="img"></div><p>Proyectos e iniciativas que nacen en las aulas y ya transforman su entorno.</p></div>
-      <div class="ostory"><span class="ar">↗</span><h3>Docentes que inspiran</h3><div class="img"></div><p>Maestros e investigadores que impulsan la innovación y forman a quienes lideran el cambio.</p></div>
-      <div class="ostory dark"><span class="ar">↗</span><h3>Egresados que lideran</h3><div class="img"></div><p>Conoce a los egresados que lideran el cambio desde distintos campos.</p></div>
+      <div class="ostory dark"><span class="ar">↗</span><h3>Estudiantes</h3><div class="img"></div><p>Proyectos e iniciativas que nacen en las aulas y ya transforman su entorno.</p></div>
+      <div class="ostory"><span class="ar">↗</span><h3>Docentes</h3><div class="img"></div><p>Maestros e investigadores que impulsan la innovación y forman a quienes lideran el cambio.</p></div>
+      <div class="ostory dark"><span class="ar">↗</span><h3>Egresados</h3><div class="img"></div><p>Conoce a los egresados que lideran el cambio desde distintos campos.</p></div>
     </div>
   </div></section>
 
@@ -613,12 +620,24 @@
   </div></section>
 
   <!-- COMUNIDAD PUCP -->
-  <section class="darksec" style="background:#3a3140;" data-title="Comunidad PUCP"><div class="wrap">
-    <div class="comgrid">
+  <section class="darksec" style="background:#3a3140;" data-title="Comunidad PUCP + Agenda"><div class="wrap">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;">
+      <div>
+        <p class="eyebrow l"><span class="dot">▸</span> Agenda PUCP</p>
+        <h2 class="t l">Qué se viene en el campus</h2>
+      </div>
+      <a class="btn" style="background:#fff;color:var(--ink);margin-top:8px;" href="#">Ver toda la agenda ↗</a>
+    </div>
+    <div class="agrow">
+      <div class="aev"><div class="d"><b>12</b><span>jun</span></div><div class="inf"><b>Concierto de mediodía — CEMDUC</b>13:00 · Anfiteatro de Derecho · ingreso libre</div></div>
+      <div class="aev"><div class="d"><b>13</b><span>jun</span></div><div class="inf"><b>Feria de iniciativas estudiantiles</b>11:00–16:00 · Jardines de Ciencias</div></div>
+      <div class="aev"><div class="d"><b>14</b><span>jun</span></div><div class="inf"><b>Final Interfacultades: vóley mixto</b>18:00 · Coliseo Polideportivo</div></div>
+    </div>
+    <div class="comgrid" style="margin-top:28px;">
       <div class="circ"></div>
       <div style="text-align:center;">
         <p class="eyebrow"><span class="dot">▸</span> Comunidad PUCP <span class="dot">◂</span></p>
-        <h2 class="t">Descubre, comparte y vive la experiencia PUCP</h2>
+        <h2 class="t" style="font-size:22px;">Descubre, comparte y vive la experiencia PUCP</h2>
         <p style="color:#e3dce8;font-size:14px;margin:0 0 18px;">Síguenos en:</p>
         <div class="soc"><span>in</span><span>X</span><span>f</span><span>▶</span><span>◎</span><span>♫</span><span>♪</span></div>
       </div>
