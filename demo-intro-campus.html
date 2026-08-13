@@ -27,7 +27,7 @@
   /* ===== intro inmersiva: al hacer scroll, el marco de video crece hasta ocupar toda la pantalla ===== */
   .immersive{height:320vh;position:relative;}
   .immersive .stage{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#fff;}
-  .frame{width:62vw;max-width:900px;aspect-ratio:16/9;background:#14161a;border-radius:26px;border:10px solid #2b2f36;box-shadow:0 30px 80px rgba(0,0,0,.35);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;will-change:transform;}
+  .frame{background:#14161a;border-radius:26px;border:10px solid #2b2f36;box-shadow:0 30px 80px rgba(0,0,0,.35);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;will-change:transform;transform-origin:center center;}
   .frame .vid{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;color:#aab2bd;font-size:13px;letter-spacing:1px;}
   .frame .vid .play{width:74px;height:74px;border-radius:50%;background:rgba(255,255,255,.14);border:2px solid rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;}
   .frame .cap{position:absolute;top:14px;left:16px;font-size:11px;color:#8f97a3;background:rgba(0,0,0,.35);border-radius:5px;padding:3px 9px;}
@@ -90,27 +90,43 @@
   var imm = document.getElementById('imm'), frame = document.getElementById('frame');
   var msgs = [document.getElementById('m1'), document.getElementById('m2'), document.getElementById('m3')];
   function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+  function ease(t){return t*t*(3-2*t);} // suaviza inicio y fin del zoom
+
+  var fw, fh, targetScale;
+  function measure(){
+    // tamaño base del marco (el zoom se hace con transform:scale, no cambiando el ancho)
+    fw = Math.min(window.innerWidth*.62, 900);
+    fh = fw*9/16;
+    frame.style.width = fw+'px';
+    frame.style.height = fh+'px';
+    // escala necesaria para CUBRIR toda la pantalla (tipo object-fit:cover)
+    targetScale = Math.max(window.innerWidth/fw, window.innerHeight/fh)*1.02;
+  }
+
+  var p = 0, cur = 0, radiusBase = 26;
   function onScroll(){
-    var r = imm.getBoundingClientRect();
     var total = imm.offsetHeight - window.innerHeight;
-    var p = clamp(-r.top / total, 0, 1); // 0 → 1 dentro de la sección
-    // fase 1 (0–0.35): el marco crece hasta llenar la pantalla
-    var grow = clamp(p / .35, 0, 1);
-    var scaleX = (62 + (100-62)*grow) / 62; // de 62vw a 100vw aprox
-    frame.style.width = (62 + 38*grow) + 'vw';
-    frame.style.maxWidth = grow >= 1 ? 'none' : '900px';
-    frame.style.height = grow >= 1 ? '100vh' : '';
-    frame.style.aspectRatio = grow >= 1 ? 'auto' : '16/9';
-    frame.style.borderRadius = (26*(1-grow)) + 'px';
-    frame.style.borderWidth = (10*(1-grow)) + 'px';
-    // fase 2 (0.35–1): mensajes dentro del video
-    msgs[0].classList.toggle('on', p > .38 && p < .58);
-    msgs[1].classList.toggle('on', p > .60 && p < .80);
-    msgs[2].classList.toggle('on', p > .82);
+    p = clamp(-imm.getBoundingClientRect().top / total, 0, 1);
+  }
+  function apply(t){
+    var grow = ease(clamp(t/.42, 0, 1));           // fase 1 (0–0.42): zoom continuo
+    var s = 1 + (targetScale-1)*grow;
+    frame.style.transform = 'scale('+s+')';
+    frame.style.borderRadius = (radiusBase*(1-grow))/s+'px'; // radio visual constante mientras escala
+    // fase 2: mensajes dentro del video
+    msgs[0].classList.toggle('on', t > .45 && t < .62);
+    msgs[1].classList.toggle('on', t > .64 && t < .80);
+    msgs[2].classList.toggle('on', t > .82);
+  }
+  function raf(){
+    cur += (p-cur)*.14;                             // scrub suavizado: el zoom "persigue" al scroll
+    if (Math.abs(p-cur) < .0005) cur = p;
+    apply(cur);
+    requestAnimationFrame(raf);
   }
   window.addEventListener('scroll', onScroll, {passive:true});
-  window.addEventListener('resize', onScroll);
-  onScroll();
+  window.addEventListener('resize', function(){measure();onScroll();});
+  measure(); onScroll(); raf();
 })();
 </script>
 
