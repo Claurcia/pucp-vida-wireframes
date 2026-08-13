@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demo — Intro inmersiva al campus · PUCP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --ink:#1f2530; --ink2:#5b6470; --line:#e3e6ea; --ph:#d5d9df; --dark:#2b2f36; }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:'Roboto',Arial,sans-serif;color:var(--ink);background:#fff;line-height:1.55;}
+  h1,h2,h3{font-family:'Montserrat',Arial,sans-serif;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+
+  .note{background:#fff8e1;border-bottom:1px solid #e8dfc0;font-size:12.5px;color:#7a6a33;padding:10px 24px;text-align:center;}
+
+  /* bloque previo (contexto) */
+  .pre{padding:70px 0 40px;text-align:center;}
+  .pre .ey{font-family:'Montserrat';font-weight:700;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--ink2);}
+  .pre h1{font-size:38px;margin:8px 0 10px;}
+  .pre p{color:var(--ink2);max-width:640px;margin:0 auto;}
+  .pre .hint{margin-top:26px;font-size:12px;color:#9aa2ad;animation:bob 1.6s ease-in-out infinite;}
+  @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(6px);}}
+
+  /* ===== intro inmersiva: al hacer scroll, el marco de video crece hasta ocupar toda la pantalla ===== */
+  .immersive{height:320vh;position:relative;}
+  .immersive .stage{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#fff;}
+  .frame{width:62vw;max-width:900px;aspect-ratio:16/9;background:#14161a;border-radius:26px;border:10px solid #2b2f36;box-shadow:0 30px 80px rgba(0,0,0,.35);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;will-change:transform;}
+  .frame .vid{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;color:#aab2bd;font-size:13px;letter-spacing:1px;}
+  .frame .vid .play{width:74px;height:74px;border-radius:50%;background:rgba(255,255,255,.14);border:2px solid rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;}
+  .frame .cap{position:absolute;top:14px;left:16px;font-size:11px;color:#8f97a3;background:rgba(0,0,0,.35);border-radius:5px;padding:3px 9px;}
+  /* skyline placeholder dentro del "video" */
+  .frame svg{position:absolute;bottom:0;left:0;width:100%;height:34%;opacity:.5;}
+  /* mensajes que aparecen dentro del video conforme se avanza */
+  .msg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 8vw;opacity:0;transform:translateY(24px);transition:opacity .35s,transform .35s;pointer-events:none;}
+  .msg h2{color:#fff;font-size:clamp(26px,4.6vw,58px);font-weight:800;letter-spacing:.5px;line-height:1.15;margin:0;text-transform:uppercase;}
+  .msg.on{opacity:1;transform:translateY(0);}
+
+  /* bloque posterior (la página continúa) */
+  .post{padding:60px 0 90px;}
+  .post h2{font-size:26px;margin:0 0 8px;}
+  .post p{color:var(--ink2);max-width:720px;}
+  .ph{height:220px;border-radius:14px;background:var(--ph);margin-top:22px;display:flex;align-items:center;justify-content:center;color:#8a919c;font-size:13px;}
+</style>
+</head>
+<body>
+
+<div class="note">DEMO de interacción — no forma parte del wireframe entregable. Referencia: lusion.co (zoom al video con scroll).</div>
+
+<section class="pre">
+  <div class="wrap">
+    <p class="ey">Demo · Home PUCP</p>
+    <h1>Intro inmersiva al campus</h1>
+    <p>Haz scroll: el video del campus crece hasta envolver la pantalla y te "mete" al campus, con mensajes que aparecen dentro. Al terminar, la página continúa normal.</p>
+    <div class="hint">▼ haz scroll</div>
+  </div>
+</section>
+
+<div class="immersive" id="imm">
+  <div class="stage">
+    <div class="frame" id="frame">
+      <div class="cap">▶ VIDEO REAL: dron sobre el campus, jardines, gente</div>
+      <div class="vid"><div class="play">▶</div>VIDEO DEL CAMPUS</div>
+      <svg viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
+        <rect x="0" y="70" width="130" height="50" fill="#3a4150"/><rect x="140" y="45" width="90" height="75" fill="#464e5e"/>
+        <rect x="240" y="80" width="160" height="40" fill="#3a4150"/><rect x="420" y="55" width="70" height="65" fill="#515a6b"/>
+        <circle cx="540" cy="95" r="26" fill="#333947"/><circle cx="590" cy="100" r="20" fill="#3d4453"/>
+        <rect x="640" y="65" width="120" height="55" fill="#464e5e"/><rect x="780" y="85" width="200" height="35" fill="#3a4150"/>
+        <circle cx="1020" cy="98" r="24" fill="#333947"/><rect x="1060" y="50" width="80" height="70" fill="#515a6b"/>
+      </svg>
+      <div class="msg" id="m1"><h2>Bienvenido<br>al campus PUCP</h2></div>
+      <div class="msg" id="m2"><h2>Un mundo para aprender,<br>crear y vivir</h2></div>
+      <div class="msg" id="m3"><h2>Vive la experiencia<br>PUCP</h2></div>
+    </div>
+  </div>
+</div>
+
+<section class="post">
+  <div class="wrap">
+    <h2>Aquí continúa el home</h2>
+    <p>Al salir de la intro, el usuario aterriza en el contenido normal de la página (oferta académica, vida universitaria, etc.). El efecto es solo el umbral de entrada.</p>
+    <div class="ph">▣ resto del contenido del home</div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var imm = document.getElementById('imm'), frame = document.getElementById('frame');
+  var msgs = [document.getElementById('m1'), document.getElementById('m2'), document.getElementById('m3')];
+  function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+  function onScroll(){
+    var r = imm.getBoundingClientRect();
+    var total = imm.offsetHeight - window.innerHeight;
+    var p = clamp(-r.top / total, 0, 1); // 0 → 1 dentro de la sección
+    // fase 1 (0–0.35): el marco crece hasta llenar la pantalla
+    var grow = clamp(p / .35, 0, 1);
+    var scaleX = (62 + (100-62)*grow) / 62; // de 62vw a 100vw aprox
+    frame.style.width = (62 + 38*grow) + 'vw';
+    frame.style.maxWidth = grow >= 1 ? 'none' : '900px';
+    frame.style.height = grow >= 1 ? '100vh' : '';
+    frame.style.aspectRatio = grow >= 1 ? 'auto' : '16/9';
+    frame.style.borderRadius = (26*(1-grow)) + 'px';
+    frame.style.borderWidth = (10*(1-grow)) + 'px';
+    // fase 2 (0.35–1): mensajes dentro del video
+    msgs[0].classList.toggle('on', p > .38 && p < .58);
+    msgs[1].classList.toggle('on', p > .60 && p < .80);
+    msgs[2].classList.toggle('on', p > .82);
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+})();
+</script>
+
+</body>
+</html>
