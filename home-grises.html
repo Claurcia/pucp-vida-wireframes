@@ -184,6 +184,16 @@
   .soc{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
   .soc span{width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff;}
   .comgrid{display:grid;grid-template-columns:.8fr 1.4fr .8fr;gap:20px;align-items:center;}
+  /* intro inmersiva del campus (Campus sostenible): el video crece con el scroll hasta cubrir la pantalla */
+  .immersive{height:260vh;position:relative;margin-top:24px;}
+  .immersive .stage{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .immersive .frame{background:#14161a;border-radius:22px;border:1px solid rgba(255,255,255,.3);box-shadow:0 30px 80px rgba(0,0,0,.45);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;will-change:transform;transform-origin:center center;}
+  .immersive .vid{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;color:#aab2bd;font-size:13px;letter-spacing:1px;}
+  .immersive .vid .play{width:70px;height:70px;border-radius:50%;background:rgba(255,255,255,.14);border:2px solid rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px;}
+  .immersive .cap{position:absolute;top:14px;left:16px;font-size:11px;color:#8f97a3;background:rgba(0,0,0,.35);border-radius:5px;padding:3px 9px;z-index:2;}
+  .immersive .msg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 8vw;opacity:0;transform:translateY(24px);transition:opacity .35s,transform .35s;pointer-events:none;}
+  .immersive .msg h2{color:#fff;font-size:clamp(24px,4.2vw,52px);font-weight:800;letter-spacing:.5px;line-height:1.15;margin:0;text-transform:uppercase;font-family:'Montserrat';}
+  .immersive .msg.on{opacity:1;transform:translateY(0);}
   /* bot Kt-0 flotante */
   .bot{position:fixed;right:20px;bottom:88px;z-index:70;display:flex;flex-direction:column;align-items:flex-end;gap:10px;}
   .bot .bub{max-width:250px;background:#fff;border:1px solid var(--line);border-radius:14px 14px 2px 14px;box-shadow:0 10px 24px rgba(0,0,0,.18);padding:12px 14px;font-size:12.5px;color:var(--ink2);position:relative;}
@@ -621,8 +631,19 @@
         <div class="worldstat"><span class="num em">7</span><span class="lbl">edificios con certificación LEED</span></div>
       </div>
     </div>
-    <div class="ph" style="height:300px;margin-top:24px;background:#23262c;"></div>
-  </div></section>
+  </div>
+  <div class="immersive" id="imm-campus">
+    <div class="stage">
+      <div class="frame" id="imm-frame">
+        <div class="cap">▶ VIDEO REAL: dron sobre el campus, jardines, gente</div>
+        <div class="vid"><div class="play">▶</div>VIDEO DEL CAMPUS</div>
+        <div class="msg"><h2>Un campus que<br>respira naturaleza</h2></div>
+        <div class="msg"><h2>Espacios que inspiran<br>a crear y compartir</h2></div>
+        <div class="msg"><h2>Ven y vívelo</h2></div>
+      </div>
+    </div>
+  </div>
+  </section>
 
   <!-- COMUNIDAD PUCP -->
   <section class="darksec" style="background:#3a3140;" data-title="Comunidad PUCP + Agenda"><div class="wrap">
@@ -882,6 +903,50 @@
     activate(cards[0]); // arranca siempre en el slide de bienvenida (video)
   }
   initHeroSlider();
+})();
+</script>
+<script>
+// intro inmersiva del campus: zoom fluido con scroll (transform:scale + scrub suavizado)
+(function(){
+  var imm = document.getElementById('imm-campus'), frame = document.getElementById('imm-frame');
+  if(!imm || !frame) return;
+  var msgs = frame.querySelectorAll('.msg');
+  function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+  function ease(t){return t*t*(3-2*t);}
+  var fw, fh, targetScale;
+  function measure(){
+    fw = Math.min(window.innerWidth*.7, 980);
+    fh = fw*9/16;
+    frame.style.width = fw+'px';
+    frame.style.height = fh+'px';
+    targetScale = Math.max(window.innerWidth/fw, window.innerHeight/fh)*1.02;
+  }
+  var p = 0, cur = 0;
+  function onScroll(){
+    var total = imm.offsetHeight - window.innerHeight;
+    if(total <= 0) return;
+    p = clamp(-imm.getBoundingClientRect().top / total, 0, 1);
+  }
+  function apply(t){
+    var grow = ease(clamp(t/.42, 0, 1));
+    var s = 1 + (targetScale-1)*grow;
+    frame.style.transform = 'scale('+s+')';
+    frame.style.borderRadius = (22*(1-grow))/s+'px';
+    if(msgs.length>=3){
+      msgs[0].classList.toggle('on', t > .45 && t < .62);
+      msgs[1].classList.toggle('on', t > .64 && t < .80);
+      msgs[2].classList.toggle('on', t > .82);
+    }
+  }
+  function raf(){
+    cur += (p-cur)*.14;
+    if (Math.abs(p-cur) < .0005) cur = p;
+    apply(cur);
+    requestAnimationFrame(raf);
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', function(){measure();onScroll();});
+  measure(); onScroll(); raf();
 })();
 </script>
 </body>
