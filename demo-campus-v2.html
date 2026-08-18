@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demo — Campus opción 2: slider sticky con anclas · PUCP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --ink:#1f2530; --ink2:#5b6470; --line:#e3e6ea; --ph:#d5d9df; --dark:#2b2f36; }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:'Roboto',Arial,sans-serif;color:var(--ink);background:#fff;line-height:1.55;}
+  h1,h2,h3{font-family:'Montserrat',Arial,sans-serif;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+  .note{background:#fff8e1;border-bottom:1px solid #e8dfc0;font-size:12.5px;color:#7a6a33;padding:10px 24px;text-align:center;}
+  .pre{padding:70px 0 40px;text-align:center;}
+  .pre .ey{font-family:'Montserrat';font-weight:700;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--ink2);}
+  .pre h1{font-size:38px;margin:8px 0 10px;}
+  .pre p{color:var(--ink2);max-width:660px;margin:0 auto;}
+  .pre .hint{margin-top:26px;font-size:12px;color:#9aa2ad;animation:bob 1.6s ease-in-out infinite;}
+  @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(6px);}}
+
+  /* ===== opción 2: slider sticky con anclas (ref: pebblelife.com) ===== */
+  .sticky-slider{height:440vh;position:relative;background:var(--dark);}
+  .sticky-slider .stage{position:sticky;top:0;height:100vh;display:grid;grid-template-columns:.9fr 1.4fr;gap:40px;align-items:center;max-width:1180px;margin:0 auto;padding:0 24px;}
+  /* columna izquierda: titulo + anclas (las estadisticas) */
+  .anchors .ey{font-family:'Montserrat';font-weight:700;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#aab2bd;margin:0 0 6px;}
+  .anchors h2{color:#fff;font-size:30px;margin:0 0 26px;line-height:1.2;}
+  .anchor{display:flex;gap:14px;align-items:baseline;padding:13px 2px;border-left:3px solid rgba(255,255,255,.15);padding-left:16px;cursor:pointer;transition:border-color .3s,opacity .3s;opacity:.45;}
+  .anchor .num{font-family:'Montserrat';font-weight:800;font-size:26px;color:#fff;white-space:nowrap;}
+  .anchor .lbl{font-size:13px;color:#c6cbd2;}
+  .anchor.on{opacity:1;border-left-color:#fff;}
+  .anchor .bar{display:block;height:3px;background:rgba(255,255,255,.25);border-radius:2px;margin-top:8px;overflow:hidden;width:0;transition:width .3s;}
+  .anchor.on .bar{width:120px;}
+  .anchor .bar i{display:block;height:100%;background:#fff;width:0;}
+  /* columna derecha: pila de videos */
+  .deck{position:relative;aspect-ratio:16/10;max-height:72vh;}
+  .slide{position:absolute;inset:0;border-radius:18px;overflow:hidden;background:#14161a;border:1px solid rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;color:#aab2bd;font-size:13px;letter-spacing:1px;opacity:0;transform:translateY(46px) scale(.96);transition:opacity .45s,transform .45s;box-shadow:0 24px 60px rgba(0,0,0,.45);}
+  .slide .play{width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.14);border:2px solid rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;color:#fff;font-size:19px;}
+  .slide .cap{position:absolute;top:14px;left:16px;font-size:11px;color:#8f97a3;background:rgba(0,0,0,.35);border-radius:5px;padding:3px 9px;}
+  .slide.on{opacity:1;transform:translateY(0) scale(1);}
+  .slide.past{opacity:0;transform:translateY(-46px) scale(.96);}
+  @media(max-width:900px){ .sticky-slider .stage{grid-template-columns:1fr;gap:18px;align-content:center;} .anchors h2{font-size:24px;margin-bottom:12px;} .anchor{padding:8px 2px 8px 14px;} .deck{max-height:52vh;} }
+
+  .post{padding:60px 0 90px;}
+  .post h2{font-size:26px;margin:0 0 8px;}
+  .post p{color:var(--ink2);max-width:720px;}
+</style>
+</head>
+<body>
+
+<div class="note">DEMO opción 2 — Campus sostenible como slider sticky con anclas (referencia: pebblelife.com). La opción 1 (zoom inmersivo) está en el home.</div>
+
+<section class="pre">
+  <div class="wrap">
+    <p class="ey">Demo · Home PUCP</p>
+    <h1>Campus: opción 2 — varios videos con anclas</h1>
+    <p>Haz scroll: la sección se queda fija y los videos del campus van rotando; a la izquierda, las cifras funcionan como anclas — se iluminan con cada video y también son clicables para saltar directo.</p>
+    <div class="hint">▼ haz scroll</div>
+  </div>
+</section>
+
+<div class="sticky-slider" id="ss">
+  <div class="stage">
+    <div class="anchors">
+      <p class="ey">▸ Campus sostenible</p>
+      <h2>Espacios que inspiran</h2>
+      <div class="anchor" data-i="0"><span class="num">167,000 m²</span><span class="lbl">de áreas verdes<span class="bar"><i></i></span></span></div>
+      <div class="anchor" data-i="1"><span class="num">+3,200</span><span class="lbl">árboles en el campus<span class="bar"><i></i></span></span></div>
+      <div class="anchor" data-i="2"><span class="num">7</span><span class="lbl">edificios con certificación LEED<span class="bar"><i></i></span></span></div>
+      <div class="anchor" data-i="3"><span class="num">Vívelo</span><span class="lbl">visitas guiadas al campus<span class="bar"><i></i></span></span></div>
+    </div>
+    <div class="deck">
+      <div class="slide"><span class="cap">▶ VIDEO REAL: dron sobre los jardines</span><div class="play">▶</div>VIDEO — ÁREAS VERDES</div>
+      <div class="slide"><span class="cap">▶ VIDEO REAL: arborización y naturaleza</span><div class="play">▶</div>VIDEO — ÁRBOLES</div>
+      <div class="slide"><span class="cap">▶ VIDEO REAL: edificios sostenibles</span><div class="play">▶</div>VIDEO — EDIFICIOS LEED</div>
+      <div class="slide"><span class="cap">▶ VIDEO REAL: estudiantes viviendo el campus</span><div class="play">▶</div>VIDEO — VIDA EN EL CAMPUS</div>
+    </div>
+  </div>
+</div>
+
+<section class="post">
+  <div class="wrap">
+    <h2>Aquí continúa el home</h2>
+    <p>Al pasar el último video, el scroll sigue con el resto de la página. Cada video real puede venir del material que la PUCP ya tiene del campus.</p>
+  </div>
+</section>
+
+<script>
+(function(){
+  var ss = document.getElementById('ss');
+  var slides = ss.querySelectorAll('.slide');
+  var anchors = ss.querySelectorAll('.anchor');
+  var N = slides.length;
+  function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+  function onScroll(){
+    var total = ss.offsetHeight - window.innerHeight;
+    var p = clamp(-ss.getBoundingClientRect().top / total, 0, 0.9999);
+    var idx = Math.floor(p*N);              // slide activo
+    var local = (p*N) - idx;                // progreso dentro del slide (barra)
+    slides.forEach(function(s,i){
+      s.classList.toggle('on', i===idx);
+      s.classList.toggle('past', i<idx);
+    });
+    anchors.forEach(function(a,i){
+      a.classList.toggle('on', i===idx);
+      var bar = a.querySelector('.bar i');
+      if(bar) bar.style.width = (i<idx?100: i===idx? local*100 : 0)+'%';
+    });
+  }
+  anchors.forEach(function(a){
+    a.addEventListener('click', function(){
+      var i = +a.dataset.i;
+      var total = ss.offsetHeight - window.innerHeight;
+      window.scrollTo({top: ss.offsetTop + total*(i+0.5)/N, behavior:'smooth'});
+    });
+  });
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+})();
+</script>
+
+</body>
+</html>
