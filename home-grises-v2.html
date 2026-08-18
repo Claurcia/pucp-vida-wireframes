@@ -214,6 +214,7 @@
   .sticky-slider{height:440vh;position:relative;}
   .sticky-slider .stage{position:sticky;top:0;height:100vh;display:grid;grid-template-columns:.9fr 1.4fr;gap:40px;align-items:center;max-width:1180px;margin:0 auto;padding:0 24px;}
   .anchors .sub{margin-bottom:20px;}
+  .sticky-slider .anchors{position:relative;z-index:3;}
   .anchor{display:flex;gap:14px;align-items:baseline;padding:12px 2px;border-left:3px solid rgba(255,255,255,.15);padding-left:16px;cursor:pointer;transition:border-color .3s,opacity .3s;opacity:.45;}
   .anchor .num{font-family:'Montserrat';font-weight:800;font-size:24px;color:#fff;white-space:nowrap;}
   .anchor .lbl{font-size:13px;color:#c6cbd2;}
@@ -221,7 +222,7 @@
   .anchor .bar{display:block;height:3px;background:rgba(255,255,255,.25);border-radius:2px;margin-top:8px;overflow:hidden;width:0;transition:width .3s;}
   .anchor.on .bar{width:120px;}
   .anchor .bar i{display:block;height:100%;background:#fff;width:0;}
-  .deck{position:relative;aspect-ratio:16/10;max-height:72vh;overflow:hidden;border-radius:18px;}
+  .deck{position:relative;aspect-ratio:16/10;max-height:72vh;overflow:hidden;border-radius:18px;transform-origin:center center;will-change:transform;}
   .deck .slide{position:absolute;inset:0;overflow:hidden;background:#14161a;border:1px solid rgba(255,255,255,.25);border-radius:18px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;color:#aab2bd;font-size:13px;letter-spacing:1px;box-shadow:0 -18px 50px rgba(0,0,0,.5);will-change:transform;transform:translateY(100%);}
   .deck .slide:first-child{transform:translateY(0);}
   .deck .slide .play{width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.14);border:2px solid rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;color:#fff;font-size:19px;}
@@ -1078,12 +1079,16 @@
 })();
 </script>
 <script>
-// campus opcion 2: cortina de videos atada al scroll + anclas
+// campus opcion 2: al entrar, la pila de videos se expande A SANGRE (todo el ancho);
+// corre la cortina de videos en full; al terminar, regresa a su tamano normal.
 (function(){
   var ss = document.getElementById('ss-campus');
   if(!ss) return;
+  var deck = ss.querySelector('.deck');
   var slides = ss.querySelectorAll('.slide'), anchors = ss.querySelectorAll('.anchor'), N = slides.length;
   function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+  function ease(t){return t*t*(3-2*t);}
+  var ENTER=.10, EXIT=.90;  // fase de expansion / regreso
   var p = 0, cur = 0;
   function onScroll(){
     var total = ss.offsetHeight - window.innerHeight;
@@ -1091,10 +1096,24 @@
     p = clamp(-ss.getBoundingClientRect().top / total, 0, 0.9999);
   }
   function apply(t){
-    var pos = t*N, idx = Math.min(N-1, Math.floor(pos));
+    // factor de bleed: 0 -> 1 al entrar, 1 en el centro, 1 -> 0 al salir
+    var g = t<ENTER ? t/ENTER : (t>EXIT ? (1-t)/(1-EXIT) : 1);
+    g = ease(clamp(g,0,1));
+    // medir el deck sin transform para calcular el cover
+    deck.style.transform='none';
+    var r = deck.getBoundingClientRect();
+    var S = window.innerWidth / r.width;                       // cubre todo el ancho (a sangre)
+    var dx = window.innerWidth/2 - (r.left + r.width/2);
+    var dy = window.innerHeight/2 - (r.top + r.height/2);
+    var sc = 1 + (S-1)*g;
+    deck.style.transform = 'translate('+(dx*g)+'px,'+(dy*g)+'px) scale('+sc+')';
+    deck.style.borderRadius = (18*(1-g))/sc + 'px';
+    // cortina de videos en el tramo central
+    var q = clamp((t-ENTER)/(EXIT-ENTER), 0, 0.9999);
+    var pos = q*N, idx = Math.min(N-1, Math.floor(pos));
     slides.forEach(function(sl,i){
       sl.style.transform = i===0 ? 'translateY(0)' : 'translateY('+(clamp(i-pos,0,1)*100)+'%)';
-      sl.classList.toggle('playing', i===idx);
+      sl.classList.toggle('playing', i===idx && g>.5);
     });
     var local = pos - idx;
     anchors.forEach(function(a,i){
@@ -1107,7 +1126,8 @@
   anchors.forEach(function(a){
     a.addEventListener('click', function(){
       var total = ss.offsetHeight - window.innerHeight;
-      window.scrollTo({top: ss.offsetTop + total*((+a.dataset.i)+0.5)/N, behavior:'smooth'});
+      var q = ((+a.dataset.i)+0.5)/N;                          // progreso dentro de la cortina
+      window.scrollTo({top: ss.offsetTop + total*(ENTER + q*(EXIT-ENTER)), behavior:'smooth'});
     });
   });
   window.addEventListener('scroll', onScroll, {passive:true});
