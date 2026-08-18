@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Wireframe — Home PUCP v2 (tarjetas con miniatura, enlaces reales)</title>
+<title>Wireframe — Home PUCP v2 (campus con slider de videos)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&family=Source+Serif+Pro:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
@@ -33,6 +33,7 @@
   .search{display:flex;align-items:center;gap:7px;font-size:14px;color:var(--ink2);}
   .postula{background:var(--pill);color:#fff;font-family:'Montserrat';font-weight:700;border-radius:24px;padding:11px 22px;font-size:14px;}
   .menu{border-bottom:1px solid var(--line);}
+  .menu .wrap{display:flex;gap:18px;flex-wrap:wrap;padding:13px 24px;font-size:13.5px;color:var(--ink);position:relative;}
   .menu .mi{cursor:pointer;padding-bottom:15px;}
   .menu .mi:hover{color:var(--dark);font-weight:700;}
   .megamenu{display:none;position:absolute;top:100%;left:0;background:#fff;border:1px solid var(--line);border-top:3px solid var(--dark);border-radius:0 0 12px 12px;box-shadow:0 16px 32px rgba(0,0,0,.14);padding:26px;z-index:60;grid-template-columns:repeat(4,220px);gap:28px;max-width:calc(100vw - 48px);}
@@ -50,6 +51,8 @@
   .mm-col li{font-size:13px;font-weight:400;padding:5px 4px;color:var(--ink2);}
   .mm-col li a{text-decoration:none;}
   .mm-col li a:hover{color:var(--ink);text-decoration:underline;}
+  .mm-col li.mm-low{font-size:12px;color:var(--soft);}
+  .mm-col li:not(.mm-low)+li.mm-low{border-top:1px solid var(--line);margin-top:6px;padding-top:10px;}
   .mm-col li ul{margin:2px 0 2px 14px;padding:0;background:none;}
   .mm-col li ul li{font-size:12px;color:var(--soft);}
   .mm-col .mm-note{font-size:12.5px;color:var(--ink2);background:#eef1f5;border-radius:6px;padding:12px 14px;}
@@ -58,7 +61,6 @@
   .megamenu.align-r{left:auto;right:0;}
   .mm-pill{background:var(--dark);color:#fff;font-family:'Montserrat';font-weight:700;font-size:13px;padding:12px 20px;border-radius:6px;text-decoration:none;white-space:nowrap;}
   .mm-pill:hover{background:var(--dark2);}
-  .menu .wrap{display:flex;gap:18px;flex-wrap:wrap;padding:13px 24px;font-size:13.5px;color:var(--ink);position:relative;}
   /* generic */
   section{padding:46px 0;border-bottom:1px solid var(--bg2);position:relative;}
   .eyebrow{font-family:'Montserrat';font-weight:700;font-size:12px;letter-spacing:1.8px;text-transform:uppercase;color:var(--soft);text-align:center;margin:0 0 12px;}
@@ -73,39 +75,38 @@
   .btn.sm{padding:9px 16px;font-size:13px;}
   .ph{background:var(--ph);border-radius:10px;}
   /* HERO carrusel */
-  .hero{position:relative;background:var(--ph2);border-radius:0;min-height:460px;overflow:hidden;}
+  .hero{position:relative;background:var(--ph2);border-radius:0;min-height:640px;overflow:hidden;}
   .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,rgba(0,0,0,.45),rgba(0,0,0,.05) 60%);}
   .hero .in{position:absolute;top:50%;left:0;right:0;transform:translateY(-50%);max-width:1180px;margin:0 auto;padding:0 24px;z-index:1;}
   @media(min-width:1101px){ body.crpad .hero .in{margin-right:344px;} }
   .hero h1{font-family:'Montserrat';font-weight:800;font-size:34px;color:#fff;margin:0 0 18px;text-shadow:0 1px 10px rgba(0,0,0,.5);}
   .hero .edge{position:absolute;inset:0;max-width:1180px;margin:0 auto;padding:0 24px;z-index:2;pointer-events:none;}
   @media(min-width:1101px){ body.crpad .hero .edge{margin-right:344px;} }
-  .hero .pause{position:absolute;right:12px;bottom:96px;pointer-events:auto;width:44px;height:44px;border-radius:50%;background:rgba(0,0,0,.3);color:#fff;display:flex;align-items:center;justify-content:center;}
+  .hero .pause{position:absolute;right:12px;bottom:118px;pointer-events:auto;width:44px;height:44px;border-radius:50%;background:rgba(0,0,0,.3);color:#fff;display:flex;align-items:center;justify-content:center;}
   .anniv-badge{position:absolute;top:26px;right:12px;pointer-events:auto;width:92px;height:92px;border-radius:50%;background:#fff;color:var(--dark);
                display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;box-shadow:0 4px 16px rgba(0,0,0,.3);border:2px solid var(--dark);}
   body.anniv-on .anniv-badge{display:flex;}
   .anniv-badge .n{font-family:'Montserrat';font-weight:800;font-size:26px;line-height:1;}
   .anniv-badge .l{font-family:'Montserrat';font-weight:700;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-top:2px;}
   @media(max-width:900px){ .anniv-badge{width:70px;height:70px;top:16px;right:12px;} .anniv-badge .n{font-size:19px;} .anniv-badge .l{font-size:9px;} }
-  .news3-wrap{max-width:1180px;margin:32px auto 0;padding:0 24px;}
-  .news3-wrap h2{font-family:'Montserrat';font-weight:800;font-size:22px;margin:0 0 16px;color:var(--ink);text-align:center;}
-  .news3{position:relative;z-index:3;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
-  .ncard{background:var(--ph);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;cursor:pointer;text-decoration:none;box-shadow:0 0 0 0 var(--dark);transition:box-shadow .15s,background .15s;}
-  .ncard:hover{background:#dde0e4;}
-  .ncard .thumb{height:220px;flex:none;position:relative;background:linear-gradient(135deg,var(--ph2),var(--ph3));}
-  .ncard .thumb .ic{position:absolute;top:8px;left:8px;font-size:9.5px;font-weight:700;letter-spacing:.4px;background:rgba(255,255,255,.9);color:var(--ink);padding:2px 7px;border-radius:4px;}
-  .hero .vtag{position:absolute;top:20px;left:24px;z-index:2;font-family:'Montserrat';font-size:10.5px;font-weight:700;letter-spacing:.4px;background:rgba(255,255,255,.9);color:var(--ink);padding:4px 10px;border-radius:4px;}
-  .ncard .body{padding:14px 16px 16px;display:flex;flex-direction:column;flex:1;}
-  .ncard.on{background:var(--dark);}
-  .ncard.on .thumb{background:linear-gradient(135deg,#4a5058,#2b2f36);}
-  .ncard.on h3{color:#fff;}
-  .ncard.on .meta{color:#c7cbd1;}
-  .ncard.on .ctag{background:#fff;color:var(--dark);}
-  .ncard .ctag{display:inline-block;font-family:'Montserrat';font-size:10px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--dark);background:var(--t2);border-radius:4px;padding:3px 9px;margin-bottom:9px;align-self:flex-start;}
-  .ncard h3{font-family:'Montserrat';font-weight:600;font-size:13.5px;line-height:1.4;margin:0;color:var(--ink);}
-  .ncard .meta{font-size:11px;color:var(--ink2);margin-top:auto;padding-top:12px;}
-  @media(max-width:900px){ .news3{grid-template-columns:repeat(2,1fr);} }
-  @media(max-width:600px){ .news3{grid-template-columns:1fr;} }
+  .news3{position:absolute;left:0;right:0;bottom:0;max-width:1180px;margin:0 auto;padding:0 24px 18px;z-index:3;display:flex;flex-wrap:wrap;gap:10px;}
+  @media(min-width:1101px){ body.crpad .news3{margin-right:344px;} }
+  .ncard{position:relative;flex:1 1 130px;background:rgba(255,255,255,.92);border-radius:10px;padding:9px 12px;min-height:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;text-align:center;text-decoration:none;color:inherit;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.15);transition:box-shadow .15s,background .15s;}
+  .ncard .prog{position:absolute;left:6px;right:6px;bottom:4px;height:3px;border-radius:2px;background:rgba(0,0,0,.12);overflow:hidden;}
+  .ncard .prog i{display:block;height:100%;width:0%;background:var(--dark);border-radius:2px;}
+  .ncard.on .prog i{animation:heroprog 6s linear forwards;}
+  body.hero-hold .ncard.on .prog i{animation-play-state:paused;}
+  @keyframes heroprog{from{width:0%}to{width:100%}}
+  .ncard.vid{flex:0 0 56px;padding:9px 6px;}
+  .ncard:hover{background:#fff;}
+  .ncard::after{content:"\2197";position:absolute;top:5px;right:9px;font-size:13px;font-weight:700;color:var(--ink2);opacity:0;transition:opacity .15s;}
+  .ncard:hover::after{opacity:1;}
+  .ncard.vid::after{content:none;}
+  .hero .btn.slide-cta{text-transform:uppercase;font-size:12px;letter-spacing:1px;font-weight:700;}
+  .ncard.on{background:#fff;box-shadow:0 0 0 2px var(--dark);}
+  .ncard .ctag{display:inline-block;font-family:'Montserrat';font-size:9px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--ink2);background:var(--t2);border-radius:999px;padding:2px 9px;}
+  .ncard h3{font-family:'Montserrat';font-weight:700;font-size:12.5px;margin:0;line-height:1.25;}
+  .ncard .vicon{font-size:15px;line-height:1;color:var(--ink2);}
   .novstrip{max-width:1180px;margin:26px auto 0;padding:18px 24px;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;border-top:1px solid var(--line);}
   .novstrip .ttl{font-family:'Montserrat';font-weight:700;font-size:14px;}
   /* grids */
@@ -143,8 +144,13 @@
   .darksec p.sub{color:#c6cbd2;}
   .mapwrap{position:relative;}
   .wmap{display:block;width:100%;height:auto;opacity:.95;}
-  .mapwrap .rg{position:absolute;transform:translate(-50%,-50%);background:#fff;color:var(--ink);border-radius:8px;padding:5px 11px;font-size:12.5px;font-weight:700;box-shadow:0 2px 7px rgba(0,0,0,.35);white-space:nowrap;}
+  .mapwrap .rg{position:absolute;transform:translate(-50%,-50%);background:#fff;color:var(--ink);border-radius:8px;padding:5px 11px;font-size:12.5px;font-weight:700;box-shadow:0 2px 7px rgba(0,0,0,.35);white-space:nowrap;cursor:pointer;transition:background .15s,color .15s;}
   .mapwrap .rg::after{content:"";position:absolute;left:50%;bottom:-6px;transform:translateX(-50%);border:5px solid transparent;border-top-color:#fff;}
+  .mapwrap .rg:hover{background:var(--ink);color:#fff;}
+  .mapwrap .rg:hover::after{border-top-color:var(--ink);}
+  .mapwrap .rg .tip{display:none;position:absolute;bottom:calc(100% + 9px);left:50%;transform:translateX(-50%);background:#fff;color:var(--ink);border-radius:8px;padding:5px 11px;font-size:12px;font-weight:700;white-space:nowrap;box-shadow:0 2px 7px rgba(0,0,0,.35);}
+  .mapwrap .rg .tip::after{content:"";position:absolute;left:50%;bottom:-6px;transform:translateX(-50%);border:5px solid transparent;border-top-color:#fff;}
+  .mapwrap .rg:hover .tip{display:block;}
   .worldstat{border:1px solid #3a3f47;border-radius:18px;padding:18px;text-align:center;}
   .worldstat.fill{background:#3a3f47;border:none;}
   .worldstat .num{font-size:30px;color:#fff;}
@@ -163,11 +169,11 @@
   .rcard{border-radius:16px;padding:20px;background:var(--ph2);min-height:340px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;}
   .rcard .imgtop{position:absolute;top:18px;left:18px;right:18px;height:150px;border-radius:10px;background:rgba(255,255,255,.35);}
   .rcard h3{font-family:'Montserrat';font-weight:700;font-size:19px;margin:0 0 8px;color:var(--ink);}
-  .rcard p{color:var(--ink2);font-size:13px;margin:0;max-width:210px;}
+  .rcard p{color:var(--ink2);font-size:13px;margin:0;padding-right:52px;}
   .rcard .ar{position:absolute;bottom:18px;right:18px;width:42px;height:42px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;}
   .invstats{display:grid;grid-template-columns:.7fr 1fr 1fr 1fr 1fr;gap:16px;align-items:center;margin-top:30px;}
   /* orgullo */
-  .ocards{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:8px;}
+  .ocards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:8px;}
   .ostory{position:relative;border-radius:16px;background:var(--ph2);min-height:340px;padding:22px;overflow:hidden;}
   .ostory.dark{background:var(--dark);color:#fff;}
   .ostory h3{font-family:'Montserrat';font-weight:700;font-size:20px;margin:0 0 6px;}
@@ -178,6 +184,51 @@
   .soc{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
   .soc span{width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff;}
   .comgrid{display:grid;grid-template-columns:.8fr 1.4fr .8fr;gap:20px;align-items:center;}
+  /* intro inmersiva del campus (Campus sostenible): el video crece con el scroll hasta cubrir la pantalla */
+  .immersive{height:260vh;position:relative;margin-top:24px;}
+  .immersive .stage{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .immersive .frame{background:#14161a;border-radius:22px;border:1px solid rgba(255,255,255,.3);box-shadow:0 30px 80px rgba(0,0,0,.45);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;will-change:transform;transform-origin:center center;}
+  .immersive .vid{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;color:#aab2bd;font-size:13px;letter-spacing:1px;}
+  .immersive .vid .play{width:70px;height:70px;border-radius:50%;background:rgba(255,255,255,.14);border:2px solid rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px;}
+  .immersive .cap{position:absolute;top:14px;left:16px;font-size:11px;color:#8f97a3;background:rgba(0,0,0,.35);border-radius:5px;padding:3px 9px;z-index:2;}
+  .immersive .msg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 8vw;opacity:0;transform:translateY(24px);transition:opacity .35s,transform .35s;pointer-events:none;}
+  .immersive .msg h2{color:#fff;font-size:clamp(24px,4.2vw,52px);font-weight:800;letter-spacing:.5px;line-height:1.15;margin:0;text-transform:uppercase;font-family:'Montserrat';}
+  .immersive .msg.on{opacity:1;transform:translateY(0);}
+  /* campus opcion 2: slider sticky con anclas (ref pebblelife) */
+  .sticky-slider{height:440vh;position:relative;}
+  .sticky-slider .stage{position:sticky;top:0;height:100vh;display:grid;grid-template-columns:.9fr 1.4fr;gap:40px;align-items:center;max-width:1180px;margin:0 auto;padding:0 24px;}
+  .anchors .sub{margin-bottom:20px;}
+  .anchor{display:flex;gap:14px;align-items:baseline;padding:12px 2px;border-left:3px solid rgba(255,255,255,.15);padding-left:16px;cursor:pointer;transition:border-color .3s,opacity .3s;opacity:.45;}
+  .anchor .num{font-family:'Montserrat';font-weight:800;font-size:24px;color:#fff;white-space:nowrap;}
+  .anchor .lbl{font-size:13px;color:#c6cbd2;}
+  .anchor.on{opacity:1;border-left-color:#fff;}
+  .anchor .bar{display:block;height:3px;background:rgba(255,255,255,.25);border-radius:2px;margin-top:8px;overflow:hidden;width:0;transition:width .3s;}
+  .anchor.on .bar{width:120px;}
+  .anchor .bar i{display:block;height:100%;background:#fff;width:0;}
+  .deck{position:relative;aspect-ratio:16/10;max-height:72vh;overflow:hidden;border-radius:18px;}
+  .deck .slide{position:absolute;inset:0;overflow:hidden;background:#14161a;border:1px solid rgba(255,255,255,.25);border-radius:18px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;color:#aab2bd;font-size:13px;letter-spacing:1px;box-shadow:0 -18px 50px rgba(0,0,0,.5);will-change:transform;transform:translateY(100%);}
+  .deck .slide:first-child{transform:translateY(0);}
+  .deck .slide .play{width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.14);border:2px solid rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;color:#fff;font-size:19px;}
+  .deck .slide .cap{position:absolute;top:14px;left:16px;font-size:11px;color:#8f97a3;background:rgba(0,0,0,.35);border-radius:5px;padding:3px 9px;}
+  .deck .slide .live{position:absolute;bottom:14px;left:16px;display:flex;align-items:center;gap:7px;font-size:10.5px;color:#c6cbd2;opacity:0;transition:opacity .3s;}
+  .deck .slide .live i{width:8px;height:8px;border-radius:50%;background:#e04b4b;animation:pulse 1.1s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.25;}}
+  .deck .slide.playing .live{opacity:1;}
+  @media(max-width:900px){ .sticky-slider .stage{grid-template-columns:1fr;gap:18px;align-content:center;} .deck{max-height:52vh;} }
+  /* bot Kt-0 flotante */
+  .bot{position:fixed;right:20px;bottom:88px;z-index:70;display:flex;flex-direction:column;align-items:flex-end;gap:10px;}
+  .bot .bub{max-width:250px;background:#fff;border:1px solid var(--line);border-radius:14px 14px 2px 14px;box-shadow:0 10px 24px rgba(0,0,0,.18);padding:12px 14px;font-size:12.5px;color:var(--ink2);position:relative;}
+  .bot .bub b{color:var(--ink);}
+  .bot .bub .x{position:absolute;top:6px;right:9px;cursor:pointer;color:var(--soft);font-size:11px;}
+  .bot .face{width:58px;height:58px;border-radius:50%;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Montserrat';font-weight:700;font-size:13px;border:3px solid #fff;box-shadow:0 8px 20px rgba(0,0,0,.25);cursor:pointer;}
+  .agrow{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px;}
+  .aev{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:12px;overflow:hidden;}
+  .aev .ph{position:relative;height:120px;background:rgba(255,255,255,.22);border-bottom:1px dashed rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:1px;color:#d9d3de;}
+  .aev .d{position:absolute;top:10px;left:10px;min-width:52px;text-align:center;background:#fff;color:var(--ink);border-radius:10px;padding:6px 4px;font-family:'Montserrat';font-weight:700;line-height:1.1;}
+  .aev .d b{font-size:18px;display:block;}
+  .aev .d span{font-size:10px;text-transform:uppercase;}
+  .aev .inf{padding:12px 16px 14px;font-size:11.5px;color:#d9d3de;}
+  .aev .inf b{display:block;font-size:13.5px;color:#fff;margin-bottom:2px;}
   .comgrid .circ{aspect-ratio:1;border-radius:50%;background:rgba(255,255,255,.25);}
   /* footer */
   footer{background:var(--dark);color:#c3c9d0;padding:40px 0 24px;}
@@ -189,11 +240,9 @@
   footer .copy{border-top:1px solid #3a3f47;padding-top:16px;margin-top:24px;font-size:12.5px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
   .legend{max-width:1180px;margin:0 auto;padding:22px 24px 60px;color:var(--ink2);font-size:12.5px;line-height:1.7;}
   .legend b{color:var(--ink);}
-  @media(max-width:900px){ .g3,.g4,.two,.two.left,.news3,.ocards,footer .cols,.talento,.invstats,.comgrid{grid-template-columns:1fr 1fr;} .accrow{grid-template-columns:1fr;} }
-  @media(max-width:600px){ .g3,.g4,.two,.two.left,.news3,.ocards,footer .cols,.talento,.invstats,.comgrid{grid-template-columns:1fr;} }
+  @media(max-width:900px){ .g3,.g4,.two,.two.left,.news3,.ocards,footer .cols,.talento,.invstats,.comgrid,.agrow{grid-template-columns:1fr 1fr;} .accrow{grid-template-columns:1fr;} }
+  @media(max-width:600px){ .g3,.g4,.two,.two.left,.news3,.ocards,footer .cols,.talento,.invstats,.comgrid,.agrow{grid-template-columns:1fr;} }
   /* comentarios */
-  .wa-btn{position:fixed;bottom:76px;right:18px;z-index:99;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.25);text-decoration:none;}
-  .wa-btn svg{width:29px;height:29px;fill:#fff;}
   .toolbar{position:fixed;bottom:18px;right:18px;z-index:100;display:flex;gap:8px;align-items:center;background:#fff;border:1px solid var(--ph3);border-radius:10px;padding:9px 12px;box-shadow:0 4px 18px rgba(0,0,0,.18);}
   .toolbar button{font:inherit;font-size:12.5px;font-weight:700;border:1px solid var(--ph3);background:var(--bg2);color:var(--ink);border-radius:6px;padding:7px 12px;cursor:pointer;}
   .toolbar .vswitch{display:flex;border:1px solid var(--ph3);border-radius:6px;overflow:hidden;margin-right:2px;}
@@ -209,7 +258,7 @@
   body.editing [contenteditable="true"]{cursor:text;}
   .toast{position:fixed;bottom:78px;right:18px;z-index:101;background:var(--dark);color:#fff;font-size:12.5px;border-radius:7px;padding:9px 14px;opacity:0;transition:opacity .25s;pointer-events:none;}
   .toast.show{opacity:1;}
-  @media(min-width:1101px){ body.crpad .wrap,body.crpad .news3-wrap,body.crpad .novstrip,body.crpad .legend{margin-right:344px;} }
+  @media(min-width:1101px){ body.crpad .wrap,body.crpad .news3,body.crpad .novstrip,body.crpad .legend{margin-right:344px;} }
   #crail{position:absolute;top:0;right:10px;width:312px;z-index:40;}
   .cthread{position:absolute;right:0;width:300px;}
   .cthread.inline{position:static;width:auto;display:none;margin:14px 24px 0;}
@@ -231,12 +280,13 @@
 <script src="menu.js?v=20260806" defer></script>
 </head>
 <body>
+<div style="background:#fff8e1;border-bottom:1px solid #e8dfc0;font-size:12.5px;color:#7a6a33;padding:9px 24px;text-align:center;position:relative;z-index:60;">VERSIÓN 2 del home — Campus sostenible como slider de videos con anclas (opción 2). La versión con zoom inmersivo (opción 1) está en <a href="home-grises.html" style="color:inherit;font-weight:700;">home-grises.html</a>.</div>
 
   <!-- HEADER -->
   <header class="site-header">
   <div class="topnav"><div class="wrap">
     <div class="l"><a href="admision-pregrado-media.html">Postulantes ▾</a><span>Estudiantes</span><span>Profesores</span><span>Administrativos</span><a href="egresados-media.html">Egresados</a><a href="empresas-media.html">Alianza con empresas</a></div>
-    <div class="r"><span>Intranet y correo</span><span>PAIDEIA</span><span>⠿ Accesos</span><span>🌐 ES</span></div>
+    <div class="r"><span>Intranet y correo</span><span>PAIDEIA</span><span>Biblioteca</span><span>⠿ Accesos</span><span>🌐 ES</span></div>
   </div></div>
   <div class="logorow"><div class="wrap">
     <div class="logo"><svg width="32" height="32" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="none" stroke-width="2"/><path d="M9 24 q11 6 22 0 l-3 5 h-16 z"/><path d="M20 8 l7 13 h-14 z"/></svg>PUCP</div>
@@ -257,7 +307,7 @@
             <li><a href="#">Asociaciones y redes</a></li>
             <li><a href="#">Comité Electoral Universitario</a></li>
             <li><a href="pucp-en-cifras-media.html">PUCP en Cifras</a>
-              <ul><li><a href="#">Ranking y cifras destacadas</a></li></ul>
+              <ul><li><a href="pucp-en-cifras-media.html">Ranking y cifras destacadas</a></li></ul>
             </li>
             <li><a href="#">Distinciones</a></li>
             <li><a href="#">Historia</a></li>
@@ -287,15 +337,15 @@
         <div class="mm-col">
           <h4>Unidades y servicios</h4>
           <ul>
-            <li><a href="#">Directorio de personas</a></li>
-            <li><a href="#">Directorio de servicios</a></li>
-            <li><a href="#">Directorio de unidades</a></li>
             <li><a href="#">Vicerrectorados</a></li>
             <li><a href="#">Direcciones</a></li>
             <li><a href="#">Facultades</a></li>
             <li><a href="#">Departamentos</a></li>
             <li><a href="#">Centros e Institutos</a></li>
             <li><a href="#">Oficinas</a></li>
+            <li class="mm-low"><a href="#">Directorio de personas</a></li>
+            <li class="mm-low"><a href="#">Directorio de servicios</a></li>
+            <li class="mm-low"><a href="#">Directorio de unidades</a></li>
           </ul>
         </div>
       </div>
@@ -305,7 +355,7 @@
         <div class="mm-col">
           <h4>Pregrado</h4>
           <ul>
-            <li><a href="#">Admisión</a></li>
+            <li><a href="admision-pregrado-media.html">Admisión</a></li>
             <li><a href="#">Generales Letras</a></li>
             <li><a href="#">Generales Ciencias</a></li>
             <li><a href="#">Carreras</a></li>
@@ -374,18 +424,18 @@
         <p class="mm-hint">Todos son enlaces a <a href="https://internacional.pucp.edu.pe/" target="_blank" rel="noopener">internacional.pucp.edu.pe</a></p>
       </div>
     </span>
-    <span class="mi">Investigación
+    <span class="mi">Investigación y publicaciones
       <div class="megamenu cols2">
         <div class="mm-col">
           <h4>Creamos conocimiento</h4>
           <ul>
             <li><a href="#">Investigación con impacto</a></li>
-            <li><a href="#">Creación</a></li>
             <li><a href="#">Innovación aplicada</a></li>
+            <li><a href="#">Creación artística</a></li>
             <li><a href="#">Convocatorias y fondos</a></li>
             <li><a href="#">Grupos de investigación</a></li>
             <li><a href="#">Innovación con empresas</a></li>
-            <li><a href="#">Patentes y Licenciamiento</a></li>
+            <li><a href="#">Licenciamiento</a></li>
             <li><a href="#">Ética en la investigación</a></li>
             <li><a href="#">Propiedad intelectual</a></li>
           </ul>
@@ -466,7 +516,6 @@
   <!-- HERO carrusel comercial -->
   <section style="padding:0;border:none;" data-title="Hero — carrusel comercial">
     <div class="hero" id="hero-slider">
-      <span class="vtag">VIDEO</span>
       <div class="in">
         <h1>Sé grande</h1>
         <a class="btn" style="background:#fff;color:var(--ink)" href="#">Descubre la vida universitaria ↗</a>
@@ -475,26 +524,12 @@
         <div class="anniv-badge" id="anniv-badge"><span class="n">110</span><span class="l">años</span></div>
         <div class="pause">❚❚</div>
       </div>
-    </div>
-    <div class="news3-wrap">
-      <h2>Historias que inspiran</h2>
       <div class="news3" id="hero-cards">
-        <a class="ncard" target="_blank" rel="noopener" href="https://puntoedu.pucp.edu.pe/vida-universitaria/institucional/consorcio-de-universidades-conmemora-30-aniversario-trabajo/">
-          <div class="thumb"><span class="ic">FOTO</span></div>
-          <div class="body"><span class="ctag">Institucional</span><h3>Consorcio de Universidades: 30 años aportando al país</h3></div>
-        </a>
-        <a class="ncard" target="_blank" rel="noopener" href="https://puntoedu.pucp.edu.pe/vida-universitaria/alcalde-de-zalamea-obra-de-calderon-de-la-barca-se-repone-en-lima/">
-          <div class="thumb"><span class="ic">FOTO</span></div>
-          <div class="body"><span class="ctag">Humanidades</span><h3>«El alcalde de Zalamea» regresa a Lima tras 40 años</h3></div>
-        </a>
-        <a class="ncard" target="_blank" rel="noopener" href="https://puntoedu.pucp.edu.pe/orgullo-pucp/nonhuman-ciencias-e-ingenieria-pucp-en-el-top-mundial-de-robotica/">
-          <div class="thumb"><span class="ic">FOTO</span></div>
-          <div class="body"><span class="ctag">Ciencias</span><h3>NonHuman: La PUCP entre las mejores del mundo en robótica</h3></div>
-        </a>
-        <a class="ncard" target="_blank" rel="noopener" href="https://puntoedu.pucp.edu.pe/vida-universitaria/institucional/julia-codesido-retrospectiva-redescubre-arte-peruano-moderno/">
-          <div class="thumb"><span class="ic">FOTO</span></div>
-          <div class="body"><span class="ctag">Artes</span><h3>Julia Codesido: retrospectiva de una artista clave</h3></div>
-        </a>
+        <div class="ncard vid on" data-title="Sé grande" data-cta="Descubre la vida universitaria ↗" data-href="#"><span class="vicon">▶</span><span class="prog"><i></i></span></div>
+        <a class="ncard" target="_blank" rel="noopener" data-kicker="Campus y comunidad · Institucional" data-title="Consorcio de Universidades: conmemoramos 30 años de trabajo reflexionando sobre cómo seguir aportando al país" href="https://puntoedu.pucp.edu.pe/vida-universitaria/institucional/consorcio-de-universidades-conmemora-30-aniversario-trabajo/"><span class="ctag">Institucional</span><h3>Consorcio de Universidades: 30 años aportando al país</h3><span class="prog"><i></i></span></a>
+        <a class="ncard" target="_blank" rel="noopener" data-kicker="Cultura y creación · Humanidades" data-title="«El alcalde de Zalamea»: obra de Calderón de la Barca se repone después de 40 años en Lima" href="https://puntoedu.pucp.edu.pe/vida-universitaria/alcalde-de-zalamea-obra-de-calderon-de-la-barca-se-repone-en-lima/"><span class="ctag">Letras</span><h3>«El alcalde de Zalamea» regresa a Lima tras 40 años</h3><span class="prog"><i></i></span></a>
+        <a class="ncard" target="_blank" rel="noopener" data-kicker="Orgullo PUCP · Ciencias" data-title="NonHuman: Ciencias e Ingeniería PUCP en el top mundial de robótica" data-cta="Explorar Centro de Robótica ↗" href="https://puntoedu.pucp.edu.pe/orgullo-pucp/nonhuman-ciencias-e-ingenieria-pucp-en-el-top-mundial-de-robotica/"><span class="ctag">Ciencias</span><h3>NonHuman: La PUCP entre las mejores del mundo en robótica</h3><span class="prog"><i></i></span></a>
+        <a class="ncard" target="_blank" rel="noopener" data-kicker="Cultura y creación · Artes" data-title="Julia Codesido: la retrospectiva que redescubre a una artista clave del arte peruano moderno" href="https://puntoedu.pucp.edu.pe/vida-universitaria/institucional/julia-codesido-retrospectiva-redescubre-arte-peruano-moderno/"><span class="ctag">Artes</span><h3>Julia Codesido: retrospectiva de una artista clave</h3><span class="prog"><i></i></span></a>
       </div>
     </div>
     <div class="novstrip"><span class="ttl">Conoce las novedades de la PUCP:</span><a class="btn ghost sm" href="#">Ver más noticias ↗</a><a class="btn ghost sm" href="#">Ver agenda PUCP ↗</a></div>
@@ -517,21 +552,21 @@
     <h2 class="t">Una experiencia educativa global</h2>
     <div class="two" style="grid-template-columns:1fr 2fr 1fr;align-items:center;margin-top:20px;">
       <div>
-        <div class="worldstat fill"><span class="num em">+ de 380</span><span class="lbl">Convenios internacionales</span></div>
-        <div class="worldstat" style="margin-top:14px;"><span class="num em">11</span><span class="lbl">Alianzas con universidades Top 100 mundial</span></div>
+        <div class="worldstat fill"><span class="num em">+380&nbsp;</span><span class="lbl">Convenios internacionales</span></div>
+        <div class="worldstat" style="margin-top:14px;"><span class="num em">11 </span><span class="lbl">alianzas con universidades del Top 100 mundial</span></div>
       </div>
       <div class="mapwrap">
         <img class="wmap" src="world-map-dots.svg" alt="Mapa mundial punteado">
-        <span class="rg" style="left:21%;top:27%;">Norteamérica</span>
-        <span class="rg" style="left:32%;top:62%;">Sudamérica</span>
-        <span class="rg" style="left:52%;top:22%;">Europa</span>
-        <span class="rg" style="left:55%;top:50%;">África</span>
-        <span class="rg" style="left:74%;top:30%;">Asia</span>
-        <span class="rg" style="left:85%;top:66%;">Australia</span>
+        <span class="rg" style="left:21%;top:27%;">Norteamérica<span class="tip">+50 convenios</span></span>
+        <span class="rg" style="left:32%;top:62%;">Sudamérica<span class="tip">+90 convenios</span></span>
+        <span class="rg" style="left:52%;top:22%;">Europa<span class="tip">+160 convenios</span></span>
+        <span class="rg" style="left:55%;top:50%;">África<span class="tip">+10 convenios</span></span>
+        <span class="rg" style="left:74%;top:30%;">Asia<span class="tip">+55 convenios</span></span>
+        <span class="rg" style="left:85%;top:66%;">Australia<span class="tip">+15 convenios</span></span>
       </div>
       <div>
-        <div class="worldstat"><span class="num em">60</span><span class="lbl">Países para estudiar fuera</span></div>
-        <div class="worldstat fill" style="margin-top:14px;"><span class="num em">400</span><span class="lbl">Estudiantes extranjeros nos eligen cada año</span></div>
+        <div class="worldstat"><span class="num em">60 </span><span class="lbl">países para vivir una experiencia internacional</span></div>
+        <div class="worldstat fill" style="margin-top:14px;"><span class="num em">400 </span><span class="lbl">estudiantes extranjeros nos eligen cada año</span></div>
       </div>
     </div>
     <div style="text-align:center;margin-top:20px;"><a class="btn" style="background:#fff;color:var(--ink)" href="#">Ver programas ↗</a></div>
@@ -547,10 +582,11 @@
       </div>
       <div>
         <div class="acc">
-          <div class="accrow"><h3>Bienestar estudiantil</h3><p>Encuentra atención médica, apoyo psicológico y servicios pensados para cuidar tu bienestar.</p><span class="ar">↗</span><div class="imgph">Imagen<br>ilustrativa</div></div>
-          <div class="accrow"><h3>Deporte y vida activa</h3><p>Entrena en el gimnasio, únete a las selecciones y a los talleres deportivos para mantenerte activo en el campus.</p><span class="ar">↗</span><div class="imgph">Imagen<br>ilustrativa</div></div>
-          <div class="accrow"><h3>Cultura y comunidad</h3><p>Conecta con el arte, los elencos y el voluntariado que le dan identidad a nuestra comunidad.</p><span class="ar">↗</span><div class="imgph">Imagen<br>ilustrativa</div></div>
+          <div class="accrow"><h3>Bienestar estudiantil</h3><p>Accede a servicios de salud y bienestar para acompañarte durante toda tu vida universitaria.</p><span class="ar">↗</span><div class="imgph">Imagen<br>ilustrativa</div></div>
+          <div class="accrow"><h3>Deporte y vida activa</h3><p>Entrena, compite y mantente activo con nuestros espacios, selecciones y talleres deportivos.</p><span class="ar">↗</span><div class="imgph">Imagen<br>ilustrativa</div></div>
+          <div class="accrow"><h3>Cultura</h3><p>Descubre una comunidad que vive el arte, la cultura y la creatividad.</p><span class="ar">↗</span><div class="imgph">Imagen<br>ilustrativa</div></div>
           <div class="accrow"><h3>Responsabilidad social</h3><p>Súmate a proyectos de voluntariado y RSU que transforman comunidades dentro y fuera del campus.</p><span class="ar">↗</span><div class="imgph">Imagen<br>ilustrativa</div></div>
+          <div class="accrow"><h3>Pastoral y vínculo con la Iglesia</h3><p>Acompañamiento espiritual, celebraciones y comunidades para vivir la fe en el campus.</p><span class="ar">↗</span><div class="imgph">Imagen<br>ilustrativa</div></div>
         </div>
       </div>
     </div>
@@ -561,17 +597,17 @@
     <p class="eyebrow"><span class="dot">▸</span> Investigación, innovación y creación <span class="dot">◂</span></p>
     <h2 class="t">Conocimiento que impulsa la <span class="em">transformación</span></h2>
     <div class="g3" style="margin-top:8px;grid-template-columns:repeat(4,1fr);">
-      <div class="rcard"><div class="imgtop"></div><span class="ar">↗</span><h3>Investigación</h3><p>Generamos conocimiento científico, tecnológico y social que responde a los retos del país.</p></div>
-      <div class="rcard"><div class="imgtop"></div><span class="ar">↗</span><h3>Innovación</h3><p>Convertimos ideas y proyectos en soluciones con impacto real para la sociedad.</p></div>
-      <div class="rcard"><div class="imgtop"></div><span class="ar">↗</span><h3>Creación</h3><p>Producimos obra artística, cultural y de diseño que enriquece la vida del país.</p></div>
-      <div class="rcard"><div class="imgtop"></div><span class="ar">↗</span><h3>Transformar el entorno</h3><p>Convertimos el conocimiento en proyectos que mejoran las comunidades y el ambiente.</p></div>
+      <div class="rcard"><div class="imgtop"></div><span class="ar">↗</span><h3>Investigación</h3><p>Generamos conocimiento científico, tecnológico y social que responde a los retos del país y el mundo.</p></div>
+      <div class="rcard"><div class="imgtop"></div><span class="ar">↗</span><h3>Innovación</h3><p>Conectamos Universidad, empresa y Estado para convertir el conocimiento en innovación.</p></div>
+      <div class="rcard"><div class="imgtop"></div><span class="ar">↗</span><h3>Creación</h3><p>Impulsamos la transformación del arte, la cultura y la sociedad a través de la creación.</p></div>
+      <div class="rcard"><div class="imgtop"></div><span class="ar">↗</span><h3>Transformar el entorno</h3><p>Convertimos el conocimiento en iniciativas que generan un impacto positivo en la sociedad.</p></div>
     </div>
     <div class="invstats">
       <div><h2 class="t l" style="font-size:22px;margin:0;">Ciencia, innovación y pensamiento en acción</h2></div>
       <div class="circstat"><span class="num em">+500</span><span class="lbl">Proyectos científicos y sociales</span></div>
       <div class="circstat fill"><span class="num em">+200</span><span class="lbl">Grupos de investigación</span></div>
       <div class="circstat"><span class="num em">113</span><span class="lbl">Líneas de investigación</span></div>
-      <div class="circstat fill"><span class="num em">+25,000</span><span class="lbl">Estudiantes en proyectos de investigación</span></div>
+      <div class="circstat fill"><span class="num em">+70</span><span class="lbl">Laboratorios</span></div>
     </div>
   </div></section>
 
@@ -580,61 +616,72 @@
     <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;">
       <div>
         <p class="eyebrow l"><span class="dot">▸</span> Orgullo PUCP</p>
-        <h2 class="t l">Historias que inspiran y <span class="em">transforman</span></h2>
+        <h2 class="t l">Historias que lideran el cambio y <span class="em">transforman</span></h2>
       </div>
       <a class="btn" href="#" style="margin-top:8px;">Ver más historias ↗</a>
     </div>
     <div class="ocards">
-      <div class="ostory dark"><span class="ar">↗</span><h3>Líderes que transforman</h3><div class="img"></div><p>Testimonios de innovación, ciencia y compromiso social.</p></div>
-      <div class="ostory"><span class="ar">↗</span><h3>Historias de egresados</h3><p>Trayectorias reales de egresados que destacan en distintos campos.</p><div class="img"></div></div>
+      <div class="ostory dark"><span class="ar">↗</span><h3>Estudiantes</h3><div class="img"></div><p>Proyectos e iniciativas que nacen en las aulas y ya transforman su entorno.</p></div>
+      <div class="ostory"><span class="ar">↗</span><h3>Docentes</h3><div class="img"></div><p>Maestros e investigadores que impulsan la innovación y forman a quienes lideran el cambio.</p></div>
+      <div class="ostory dark"><span class="ar">↗</span><h3>Egresados</h3><div class="img"></div><p>Conoce a los egresados que lideran el cambio desde distintos campos.</p></div>
     </div>
   </div></section>
 
   <!-- RECONOCIMIENTOS / RANKINGS (movido debajo de Orgullo) -->
-  <section data-title="Reconocimientos — Rankings + Talento"><div class="wrap">
-    <p class="eyebrow"><span class="dot">▸</span> Reconocimientos <span class="dot">◂</span></p>
-    <h2 class="t">Lideramos los rankings internacionales</h2>
+  <section data-title="Reconocimientos — Rankings"><div class="wrap">
+    <h2 class="t">Excelencia académica con reconocimiento internacional</h2>
     <div class="g3" style="margin-top:22px;">
-      <div class="rk"><div class="lab">TOP</div><div class="one em">— #1 —</div><div class="ds">Del Perú en QS World University Ranking 2027</div><div class="yr">Año: 2027</div></div>
-      <div class="rk alt"><div class="lab">TOP</div><div class="one em">— #1 —</div><div class="ds">Del Perú en QS World University Rankings: Latin America &amp; The Caribbean 2026</div><div class="yr">Año: 2026</div></div>
-      <div class="rk"><div class="lab">TOP</div><div class="one em">— #1 —</div><div class="ds">Del Perú en QS World University Rankings: Sustainability 2026</div><div class="yr">Año: 2026</div></div>
+      <div class="rk"><div class="lab">TOP</div><div class="one em">— #1 —</div><div class="ds">En el Perú por 14 años consecutivos — QS World University Ranking</div><div class="yr">Año: 2027</div></div>
+      <div class="rk alt"><div class="lab">TOP</div><div class="one em">— #1 —</div><div class="ds">Del Perú — THE University Impact Rankings</div><div class="yr">Año: 2026</div></div>
+      <div class="rk"><div class="lab">TOP</div><div class="one em">— #1 —</div><div class="ds">Del Perú en QS World University Rankings: Sustainability</div><div class="yr">Año: 2026</div></div>
     </div>
-    <div class="talento">
-      <div>
-        <h2 class="t l" style="font-size:24px;margin-bottom:14px;">Impulsamos el talento que lidera</h2>
-        <a class="btn ghost sm" href="#">Ver más Cifras ↗</a>
-      </div>
-      <div class="circstat"><span class="num em">xxx</span><span class="lbl">Programas de posgrado</span></div>
-      <div class="circstat fill"><span class="num em">xxx</span><span class="lbl">Alumnos en puestos reconocidos</span></div>
-      <div class="circstat"><span class="num em">xxx</span><span class="lbl">Egresados en el mundo laboral</span></div>
-    </div>
+    <div style="text-align:center;margin-top:26px;"><a class="btn ghost sm" href="pucp-en-cifras-media.html">Ver más cifras ↗</a></div>
   </div></section>
 
   <!-- CAMPUS VERDE (oscuro) -->
   <section class="darksec" data-title="Campus Verde"><div class="wrap">
-    <p class="eyebrow l"><span class="dot">▸</span> Campus Verde</p>
-    <h2 class="t l">Conoce nuestro campus</h2>
-    <div class="two" style="grid-template-columns:1fr 2fr;align-items:center;">
-      <div>
-        <p class="sub l" style="color:#c6cbd2;">Un ecosistema verde y moderno diseñado para que explores tu potencial, trabajes en equipo y disfrutes cada día de tu vida universitaria.</p>
-        <a class="btn" style="background:#fff;color:var(--ink)" href="#">Visita al campus ↗</a>
+    <p class="eyebrow l"><span class="dot">▸</span> Campus sostenible</p>
+    <h2 class="t l">Espacios que inspiran</h2>
+  </div>
+  <div class="sticky-slider" id="ss-campus">
+    <div class="stage">
+      <div class="anchors">
+        <p class="sub l" style="color:#c6cbd2;">Descubre un campus diseñado para aprender, crear, colaborar y vivir al máximo tu experiencia universitaria.</p>
+        <div class="anchor" data-i="0"><span class="num">167,000 m²</span><span class="lbl">de áreas verdes<span class="bar"><i></i></span></span></div>
+        <div class="anchor" data-i="1"><span class="num">+3,200</span><span class="lbl">árboles en el campus<span class="bar"><i></i></span></span></div>
+        <div class="anchor" data-i="2"><span class="num">7</span><span class="lbl">edificios con certificación LEED<span class="bar"><i></i></span></span></div>
+        <div class="anchor" data-i="3"><span class="num">Vívelo</span><span class="lbl">visitas guiadas al campus<span class="bar"><i></i></span></span></div>
+        <a class="btn" style="background:#fff;color:var(--ink);margin-top:20px;" href="#">Visita al campus ↗</a>
       </div>
-      <div class="g4" style="gap:14px;grid-template-columns:repeat(3,1fr);">
-        <div class="worldstat"><span class="num em">167,000m²</span><span class="lbl">de áreas verdes</span></div>
-        <div class="worldstat fill"><span class="num em">+3,200</span><span class="lbl">árboles</span></div>
-        <div class="worldstat"><span class="lbl" style="font-size:15px;color:#fff;font-weight:600;line-height:1.35;">7 edificios con certificación LEED</span></div>
+      <div class="deck">
+        <div class="slide"><span class="cap">▶ VIDEO REAL: dron sobre los jardines</span><div class="play">▶</div>VIDEO — ÁREAS VERDES<span class="live"><i></i>REPRODUCIENDO</span></div>
+        <div class="slide"><span class="cap">▶ VIDEO REAL: arborización y naturaleza</span><div class="play">▶</div>VIDEO — ÁRBOLES<span class="live"><i></i>REPRODUCIENDO</span></div>
+        <div class="slide"><span class="cap">▶ VIDEO REAL: edificios sostenibles</span><div class="play">▶</div>VIDEO — EDIFICIOS LEED<span class="live"><i></i>REPRODUCIENDO</span></div>
+        <div class="slide"><span class="cap">▶ VIDEO REAL: estudiantes viviendo el campus</span><div class="play">▶</div>VIDEO — VIDA EN EL CAMPUS<span class="live"><i></i>REPRODUCIENDO</span></div>
       </div>
     </div>
-    <div class="ph" style="height:300px;margin-top:24px;background:#23262c;"></div>
-  </div></section>
+  </div>
+  </section>
 
   <!-- COMUNIDAD PUCP -->
-  <section class="darksec" style="background:#3a3140;" data-title="Comunidad PUCP"><div class="wrap">
-    <div class="comgrid">
+  <section class="darksec" style="background:#3a3140;" data-title="Comunidad PUCP + Agenda"><div class="wrap">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;">
+      <div>
+        <p class="eyebrow l"><span class="dot">▸</span> Agenda PUCP</p>
+        <h2 class="t l">Qué se viene en el campus</h2>
+      </div>
+      <a class="btn" style="background:#fff;color:var(--ink);margin-top:8px;" href="#">Ver toda la agenda ↗</a>
+    </div>
+    <div class="agrow">
+      <div class="aev"><div class="ph">FOTO DEL EVENTO<div class="d"><b>12</b><span>jun</span></div></div><div class="inf"><b>Concierto de mediodía — CEMDUC</b>13:00 · Anfiteatro de Derecho · ingreso libre</div></div>
+      <div class="aev"><div class="ph">FOTO DEL EVENTO<div class="d"><b>13</b><span>jun</span></div></div><div class="inf"><b>Feria de iniciativas estudiantiles</b>11:00–16:00 · Jardines de Ciencias</div></div>
+      <div class="aev"><div class="ph">FOTO DEL EVENTO<div class="d"><b>14</b><span>jun</span></div></div><div class="inf"><b>Final Interfacultades: vóley mixto</b>18:00 · Coliseo Polideportivo</div></div>
+    </div>
+    <div class="comgrid" style="margin-top:28px;">
       <div class="circ"></div>
       <div style="text-align:center;">
         <p class="eyebrow"><span class="dot">▸</span> Comunidad PUCP <span class="dot">◂</span></p>
-        <h2 class="t">Descubre, comparte y vive la experiencia PUCP</h2>
+        <h2 class="t" style="font-size:22px;">Descubre, comparte y vive la experiencia PUCP</h2>
         <p style="color:#e3dce8;font-size:14px;margin:0 0 18px;">Síguenos en:</p>
         <div class="soc"><span>in</span><span>X</span><span>f</span><span>▶</span><span>◎</span><span>♫</span><span>♪</span></div>
       </div>
@@ -643,6 +690,12 @@
   </div></section>
 
   </main>
+
+  <!-- BOT Kt-0 (flotante) -->
+  <div class="bot">
+    <div class="bub"><span class="x" onclick="this.parentNode.style.display='none'">✕</span><b>¡Hola! Soy Kt-0</b>, el asistente virtual de la PUCP. Te ayudo a encontrar lo que buscas.</div>
+    <div class="face">Kt-0</div>
+  </div>
 
   <!-- FOOTER -->
   <footer><div class="wrap">
@@ -681,14 +734,14 @@
   </div>
 
   <div class="toolbar">
-    <span class="vswitch"><a href="home-grises.html">Versión 1</a><a class="on" href="home-grises-v2.html">Versión 2</a></span>
+    <!-- Versión 2 oculta a pedido del cliente -->
+    <span class="vswitch" style="display:none;"><a class="on" href="home-grises.html">Versión 1</a><a href="home-grises-v2.html">Versión 2</a></span>
     <button id="btn-anniv" type="button">🎉 110 años: ON</button>
     <button id="btn-edit" type="button">✏️ Editar textos</button>
     <button id="btn-toggle" type="button">💬 Comentarios: ON</button>
     <button id="btn-export" type="button">📋 Copiar comentarios</button>
     <button id="btn-resetorder" type="button">↺ Restablecer</button>
   </div>
-  <a class="wa-btn" href="#" target="_blank" rel="noopener" title="Escríbenos por WhatsApp (número institucional pendiente de confirmar)"><svg viewBox="0 0 32 32"><path d="M16 0C7.163 0 0 7.163 0 16c0 3.14.906 6.067 2.478 8.542L.42 31.58l7.226-2.026C10.02 30.99 12.933 32 16 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm8.94 22.36c-.373 1.055-1.845 1.943-2.958 2.13-.815.135-1.86.19-2.99-.235-.688-.26-1.573-.552-2.712-1.048-4.77-2.11-7.885-7.06-8.12-7.395-.235-.335-1.936-2.62-1.936-5.005 0-2.385 1.216-3.55 1.664-4.03.373-.4.986-.582 1.573-.582.2 0 .393.01.567.02.5.02.75.048 1.08.86.415 1.02 1.4 3.545 1.522 3.8.122.255.203.55.04.885-.155.32-.235.52-.47.797-.24.28-.505.626-.72.84-.24.24-.49.502-.21.98.28.478 1.24 2.05 2.66 3.32 1.83 1.63 3.39 2.14 3.92 2.37.4.174.876.14 1.166-.17.37-.4.83-1.06 1.3-1.71.334-.46.75-.53 1.166-.36.42.17 2.65 1.245 3.106 1.47.457.226.762.336.874.522.113.185.113 1.07-.26 2.125z"/></svg></a>
   <div class="toast" id="toast"></div>
 
 <script>
@@ -738,38 +791,37 @@
     else{document.body.classList.remove('crpad');rail.style.display='none';main.querySelectorAll('section').forEach(function(sec){var t=threads[sec.id];if(!t)return;t.style.top='';t.classList.add('inline');if(t.parentNode!==sec)sec.appendChild(t);});}
   }
   function loadRemote(){fetch(API+'/comments?wf='+WF).then(function(r){return r.json();}).then(function(rows){comments={};rows.forEach(function(c){(comments[c.section]=comments[c.section]||[]).push(c);});Object.keys(threads).forEach(renderThread);applySettingsFromRemote();applyContentFromRemote();layout();}).catch(function(){});}
-  var contentId=null;
-  function applyContentFromRemote(){
-    var rows=comments['__content__']||[]; if(!rows.length)return;
-    var latest=rows.slice().sort(function(a,b){return new Date(b.created_at)-new Date(a.created_at);})[0];
-    contentId=latest.id;
-    try{
-      var c=JSON.parse(latest.body);
-      Object.keys(c).forEach(function(id){
-        savedContent[id]=c[id];
-        var blk=document.getElementById(id);
-        var ed=blk&&blk.querySelector('.editable');
-        if(ed) ed.innerHTML=c[id];
-      });
-    }catch(e){}
-  }
-  function saveContentRemote(){
-    var prev=contentId;
-    fetch(API+'/comments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({wf:WF,section:'__content__',author:'system',body:JSON.stringify(savedContent)})})
-      .then(function(r){return r.json();}).then(function(c){contentId=c.id;if(prev)fetch(API+'/comments/'+prev,{method:'DELETE'}).catch(function(){});})
-      .catch(function(){notify('No se pudo guardar el texto (sin conexión)');});
-  }
   // ids estables en orden original
   Array.prototype.forEach.call(main.querySelectorAll('section'),function(sec,i){ if(!sec.id)sec.id='sec-'+i; });
   // aplica orden guardado
   try{var ord=JSON.parse(localStorage.getItem('home-order-v2'));if(Array.isArray(ord)){ord.forEach(function(id){var s=document.getElementById(id);if(s)main.appendChild(s);});}}catch(e){}
   function saveOrder(){try{localStorage.setItem('home-order-v2',JSON.stringify(Array.prototype.map.call(main.querySelectorAll('section'),function(s){return s.id;})));}catch(e){}}
-  var TXTWF='home-grises-txt', txtId={};
-  var savedContent={};try{savedContent=JSON.parse(localStorage.getItem('home-content'))||{};}catch(e){savedContent={};}
+  // Textos editados: una fila por seccion ('__c_'+id) en la BBDD -> compartido y sin chancarse
+  var savedContent={}, contentIds={};
+  function applyContentFromRemote(){
+    Object.keys(comments).forEach(function(sec){
+      if(sec.indexOf('__c_')!==0) return;
+      var latest=comments[sec].slice().sort(function(a,b){return new Date(b.created_at)-new Date(a.created_at);})[0];
+      var id=sec.slice(4);
+      savedContent[id]=latest.body; contentIds[id]=latest.id;
+    });
+    Object.keys(savedContent).forEach(function(id){
+      var blk=document.getElementById(id), ed=blk&&blk.querySelector('.editable');
+      if(ed) ed.innerHTML=savedContent[id];
+    });
+    // el innerHTML guardado reemplaza el DOM del hero y mata sus listeners -> re-init
+    if(savedContent['sec-0']!=null) initHeroSlider();
+  }
+  function saveContentRemote(id){
+    var prev=contentIds[id];
+    fetch(API+'/comments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({wf:WF,section:'__c_'+id,author:'system',body:savedContent[id]})})
+      .then(function(r){return r.json();}).then(function(c){contentIds[id]=c.id;if(prev)fetch(API+'/comments/'+prev,{method:'DELETE'}).catch(function(){});})
+      .catch(function(){notify('No se pudo guardar el texto (sin conexión)');});
+  }
   function saveContent(blk){
     var ed=blk.querySelector('.editable');if(!ed)return;
-    var body=ed.innerHTML; savedContent[blk.id]=body;
-    saveContentRemote();
+    savedContent[blk.id]=ed.innerHTML;
+    saveContentRemote(blk.id);
     notify('Texto guardado para todos');
   }
   function makeEditable(blk){
@@ -795,17 +847,16 @@
   });
   // footer editable
   var ftr=document.querySelector('footer'); if(ftr){ if(!ftr.id)ftr.id='sec-footer'; makeEditable(ftr); }
-  // los textos editados se guardan en la base de datos y los ve todo el que entre a la pagina
+  // (los textos editados se guardan solo en este navegador; el archivo es la fuente compartida)
   loadRemote();layout();window.addEventListener('resize',layout);window.addEventListener('load',function(){setTimeout(layout,200);});setTimeout(layout,500);
   var btnToggle=document.getElementById('btn-toggle');
   function applyCommentsPref(){document.body.classList.toggle('comments-off',commentsOff);btnToggle.textContent=commentsOff?'💬 Comentarios: OFF':'💬 Comentarios: ON';setTimeout(layout,60);}
   btnToggle.addEventListener('click',function(){commentsOff=!commentsOff;applyCommentsPref();saveSettingsRemote();notify(commentsOff?'Comentarios ocultos para todos':'Comentarios visibles para todos');});
   applyCommentsPref();
   document.getElementById('btn-resetorder').addEventListener('click',function(){
-    if(!confirm('¿Restablecer el orden y los textos editados (para todos) a la versión original?'))return;
+    if(!confirm('¿Restablecer el orden y los textos editados a la versión original (para todos)?'))return;
     localStorage.removeItem('home-order-v2');localStorage.removeItem('home-content');
-    if(contentId){fetch(API+'/comments/'+contentId,{method:'DELETE'}).catch(function(){});}
-    location.reload();
+    Promise.all(Object.keys(contentIds).map(function(id){return fetch(API+'/comments/'+contentIds[id],{method:'DELETE'}).catch(function(){});})).then(function(){location.reload();});
   });
   var btnEdit=document.getElementById('btn-edit');
   btnEdit.addEventListener('click',function(){var on=!document.body.classList.contains('editing');document.body.classList.toggle('editing',on);btnEdit.textContent=on?'✔ Terminar edición':'✏️ Editar textos';document.querySelectorAll('.editable').forEach(function(ed){ed.contentEditable=on?'true':'false';});notify(on?'Haz clic sobre cualquier texto (incluido el menú/header) para editarlo':'Textos guardados');setTimeout(layout,60);});
@@ -824,7 +875,134 @@
   btnAnniv.addEventListener('click',function(){annivOn=!annivOn;applyAnnivPref();saveSettingsRemote();notify(annivOn?'Badge activado para todos':'Badge desactivado para todos');});
   applyAnnivPref();
 
-  // las tarjetas ahora son enlaces reales a cada nota (se abren en pestaña nueva); no cambian el hero
+  // tarjetas del hero = controles del carrusel (hasta 5: Bienvenida + 4 categorías)
+  // al pasar el cursor sobre una tarjeta, cambia el slide; cada tarjeta activa tiene una
+  // barra que se llena y al completarse avanza sola a la siguiente; pausa si el mouse
+  // esta sobre el banner o si se activa manualmente con el boton de pausa.
+  // OJO: si el hero tiene texto guardado en la BBDD, applyContentFromRemote reemplaza
+  // el DOM y mata los listeners -> por eso es una funcion re-invocable (initHeroSlider).
+  function initHeroSlider(){
+    var heroIn=document.querySelector('#hero-slider .in');
+    var heroEl=document.getElementById('hero-slider');
+    var cards=Array.prototype.slice.call(document.querySelectorAll('#hero-cards .ncard'));
+    if(!heroIn||!cards.length||heroEl._bound)return;
+    heroEl._bound=true;
+    function activate(card){
+      cards.forEach(function(c){c.classList.remove('on');});
+      var bar=card.querySelector('.prog i');
+      if(bar){ bar.style.animation='none'; void bar.offsetWidth; bar.style.animation=''; }
+      card.classList.add('on');
+      var kicker=card.dataset.kicker, title=card.dataset.title, href=card.dataset.href||card.getAttribute('href')||'#';
+      var cta=card.dataset.cta||'Leer la nota completa \u2197';
+      // todos los slides llevan boton; en las noticias abre la nota en pestana nueva
+      var ctaHtml='<a class="btn slide-cta" style="background:#fff;color:var(--ink)" href="'+href+'"'+(kicker?' target="_blank" rel="noopener"':'')+'>'+cta+'</a>';
+      heroIn.innerHTML=(kicker?'<p style="color:#fff;opacity:.85;font-size:12px;letter-spacing:2px;text-transform:uppercase;margin:0 0 10px;">'+kicker+'</p>':'')+'<h1>'+title+'</h1>'+ctaHtml;
+    }
+    function goNext(current){
+      var idx=cards.indexOf(current);
+      activate(cards[(idx+1)%cards.length]);
+    }
+    cards.forEach(function(c){
+      c.addEventListener('mouseenter',function(){if(document.body.classList.contains('editing'))return;activate(c);});
+      c.addEventListener('click',function(ev){
+        if(document.body.classList.contains('editing')){ev.preventDefault();return;}
+        // la tarjeta del video no es un enlace: click = mostrar su slide
+        if(!c.getAttribute('href')){ev.preventDefault();activate(c);}
+      });
+      var bar=c.querySelector('.prog i');
+      if(bar){ bar.addEventListener('animationend',function(){ if(c.classList.contains('on'))goNext(c); }); }
+    });
+    var pauseBtn=heroEl.querySelector('.pause');
+    var manualPause=false, hovering=false;
+    function sync(){ document.body.classList.toggle('hero-hold',manualPause||hovering); if(pauseBtn)pauseBtn.textContent=manualPause?'▶':'❚❚'; }
+    if(pauseBtn){ pauseBtn.style.cursor='pointer'; pauseBtn.addEventListener('click',function(ev){ev.stopPropagation();manualPause=!manualPause;sync();}); }
+    heroEl.addEventListener('mouseenter',function(){hovering=true;sync();});
+    heroEl.addEventListener('mouseleave',function(){hovering=false;sync();});
+    activate(cards[0]); // arranca siempre en el slide de bienvenida (video)
+  }
+  initHeroSlider();
+})();
+</script>
+<script>
+// intro inmersiva del campus: zoom fluido con scroll (transform:scale + scrub suavizado)
+(function(){
+  var imm = document.getElementById('imm-campus'), frame = document.getElementById('imm-frame');
+  if(!imm || !frame) return;
+  var msgs = frame.querySelectorAll('.msg');
+  function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+  function ease(t){return t*t*(3-2*t);}
+  var fw, fh, targetScale;
+  function measure(){
+    fw = Math.min(window.innerWidth*.7, 980);
+    fh = fw*9/16;
+    frame.style.width = fw+'px';
+    frame.style.height = fh+'px';
+    targetScale = Math.max(window.innerWidth/fw, window.innerHeight/fh)*1.02;
+  }
+  var p = 0, cur = 0;
+  function onScroll(){
+    var total = imm.offsetHeight - window.innerHeight;
+    if(total <= 0) return;
+    p = clamp(-imm.getBoundingClientRect().top / total, 0, 1);
+  }
+  function apply(t){
+    var grow = ease(clamp(t/.42, 0, 1));
+    var s = 1 + (targetScale-1)*grow;
+    frame.style.transform = 'scale('+s+')';
+    frame.style.borderRadius = (22*(1-grow))/s+'px';
+    if(msgs.length>=3){
+      msgs[0].classList.toggle('on', t > .45 && t < .62);
+      msgs[1].classList.toggle('on', t > .64 && t < .80);
+      msgs[2].classList.toggle('on', t > .82);
+    }
+  }
+  function raf(){
+    cur += (p-cur)*.14;
+    if (Math.abs(p-cur) < .0005) cur = p;
+    apply(cur);
+    requestAnimationFrame(raf);
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', function(){measure();onScroll();});
+  measure(); onScroll(); raf();
+})();
+</script>
+<script>
+// campus opcion 2: cortina de videos atada al scroll + anclas
+(function(){
+  var ss = document.getElementById('ss-campus');
+  if(!ss) return;
+  var slides = ss.querySelectorAll('.slide'), anchors = ss.querySelectorAll('.anchor'), N = slides.length;
+  function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+  var p = 0, cur = 0;
+  function onScroll(){
+    var total = ss.offsetHeight - window.innerHeight;
+    if(total<=0) return;
+    p = clamp(-ss.getBoundingClientRect().top / total, 0, 0.9999);
+  }
+  function apply(t){
+    var pos = t*N, idx = Math.min(N-1, Math.floor(pos));
+    slides.forEach(function(sl,i){
+      sl.style.transform = i===0 ? 'translateY(0)' : 'translateY('+(clamp(i-pos,0,1)*100)+'%)';
+      sl.classList.toggle('playing', i===idx);
+    });
+    var local = pos - idx;
+    anchors.forEach(function(a,i){
+      a.classList.toggle('on', i===idx);
+      var bar = a.querySelector('.bar i');
+      if(bar) bar.style.width = (i<idx?100: i===idx? local*100 : 0)+'%';
+    });
+  }
+  function raf(){ cur += (p-cur)*.16; if(Math.abs(p-cur)<.0005) cur=p; apply(cur); requestAnimationFrame(raf); }
+  anchors.forEach(function(a){
+    a.addEventListener('click', function(){
+      var total = ss.offsetHeight - window.innerHeight;
+      window.scrollTo({top: ss.offsetTop + total*((+a.dataset.i)+0.5)/N, behavior:'smooth'});
+    });
+  });
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll(); raf();
 })();
 </script>
 </body>
