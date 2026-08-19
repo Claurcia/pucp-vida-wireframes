@@ -214,13 +214,22 @@
   @media(max-width:560px){footer .cols{grid-template-columns:1fr;}}
 </style>
 <script src="menu.js?v=20260818b" defer></script>
+<style>
+/* dropdowns del top bar (Postulantes / Vinculación) */
+.tn-dd{position:relative;display:inline-block;}
+.tn-dd .tn-l{cursor:pointer;}
+.tn-dd .dd{display:none;position:absolute;top:100%;left:0;min-width:150px;background:#2b2f36;border:1px solid rgba(255,255,255,.15);border-radius:0 0 10px 10px;padding:6px 0;z-index:120;box-shadow:0 10px 24px rgba(0,0,0,.3);}
+.tn-dd:hover .dd{display:block;}
+.tn-dd .dd a{display:flex;justify-content:space-between;gap:18px;padding:8px 14px;color:#dfe3e8;text-decoration:none;font-size:12.5px;}
+.tn-dd .dd a:hover{color:#fff;background:rgba(255,255,255,.06);}
+</style>
 </head>
 <body>
 
   <!-- header (unificado con home-grises.html) -->
   <header class="site-header">
   <div class="topnav"><div class="wrap">
-    <div class="l"><a href="admision-pregrado-media.html">Postulantes ▾</a><span>Estudiantes</span><span>Profesores</span><span>Administrativos</span><a href="egresados-media.html">Egresados</a><a href="empresas-media.html">Alianza con empresas</a></div>
+    <div class="l"><span class="tn-dd"><a class="tn-l" href="admision-pregrado-media.html">Postulantes ▾</a><span class="dd"><a href="admision-pregrado-media.html">Pregrado <span>↗</span></a><a href="#">Posgrado <span>↗</span></a></span></span><span>Estudiantes</span><span>Profesores</span><span>Administrativos</span><a href="egresados-media.html">Egresados</a><span class="tn-dd"><span class="tn-l">Vinculación ▾</span><span class="dd"><a href="impacto-sociedad-media.html">Sociedad <span>↗</span></a><a href="empresas-media.html">Empresa <span>↗</span></a></span></span></div>
     <div class="r"><span>Intranet y correo</span><span>PAIDEIA</span><span>⠿ Accesos</span><span>🌐 ES</span></div>
   </div></div>
   <div class="logorow"><div class="wrap">

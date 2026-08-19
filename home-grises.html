@@ -82,25 +82,26 @@
   .hero h1{font-family:'Montserrat';font-weight:800;font-size:34px;color:#fff;margin:0 0 18px;text-shadow:0 1px 10px rgba(0,0,0,.5);}
   .hero .edge{position:absolute;inset:0;max-width:1180px;margin:0 auto;padding:0 24px;z-index:2;pointer-events:none;}
   @media(min-width:1101px){ body.crpad .hero .edge{margin-right:344px;} }
-  .hero .pause{position:absolute;right:12px;bottom:118px;pointer-events:auto;width:44px;height:44px;border-radius:50%;background:rgba(0,0,0,.3);color:#fff;display:flex;align-items:center;justify-content:center;}
-  .news3{position:absolute;left:0;right:0;bottom:0;max-width:1180px;margin:0 auto;padding:0 24px 18px;z-index:3;display:flex;flex-wrap:wrap;gap:10px;}
+  .hero .pause{position:absolute;right:12px;bottom:132px;pointer-events:auto;width:44px;height:44px;border-radius:50%;background:rgba(0,0,0,.3);color:#fff;display:flex;align-items:center;justify-content:center;}
+  .news3{position:absolute;left:0;right:0;bottom:0;z-index:3;display:flex;gap:0;background:rgba(10,12,16,.55);backdrop-filter:blur(5px);}
   @media(min-width:1101px){ body.crpad .news3{margin-right:344px;} }
-  .ncard{position:relative;flex:1 1 130px;background:rgba(255,255,255,.92);border-radius:10px;padding:9px 12px;min-height:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;text-align:center;text-decoration:none;color:inherit;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.15);transition:box-shadow .15s,background .15s;}
-  .ncard .prog{position:absolute;left:6px;right:6px;bottom:4px;height:3px;border-radius:2px;background:rgba(0,0,0,.12);overflow:hidden;}
-  .ncard .prog i{display:block;height:100%;width:0%;background:var(--dark);border-radius:2px;}
+  .ncard{position:relative;flex:1 1 0;background:none;border-radius:0;padding:16px 20px 18px;min-height:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:7px;text-align:left;text-decoration:none;color:#fff;cursor:pointer;border-left:1px solid rgba(255,255,255,.25);transition:background .15s;}
+  .ncard .prog{position:absolute;left:0;right:auto;top:0;bottom:auto;width:100%;height:3px;border-radius:0;background:rgba(255,255,255,.18);overflow:hidden;}
+  .ncard .prog i{display:block;height:100%;width:0%;background:#fff;border-radius:0;}
   .ncard.on .prog i{animation:heroprog 6s linear forwards;}
   body.hero-hold .ncard.on .prog i{animation-play-state:paused;}
   @keyframes heroprog{from{width:0%}to{width:100%}}
-  .ncard.vid{flex:0 0 56px;padding:9px 6px;}
-  .ncard:hover{background:#fff;}
-  .ncard::after{content:"\2197";position:absolute;top:5px;right:9px;font-size:13px;font-weight:700;color:var(--ink2);opacity:0;transition:opacity .15s;}
-  .ncard:hover::after{opacity:1;}
+  .ncard.vid{flex:0 0 96px;padding:16px 10px;align-items:center;justify-content:center;border-left:none;gap:5px;}
+  .ncard .vlbl{font-family:'Montserrat';font-weight:600;font-size:12px;color:#fff;}
+  .ncard:hover{background:rgba(255,255,255,.1);}
+  .ncard::after{content:"\2197";font-size:14px;font-weight:700;color:#fff;opacity:0;transition:opacity .15s;}
+  .ncard:hover::after,.ncard.on::after{opacity:.95;}
   .ncard.vid::after{content:none;}
   .hero .btn.slide-cta{text-transform:uppercase;font-size:12px;letter-spacing:1px;font-weight:700;}
-  .ncard.on{background:#fff;box-shadow:0 0 0 2px var(--dark);}
-  .ncard .ctag{display:inline-block;font-family:'Montserrat';font-size:9px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--ink2);background:var(--t2);border-radius:999px;padding:2px 9px;}
-  .ncard h3{font-family:'Montserrat';font-weight:700;font-size:12.5px;margin:0;line-height:1.25;}
-  .ncard .vicon{font-size:15px;line-height:1;color:var(--ink2);}
+  .ncard.on{background:rgba(255,255,255,.08);box-shadow:none;}
+  .ncard .ctag{display:inline-block;font-family:'Montserrat';font-size:9px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:#fff;background:none;border:1px solid rgba(255,255,255,.65);border-radius:999px;padding:3px 11px;}
+  .ncard h3{font-family:'Montserrat';font-weight:600;font-size:13px;margin:0;line-height:1.35;color:#fff;}
+  .ncard .vicon{font-size:18px;line-height:1;color:#fff;}
   .novstrip{max-width:1180px;margin:26px auto 0;padding:18px 24px;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;border-top:1px solid var(--line);}
   .novstrip .ttl{font-family:'Montserrat';font-weight:700;font-size:14px;}
   /* grids */
@@ -179,30 +180,30 @@
   .soc span{width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff;}
   .comgrid{display:grid;grid-template-columns:.8fr 1.4fr .8fr;gap:20px;align-items:center;}
   /* PUCP en el mundo: globo 3D interactivo (ref. seccion de Ligia) */
-  .gw-stats{display:flex;gap:36px;justify-content:center;flex-wrap:wrap;margin:20px 0 6px;}
+  .gw-stats{display:flex;gap:28px;justify-content:center;flex-wrap:wrap;margin:12px 0 2px;}
   .gw-stat{text-align:center;max-width:160px;}
-  .gw-stat b{display:block;font-size:26px;color:#fff;font-weight:400;}
+  .gw-stat b{display:block;font-size:22px;color:#fff;font-weight:400;}
   .gw-stat span{font-family:'Montserrat';font-weight:700;font-size:10px;letter-spacing:.8px;text-transform:uppercase;color:#9aa2ad;}
-  .gw-body{display:grid;grid-template-columns:.95fr 1.05fr;gap:44px;align-items:center;margin-top:16px;}
+  .gw-body{display:grid;grid-template-columns:.9fr 1.1fr;gap:32px;align-items:center;margin-top:8px;}
   .gw-globe{position:relative;display:flex;align-items:center;justify-content:center;}
-  #globeMount{width:100%;max-width:460px;aspect-ratio:1/1;cursor:grab;}
+  #globeMount{width:100%;max-width:350px;aspect-ratio:1/1;cursor:grab;}
   #globeMount:active{cursor:grabbing;}
   #globeMount canvas{display:block;width:100%;height:100%;}
   .gw-hint{position:absolute;bottom:0;left:50%;transform:translateX(-50%);font-family:'Montserrat';font-weight:700;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#8a919c;pointer-events:none;white-space:nowrap;}
   .gw-acc{display:flex;flex-direction:column;}
   .gw-item{border-bottom:1px solid #3a3f47;}
   .gw-item:first-child{border-top:1px solid #3a3f47;}
-  .gw-head{all:unset;box-sizing:border-box;width:100%;display:flex;align-items:center;gap:16px;padding:16px 4px;cursor:pointer;}
+  .gw-head{all:unset;box-sizing:border-box;width:100%;display:flex;align-items:center;gap:14px;padding:11px 4px;cursor:pointer;}
   .gw-head .idx{font-family:'Montserrat';font-weight:700;font-size:11px;color:#8a919c;width:22px;}
-  .gw-head .name{font-family:'Montserrat';font-weight:700;font-size:17px;flex:1;color:#e8eaed;transition:color .25s;}
+  .gw-head .name{font-family:'Montserrat';font-weight:700;font-size:15px;flex:1;color:#e8eaed;transition:color .25s;}
   .gw-head .count{font-size:11px;color:#9aa2ad;}
   .gw-head .chev{width:8px;height:8px;border-right:1.5px solid #9aa2ad;border-bottom:1.5px solid #9aa2ad;transform:rotate(-45deg);transition:transform .3s;margin-left:4px;}
   .gw-item.open .gw-head .chev{transform:rotate(45deg);}
   .gw-item.open .gw-head .name{color:#fff;}
   .gw-panel{max-height:0;overflow:hidden;transition:max-height .45s ease;}
   .gw-panel-inner{padding:0 4px 18px 38px;display:grid;grid-template-columns:1fr 1fr;gap:6px 20px;}
-  .gw-uni{display:flex;align-items:center;gap:10px;padding:9px 0;border-top:1px solid #33383f;}
-  .gw-uni .th{flex:none;width:36px;height:36px;border-radius:10px;background:#3a3f47;border:1px solid #4a5058;display:flex;align-items:center;justify-content:center;font-family:'Montserrat';font-weight:700;color:#e8eaed;font-size:14px;}
+  .gw-uni{display:flex;align-items:center;gap:10px;padding:6px 0;border-top:1px solid #33383f;}
+  .gw-uni .th{flex:none;width:30px;height:30px;border-radius:10px;background:#3a3f47;border:1px solid #4a5058;display:flex;align-items:center;justify-content:center;font-family:'Montserrat';font-weight:700;color:#e8eaed;font-size:14px;}
   .gw-uni .n{display:block;font-size:12.5px;font-weight:500;color:#e8eaed;line-height:1.3;}
   .gw-uni .l{font-size:11px;color:#9aa2ad;}
   .gw-more{padding:8px 0 14px 38px;font-size:11.5px;color:#8a919c;font-style:italic;}
@@ -294,13 +295,22 @@
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="menu.js?v=20260818b" defer></script>
+<style>
+/* dropdowns del top bar (Postulantes / Vinculación) */
+.tn-dd{position:relative;display:inline-block;}
+.tn-dd .tn-l{cursor:pointer;}
+.tn-dd .dd{display:none;position:absolute;top:100%;left:0;min-width:150px;background:#2b2f36;border:1px solid rgba(255,255,255,.15);border-radius:0 0 10px 10px;padding:6px 0;z-index:120;box-shadow:0 10px 24px rgba(0,0,0,.3);}
+.tn-dd:hover .dd{display:block;}
+.tn-dd .dd a{display:flex;justify-content:space-between;gap:18px;padding:8px 14px;color:#dfe3e8;text-decoration:none;font-size:12.5px;}
+.tn-dd .dd a:hover{color:#fff;background:rgba(255,255,255,.06);}
+</style>
 </head>
 <body>
 
   <!-- HEADER -->
   <header class="site-header">
   <div class="topnav"><div class="wrap">
-    <div class="l"><a href="admision-pregrado-media.html">Postulantes ▾</a><span>Estudiantes</span><span>Profesores</span><span>Administrativos</span><a href="egresados-media.html">Egresados</a><a href="empresas-media.html">Alianza con empresas</a></div>
+    <div class="l"><span class="tn-dd"><a class="tn-l" href="admision-pregrado-media.html">Postulantes ▾</a><span class="dd"><a href="admision-pregrado-media.html">Pregrado <span>↗</span></a><a href="#">Posgrado <span>↗</span></a></span></span><span>Estudiantes</span><span>Profesores</span><span>Administrativos</span><a href="egresados-media.html">Egresados</a><span class="tn-dd"><span class="tn-l">Vinculación ▾</span><span class="dd"><a href="impacto-sociedad-media.html">Sociedad <span>↗</span></a><a href="empresas-media.html">Empresa <span>↗</span></a></span></span></div>
     <div class="r"><span>Intranet y correo</span><span>PAIDEIA</span><span>Biblioteca</span><span>⠿ Accesos</span><span>🌐 ES</span></div>
   </div></div>
   <div class="logorow"><div class="wrap">
@@ -532,14 +542,14 @@
   <section style="padding:0;border:none;" data-title="Hero — carrusel comercial">
     <div class="hero" id="hero-slider">
       <div class="in">
-        <h1>Sé grande</h1>
+        <h1>Bienvenido a la PUCP</h1>
         <a class="btn" style="background:#fff;color:var(--ink)" href="#">Descubre la vida universitaria ↗</a>
       </div>
       <div class="edge">
         <div class="pause">❚❚</div>
       </div>
       <div class="news3" id="hero-cards">
-        <div class="ncard vid on" data-title="Sé grande" data-cta="Descubre la vida universitaria ↗" data-href="#"><span class="vicon">▶</span><span class="prog"><i></i></span></div>
+        <div class="ncard vid on" data-title="Bienvenido a la PUCP" data-cta="Descubre la vida universitaria ↗" data-href="#"><span class="vicon">▶</span><span class="vlbl">Video</span><span class="prog"><i></i></span></div>
         <a class="ncard" target="_blank" rel="noopener" data-kicker="Campus y comunidad · Institucional" data-title="Consorcio de Universidades: conmemoramos 30 años de trabajo reflexionando sobre cómo seguir aportando al país" href="https://puntoedu.pucp.edu.pe/vida-universitaria/institucional/consorcio-de-universidades-conmemora-30-aniversario-trabajo/"><span class="ctag">Institucional</span><h3>Consorcio de Universidades: 30 años aportando al país</h3><span class="prog"><i></i></span></a>
         <a class="ncard" target="_blank" rel="noopener" data-kicker="Cultura y creación · Humanidades" data-title="«El alcalde de Zalamea»: obra de Calderón de la Barca se repone después de 40 años en Lima" href="https://puntoedu.pucp.edu.pe/vida-universitaria/alcalde-de-zalamea-obra-de-calderon-de-la-barca-se-repone-en-lima/"><span class="ctag">Letras</span><h3>«El alcalde de Zalamea» regresa a Lima tras 40 años</h3><span class="prog"><i></i></span></a>
         <a class="ncard" target="_blank" rel="noopener" data-kicker="Orgullo PUCP · Ciencias" data-title="NonHuman: Ciencias e Ingeniería PUCP en el top mundial de robótica" data-cta="Explorar Centro de Robótica ↗" href="https://puntoedu.pucp.edu.pe/orgullo-pucp/nonhuman-ciencias-e-ingenieria-pucp-en-el-top-mundial-de-robotica/"><span class="ctag">Ciencias</span><h3>NonHuman: La PUCP entre las mejores del mundo en robótica</h3><span class="prog"><i></i></span></a>
@@ -578,7 +588,7 @@
       </div>
       <div class="gw-acc" id="gw-acc"></div>
     </div>
-    <div style="text-align:center;margin-top:24px;"><a class="btn" style="background:#fff;color:var(--ink)" href="#">Ver programas ↗</a></div>
+    <div style="text-align:center;margin-top:14px;"><a class="btn sm" style="background:#fff;color:var(--ink)" href="#">Ver programas ↗</a></div>
   </div></section>
 
   <!-- VIDA UNIVERSITARIA (acordeón) -->
