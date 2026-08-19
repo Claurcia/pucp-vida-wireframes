@@ -40,3 +40,4 @@ _*.js
 # Sistema
 .DS_Store
 Thumbs.db
+*.stackdump
