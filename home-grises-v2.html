@@ -122,7 +122,24 @@
   .bigcard.tp .ar,.bigcard.top .ar{top:24px;right:24px;}
   .bigcard:not(.tp):not(.top) .ar{bottom:24px;right:24px;}
   /* rankings */
-  .rk{background:var(--bg2);border-radius:200px 200px 12px 12px;padding:34px 22px 26px;text-align:center;}
+  .rk{background:var(--bg2);border-radius:200px 200px 12px 12px;padding:34px 22px 26px;text-align:center;
+      opacity:0;transform:translateY(30px) scale(.9);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.8,.3,1),box-shadow .3s ease;}
+  .rk:nth-child(2){transition-delay:.15s;}
+  .rk:nth-child(3){transition-delay:.3s;}
+  .rk.in{opacity:1;transform:none;}
+  .rk.in:not(.alt){animation:rkmorph 9s ease-in-out 1.2s infinite;}
+  @keyframes rkmorph{
+    0%,100%{border-radius:200px 200px 12px 12px;}
+    50%{border-radius:160px 200px 40px 12px;}
+  }
+  .rk .one{display:inline-block;opacity:0;transform:scale(.5);}
+  .rk.in .one{animation:rkpop .55s cubic-bezier(.2,1.4,.4,1) forwards;}
+  .rk.in:nth-child(1) .one{animation-delay:.35s;}
+  .rk.in:nth-child(2) .one{animation-delay:.5s;}
+  .rk.in:nth-child(3) .one{animation-delay:.65s;}
+  @keyframes rkpop{to{opacity:1;transform:scale(1);}}
+  .rk:hover{transform:translateY(-5px);box-shadow:0 14px 30px rgba(0,0,0,.1);}
+  @media(prefers-reduced-motion:reduce){ .rk,.rk .one{opacity:1;transform:none;animation:none!important;transition:none;} }
   .rk.alt{border-radius:50%;background:#fff;border:1px solid var(--line);aspect-ratio:1;display:flex;flex-direction:column;justify-content:center;}
   .rk .lab{font-family:'Montserrat';font-weight:700;font-size:12px;letter-spacing:1.5px;color:#5b6270;}
   .rk .one{font-size:36px;margin:2px 0 12px;}
@@ -1519,6 +1536,17 @@ body.hdr-open .hdr-burger i:nth-child(3){transform:translateY(-7px) rotate(-45de
     it.addEventListener('mouseenter',act);
     it.addEventListener('click',act);
   });
+})();
+</script>
+<script>
+// rankings: revelado escalonado al entrar en pantalla
+(function(){
+  var rks=document.querySelectorAll('.rk');
+  if(!rks.length||!('IntersectionObserver' in window)){rks.forEach(function(r){r.classList.add('in');});return;}
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{threshold:.35});
+  rks.forEach(function(r){io.observe(r);});
 })();
 </script>
 <script>
