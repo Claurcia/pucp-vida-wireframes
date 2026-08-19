@@ -193,23 +193,15 @@
   .logo-anniv b{font-family:'Montserrat';font-weight:800;font-size:14px;line-height:1;}
   .logo-anniv span{font-family:'Montserrat';font-weight:700;font-size:7px;letter-spacing:.5px;text-transform:uppercase;}
   body.anniv-on .logo-anniv{display:flex;}
-  .anniv-ov{position:fixed;inset:0;z-index:200;background:var(--dark);color:#fff;display:none;flex-direction:column;justify-content:space-between;padding:24px 30px;will-change:transform;}
-  .anniv-ov.open{display:flex;}
-  .ao-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;}
-  .ao-brand{font-family:'Montserrat';font-weight:800;letter-spacing:1px;font-size:15px;color:#fff;}
-  .ao-actions{display:flex;gap:10px;align-items:center;}
-  .ao-web{font-family:'Montserrat';font-weight:700;font-size:12.5px;color:var(--ink);background:#fff;border-radius:24px;padding:10px 18px;text-decoration:none;}
-  .ao-close{font:inherit;font-family:'Montserrat';font-weight:700;font-size:12.5px;color:#fff;background:none;border:1.5px solid rgba(255,255,255,.5);border-radius:24px;padding:10px 18px;cursor:pointer;}
-  .ao-body{text-align:center;max-width:760px;margin:0 auto;}
-  .ao-year{font-family:'Montserrat';font-weight:800;font-size:clamp(90px,17vw,220px);line-height:1;letter-spacing:-4px;}
-  .ao-body h2{font-family:'Montserrat';font-weight:700;font-size:clamp(18px,2.6vw,28px);margin:10px 0 8px;}
-  .ao-body p{color:#c6cbd2;font-size:14.5px;margin:0 auto;max-width:520px;}
-  .ao-video{margin:16px auto 0;max-width:420px;height:110px;border-radius:12px;background:rgba(255,255,255,.12);border:1px dashed rgba(255,255,255,.4);display:none;align-items:center;justify-content:center;font-size:12px;letter-spacing:1px;color:#c6cbd2;}
-  .ao-nav{display:flex;justify-content:center;align-items:center;gap:18px;}
-  .ao-nav button{font:inherit;width:44px;height:44px;border-radius:50%;background:none;border:1.5px solid rgba(255,255,255,.5);color:#fff;font-size:16px;cursor:pointer;}
-  .ao-dots{display:flex;gap:8px;}
-  .ao-dots span{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;}
-  .ao-dots span.on{background:#fff;}
+  .anniv-splash{position:fixed;inset:0;z-index:210;background:#fff;display:none;align-items:center;justify-content:center;overflow:hidden;will-change:transform;}
+  .anniv-splash.open{display:flex;}
+  .as-center{text-align:center;position:relative;z-index:2;}
+  .as-logo{font-family:'Montserrat';font-weight:800;font-size:20px;letter-spacing:3px;color:var(--ink);}
+  .as-year{font-family:'Montserrat';font-weight:800;font-size:clamp(90px,16vw,200px);line-height:1;color:var(--ink);letter-spacing:-4px;}
+  .as-lbl{font-family:'Montserrat';font-weight:700;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--soft);margin-top:6px;}
+  .as-skip{position:absolute;right:26px;bottom:26px;z-index:3;font:inherit;font-family:'Montserrat';font-weight:700;font-size:12.5px;color:#fff;background:var(--ink);border:none;border-radius:24px;padding:12px 20px;cursor:pointer;}
+  .as-confetti i{position:absolute;top:-14px;border-radius:2px;animation:asfall linear forwards;}
+  @keyframes asfall{to{transform:translateY(112vh) rotate(720deg);opacity:.9;}}
   /* bot Kt-0 flotante */
   .bot{position:fixed;right:20px;bottom:88px;z-index:70;display:flex;flex-direction:column;align-items:flex-end;gap:10px;}
   .bot .bub{max-width:250px;background:#fff;border:1px solid var(--line);border-radius:14px 14px 2px 14px;box-shadow:0 10px 24px rgba(0,0,0,.18);padding:12px 14px;font-size:12.5px;color:var(--ink2);position:relative;}
@@ -272,7 +264,7 @@
   @media(max-width:1100px){ #crail{display:none;} }
   @media print{.toolbar,.sec-tools,.toast{display:none!important;}}
 </style>
-<script src="menu.js?v=20260806" defer></script>
+<script src="menu.js?v=20260818" defer></script>
 </head>
 <body>
 
@@ -691,26 +683,15 @@
 
   </main>
 
-  <!-- INTRO 110 AÑOS (overlay fullscreen; se encoge hacia el badge del logo) -->
-  <div class="anniv-ov" id="anniv-ov">
-    <div class="ao-top">
-      <div class="ao-brand">PUCP · 110 AÑOS</div>
-      <div class="ao-actions">
-        <a class="ao-web" href="#" title="Web conmemorativa (URL por definir)">Ir a la web de los 110 años ↗</a>
-        <button class="ao-close" id="ao-close">✕ Cerrar</button>
-      </div>
+  <!-- SPLASH 110 AÑOS (breve, tipo 150.jhu.edu): confeti + contador, auto-cierra hacia el badge -->
+  <div class="anniv-splash" id="anniv-splash">
+    <div class="as-confetti" id="as-confetti"></div>
+    <div class="as-center">
+      <div class="as-logo">PUCP</div>
+      <div class="as-year" id="as-year">1917</div>
+      <div class="as-lbl" id="as-lbl">1917 — 2027</div>
     </div>
-    <div class="ao-body">
-      <div class="ao-year" id="ao-year">1917</div>
-      <h2 id="ao-title"></h2>
-      <p id="ao-text"></p>
-      <div class="ao-video" id="ao-video">▣ VIDEO CONMEMORATIVO 110 AÑOS</div>
-    </div>
-    <div class="ao-nav">
-      <button id="ao-prev" title="Anterior">←</button>
-      <div class="ao-dots" id="ao-dots"></div>
-      <button id="ao-next" title="Siguiente">→</button>
-    </div>
+    <button class="as-skip" id="as-skip">Saltar →</button>
   </div>
 
   <!-- BOT Kt-0 (flotante) -->
@@ -990,72 +971,72 @@
 })();
 </script>
 <script>
-// intro 110 años: timeline al entrar (si annivOn), cierra encogiéndose hacia el badge del logo
+// splash 110 años (breve): confeti + contador 1917->110, auto-cierra encogiendose hacia el badge del logo
 (function(){
-  var ov=document.getElementById('anniv-ov'), mini=document.getElementById('anniv-mini');
-  if(!ov||!mini) return;
-  var HITOS=[
-    {y:1917,t:'Nace la Universidad Católica del Perú',d:'Un 24 de marzo abre sus puertas la primera universidad privada del país.'},
-    {y:1942,t:'Somos Pontificia',d:'La Santa Sede otorga a la Universidad el título de Pontificia.'},
-    {y:2017,t:'Cien años formando personas',d:'La PUCP celebra su centenario consolidada como referente académico del Perú.'},
-    {y:2026,t:'Líder del país',d:'N.º 1 del Perú por 14 años consecutivos en el ranking QS.'},
-    {y:2027,t:'110 años transformando el país',d:'Súmate a la celebración: historias, eventos y memoria de nuestra comunidad.',video:true}
-  ];
-  var yearEl=document.getElementById('ao-year'), titleEl=document.getElementById('ao-title'), textEl=document.getElementById('ao-text'), videoEl=document.getElementById('ao-video'), dotsEl=document.getElementById('ao-dots');
-  var idx=0, curYear=HITOS[0].y, animId=null;
-  HITOS.forEach(function(h,i){var d=document.createElement('span');d.addEventListener('click',function(){go(i);});dotsEl.appendChild(d);});
-  function countTo(target){
-    cancelAnimationFrame(animId);
-    var from=curYear, t0=null, dur=600;
-    function step(ts){
-      if(!t0)t0=ts;
-      var k=Math.min(1,(ts-t0)/dur); k=k*k*(3-2*k);
-      curYear=Math.round(from+(target-from)*k);
-      yearEl.textContent=curYear;
-      if(k<1)animId=requestAnimationFrame(step);
+  var sp=document.getElementById('anniv-splash'), mini=document.getElementById('anniv-mini');
+  if(!sp||!mini) return;
+  var yearEl=document.getElementById('as-year'), lblEl=document.getElementById('as-lbl'), conf=document.getElementById('as-confetti');
+  var COLORS=['#2b2f36','#6b7280','#9aa2ad','#d5d9df','#c8a438'];
+  var timers=[], running=false;
+  function clearTimers(){timers.forEach(clearTimeout);timers=[];}
+  function confetti(){
+    conf.innerHTML='';
+    for(var k=0;k<80;k++){
+      var i=document.createElement('i'), sz=(4+Math.random()*8).toFixed(0);
+      i.style.left=(Math.random()*100)+'vw';
+      i.style.width=sz+'px'; i.style.height=(sz*(0.6+Math.random()*0.8)).toFixed(0)+'px';
+      i.style.background=COLORS[k%COLORS.length];
+      i.style.animationDuration=(1.1+Math.random()*1.1)+'s';
+      i.style.animationDelay=(Math.random()*0.5)+'s';
+      i.style.opacity=(0.5+Math.random()*0.5).toFixed(2);
+      conf.appendChild(i);
     }
-    animId=requestAnimationFrame(step);
   }
-  function go(i){
-    idx=(i+HITOS.length)%HITOS.length;
-    var h=HITOS[idx];
-    countTo(h.y);
-    titleEl.textContent=h.t; textEl.textContent=h.d;
-    videoEl.style.display=h.video?'flex':'none';
-    Array.prototype.forEach.call(dotsEl.children,function(d,j){d.classList.toggle('on',j===idx);});
-  }
-  document.getElementById('ao-prev').addEventListener('click',function(){go(idx-1);});
-  document.getElementById('ao-next').addEventListener('click',function(){go(idx+1);});
   function badgeTransform(){
     var r=mini.getBoundingClientRect();
-    var sx=r.width/window.innerWidth;
-    return 'translate('+r.left+'px,'+r.top+'px) scale('+sx+')';
+    return 'translate('+r.left+'px,'+r.top+'px) scale('+(r.width/window.innerWidth)+')';
   }
-  function openOv(animate){
-    ov.classList.add('open'); go(0);
-    if(animate!==false){
-      ov.style.transformOrigin='0 0'; ov.style.transition='none'; ov.style.transform=badgeTransform(); ov.style.opacity='.3';
-      void ov.offsetWidth;
-      ov.style.transition='transform .55s cubic-bezier(.4,0,.2,1),opacity .55s'; ov.style.transform='none'; ov.style.opacity='1';
+  function close(){
+    if(!sp.classList.contains('open'))return;
+    clearTimers(); running=false;
+    sp.style.transformOrigin='0 0';
+    sp.style.transition='transform .5s cubic-bezier(.4,0,.2,1),opacity .5s';
+    sp.style.transform=badgeTransform(); sp.style.opacity='0';
+    timers.push(setTimeout(function(){sp.classList.remove('open');sp.style.transform='';sp.style.opacity='';sp.style.transition='';},520));
+  }
+  function open(){
+    if(running)return; running=true;
+    clearTimers();
+    sp.style.transform='';sp.style.opacity='';sp.style.transition='';
+    sp.classList.add('open');
+    confetti();
+    yearEl.textContent='1917'; lblEl.textContent='1917 — 2027';
+    // contador 1917 -> 2027 (~1.1s) y remate en "110 años"
+    var t0=null;
+    function step(ts){
+      if(!t0)t0=ts;
+      var k=Math.min(1,(ts-t0)/1100); k=k*k*(3-2*k);
+      yearEl.textContent=Math.round(1917+(2027-1917)*k);
+      if(k<1&&running)requestAnimationFrame(step);
+      else if(running){
+        yearEl.textContent='110';
+        lblEl.textContent='años · 1917 — 2027';
+        timers.push(setTimeout(close,900)); // total ~2s y desaparece solo
+      }
     }
+    requestAnimationFrame(step);
   }
-  function closeOv(){
-    ov.style.transformOrigin='0 0';
-    ov.style.transition='transform .55s cubic-bezier(.4,0,.2,1),opacity .55s';
-    ov.style.transform=badgeTransform(); ov.style.opacity='0';
-    setTimeout(function(){ov.classList.remove('open');ov.style.transform='';ov.style.opacity='';ov.style.transition='';},580);
-  }
-  document.getElementById('ao-close').addEventListener('click',closeOv);
-  mini.addEventListener('click',function(){openOv(true);});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('open'))closeOv();});
-  // auto-apertura al entrar (respeta el toggle 110 años del wireframe; si luego llega OFF de la BBDD, se cierra)
+  window.openAnnivSplash=open;
+  document.getElementById('as-skip').addEventListener('click',close);
+  mini.addEventListener('click',open);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+  // auto-apertura al entrar (respeta el toggle 110 años); tambien via #110 (item del menu desde otras paginas)
   var autoDone=false;
   setTimeout(function(){
-    if(document.body.classList.contains('anniv-on')&&!autoDone){autoDone=true;openOv(false);}
-  },700);
-  var obs=new MutationObserver(function(){
-    if(!document.body.classList.contains('anniv-on')&&ov.classList.contains('open'))closeOv();
-  });
+    if(location.hash==='#110'){autoDone=true;open();return;}
+    if(document.body.classList.contains('anniv-on')&&!autoDone){autoDone=true;open();}
+  },600);
+  var obs=new MutationObserver(function(){ if(!document.body.classList.contains('anniv-on'))close(); });
   obs.observe(document.body,{attributes:true,attributeFilter:['class']});
 })();
 </script>
