@@ -179,6 +179,14 @@
   .soc{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
   .soc span{width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff;}
   .comgrid{display:grid;grid-template-columns:.8fr 1.4fr .8fr;gap:20px;align-items:center;}
+  /* investigacion: banda horizontal de cifras con divisores */
+  .ivband{display:flex;align-items:center;background:var(--dark);color:#fff;border-radius:16px;padding:26px 34px;margin-top:26px;flex-wrap:wrap;gap:14px 0;}
+  .ivband h3{font-family:'Montserrat';font-weight:700;font-size:17px;line-height:1.3;margin:0 30px 0 0;flex:0 0 auto;max-width:230px;}
+  .ivband .c{flex:1;min-width:130px;text-align:center;padding:0 16px;}
+  .ivband .c b{display:block;font-size:27px;font-weight:400;color:#fff;}
+  .ivband .c span{font-size:11.5px;color:#c6cbd2;line-height:1.35;display:inline-block;}
+  .ivband .sep{width:1px;align-self:stretch;background:rgba(255,255,255,.35);}
+  @media(max-width:900px){ .ivband h3{max-width:none;margin:0 0 8px;flex-basis:100%;} .ivband .sep{display:none;} .ivband .c{flex:1 1 40%;padding:8px;} }
   /* investigacion: cards con foto calada que se agrandan ligeramente al hover */
   .iv4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:8px;}
   .iv-card{position:relative;border-radius:16px;background:var(--t2);padding:22px 20px 0;min-height:380px;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;transition:transform .35s ease,background .35s ease,box-shadow .35s ease;}
@@ -746,12 +754,15 @@ body.hdr-open .hdr-burger i:nth-child(3){transform:translateY(-7px) rotate(-45de
       <div class="iv-card"><h3>Creación</h3><p>Impulsamos la transformación del arte, la cultura y la sociedad a través de la creación.</p><span class="of-ar">↗</span><span class="shp"></span><svg class="sil" viewBox="0 0 120 140"><use href="#vu-sil"/></svg><span class="of-note">▣ foto calada real</span></div>
       <div class="iv-card"><h3>Transformar el entorno</h3><p>Convertimos el conocimiento en iniciativas que generan un impacto positivo en la sociedad.</p><span class="of-ar">↗</span><span class="shp"></span><svg class="sil" viewBox="0 0 120 140"><use href="#vu-sil"/></svg><span class="of-note">▣ foto calada real</span></div>
     </div>
-    <div class="invstats">
-      <div><h2 class="t l" style="font-size:22px;margin:0;">Ciencia, innovación y pensamiento en acción</h2></div>
-      <div class="circstat"><span class="num em">+500</span><span class="lbl">Proyectos científicos y sociales</span></div>
-      <div class="circstat fill"><span class="num em">+200</span><span class="lbl">Grupos de investigación</span></div>
-      <div class="circstat"><span class="num em">113</span><span class="lbl">Líneas de investigación</span></div>
-      <div class="circstat fill"><span class="num em">+70</span><span class="lbl">Laboratorios</span></div>
+    <div class="ivband">
+      <h3>Ciencia, cultura y<br>pensamiento en acción</h3>
+      <div class="c"><b class="em">+500</b><span>Proyectos científicos y sociales</span></div>
+      <div class="sep"></div>
+      <div class="c"><b class="em">+200</b><span>Grupos de investigación</span></div>
+      <div class="sep"></div>
+      <div class="c"><b class="em">113</b><span>Líneas de investigación</span></div>
+      <div class="sep"></div>
+      <div class="c"><b class="em">+70</b><span>Laboratorios</span></div>
     </div>
   </div></section>
 
