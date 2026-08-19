@@ -178,6 +178,35 @@
   .soc{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
   .soc span{width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff;}
   .comgrid{display:grid;grid-template-columns:.8fr 1.4fr .8fr;gap:20px;align-items:center;}
+  /* PUCP en el mundo: globo 3D interactivo (ref. seccion de Ligia) */
+  .gw-stats{display:flex;gap:36px;justify-content:center;flex-wrap:wrap;margin:20px 0 6px;}
+  .gw-stat{text-align:center;max-width:160px;}
+  .gw-stat b{display:block;font-size:26px;color:#fff;font-weight:400;}
+  .gw-stat span{font-family:'Montserrat';font-weight:700;font-size:10px;letter-spacing:.8px;text-transform:uppercase;color:#9aa2ad;}
+  .gw-body{display:grid;grid-template-columns:.95fr 1.05fr;gap:44px;align-items:center;margin-top:16px;}
+  .gw-globe{position:relative;display:flex;align-items:center;justify-content:center;}
+  #globeMount{width:100%;max-width:460px;aspect-ratio:1/1;cursor:grab;}
+  #globeMount:active{cursor:grabbing;}
+  #globeMount canvas{display:block;width:100%;height:100%;}
+  .gw-hint{position:absolute;bottom:0;left:50%;transform:translateX(-50%);font-family:'Montserrat';font-weight:700;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#8a919c;pointer-events:none;white-space:nowrap;}
+  .gw-acc{display:flex;flex-direction:column;}
+  .gw-item{border-bottom:1px solid #3a3f47;}
+  .gw-item:first-child{border-top:1px solid #3a3f47;}
+  .gw-head{all:unset;box-sizing:border-box;width:100%;display:flex;align-items:center;gap:16px;padding:16px 4px;cursor:pointer;}
+  .gw-head .idx{font-family:'Montserrat';font-weight:700;font-size:11px;color:#8a919c;width:22px;}
+  .gw-head .name{font-family:'Montserrat';font-weight:700;font-size:17px;flex:1;color:#e8eaed;transition:color .25s;}
+  .gw-head .count{font-size:11px;color:#9aa2ad;}
+  .gw-head .chev{width:8px;height:8px;border-right:1.5px solid #9aa2ad;border-bottom:1.5px solid #9aa2ad;transform:rotate(-45deg);transition:transform .3s;margin-left:4px;}
+  .gw-item.open .gw-head .chev{transform:rotate(45deg);}
+  .gw-item.open .gw-head .name{color:#fff;}
+  .gw-panel{max-height:0;overflow:hidden;transition:max-height .45s ease;}
+  .gw-panel-inner{padding:0 4px 18px 38px;display:grid;grid-template-columns:1fr 1fr;gap:6px 20px;}
+  .gw-uni{display:flex;align-items:center;gap:10px;padding:9px 0;border-top:1px solid #33383f;}
+  .gw-uni .th{flex:none;width:36px;height:36px;border-radius:10px;background:#3a3f47;border:1px solid #4a5058;display:flex;align-items:center;justify-content:center;font-family:'Montserrat';font-weight:700;color:#e8eaed;font-size:14px;}
+  .gw-uni .n{display:block;font-size:12.5px;font-weight:500;color:#e8eaed;line-height:1.3;}
+  .gw-uni .l{font-size:11px;color:#9aa2ad;}
+  .gw-more{padding:8px 0 14px 38px;font-size:11.5px;color:#8a919c;font-style:italic;}
+  @media(max-width:900px){ .gw-body{grid-template-columns:1fr;gap:24px;} .gw-panel-inner{grid-template-columns:1fr;} }
   /* intro inmersiva del campus (Campus sostenible): el video crece con el scroll hasta cubrir la pantalla */
   .immersive{height:260vh;position:relative;margin-top:24px;}
   .immersive .stage{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;}
@@ -286,6 +315,7 @@
   @media(max-width:1100px){ #crail{display:none;} }
   @media print{.toolbar,.sec-tools,.toast{display:none!important;}}
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="menu.js?v=20260818b" defer></script>
 </head>
 <body>
@@ -558,26 +588,21 @@
   <section class="darksec" data-title="PUCP en el mundo"><div class="wrap">
     <p class="eyebrow"><span class="dot">▸</span> PUCP en el mundo <span class="dot">◂</span></p>
     <h2 class="t">Una experiencia educativa global</h2>
-    <div class="two" style="grid-template-columns:1fr 2fr 1fr;align-items:center;margin-top:20px;">
-      <div>
-        <div class="worldstat fill"><span class="num em">+380&nbsp;</span><span class="lbl">Convenios internacionales</span></div>
-        <div class="worldstat" style="margin-top:14px;"><span class="num em">11 </span><span class="lbl">alianzas con universidades del Top 100 mundial</span></div>
-      </div>
-      <div class="mapwrap">
-        <img class="wmap" src="world-map-dots.svg" alt="Mapa mundial punteado">
-        <span class="rg" style="left:21%;top:27%;">Norteamérica<span class="tip">+50 convenios</span></span>
-        <span class="rg" style="left:32%;top:62%;">Sudamérica<span class="tip">+90 convenios</span></span>
-        <span class="rg" style="left:52%;top:22%;">Europa<span class="tip">+160 convenios</span></span>
-        <span class="rg" style="left:55%;top:50%;">África<span class="tip">+10 convenios</span></span>
-        <span class="rg" style="left:74%;top:30%;">Asia<span class="tip">+55 convenios</span></span>
-        <span class="rg" style="left:85%;top:66%;">Australia<span class="tip">+15 convenios</span></span>
-      </div>
-      <div>
-        <div class="worldstat"><span class="num em">60 </span><span class="lbl">países para vivir una experiencia internacional</span></div>
-        <div class="worldstat fill" style="margin-top:14px;"><span class="num em">400 </span><span class="lbl">estudiantes extranjeros nos eligen cada año</span></div>
-      </div>
+    <p class="sub" style="text-align:center;max-width:640px;margin:0 auto;color:#c6cbd2;">Desde Perú hacia los cinco continentes: nuestros estudiantes y docentes viajan a instituciones líderes del mundo — y recibimos delegaciones de esas mismas regiones.</p>
+    <div class="gw-stats">
+      <div class="gw-stat"><b class="em">+380</b><span>convenios internacionales</span></div>
+      <div class="gw-stat"><b class="em">11</b><span>alianzas Top 100 mundial</span></div>
+      <div class="gw-stat"><b class="em">60</b><span>países para tu intercambio</span></div>
+      <div class="gw-stat"><b class="em">400</b><span>estudiantes extranjeros al año</span></div>
     </div>
-    <div style="text-align:center;margin-top:20px;"><a class="btn" style="background:#fff;color:var(--ink)" href="#">Ver programas ↗</a></div>
+    <div class="gw-body">
+      <div class="gw-globe">
+        <div id="globeMount"></div>
+        <div class="gw-hint">Arrastra para girar · elige un continente</div>
+      </div>
+      <div class="gw-acc" id="gw-acc"></div>
+    </div>
+    <div style="text-align:center;margin-top:24px;"><a class="btn" style="background:#fff;color:var(--ink)" href="#">Ver programas ↗</a></div>
   </div></section>
 
   <!-- VIDA UNIVERSITARIA (acordeón) -->
@@ -1054,6 +1079,220 @@
   },600);
   var obs=new MutationObserver(function(){ if(!document.body.classList.contains('anniv-on'))close(); });
   obs.observe(document.body,{attributes:true,attributeFilter:['class']});
+})();
+</script>
+<script>
+// PUCP en el mundo: globo 3D (ref. seccion de Ligia) — arcos Lima->continente con avion,
+// acordeon que gira el globo al continente elegido, arrastre y rotacion automatica
+(function(){
+  var mount=document.getElementById('globeMount'), acc=document.getElementById('gw-acc');
+  if(!mount||!acc||typeof THREE==='undefined') return;
+
+  var DATA=[
+    {key:'europa',label:'Europa',total:158,unis:[
+      {name:'Sciences Po Paris',loc:'París, Francia',lat:48.85,lon:2.35},
+      {name:'Freie Universität Berlin',loc:'Berlín, Alemania',lat:52.52,lon:13.40},
+      {name:'Universidad Autónoma de Madrid',loc:'Madrid, España',lat:40.42,lon:-3.70},
+      {name:'Politecnico di Milano',loc:'Milán, Italia',lat:45.46,lon:9.19},
+      {name:'ETH Zürich',loc:'Zúrich, Suiza',lat:47.38,lon:8.55},
+      {name:'Jagiellonian University',loc:'Cracovia, Polonia',lat:50.06,lon:19.94}]},
+    {key:'sudamerica',label:'Sudamérica',total:67,unis:[
+      {name:'Pontificia Universidad Católica de Chile',loc:'Santiago, Chile',lat:-33.45,lon:-70.66},
+      {name:'Universidade de São Paulo',loc:'São Paulo, Brasil',lat:-23.56,lon:-46.73},
+      {name:'Pontificia Universidad Javeriana',loc:'Bogotá, Colombia',lat:4.71,lon:-74.07},
+      {name:'Universidad de Belgrano',loc:'Buenos Aires, Argentina',lat:-34.60,lon:-58.38}]},
+    {key:'norteamerica',label:'Norte y Centro América',total:35,unis:[
+      {name:'UNAM',loc:'Ciudad de México, México',lat:19.43,lon:-99.13},
+      {name:'TEC de Monterrey',loc:'Monterrey, México',lat:25.65,lon:-100.29},
+      {name:'University of Texas at Austin',loc:'Austin, Estados Unidos',lat:30.27,lon:-97.74},
+      {name:'Université de Montréal',loc:'Montreal, Canadá',lat:45.50,lon:-73.61}]},
+    {key:'asia',label:'Asia',total:16,unis:[
+      {name:'Osaka University',loc:'Osaka, Japón',lat:34.69,lon:135.50},
+      {name:'Fudan University',loc:'Shanghái, China',lat:31.23,lon:121.47},
+      {name:'Dankook University',loc:'Seúl, Corea del Sur',lat:37.57,lon:126.98},
+      {name:'Taiwan Tech',loc:'Taipéi, Taiwán',lat:25.03,lon:121.57}]},
+    {key:'oceania',label:'Oceanía',total:3,unis:[
+      {name:'Australian National University',loc:'Canberra, Australia',lat:-35.28,lon:149.13},
+      {name:'University of Technology Sydney',loc:'Sídney, Australia',lat:-33.87,lon:151.21},
+      {name:'University of Melbourne',loc:'Melbourne, Australia',lat:-37.80,lon:144.96}]}
+  ];
+  var PERU={lat:-12.05,lon:-77.04};
+  var OUTLINES={
+    america:[[70,-165],[60,-140],[50,-125],[30,-115],[15,-95],[5,-78],[-5,-81],[-18,-70],[-33,-72],[-45,-73],[-55,-70],[-52,-65],[-40,-62],[-23,-43],[-5,-35],[5,-52],[10,-61],[18,-88],[25,-97],[30,-81],[35,-76],[41,-71],[47,-60],[60,-65],[70,-95],[70,-140]],
+    europa:[[71,25],[60,30],[55,40],[45,40],[36,23],[38,-9],[43,-8],[51,-5],[58,5],[63,10]],
+    africa:[[37,10],[31,32],[12,43],[-1,42],[-26,33],[-34,20],[-17,12],[2,9],[15,-17],[35,-6]],
+    asia:[[77,105],[66,170],[55,160],[45,140],[35,140],[23,120],[10,105],[1,104],[8,80],[24,68],[30,48],[41,29],[45,40],[55,60],[70,60],[77,80]],
+    oceania:[[-10,142],[-17,146],[-28,153],[-38,145],[-35,138],[-32,115],[-22,114],[-14,126],[-11,132]]
+  };
+
+  function proj(lat,lon,w,h){return {x:(lon+180)/360*w,y:(90-lat)/180*h};}
+  function toV3(lat,lon,r){
+    var phi=(90-lat)*Math.PI/180, theta=(lon+180)*Math.PI/180;
+    return new THREE.Vector3(-r*Math.sin(phi)*Math.cos(theta), r*Math.cos(phi), r*Math.sin(phi)*Math.sin(theta));
+  }
+  function smoothPoly(ctx,pts){
+    var n=pts.length, mid=function(a,b){return {x:(a.x+b.x)/2,y:(a.y+b.y)/2};};
+    var m0=mid(pts[n-1],pts[0]); ctx.moveTo(m0.x,m0.y);
+    for(var i=0;i<n;i++){var nx=pts[(i+1)%n], mi=mid(pts[i],nx); ctx.quadraticCurveTo(pts[i].x,pts[i].y,mi.x,mi.y);}
+  }
+  function earthCanvas(){
+    var w=2048,h=1024,c=document.createElement('canvas');c.width=w;c.height=h;
+    var ctx=c.getContext('2d');ctx.lineJoin='round';ctx.lineCap='round';
+    var g=ctx.createLinearGradient(0,0,0,h);g.addColorStop(0,'#23262c');g.addColorStop(1,'#2b2f36');
+    ctx.fillStyle=g;ctx.fillRect(0,0,w,h);
+    ctx.strokeStyle='rgba(255,255,255,0.05)';ctx.lineWidth=1.2;
+    for(var lon=-180;lon<=180;lon+=30){var p1=proj(90,lon,w,h),p2=proj(-90,lon,w,h);ctx.beginPath();ctx.moveTo(p1.x,p1.y);ctx.lineTo(p2.x,p2.y);ctx.stroke();}
+    for(var lat=-60;lat<=60;lat+=30){var q1=proj(lat,-180,w,h),q2=proj(lat,180,w,h);ctx.beginPath();ctx.moveTo(q1.x,q1.y);ctx.lineTo(q2.x,q2.y);ctx.stroke();}
+    Object.keys(OUTLINES).forEach(function(k){
+      var pts=OUTLINES[k].map(function(ll){return proj(ll[0],ll[1],w,h);});
+      ctx.beginPath();smoothPoly(ctx,pts);ctx.closePath();ctx.fillStyle='#454b54';ctx.fill();
+      ctx.beginPath();smoothPoly(ctx,pts);ctx.closePath();ctx.strokeStyle='rgba(255,255,255,0.14)';ctx.lineWidth=9;ctx.stroke();
+      ctx.beginPath();smoothPoly(ctx,pts);ctx.closePath();ctx.strokeStyle='#cfd4da';ctx.lineWidth=2.2;ctx.stroke();
+    });
+    return c;
+  }
+  function haloTex(){
+    var c=document.createElement('canvas');c.width=64;c.height=64;var ctx=c.getContext('2d');
+    var g=ctx.createRadialGradient(32,32,0,32,32,32);
+    g.addColorStop(0,'rgba(255,255,255,0.95)');g.addColorStop(1,'rgba(255,255,255,0)');
+    ctx.fillStyle=g;ctx.fillRect(0,0,64,64);return new THREE.CanvasTexture(c);
+  }
+  function planeTex(){
+    var c=document.createElement('canvas');c.width=64;c.height=64;var ctx=c.getContext('2d');
+    ctx.translate(32,32);ctx.rotate(Math.PI/4);ctx.fillStyle='#fff';ctx.beginPath();
+    ctx.moveTo(0,-20);ctx.lineTo(6,-4);ctx.lineTo(20,2);ctx.lineTo(20,7);ctx.lineTo(6,4);ctx.lineTo(4,18);ctx.lineTo(9,22);ctx.lineTo(9,26);ctx.lineTo(0,23);ctx.lineTo(-9,26);ctx.lineTo(-9,22);ctx.lineTo(-4,18);ctx.lineTo(-6,4);ctx.lineTo(-20,7);ctx.lineTo(-20,2);ctx.lineTo(-6,-4);
+    ctx.closePath();ctx.fill();return new THREE.CanvasTexture(c);
+  }
+
+  var R=1;
+  var scene=new THREE.Scene();
+  var camera=new THREE.PerspectiveCamera(38,1,0.1,100);
+  camera.position.set(0,0,3.65);camera.lookAt(0,0,0);
+  var renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
+  mount.appendChild(renderer.domElement);
+  var globe=new THREE.Group();scene.add(globe);
+  var tex=new THREE.CanvasTexture(earthCanvas());
+  tex.anisotropy=renderer.capabilities.getMaxAnisotropy();
+  globe.add(new THREE.Mesh(new THREE.SphereGeometry(R,64,64), new THREE.MeshPhongMaterial({map:tex,shininess:8,specular:0x555c66})));
+  globe.add(new THREE.Mesh(new THREE.SphereGeometry(R*1.035,48,48), new THREE.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:0.05,side:THREE.BackSide})));
+  scene.add(new THREE.AmbientLight(0xffffff,0.85));
+  var dl=new THREE.DirectionalLight(0xffffff,0.55);dl.position.set(2,1.5,2);scene.add(dl);
+
+  var hTex=haloTex(), pTex=planeTex();
+  var IDLE=0x8a919c, ACTIVE=0xffffff, reg={}, activeKey=null, planeT=0, pulse=0;
+
+  var peruPos=toV3(PERU.lat,PERU.lon,R*1.006);
+  var peruM=new THREE.Mesh(new THREE.SphereGeometry(0.028,14,14),new THREE.MeshBasicMaterial({color:ACTIVE}));
+  peruM.position.copy(peruPos);globe.add(peruM);
+  var peruH=new THREE.Sprite(new THREE.SpriteMaterial({map:hTex,color:ACTIVE,transparent:true,depthWrite:false,opacity:0.7}));
+  peruH.position.copy(peruPos);peruH.scale.set(0.16,0.16,0.16);globe.add(peruH);
+
+  DATA.forEach(function(c,ci){
+    var markers=[],halos=[],positions=[];
+    c.unis.forEach(function(u,ui){
+      var pos=toV3(u.lat,u.lon,R*1.004);
+      var m=new THREE.Mesh(new THREE.SphereGeometry(0.014,10,10),new THREE.MeshBasicMaterial({color:IDLE}));
+      m.position.copy(pos);m.userData.phase=ci*0.6+ui*0.22;globe.add(m);markers.push(m);
+      var hh=new THREE.Sprite(new THREE.SpriteMaterial({map:hTex,color:ACTIVE,transparent:true,depthWrite:false,opacity:0.5}));
+      hh.position.copy(pos);hh.scale.set(0.001,0.001,0.001);hh.userData.phase=m.userData.phase;globe.add(hh);halos.push(hh);
+      positions.push(pos);
+    });
+    var cx=0,cy=0,cz=0;positions.forEach(function(p){cx+=p.x;cy+=p.y;cz+=p.z;});
+    var center=new THREE.Vector3(cx/positions.length,cy/positions.length,cz/positions.length).normalize().multiplyScalar(R*1.004);
+    var mid=peruPos.clone().add(center).multiplyScalar(0.5).normalize().multiplyScalar(R*1.55);
+    var curve=new THREE.QuadraticBezierCurve3(peruPos,mid,center);
+    var arc=new THREE.Line(new THREE.BufferGeometry().setFromPoints(curve.getPoints(80)),
+      new THREE.LineDashedMaterial({color:0xffffff,transparent:true,opacity:0.12,dashSize:0.022,gapSize:0.016}));
+    arc.computeLineDistances();globe.add(arc);
+    var plane=new THREE.Sprite(new THREE.SpriteMaterial({map:pTex,color:0xffffff,transparent:true,depthWrite:false}));
+    plane.scale.set(0.05,0.05,0.05);plane.visible=false;globe.add(plane);
+    reg[c.key]={markers:markers,halos:halos,arcMat:arc.material,curve:curve,plane:plane,center:center.clone()};
+  });
+
+  var autoRotate=true,isDragging=false,lastX=0,tweening=false,twStart=0,twTarget=0,twT0=0,resumeAt=0;
+  function shortest(from,to){var d=(to-from)%(Math.PI*2);if(d<-Math.PI)d+=Math.PI*2;if(d>Math.PI)d-=Math.PI*2;return from+d;}
+  function focusOn(key){
+    var e=reg[key];if(!e)return;
+    twStart=globe.rotation.y;
+    twTarget=shortest(twStart,Math.atan2(-e.center.x,e.center.z));
+    twT0=performance.now();tweening=true;
+  }
+  mount.addEventListener('pointerdown',function(e){isDragging=true;lastX=e.clientX;tweening=false;});
+  window.addEventListener('pointermove',function(e){if(!isDragging)return;globe.rotation.y+=(e.clientX-lastX)*0.006;lastX=e.clientX;});
+  window.addEventListener('pointerup',function(){if(isDragging){isDragging=false;resumeAt=performance.now()+900;}});
+
+  function setActive(key){
+    activeKey=key;planeT=0;
+    Object.keys(reg).forEach(function(k){
+      var e=reg[k],on=k===key;
+      e.markers.forEach(function(m){m.material.color.setHex(on?ACTIVE:IDLE);});
+      e.arcMat.opacity=on?0.6:0.12;
+      e.plane.visible=on;
+    });
+  }
+
+  function animate(now){
+    requestAnimationFrame(animate);
+    pulse+=0.02;
+    if(tweening){
+      var t=Math.min((now-twT0)/950,1),e2=1-Math.pow(1-t,3);
+      globe.rotation.y=twStart+(twTarget-twStart)*e2;
+      if(t>=1){tweening=false;resumeAt=now+500;}
+    } else if(autoRotate&&!isDragging&&now>resumeAt){ globe.rotation.y+=0.0016; }
+    Object.keys(reg).forEach(function(k){
+      var e=reg[k],on=k===activeKey;
+      e.halos.forEach(function(h){
+        if(on){
+          var sc=0.10+Math.sin(pulse*1.6+h.userData.phase)*0.035+0.02;
+          h.scale.set(sc,sc,sc);h.material.opacity=0.3+Math.sin(pulse*1.6+h.userData.phase)*0.15;
+        } else { h.scale.set(0.001,0.001,0.001);h.material.opacity=0; }
+      });
+    });
+    var ps=0.15+Math.sin(pulse*1.3)*0.03;peruH.scale.set(ps,ps,ps);
+    if(activeKey){
+      planeT+=0.0035;if(planeT>1)planeT=0;
+      var e3=reg[activeKey];
+      e3.plane.position.copy(e3.curve.getPointAt(Math.min(planeT,1)));
+      e3.plane.material.opacity=planeT<0.06?planeT/0.06:(planeT>0.94?(1-planeT)/0.06:1);
+    }
+    renderer.render(scene,camera);
+  }
+  requestAnimationFrame(animate);
+  function resize(){var s2=mount.clientWidth;renderer.setSize(s2,s2,false);camera.updateProjectionMatrix();}
+  window.addEventListener('resize',resize);resize();
+
+  // acordeon
+  DATA.forEach(function(c,i){
+    var item=document.createElement('div');item.className='gw-item';item.dataset.c=c.key;
+    var head=document.createElement('button');head.className='gw-head';
+    head.innerHTML='<span class="idx">0'+(i+1)+'</span><span class="name">'+c.label+'</span><span class="count">'+String(c.total).padStart(2,'0')+' universidades</span><span class="chev"></span>';
+    var panel=document.createElement('div');panel.className='gw-panel';
+    var inner=document.createElement('div');inner.className='gw-panel-inner';
+    c.unis.forEach(function(u){
+      var card=document.createElement('div');card.className='gw-uni';
+      var ini=u.name.replace(/^(The|University of|Universidade de|Universidad|Pontificia)\s+/i,'').charAt(0).toUpperCase();
+      card.innerHTML='<div class="th">'+ini+'</div><div><span class="n">'+u.name+'</span><span class="l">'+u.loc+'</span></div>';
+      inner.appendChild(card);
+    });
+    panel.appendChild(inner);
+    var rem=c.total-c.unis.length;
+    if(rem>0){var note=document.createElement('div');note.className='gw-more';note.textContent='+ '+rem+' universidades más en este continente';panel.appendChild(note);}
+    head.addEventListener('click',function(){toggle(c.key);});
+    item.appendChild(head);item.appendChild(panel);acc.appendChild(item);
+  });
+  function toggle(key){
+    var items=acc.querySelectorAll('.gw-item');
+    Array.prototype.forEach.call(items,function(item){
+      var isT=item.dataset.c===key, panel=item.querySelector('.gw-panel'), open=item.classList.contains('open');
+      if(isT){
+        if(open){item.classList.remove('open');panel.style.maxHeight=null;setActive(null);return;}
+        item.classList.add('open');panel.style.maxHeight=panel.scrollHeight+'px';
+      } else { item.classList.remove('open');panel.style.maxHeight=null; }
+    });
+    setActive(key);focusOn(key);
+  }
+  toggle('sudamerica');
 })();
 </script>
 <script>
