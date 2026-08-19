@@ -179,6 +179,23 @@
   .soc{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
   .soc span{width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff;}
   .comgrid{display:grid;grid-template-columns:.8fr 1.4fr .8fr;gap:20px;align-items:center;}
+  /* oferta academica: imagen calada + formas detras + hover que agranda (primera activa) */
+  .of3{display:flex;gap:18px;margin-top:26px;align-items:stretch;}
+  .of-card{position:relative;flex:1;min-height:330px;border-radius:16px;overflow:hidden;background:var(--t2);padding:24px;cursor:pointer;transition:flex .5s cubic-bezier(.4,0,.2,1),background .4s ease;}
+  .of-card.on{flex:1.75;background:#cdd2d9;}
+  .of-card .shp{position:absolute;transition:transform .5s ease;}
+  .of-card .shp.c{width:62%;padding-top:62%;border-radius:50%;background:rgba(255,255,255,.45);right:-12%;top:6%;}
+  .of-card .shp.q{width:34%;padding-top:34%;background:rgba(43,47,54,.08);left:8%;bottom:18%;}
+  .of-card.on .shp.c{transform:scale(1.15);}
+  .of-card .sil{position:absolute;right:4%;bottom:-6px;width:56%;max-width:230px;fill:#8a919c;opacity:.9;transition:transform .5s ease;}
+  .of-card.on .sil{transform:scale(1.08);}
+  .of-card h3{position:relative;font-family:'Montserrat';font-weight:700;font-size:19px;margin:0 0 10px;z-index:2;}
+  .of-body{position:relative;z-index:2;max-width:220px;opacity:0;transform:translateY(8px);transition:opacity .35s ease .1s,transform .35s ease .1s;}
+  .of-card.on .of-body{opacity:1;transform:none;}
+  .of-body p{font-size:13px;color:var(--ink2);margin:0 0 14px;}
+  .of-ar{display:flex;width:44px;height:44px;border-radius:50%;background:#fff;color:var(--ink);align-items:center;justify-content:center;font-size:16px;font-weight:700;box-shadow:0 4px 12px rgba(0,0,0,.12);}
+  .of-note{position:absolute;top:10px;right:12px;font-size:10px;color:#8a919c;background:#ffffffb8;border-radius:5px;padding:2px 7px;z-index:2;}
+  @media(max-width:900px){ .of3{flex-direction:column;} .of-card{min-height:200px;} .of-card .of-body{opacity:1;transform:none;} }
   /* PUCP en el mundo: globo 3D interactivo (ref. seccion de Ligia) */
   .gw-stats{display:flex;gap:28px;justify-content:center;flex-wrap:wrap;margin:12px 0 2px;}
   .gw-stat{text-align:center;max-width:160px;}
@@ -589,10 +606,28 @@ body.hdr-open .hdr-burger i:nth-child(3){transform:translateY(-7px) rotate(-45de
   <section data-title="Oferta académica"><div class="wrap">
     <p class="eyebrow"><span class="dot">▸</span> Oferta académica <span class="dot">◂</span></p>
     <h2 class="t">Encuentra el <span class="em">camino</span><br>para alcanzar tus metas</h2>
-    <div class="g3" style="margin-top:26px;">
-      <div class="bigcard"><span class="ar">↗</span><h3>Pregrado</h3><p>Encuentra tu lugar en el mundo, aprende haciendo y construye el futuro que imaginas.</p></div>
-      <div class="bigcard tp"><span class="ar">↗</span><h3>Posgrado</h3><p>Especialízate para liderar los nuevos desafíos de tu sector con visión real y global.</p></div>
-      <div class="bigcard"><span class="ar">↗</span><h3>Educación continua</h3><p>Actualiza tus herramientas de forma rápida y mantente siempre un paso adelante.</p></div>
+    <div class="of3" id="of3">
+      <div class="of-card on">
+        <span class="shp c"></span><span class="shp q"></span>
+        <svg class="sil" viewBox="0 0 120 140" aria-hidden="true"><circle cx="60" cy="38" r="24"/><path d="M14 140 C14 96 36 74 60 74 C84 74 106 96 106 140 Z"/></svg>
+        <h3>Pregrado</h3>
+        <div class="of-body"><p>Encuentra tu lugar en el mundo, aprende haciendo y construye el futuro que imaginas.</p><span class="of-ar">↗</span></div>
+        <span class="of-note">▣ foto calada real</span>
+      </div>
+      <div class="of-card">
+        <span class="shp c"></span><span class="shp q"></span>
+        <svg class="sil" viewBox="0 0 120 140" aria-hidden="true"><circle cx="60" cy="38" r="24"/><path d="M14 140 C14 96 36 74 60 74 C84 74 106 96 106 140 Z"/></svg>
+        <h3>Posgrado</h3>
+        <div class="of-body"><p>Especialízate para liderar los nuevos desafíos de tu sector con visión real y global.</p><span class="of-ar">↗</span></div>
+        <span class="of-note">▣ foto calada real</span>
+      </div>
+      <div class="of-card">
+        <span class="shp c"></span><span class="shp q"></span>
+        <svg class="sil" viewBox="0 0 120 140" aria-hidden="true"><circle cx="60" cy="38" r="24"/><path d="M14 140 C14 96 36 74 60 74 C84 74 106 96 106 140 Z"/></svg>
+        <h3>Educación continua</h3>
+        <div class="of-body"><p>Actualiza tus herramientas de forma rápida y mantente siempre un paso adelante.</p><span class="of-ar">↗</span></div>
+        <span class="of-note">▣ foto calada real</span>
+      </div>
     </div>
   </div></section>
 
@@ -604,7 +639,7 @@ body.hdr-open .hdr-burger i:nth-child(3){transform:translateY(-7px) rotate(-45de
     <div class="gw-stats">
       <div class="gw-stat"><b class="em">+380</b><span>convenios internacionales</span></div>
       <div class="gw-stat"><b class="em">11</b><span>alianzas Top 100 mundial</span></div>
-      <div class="gw-stat"><b class="em">60</b><span>países para tu intercambio</span></div>
+      <div class="gw-stat"><b class="em">38</b><span>países para tu intercambio</span></div>
       <div class="gw-stat"><b class="em">400</b><span>estudiantes extranjeros al año</span></div>
     </div>
     <div class="gw-body">
@@ -866,6 +901,7 @@ body.hdr-open .hdr-burger i:nth-child(3){transform:translateY(-7px) rotate(-45de
       savedContent[id]=latest.body; contentIds[id]=latest.id;
     });
     Object.keys(savedContent).forEach(function(id){
+      if(id==='sec-2') return; // seccion del globo: se construye por JS y su guardado se trunca a 4KB -> no se aplica
       var blk=document.getElementById(id), ed=blk&&blk.querySelector('.editable');
       if(ed) ed.innerHTML=savedContent[id];
     });
@@ -1348,6 +1384,18 @@ body.hdr-open .hdr-burger i:nth-child(3){transform:translateY(-7px) rotate(-45de
     if(e.key==='Escape'){ document.body.classList.remove('hdr-open'); burger.setAttribute('aria-expanded','false'); }
   });
   upd();
+})();
+</script>
+<script>
+// oferta academica: la card bajo el cursor se expande (Pregrado activa por defecto)
+(function(){
+  var g=document.getElementById('of3'); if(!g) return;
+  var cards=g.querySelectorAll('.of-card');
+  cards.forEach(function(c){
+    c.addEventListener('mouseenter',function(){
+      cards.forEach(function(x){x.classList.toggle('on',x===c);});
+    });
+  });
 })();
 </script>
 </body>
