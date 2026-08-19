@@ -197,6 +197,11 @@
   .soc{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
   .soc span{width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff;}
   .comgrid{display:grid;grid-template-columns:.8fr 1.4fr .8fr;gap:20px;align-items:center;}
+  /* cierre: tu historia empieza aqui */
+  .th-circ{position:absolute;left:2%;top:-30px;pointer-events:none;}
+  .th-dots{position:absolute;right:3%;bottom:0;pointer-events:none;}
+  .th-cta{font-size:15px;padding:15px 32px;position:relative;transition:transform .25s ease,box-shadow .25s ease;}
+  .th-cta:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 12px 26px rgba(0,0,0,.2);}
   /* rankings: banda clara con titulo a la izquierda y formas a la derecha (ref) */
   .rkband{display:grid;grid-template-columns:.62fr 1.55fr;gap:44px;align-items:center;background:var(--bg2);border-radius:18px;padding:44px 46px;}
   .rk-shapes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:center;}
@@ -894,6 +899,15 @@ body.hdr-open .hdr-burger i:nth-child(3){transform:translateY(-7px) rotate(-45de
       </div>
       <div class="circ"></div>
     </div>
+  </div></section>
+
+  <!-- CIERRE: TU HISTORIA EMPIEZA AQUI (ref home-pucp.ddev.ludik.pe) -->
+  <section data-title="Cierre — Tu historia empieza aquí" style="position:relative;overflow:hidden;"><div class="wrap" style="position:relative;text-align:center;padding-top:34px;padding-bottom:40px;">
+    <svg class="th-circ" width="200" height="200" viewBox="0 0 230 230" fill="none" aria-hidden="true"><circle cx="115" cy="115" r="106" stroke="#c8ccd2" stroke-width="1.5" stroke-dasharray="2 14" stroke-linecap="round"/></svg>
+    <svg class="th-dots" width="170" height="110" viewBox="0 0 170 110" aria-hidden="true"><g fill="#c8ccd2"><circle cx="10" cy="10" r="3"/><circle cx="46" cy="10" r="3"/><circle cx="82" cy="10" r="3"/><circle cx="118" cy="10" r="3"/><circle cx="154" cy="10" r="3"/><circle cx="10" cy="55" r="3"/><circle cx="46" cy="55" r="3"/><circle cx="82" cy="55" r="3"/><circle cx="118" cy="55" r="3"/><circle cx="154" cy="55" r="3"/><circle cx="10" cy="100" r="3"/><circle cx="46" cy="100" r="3"/><circle cx="82" cy="100" r="3"/><circle cx="118" cy="100" r="3"/><circle cx="154" cy="100" r="3"/></g></svg>
+    <h2 class="t" style="font-size:36px;position:relative;">Tu historia <span class="em">empieza</span> aquí</h2>
+    <p class="sub" style="margin:10px auto 24px;max-width:440px;position:relative;">Postula, visita el campus o conversa con nosotros.</p>
+    <a class="btn th-cta" href="#">Quiero postular</a>
   </div></section>
 
   </main>
