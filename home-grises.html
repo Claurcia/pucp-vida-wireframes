@@ -197,6 +197,12 @@
   .soc{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
   .soc span{width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff;}
   .comgrid{display:grid;grid-template-columns:.8fr 1.4fr .8fr;gap:20px;align-items:center;}
+  /* rankings: banda clara con titulo a la izquierda y formas a la derecha (ref) */
+  .rkband{display:grid;grid-template-columns:.62fr 1.55fr;gap:44px;align-items:center;background:var(--bg2);border-radius:18px;padding:44px 46px;}
+  .rk-shapes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:center;}
+  .rkband .rk{background:var(--ph);}
+  .rkband .rk.alt{background:transparent;border:1px solid var(--ph3);}
+  @media(max-width:900px){ .rkband{grid-template-columns:1fr;padding:28px;} .rk-shapes{grid-template-columns:1fr;} }
   /* orgullo pucp: cards con foto calada + historia real abajo; la foto se agranda al hover */
   .og3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:8px;}
   .og-card{position:relative;border-radius:16px;background:var(--t2);min-height:400px;padding:24px;overflow:hidden;cursor:pointer;}
@@ -820,13 +826,17 @@ body.hdr-open .hdr-burger i:nth-child(3){transform:translateY(-7px) rotate(-45de
 
   <!-- RECONOCIMIENTOS / RANKINGS (movido debajo de Orgullo) -->
   <section data-title="Reconocimientos — Rankings"><div class="wrap">
-    <h2 class="t">Excelencia académica con reconocimiento internacional</h2>
-    <div class="g3" style="margin-top:22px;">
-      <div class="rk"><div class="lab">TOP</div><div class="one em">— #1 —</div><div class="ds">En el Perú por 14 años consecutivos — QS World University Ranking</div><div class="yr">Año: 2027</div></div>
-      <div class="rk alt"><div class="lab">TOP</div><div class="one em">— #1 —</div><div class="ds">Del Perú — THE University Impact Rankings</div><div class="yr">Año: 2026</div></div>
-      <div class="rk"><div class="lab">TOP</div><div class="one em">— #1 —</div><div class="ds">Del Perú en QS World University Rankings: Sustainability</div><div class="yr">Año: 2026</div></div>
+    <div class="rkband">
+      <div class="rk-left">
+        <h2 class="t l" style="font-size:23px;margin-bottom:18px;">Excelencia académica con reconocimiento internacional</h2>
+        <a class="btn ghost sm" href="pucp-en-cifras-media.html">Ver más cifras ↗</a>
+      </div>
+      <div class="rk-shapes">
+        <div class="rk"><div class="lab">TOP</div><div class="one em">— #1 —</div><div class="ds">En el Perú por 14 años consecutivos — QS World University Ranking</div><div class="yr">Año: 2027</div></div>
+        <div class="rk alt"><div class="lab">TOP</div><div class="one em">— #1 —</div><div class="ds">Del Perú — THE University Impact Rankings</div><div class="yr">Año: 2026</div></div>
+        <div class="rk"><div class="lab">TOP</div><div class="one em">— #1 —</div><div class="ds">Del Perú en QS World University Rankings: Sustainability</div><div class="yr">Año: 2026</div></div>
+      </div>
     </div>
-    <div style="text-align:center;margin-top:26px;"><a class="btn ghost sm" href="pucp-en-cifras-media.html">Ver más cifras ↗</a></div>
   </div></section>
 
   <!-- CAMPUS VERDE (oscuro) -->
