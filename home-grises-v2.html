@@ -182,9 +182,8 @@
   .immersive{height:260vh;position:relative;margin-top:24px;}
   .immersive .stage{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;}
   .immersive .frame{background:#14161a;border-radius:22px;border:1px solid rgba(255,255,255,.3);box-shadow:0 30px 80px rgba(0,0,0,.45);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;will-change:transform;transform-origin:center center;}
-  .immersive .vid{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;color:#aab2bd;font-size:13px;letter-spacing:1px;}
-  .immersive .vid .play{width:70px;height:70px;border-radius:50%;background:rgba(255,255,255,.14);border:2px solid rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px;}
-  .immersive .cap{position:absolute;top:14px;left:16px;font-size:11px;color:#8f97a3;background:rgba(0,0,0,.35);border-radius:5px;padding:3px 9px;z-index:2;}
+  .immersive .frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .immersive .vshade{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,12,16,.42),rgba(10,12,16,.12));}
   .immersive .msg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 8vw;opacity:0;transform:translateY(24px);transition:opacity .35s,transform .35s;pointer-events:none;}
   .immersive .msg h2{color:#fff;font-size:clamp(24px,4.2vw,52px);font-weight:800;letter-spacing:.5px;line-height:1.15;margin:0;text-transform:uppercase;font-family:'Montserrat';}
   .immersive .msg.on{opacity:1;transform:translateY(0);}
@@ -217,8 +216,7 @@
   .deck{position:relative;aspect-ratio:16/10;max-height:72vh;overflow:hidden;border-radius:18px;transform-origin:center center;will-change:transform;}
   .deck .slide{position:absolute;inset:0;overflow:hidden;background:#14161a;border:1px solid rgba(255,255,255,.25);border-radius:18px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;color:#aab2bd;font-size:13px;letter-spacing:1px;box-shadow:0 -18px 50px rgba(0,0,0,.5);will-change:transform;transform:translateY(100%);}
   .deck .slide:first-child{transform:translateY(0);}
-  .deck .slide .play{width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.14);border:2px solid rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;color:#fff;font-size:19px;}
-  .deck .slide .cap{position:absolute;top:14px;left:16px;font-size:11px;color:#8f97a3;background:rgba(0,0,0,.35);border-radius:5px;padding:3px 9px;}
+  .deck .slide video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
   .deck .slide .live{position:absolute;bottom:14px;left:16px;display:flex;align-items:center;gap:7px;font-size:10.5px;color:#c6cbd2;opacity:0;transition:opacity .3s;}
   .deck .slide .live i{width:8px;height:8px;border-radius:50%;background:#e04b4b;animation:pulse 1.1s ease-in-out infinite;}
   @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.25;}}
@@ -662,10 +660,10 @@
         <a class="btn" style="background:#fff;color:var(--ink);margin-top:20px;" href="#">Visita al campus ↗</a>
       </div>
       <div class="deck">
-        <div class="slide"><span class="cap">▶ VIDEO REAL: dron sobre los jardines</span><div class="play">▶</div>VIDEO — ÁREAS VERDES<span class="live"><i></i>REPRODUCIENDO</span></div>
-        <div class="slide"><span class="cap">▶ VIDEO REAL: arborización y naturaleza</span><div class="play">▶</div>VIDEO — ÁRBOLES<span class="live"><i></i>REPRODUCIENDO</span></div>
-        <div class="slide"><span class="cap">▶ VIDEO REAL: edificios sostenibles</span><div class="play">▶</div>VIDEO — EDIFICIOS LEED<span class="live"><i></i>REPRODUCIENDO</span></div>
-        <div class="slide"><span class="cap">▶ VIDEO REAL: estudiantes viviendo el campus</span><div class="play">▶</div>VIDEO — VIDA EN EL CAMPUS<span class="live"><i></i>REPRODUCIENDO</span></div>
+        <div class="slide"><video src="media/campus-areas-verdes.mp4" muted loop playsinline preload="metadata"></video><span class="live"><i></i>REPRODUCIENDO</span></div>
+        <div class="slide"><video src="media/campus-arboles.mp4" muted loop playsinline preload="metadata"></video><span class="live"><i></i>REPRODUCIENDO</span></div>
+        <div class="slide"><video src="media/campus-edificio.mp4" muted loop playsinline preload="metadata"></video><span class="live"><i></i>REPRODUCIENDO</span></div>
+        <div class="slide"><video src="media/campus-vida.mp4" muted loop playsinline preload="metadata"></video><span class="live"><i></i>REPRODUCIENDO</span></div>
       </div>
     </div>
   </div>
@@ -1091,7 +1089,10 @@
     var pos = q*N, idx = Math.min(N-1, Math.floor(pos));
     slides.forEach(function(sl,i){
       sl.style.transform = i===0 ? 'translateY(0)' : 'translateY('+(clamp(i-pos,0,1)*100)+'%)';
-      sl.classList.toggle('playing', i===idx && g>.5);
+      var on = i===idx && g>.5;
+      sl.classList.toggle('playing', on);
+      var v = sl.querySelector('video');
+      if(v){ if(on){ if(v.paused) v.play().catch(function(){}); } else if(!v.paused){ v.pause(); } }
     });
     var local = pos - idx;
     anchors.forEach(function(a,i){

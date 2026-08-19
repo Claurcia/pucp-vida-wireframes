@@ -182,9 +182,8 @@
   .immersive{height:260vh;position:relative;margin-top:24px;}
   .immersive .stage{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;}
   .immersive .frame{background:#14161a;border-radius:22px;border:1px solid rgba(255,255,255,.3);box-shadow:0 30px 80px rgba(0,0,0,.45);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;will-change:transform;transform-origin:center center;}
-  .immersive .vid{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;color:#aab2bd;font-size:13px;letter-spacing:1px;}
-  .immersive .vid .play{width:70px;height:70px;border-radius:50%;background:rgba(255,255,255,.14);border:2px solid rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px;}
-  .immersive .cap{position:absolute;top:14px;left:16px;font-size:11px;color:#8f97a3;background:rgba(0,0,0,.35);border-radius:5px;padding:3px 9px;z-index:2;}
+  .immersive .frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .immersive .vshade{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,12,16,.42),rgba(10,12,16,.12));}
   .immersive .msg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 8vw;opacity:0;transform:translateY(24px);transition:opacity .35s,transform .35s;pointer-events:none;}
   .immersive .msg h2{color:#fff;font-size:clamp(24px,4.2vw,52px);font-weight:800;letter-spacing:.5px;line-height:1.15;margin:0;text-transform:uppercase;font-family:'Montserrat';}
   .immersive .msg.on{opacity:1;transform:translateY(0);}
@@ -642,8 +641,8 @@
   <div class="immersive" id="imm-campus">
     <div class="stage">
       <div class="frame" id="imm-frame">
-        <div class="cap">▶ VIDEO REAL: dron sobre el campus, jardines, gente</div>
-        <div class="vid"><div class="play">▶</div>VIDEO DEL CAMPUS</div>
+        <video src="media/campus-panoramica.mp4" autoplay muted loop playsinline preload="metadata"></video>
+        <div class="vshade"></div>
         <div class="msg"><h2>Un campus que<br>respira naturaleza</h2></div>
         <div class="msg"><h2>Espacios que inspiran<br>a crear y compartir</h2></div>
         <div class="msg"><h2>Ven y vívelo</h2></div>
