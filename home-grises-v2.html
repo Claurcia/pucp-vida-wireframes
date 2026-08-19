@@ -206,7 +206,7 @@
   .sticky-slider .stage{position:sticky;top:0;height:100vh;display:grid;grid-template-columns:.9fr 1.4fr;gap:40px;align-items:center;max-width:1180px;margin:0 auto;padding:0 24px;}
   .anchors .sub{margin-bottom:20px;}
   .sticky-slider .anchors{position:relative;z-index:3;}
-  .anchor{display:flex;gap:14px;align-items:baseline;padding:12px 2px;border-left:3px solid rgba(255,255,255,.15);padding-left:16px;cursor:pointer;transition:border-color .3s,opacity .3s;opacity:.45;}
+  .anchor{display:flex;gap:14px;align-items:baseline;padding:12px 2px;border-left:3px solid rgba(255,255,255,.15);padding-left:16px;cursor:pointer;transition:border-color .3s,opacity .3s;opacity:.8;}
   .anchor .num{font-family:'Montserrat';font-weight:800;font-size:24px;color:#fff;white-space:nowrap;}
   .anchor .lbl{font-size:13px;color:#c6cbd2;}
   .anchor.on{opacity:1;border-left-color:#fff;}
@@ -217,7 +217,7 @@
   .deck .slide{position:absolute;inset:0;overflow:hidden;background:#14161a;border:1px solid rgba(255,255,255,.25);border-radius:18px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;color:#aab2bd;font-size:13px;letter-spacing:1px;box-shadow:0 -18px 50px rgba(0,0,0,.5);will-change:transform;transform:translateY(100%);}
   .deck .slide:first-child{transform:translateY(0);}
   .deck .slide video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
-  .deck .shade{position:absolute;inset:0;z-index:5;pointer-events:none;opacity:0;background:linear-gradient(90deg,rgba(8,12,18,.8),rgba(8,12,18,.35) 48%,rgba(8,12,18,0) 72%);}
+  .deck .shade{position:absolute;inset:0;z-index:5;pointer-events:none;opacity:0;background:linear-gradient(90deg,rgba(6,9,14,.94),rgba(6,9,14,.6) 42%,rgba(6,9,14,.15) 66%,rgba(6,9,14,0) 82%);}
   .anchors .sub,.anchor .num,.anchor .lbl{text-shadow:0 1px 14px rgba(0,0,0,.55);}
   .deck .slide .live{position:absolute;bottom:14px;left:16px;display:flex;align-items:center;gap:7px;font-size:10.5px;color:#c6cbd2;opacity:0;transition:opacity .3s;}
   .deck .slide .live i{width:8px;height:8px;border-radius:50%;background:#e04b4b;animation:pulse 1.1s ease-in-out infinite;}
@@ -1093,10 +1093,14 @@
     var pos = q*N, idx = Math.min(N-1, Math.floor(pos));
     slides.forEach(function(sl,i){
       sl.style.transform = i===0 ? 'translateY(0)' : 'translateY('+(clamp(i-pos,0,1)*100)+'%)';
-      var on = i===idx && g>.5;
-      sl.classList.toggle('playing', on);
+      sl.classList.toggle('playing', i===idx && g>.5);
       var v = sl.querySelector('video');
-      if(v){ if(on){ if(v.paused) v.play().catch(function(){}); } else if(!v.paused){ v.pause(); } }
+      if(v){
+        // visible = ya asomo por abajo y todavia no lo cubre el siguiente
+        var visible = (pos > i-1) && (pos < i+1) && g>.25;
+        if(visible){ if(v.paused) v.play().catch(function(){}); }
+        else if(!v.paused){ v.pause(); }
+      }
     });
     var local = pos - idx;
     anchors.forEach(function(a,i){
