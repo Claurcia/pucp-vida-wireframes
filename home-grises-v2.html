@@ -179,6 +179,20 @@
   .soc{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
   .soc span{width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff;}
   .comgrid{display:grid;grid-template-columns:.8fr 1.4fr .8fr;gap:20px;align-items:center;}
+  /* investigacion: cards con foto calada que se agrandan ligeramente al hover */
+  .iv4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:8px;}
+  .iv-card{position:relative;border-radius:16px;background:var(--t2);padding:22px 20px 0;min-height:380px;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;transition:transform .35s ease,background .35s ease,box-shadow .35s ease;}
+  .iv-card h3{font-family:'Montserrat';font-weight:700;font-size:17px;margin:0 0 8px;position:relative;z-index:2;}
+  .iv-card p{font-size:12.5px;color:var(--ink2);margin:0 0 14px;position:relative;z-index:2;}
+  .iv-card .of-ar{position:relative;z-index:2;transition:background .3s ease,color .3s ease;}
+  .iv-card .shp{position:absolute;right:-18%;bottom:6%;width:78%;padding-top:78%;border-radius:50%;background:rgba(255,255,255,.5);transition:transform .35s ease;}
+  .iv-card .sil{position:absolute;right:5%;bottom:-6px;width:60%;max-width:190px;height:50%;fill:#8a919c;transition:transform .35s ease;}
+  .iv-card:hover{transform:scale(1.035);background:#cdd2d9;box-shadow:0 14px 34px rgba(0,0,0,.16);z-index:3;}
+  .iv-card:hover .of-ar{background:var(--ink);color:#fff;}
+  .iv-card:hover .sil{transform:scale(1.06);}
+  .iv-card:hover .shp{transform:scale(1.1);}
+  @media(max-width:900px){ .iv4{grid-template-columns:1fr 1fr;} }
+  @media(max-width:600px){ .iv4{grid-template-columns:1fr;} .iv-card{min-height:300px;} }
   /* vida universitaria: opciones a la izquierda, panel derecho con foto calada que cambia al hover */
   .vu{display:grid;grid-template-columns:330px 1fr;gap:22px;margin-top:24px;align-items:stretch;}
   .vu-list{display:flex;flex-direction:column;gap:12px;}
@@ -750,11 +764,11 @@ body.hdr-open .hdr-burger i:nth-child(3){transform:translateY(-7px) rotate(-45de
   <section data-title="Investigación e innovación"><div class="wrap">
     <p class="eyebrow"><span class="dot">▸</span> Investigación, innovación y creación <span class="dot">◂</span></p>
     <h2 class="t">Conocimiento que impulsa la <span class="em">transformación</span></h2>
-    <div class="g3" style="margin-top:8px;grid-template-columns:repeat(4,1fr);">
-      <div class="rcard"><div class="imgtop"></div><span class="ar">↗</span><h3>Investigación</h3><p>Generamos conocimiento científico, tecnológico y social que responde a los retos del país y el mundo.</p></div>
-      <div class="rcard"><div class="imgtop"></div><span class="ar">↗</span><h3>Innovación</h3><p>Conectamos Universidad, empresa y Estado para convertir el conocimiento en innovación.</p></div>
-      <div class="rcard"><div class="imgtop"></div><span class="ar">↗</span><h3>Creación</h3><p>Impulsamos la transformación del arte, la cultura y la sociedad a través de la creación.</p></div>
-      <div class="rcard"><div class="imgtop"></div><span class="ar">↗</span><h3>Transformar el entorno</h3><p>Convertimos el conocimiento en iniciativas que generan un impacto positivo en la sociedad.</p></div>
+    <div class="iv4">
+      <div class="iv-card"><h3>Investigación</h3><p>Generamos conocimiento científico, tecnológico y social que responde a los retos del país y el mundo.</p><span class="of-ar">↗</span><span class="shp"></span><svg class="sil" viewBox="0 0 120 140"><use href="#vu-sil"/></svg><span class="of-note">▣ foto calada real</span></div>
+      <div class="iv-card"><h3>Innovación</h3><p>Conectamos Universidad, empresa y Estado para convertir el conocimiento en innovación.</p><span class="of-ar">↗</span><span class="shp"></span><svg class="sil" viewBox="0 0 120 140"><use href="#vu-sil"/></svg><span class="of-note">▣ foto calada real</span></div>
+      <div class="iv-card"><h3>Creación</h3><p>Impulsamos la transformación del arte, la cultura y la sociedad a través de la creación.</p><span class="of-ar">↗</span><span class="shp"></span><svg class="sil" viewBox="0 0 120 140"><use href="#vu-sil"/></svg><span class="of-note">▣ foto calada real</span></div>
+      <div class="iv-card"><h3>Transformar el entorno</h3><p>Convertimos el conocimiento en iniciativas que generan un impacto positivo en la sociedad.</p><span class="of-ar">↗</span><span class="shp"></span><svg class="sil" viewBox="0 0 120 140"><use href="#vu-sil"/></svg><span class="of-note">▣ foto calada real</span></div>
     </div>
     <div class="invstats">
       <div><h2 class="t l" style="font-size:22px;margin:0;">Ciencia, innovación y pensamiento en acción</h2></div>
