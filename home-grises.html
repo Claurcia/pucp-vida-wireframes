@@ -294,9 +294,15 @@
   .gw-uni .l{font-size:11px;color:#9aa2ad;}
   .gw-more{padding:8px 0 14px 38px;font-size:11.5px;color:#8a919c;font-style:italic;}
   @media(max-width:900px){ .gw-body{grid-template-columns:1fr;gap:24px;} .gw-panel-inner{grid-template-columns:1fr;} }
+  /* campus v1: cifras en fila con divisores */
+  .cvstats{display:flex;justify-content:center;align-items:stretch;margin-top:18px;flex-wrap:wrap;}
+  .cvstats .c{padding:0 46px;text-align:center;}
+  .cvstats .c b{display:block;font-size:26px;font-weight:400;color:#fff;}
+  .cvstats .c span{font-size:12px;color:#c6cbd2;}
+  .cvstats .sep{width:1px;background:rgba(255,255,255,.3);}
   /* intro inmersiva del campus (Campus sostenible): el video crece con el scroll hasta cubrir la pantalla */
-  .immersive{height:260vh;position:relative;margin-top:24px;}
-  .immersive .stage{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .immersive{height:260vh;position:relative;margin-top:12px;}
+  .immersive .stage{position:sticky;top:0;height:100vh;display:flex;align-items:flex-start;justify-content:center;overflow:hidden;padding-top:14px;}
   .immersive .frame{background:#14161a;border-radius:22px;border:1px solid rgba(255,255,255,.3);box-shadow:0 30px 80px rgba(0,0,0,.45);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;will-change:transform;transform-origin:center center;}
   .immersive .frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
   .immersive .vshade{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,12,16,.42),rgba(10,12,16,.12));}
@@ -825,18 +831,20 @@ body.hdr-open .hdr-burger i:nth-child(3){transform:translateY(-7px) rotate(-45de
 
   <!-- CAMPUS VERDE (oscuro) -->
   <section class="darksec" data-title="Campus Verde"><div class="wrap">
-    <p class="eyebrow l"><span class="dot">▸</span> Campus sostenible</p>
-    <h2 class="t l">Espacios que inspiran</h2>
-    <div class="two" style="grid-template-columns:1fr 2fr;align-items:center;">
-      <div>
-        <p class="sub l" style="color:#c6cbd2;">Descubre un campus diseñado para aprender, crear, colaborar y vivir al máximo tu experiencia universitaria.</p>
-        <a class="btn" style="background:#fff;color:var(--ink)" href="#">Visita al campus ↗</a>
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;">
+      <div style="max-width:640px;">
+        <p class="eyebrow l"><span class="dot">▸</span> Campus sostenible</p>
+        <h2 class="t l" style="margin-bottom:6px;">Espacios que inspiran</h2>
+        <p class="sub l" style="color:#c6cbd2;margin-bottom:0;">Descubre un campus diseñado para aprender, crear, colaborar y vivir al máximo tu experiencia universitaria.</p>
       </div>
-      <div class="g4" style="gap:14px;grid-template-columns:repeat(3,1fr);">
-        <div class="worldstat"><span class="num em">167,000m²</span><span class="lbl">de áreas verdes</span></div>
-        <div class="worldstat fill"><span class="num em">+3,200&nbsp;</span><span class="lbl">árboles</span></div>
-        <div class="worldstat"><span class="num em">7</span><span class="lbl">edificios con certificación LEED</span></div>
-      </div>
+      <a class="btn" style="background:#fff;color:var(--ink);margin-top:8px;" href="#">Visita al campus ↗</a>
+    </div>
+    <div class="cvstats">
+      <div class="c"><b class="em">167,000 m²</b><span>de áreas verdes</span></div>
+      <div class="sep"></div>
+      <div class="c"><b class="em">+3,200</b><span>árboles</span></div>
+      <div class="sep"></div>
+      <div class="c"><b class="em">7 edificios</b><span>con certificación LEED</span></div>
     </div>
   </div>
   <div class="immersive" id="imm-campus">
@@ -1134,8 +1142,8 @@ body.hdr-open .hdr-burger i:nth-child(3){transform:translateY(-7px) rotate(-45de
   function ease(t){return t*t*(3-2*t);}
   var fw, fh, targetScale;
   function measure(){
-    fw = Math.min(window.innerWidth*.7, 980);
-    fh = fw*9/16;
+    fw = Math.min(window.innerWidth*.92, 1132);
+    fh = fw/2.4;  // formato banner: ancho y bajo, luego crece a pantalla completa
     frame.style.width = fw+'px';
     frame.style.height = fh+'px';
     targetScale = Math.max(window.innerWidth/fw, window.innerHeight/fh)*1.02;
