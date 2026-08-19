@@ -1161,6 +1161,8 @@ body.hdr-open .hdr-burger i:nth-child(3){transform:translateY(-7px) rotate(-45de
 (function(){
   var imm = document.getElementById('imm-campus'), frame = document.getElementById('imm-frame');
   if(!imm || !frame) return;
+  var stage = imm.querySelector('.stage');
+  var baseDx = 0, baseDy = 0;
   var msgs = frame.querySelectorAll('.msg');
   function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
   function ease(t){return t*t*(3-2*t);}
@@ -1182,8 +1184,13 @@ body.hdr-open .hdr-burger i:nth-child(3){transform:translateY(-7px) rotate(-45de
     frame.style.transform = 'none';
     var r = frame.getBoundingClientRect();
     var S = Math.max(window.innerWidth/r.width, window.innerHeight/r.height)*1.02;
-    var dx = (window.innerWidth/2 - (r.left + r.width/2)) * grow;
-    var dy = (window.innerHeight/2 - (r.top + r.height/2)) * grow;
+    // solo re-centrar mientras la seccion esta pineada; al despegarse, el video se va con el scroll
+    if(stage.getBoundingClientRect().top > -2){
+      baseDx = window.innerWidth/2 - (r.left + r.width/2);
+      baseDy = window.innerHeight/2 - (r.top + r.height/2);
+    }
+    var dx = baseDx * grow;
+    var dy = baseDy * grow;
     var s = 1 + (S-1)*grow;
     frame.style.transform = 'translate('+dx+'px,'+dy+'px) scale('+s+')';
     frame.style.borderRadius = (22*(1-grow))/s+'px';
