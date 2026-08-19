@@ -180,6 +180,18 @@
   .soc{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
   .soc span{width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff;}
   .comgrid{display:grid;grid-template-columns:.8fr 1.4fr .8fr;gap:20px;align-items:center;}
+  /* orgullo pucp: cards con foto calada + historia real abajo; la foto se agranda al hover */
+  .og3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:8px;}
+  .og-card{position:relative;border-radius:16px;background:var(--t2);min-height:400px;padding:24px;overflow:hidden;cursor:pointer;}
+  .og-card h3{font-family:'Montserrat';font-weight:800;font-size:20px;margin:0 0 10px;position:relative;z-index:2;}
+  .og-card p{font-size:13px;color:var(--ink2);margin:0 0 14px;max-width:56%;position:relative;z-index:2;}
+  .og-card .of-ar{position:relative;z-index:2;}
+  .og-card .shp{position:absolute;right:-14%;top:-12%;width:72%;padding-top:72%;border-radius:50%;background:rgba(255,255,255,.5);}
+  .og-card .sil{position:absolute;right:2%;bottom:52px;width:56%;max-width:210px;height:62%;fill:#8a919c;transition:transform .35s ease;transform-origin:bottom center;}
+  .og-card:hover .sil{transform:scale(1.07);}
+  .og-quote{position:absolute;left:16px;right:16px;bottom:16px;background:#fff;border-radius:10px;padding:12px 14px;font-size:12px;color:var(--ink2);line-height:1.4;z-index:2;box-shadow:0 4px 12px rgba(0,0,0,.08);}
+  .og-quote b{color:var(--ink);}
+  @media(max-width:900px){ .og3{grid-template-columns:1fr;} .og-card{min-height:320px;} }
   /* investigacion: banda horizontal de cifras con divisores */
   .ivband{display:flex;align-items:center;background:var(--dark);color:#fff;border-radius:16px;padding:26px 34px;margin-top:26px;flex-wrap:wrap;gap:14px 0;}
   .ivband h3{font-family:'Montserrat';font-weight:700;font-size:17px;line-height:1.3;margin:0 30px 0 0;flex:0 0 auto;max-width:230px;}
@@ -776,10 +788,10 @@ body.hdr-open .hdr-burger i:nth-child(3){transform:translateY(-7px) rotate(-45de
       </div>
       <a class="btn" href="#" style="margin-top:8px;">Ver más historias ↗</a>
     </div>
-    <div class="ocards">
-      <div class="ostory dark"><span class="ar">↗</span><h3>Estudiantes</h3><div class="img"></div><p>Proyectos e iniciativas que nacen en las aulas y ya transforman su entorno.</p></div>
-      <div class="ostory"><span class="ar">↗</span><h3>Docentes</h3><div class="img"></div><p>Maestros e investigadores que impulsan la innovación y forman a quienes lideran el cambio.</p></div>
-      <div class="ostory dark"><span class="ar">↗</span><h3>Egresados</h3><div class="img"></div><p>Conoce a los egresados que lideran el cambio desde distintos campos.</p></div>
+    <div class="og3">
+      <div class="og-card"><span class="shp"></span><svg class="sil" viewBox="0 0 120 140"><use href="#vu-sil"/></svg><h3>Estudiantes</h3><p>Proyectos e iniciativas que nacen en las aulas y ya transforman su entorno.</p><a class="of-ar" href="#">↗</a><div class="og-quote"><b>Pablo Rodríguez:</b> “Atleta en los Bolivarianos 2025 y estudiante PUCP”</div><span class="of-note">▣ foto calada real</span></div>
+      <div class="og-card"><span class="shp"></span><svg class="sil" viewBox="0 0 120 140"><use href="#vu-sil"/></svg><h3>Docentes</h3><p>Maestros e investigadores que impulsan la innovación y forman a quienes lideran el cambio.</p><a class="of-ar" href="#">↗</a><div class="og-quote"><b>Mateo Chiarella:</b> Nuevo miembro de la Academia de las Artes Escénicas de España</div><span class="of-note">▣ foto calada real</span></div>
+      <div class="og-card"><span class="shp"></span><svg class="sil" viewBox="0 0 120 140"><use href="#vu-sil"/></svg><h3>Egresados</h3><p>Conoce a los egresados que lideran el cambio desde distintos campos.</p><a class="of-ar" href="#">↗</a><div class="og-quote"><b>María del Socorro Heysen:</b> Homenajeada por la AEG por su trayectoria en Economía</div><span class="of-note">▣ foto calada real</span></div>
     </div>
   </div></section>
 
