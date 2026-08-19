@@ -186,6 +186,32 @@
 .tn-dd .dd a{display:flex;justify-content:space-between;gap:18px;padding:8px 14px;color:#dfe3e8;text-decoration:none;font-size:12.5px;}
 .tn-dd .dd a:hover{color:#fff;background:rgba(255,255,255,.06);}
 </style>
+<style>
+/* header: comportamiento en scroll (pildora compacta + hamburguesa que restaura) */
+.site-header{transition:background .3s ease,box-shadow .3s ease;}
+.site-header .topnav,.site-header .menu{max-height:220px;transition:max-height .45s cubic-bezier(.4,0,.2,1),opacity .3s ease;}
+body.hdr-mini:not(.hdr-open) .site-header{background:transparent;box-shadow:none;}
+body.hdr-mini:not(.hdr-open) .site-header .topnav,body.hdr-mini:not(.hdr-open) .site-header .menu{max-height:0;opacity:0;overflow:hidden;}
+.logorow .wrap{position:relative;border:1px solid transparent;transition:max-width .5s cubic-bezier(.4,0,.2,1),padding .5s cubic-bezier(.4,0,.2,1),background .4s ease,box-shadow .4s ease,border-color .4s ease,border-radius .4s ease,margin .4s ease;}
+body.hdr-mini:not(.hdr-open) .logorow{border-bottom:none;}
+body.hdr-mini:not(.hdr-open) .logorow .wrap{max-width:680px;margin:10px auto 0;padding:8px 12px 8px 20px;background:rgba(255,255,255,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:#e3e6ea;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.12);}
+.logorow .postula{transition:padding .4s ease,font-size .4s ease;}
+body.hdr-mini:not(.hdr-open) .logorow .postula{padding:8px 16px;font-size:13px;}
+.hdr-burger{display:none;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:none;border:none;cursor:pointer;flex:none;}
+.hdr-burger:hover{background:rgba(0,0,0,.06);}
+.hdr-burger .b{display:flex;flex-direction:column;align-items:flex-end;gap:5px;}
+.hdr-burger i{display:block;height:2px;border-radius:2px;background:#1f2530;transition:width .3s,transform .3s,opacity .2s;}
+.hdr-burger i:nth-child(1){width:18px;}
+.hdr-burger i:nth-child(2){width:22px;}
+.hdr-burger i:nth-child(3){width:13px;}
+body.hdr-mini .hdr-burger{display:inline-flex;}
+body.hdr-open .hdr-burger i{width:18px;}
+body.hdr-open .hdr-burger i:nth-child(1){transform:translateY(7px) rotate(45deg);}
+body.hdr-open .hdr-burger i:nth-child(2){opacity:0;}
+body.hdr-open .hdr-burger i:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.hdr-prog{position:absolute;left:18px;right:18px;bottom:0;height:2.5px;border-radius:2px;overflow:hidden;pointer-events:none;}
+.hdr-prog i{display:block;height:100%;width:0;background:#2b2f36;transition:width .08s linear;}
+</style>
 </head>
 <body>
 
@@ -768,6 +794,45 @@
     if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){notify(total+' comentario(s) copiado(s)');});}
     else{var ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();notify(total+' comentario(s) copiado(s)');}
   });
+})();
+</script>
+<script>
+// header: pildora compacta al scrollear + hamburguesa que restaura + progreso de scroll
+(function(){
+  var hdr=document.querySelector('.site-header'); if(!hdr) return;
+  var lr=hdr.querySelector('.logorow .wrap'); if(!lr) return;
+  var right=lr.querySelector('.r')||lr;
+  var burger=document.createElement('button');
+  burger.className='hdr-burger'; burger.title='Menú'; burger.setAttribute('aria-expanded','false');
+  burger.innerHTML='<span class="b"><i></i><i></i><i></i></span>';
+  right.appendChild(burger);
+  var prog=document.createElement('span'); prog.className='hdr-prog'; prog.innerHTML='<i></i>';
+  lr.appendChild(prog);
+  var bar=prog.firstChild, tick=false;
+  function upd(){
+    var mini=window.scrollY>60;
+    document.body.classList.toggle('hdr-mini',mini);
+    if(!mini){ document.body.classList.remove('hdr-open'); burger.setAttribute('aria-expanded','false'); }
+    var dh=document.documentElement.scrollHeight-window.innerHeight;
+    bar.style.width=(dh>0?Math.min(100,(window.scrollY/dh)*100):0)+'%';
+    tick=false;
+  }
+  window.addEventListener('scroll',function(){ if(!tick){requestAnimationFrame(upd);tick=true;} },{passive:true});
+  window.addEventListener('resize',function(){ if(!tick){requestAnimationFrame(upd);tick=true;} });
+  burger.addEventListener('click',function(e){
+    e.stopPropagation();
+    var open=document.body.classList.toggle('hdr-open');
+    burger.setAttribute('aria-expanded',String(open));
+  });
+  document.addEventListener('click',function(e){
+    if(document.body.classList.contains('hdr-open')&&!hdr.contains(e.target)){
+      document.body.classList.remove('hdr-open'); burger.setAttribute('aria-expanded','false');
+    }
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){ document.body.classList.remove('hdr-open'); burger.setAttribute('aria-expanded','false'); }
+  });
+  upd();
 })();
 </script>
 </body>
