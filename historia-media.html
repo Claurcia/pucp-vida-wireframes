@@ -88,8 +88,10 @@
   .btn.ghost{background:#fff;color:var(--azul);border:1.5px solid var(--azul);}
   .btn.sm{padding:9px 16px;font-size:13px;}
   /* linea de tiempo 110 años: sticky, avanza con el scroll y con flechas/dots */
-  .tl{height:520vh;position:relative;background:var(--azul);color:#fff;}
-  .tl-stage{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:26px;padding:24px;overflow:hidden;}
+  .tl{height:520vh;position:relative;color:#fff;}
+  .tl-bg{position:absolute;inset:0;background:var(--azul);border-radius:18px;transform-origin:center center;will-change:transform;z-index:0;}
+  .tl-stage{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:26px;padding:24px;}
+  .tl-body,.tl-nav{position:relative;z-index:2;}
   .tl-body{text-align:center;max-width:760px;}
   .tl-year{font-family:'Montserrat';font-weight:800;font-size:clamp(90px,17vw,220px);line-height:1;letter-spacing:-4px;}
   .tl-body h2{font-family:'Montserrat';font-weight:700;font-size:clamp(18px,2.6vw,28px);margin:10px 0 8px;color:#fff;}
@@ -215,7 +217,7 @@
   @media(max-width:900px){footer .cols{grid-template-columns:1fr 1fr;}}
   @media(max-width:560px){footer .cols{grid-template-columns:1fr;}}
 </style>
-<script src="menu.js?v=20260818" defer></script>
+<script src="menu.js?v=20260818b" defer></script>
 </head>
 <body>
 
@@ -469,6 +471,7 @@
     <section id="hi-tl" data-title="Línea de tiempo — 110 años" style="padding:0;border:none;">
       <div class="tl" id="tl">
         <div class="tl-stage">
+          <div class="tl-bg" id="tl-bg"></div>
           <div class="tl-body">
             <div class="tl-year" id="tl-year">1917</div>
             <h2 id="tl-title"></h2>
@@ -717,10 +720,11 @@
 })();
 </script>
 <script>
-// timeline 110 años: scroll-scrub + flechas/dots que saltan al tramo correspondiente
+// timeline 110 años: la banda se expande A SANGRE al entrar, los hitos avanzan con el
+// scroll (y con flechas/dots), y al final regresa a su tamano normal
 (function(){
-  var tl=document.getElementById('tl');
-  if(!tl) return;
+  var tl=document.getElementById('tl'), bg=document.getElementById('tl-bg');
+  if(!tl||!bg) return;
   var HITOS=[
     {y:1917,t:'Nace la Universidad Católica del Perú',d:'Un 24 de marzo abre sus puertas la primera universidad privada del país.'},
     {y:1942,t:'Somos Pontificia',d:'La Santa Sede otorga a la Universidad el título de Pontificia.'},
@@ -728,11 +732,12 @@
     {y:2026,t:'Líder del país',d:'N.º 1 del Perú por 14 años consecutivos en el ranking QS.'},
     {y:2027,t:'110 años transformando el país',d:'Súmate a la celebración: historias, eventos y memoria de nuestra comunidad.',video:true}
   ];
-  var N=HITOS.length;
+  var N=HITOS.length, ENTER=.08, EXIT=.92;
   var yearEl=document.getElementById('tl-year'), titleEl=document.getElementById('tl-title'), textEl=document.getElementById('tl-text'), videoEl=document.getElementById('tl-video'), dotsEl=document.getElementById('tl-dots');
   var idx=-1, curYear=HITOS[0].y, animId=null;
-  HITOS.forEach(function(h,i){var d=document.createElement('span');d.addEventListener('click',function(){jump(i);});dotsEl.appendChild(d);});
+  HITOS.forEach(function(hh,i){var d=document.createElement('span');d.addEventListener('click',function(){jump(i);});dotsEl.appendChild(d);});
   function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+  function ease(t){return t*t*(3-2*t);}
   function countTo(target){
     cancelAnimationFrame(animId);
     var from=curYear,t0=null,dur=550;
@@ -748,28 +753,46 @@
   function show(i){
     if(i===idx)return;
     idx=i;
-    var h=HITOS[idx];
-    countTo(h.y);
-    titleEl.textContent=h.t;textEl.textContent=h.d;
-    videoEl.style.display=h.video?'flex':'none';
+    var hh=HITOS[idx];
+    countTo(hh.y);
+    titleEl.textContent=hh.t;textEl.textContent=hh.d;
+    videoEl.style.display=hh.video?'flex':'none';
     Array.prototype.forEach.call(dotsEl.children,function(d,j){d.classList.toggle('on',j===idx);});
   }
   function jump(i){
     i=clamp(i,0,N-1);
     var total=tl.offsetHeight-window.innerHeight;
-    window.scrollTo({top:tl.offsetTop+total*(i+0.5)/N,behavior:'smooth'});
+    var q=(i+0.5)/N;
+    window.scrollTo({top:tl.offsetTop+total*(ENTER+q*(EXIT-ENTER)),behavior:'smooth'});
   }
+  var p=0, cur=0;
   function onScroll(){
     var total=tl.offsetHeight-window.innerHeight;
     if(total<=0)return;
-    var p=clamp(-tl.getBoundingClientRect().top/total,0,0.9999);
-    show(Math.min(N-1,Math.floor(p*N)));
+    p=clamp(-tl.getBoundingClientRect().top/total,0,0.9999);
   }
+  function apply(t){
+    // bleed: 0 -> 1 al entrar, 1 en el centro, 1 -> 0 al salir
+    var g=t<ENTER ? t/ENTER : (t>EXIT ? (1-t)/(1-EXIT) : 1);
+    g=ease(clamp(g,0,1));
+    bg.style.transform='none';
+    var r=bg.getBoundingClientRect();
+    var sx=1+((window.innerWidth/r.width)-1)*g;
+    var sy=1+((window.innerHeight/r.height)-1)*g;
+    var dx=(window.innerWidth/2-(r.left+r.width/2))*g;
+    var dy=(window.innerHeight/2-(r.top+r.height/2))*g;
+    bg.style.transform='translate('+dx+'px,'+dy+'px) scale('+sx+','+sy+')';
+    bg.style.borderRadius=(18*(1-g))+'px';
+    // hitos en el tramo central
+    var q=clamp((t-ENTER)/(EXIT-ENTER),0,0.9999);
+    show(Math.min(N-1,Math.floor(q*N)));
+  }
+  function raf(){ cur+=(p-cur)*.16; if(Math.abs(p-cur)<.0005)cur=p; apply(cur); requestAnimationFrame(raf); }
   document.getElementById('tl-prev').addEventListener('click',function(){jump(idx-1);});
   document.getElementById('tl-next').addEventListener('click',function(){jump(idx+1);});
   window.addEventListener('scroll',onScroll,{passive:true});
   window.addEventListener('resize',onScroll);
-  onScroll(); if(idx<0)show(0);
+  onScroll(); raf(); if(idx<0)show(0);
 })();
 </script>
 </body>

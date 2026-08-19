@@ -189,10 +189,6 @@
   .immersive .msg h2{color:#fff;font-size:clamp(24px,4.2vw,52px);font-weight:800;letter-spacing:.5px;line-height:1.15;margin:0;text-transform:uppercase;font-family:'Montserrat';}
   .immersive .msg.on{opacity:1;transform:translateY(0);}
   /* 110 años: badge junto al logo + intro fullscreen (ref 150.jhu.edu) */
-  .logo-anniv{display:none;align-items:center;justify-content:center;flex-direction:column;width:46px;height:46px;border-radius:50%;background:var(--ink);color:#fff;cursor:pointer;flex:none;}
-  .logo-anniv b{font-family:'Montserrat';font-weight:800;font-size:14px;line-height:1;}
-  .logo-anniv span{font-family:'Montserrat';font-weight:700;font-size:7px;letter-spacing:.5px;text-transform:uppercase;}
-  body.anniv-on .logo-anniv{display:flex;}
   .anniv-splash{position:fixed;inset:0;z-index:210;background:#fff;display:none;align-items:center;justify-content:center;overflow:hidden;will-change:transform;}
   .anniv-splash.open{display:flex;}
   .as-center{text-align:center;position:relative;z-index:2;}
@@ -286,7 +282,7 @@
   @media(max-width:1100px){ #crail{display:none;} }
   @media print{.toolbar,.sec-tools,.toast{display:none!important;}}
 </style>
-<script src="menu.js?v=20260818" defer></script>
+<script src="menu.js?v=20260818b" defer></script>
 </head>
 <body>
 <div style="background:#fff8e1;border-bottom:1px solid #e8dfc0;font-size:12.5px;color:#7a6a33;padding:9px 24px;text-align:center;position:relative;z-index:60;">VERSIÓN 2 del home — Campus sostenible como slider de videos con anclas (opción 2). La versión con zoom inmersivo (opción 1) está en <a href="home-grises.html" style="color:inherit;font-weight:700;">home-grises.html</a>.</div>
@@ -298,10 +294,7 @@
     <div class="r"><span>Intranet y correo</span><span>PAIDEIA</span><span>Biblioteca</span><span>⠿ Accesos</span><span>🌐 ES</span></div>
   </div></div>
   <div class="logorow"><div class="wrap">
-    <div style="display:flex;align-items:center;gap:12px;">
-      <div class="logo"><svg width="32" height="32" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="none" stroke-width="2"/><path d="M9 24 q11 6 22 0 l-3 5 h-16 z"/><path d="M20 8 l7 13 h-14 z"/></svg>PUCP</div>
-      <div class="logo-anniv" id="anniv-mini" title="PUCP 110 años — ver la historia"><b>110</b><span>años</span></div>
-    </div>
+    <div class="logo"><svg width="32" height="32" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="none" stroke-width="2"/><path d="M9 24 q11 6 22 0 l-3 5 h-16 z"/><path d="M20 8 l7 13 h-14 z"/></svg>PUCP</div>
     <div class="r"><span class="search">🔍 Buscar</span><span class="postula">Quiero postular</span></div>
   </div></div>
   <div class="menu"><div class="wrap">
@@ -992,8 +985,8 @@
 <script>
 // splash 110 años (breve): confeti + contador 1917->110, auto-cierra encogiendose hacia el badge del logo
 (function(){
-  var sp=document.getElementById('anniv-splash'), mini=document.getElementById('anniv-mini');
-  if(!sp||!mini) return;
+  var sp=document.getElementById('anniv-splash');
+  if(!sp) return;
   var yearEl=document.getElementById('as-year'), lblEl=document.getElementById('as-lbl'), conf=document.getElementById('as-confetti');
   var COLORS=['#2b2f36','#6b7280','#9aa2ad','#d5d9df','#c8a438'];
   var timers=[], running=false;
@@ -1012,8 +1005,9 @@
     }
   }
   function badgeTransform(){
-    var r=mini.getBoundingClientRect();
-    return 'translate('+r.left+'px,'+r.top+'px) scale('+(r.width/window.innerWidth)+')';
+    var el=document.getElementById('mi-anniv');
+    if(el){ var r=el.getBoundingClientRect(); if(r.width>2){ return 'translate('+r.left+'px,'+r.top+'px) scale('+(r.width/window.innerWidth)+')'; } }
+    return 'scale(.92)';
   }
   function close(){
     if(!sp.classList.contains('open'))return;
@@ -1047,7 +1041,6 @@
   }
   window.openAnnivSplash=open;
   document.getElementById('as-skip').addEventListener('click',close);
-  mini.addEventListener('click',open);
   document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
   // auto-apertura al entrar (respeta el toggle 110 años); tambien via #110 (item del menu desde otras paginas)
   var autoDone=false;
