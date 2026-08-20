@@ -92,6 +92,11 @@
   .rotb-slide{display:none;}
   .rotb-slide.on{display:block;animation:rotbin .45s ease;}
   @keyframes rotbin{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+  .rotb-ar{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:40px;height:40px;border-radius:50%;background:#fff;border:1.5px solid var(--azul);color:var(--azul);font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s;}
+  .rotb-ar:hover{background:var(--azul);color:#fff;}
+  .rotb-ar.prev{left:-14px;}
+  .rotb-ar.next{right:-14px;}
+  @media(max-width:860px){ .rotb-ar.prev{left:2px;} .rotb-ar.next{right:2px;} }
   .rotb-dots{display:flex;gap:8px;justify-content:center;margin-top:14px;}
   .rotb-dots span{width:9px;height:9px;border-radius:50%;background:var(--line);cursor:pointer;}
   .rotb-dots span.on{background:var(--azul);}
@@ -556,6 +561,8 @@ body.hdr-open .hdr-burger i:nth-child(3){transform:translateY(-7px) rotate(-45de
             <a class="btn lg" href="https://aeg.pucp.edu.pe/actividad/almuerzo-de-reencuentro-2026-de-la-pucp-pal-peru/" target="_blank" rel="noopener">Ver el reencuentro →</a>
           </div>
         </div>
+        <button class="rotb-ar prev" id="rotb-prev" title="Anterior">←</button>
+        <button class="rotb-ar next" id="rotb-next" title="Siguiente">→</button>
         <div class="rotb-dots"><span class="on"></span><span></span><span></span></div>
       </div>
     </section>
@@ -921,6 +928,9 @@ body.hdr-open .hdr-burger i:nth-child(3){transform:translateY(-7px) rotate(-45de
     }
     function auto(){ clearInterval(t); t=setInterval(function(){go(i+1);},6000); }
     dots.forEach(function(d,j){ d.addEventListener('click',function(){go(j);auto();}); });
+    var pv=document.getElementById('rotb-prev'), nx=document.getElementById('rotb-next');
+    if(pv) pv.addEventListener('click',function(){go(i-1);auto();});
+    if(nx) nx.addEventListener('click',function(){go(i+1);auto();});
     rb.addEventListener('mouseenter',function(){clearInterval(t);});
     rb.addEventListener('mouseleave',auto);
     go(0); auto();
