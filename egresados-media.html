@@ -87,6 +87,23 @@
   .btn{display:inline-flex;align-items:center;gap:7px;background:var(--azul);color:#fff;font-family:'Montserrat';font-weight:600;font-size:14px;padding:12px 22px;border-radius:8px;text-decoration:none;}
   .btn.ghost{background:#fff;color:var(--azul);border:1.5px solid var(--azul);}
   .btn.sm{padding:9px 16px;font-size:13px;}
+  /* banner rotativo (encuesta + AEG) */
+  .rotb{position:relative;}
+  .rotb-slide{display:none;}
+  .rotb-slide.on{display:block;animation:rotbin .45s ease;}
+  @keyframes rotbin{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+  .rotb-dots{display:flex;gap:8px;justify-content:center;margin-top:14px;}
+  .rotb-dots span{width:9px;height:9px;border-radius:50%;background:var(--line);cursor:pointer;}
+  .rotb-dots span.on{background:var(--azul);}
+  /* eventos para egresados */
+  .egev{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px;}
+  .egev .ev{display:flex;gap:12px;align-items:center;background:var(--tint-2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
+  .egev .d{flex:none;min-width:52px;text-align:center;background:var(--azul);color:#fff;border-radius:10px;padding:7px 4px;font-family:'Montserrat';font-weight:700;line-height:1.1;}
+  .egev .d b{display:block;font-size:18px;}
+  .egev .d span{font-size:10px;text-transform:uppercase;}
+  .egev .in b{display:block;font-size:13px;color:var(--ink);line-height:1.3;margin-bottom:2px;}
+  .egev .in span{font-size:11.5px;color:var(--ink-soft);}
+  @media(max-width:860px){ .egev{grid-template-columns:1fr;} }
   /* hero */
   .hero{background:var(--ph);border:1px dashed var(--ph-line);border-radius:14px;position:relative;min-height:320px;display:flex;align-items:flex-end;overflow:hidden;}
   .hero .imgnote{position:absolute;top:14px;left:16px;font-size:12px;color:#7a869a;background:#ffffffcc;border-radius:5px;padding:3px 9px;}
@@ -504,17 +521,42 @@ body.hdr-open .hdr-burger i:nth-child(3){transform:translateY(-7px) rotate(-45de
 
     <!-- 3 ENCUESTA DE EGRESADOS -->
     <section id="sec-encuesta" data-title="Encuesta de egresados">
-      <div class="survey">
-        <div class="stxt">
-          <p class="eyebrow">Encuesta de egresados 2026</p>
-          <h2 class="t" style="font-size:22px;">Tu opinión construye la PUCP del futuro</h2>
-          <p class="sub" style="margin:0;">Queremos saber cómo te va: tu situación laboral, tu experiencia profesional y lo que la PUCP puede hacer mejor. Con tus respuestas mejoramos los planes de estudio y los servicios para egresados.</p>
-          <details>
-            <summary>¿Por qué es importante esta encuesta?</summary>
-            <p>La Encuesta de Egresados es la principal fuente de información sobre la trayectoria de nuestra comunidad: empleabilidad, continuidad de estudios y pertinencia de la formación recibida. Sus resultados alimentan la mejora de los planes de estudio, la acreditación de las carreras y el diseño de nuevos servicios y beneficios para egresados. Responderla toma unos 10 minutos y tus datos se tratan de forma confidencial.</p>
-          </details>
+      <div class="rotb" id="rotb">
+        <div class="rotb-slide on">
+          <div class="survey">
+            <div class="stxt">
+              <p class="eyebrow">Encuesta de egresados 2026</p>
+              <h2 class="t" style="font-size:22px;">Tu opinión construye la PUCP del futuro</h2>
+              <p class="sub" style="margin:0;">Queremos saber cómo te va: tu situación laboral, tu experiencia profesional y lo que la PUCP puede hacer mejor. Con tus respuestas mejoramos los planes de estudio y los servicios para egresados.</p>
+              <details>
+                <summary>¿Por qué es importante esta encuesta?</summary>
+                <p>La Encuesta de Egresados es la principal fuente de información sobre la trayectoria de nuestra comunidad: empleabilidad, continuidad de estudios y pertinencia de la formación recibida. Sus resultados alimentan la mejora de los planes de estudio, la acreditación de las carreras y el diseño de nuevos servicios y beneficios para egresados. Responderla toma unos 10 minutos y tus datos se tratan de forma confidencial.</p>
+              </details>
+            </div>
+            <a class="btn lg" href="#">Participa en la encuesta →</a>
+          </div>
         </div>
-        <a class="btn lg" href="#">Participa en la encuesta →</a>
+        <div class="rotb-slide">
+          <div class="survey">
+            <div class="stxt">
+              <p class="eyebrow">AEG · Evento destacado</p>
+              <h2 class="t" style="font-size:22px;">Alumni Summit PUCP</h2>
+              <p class="sub" style="margin:0;">Un día para reconectar con tu comunidad: charlas de egresados líderes, networking por sectores y la agenda de la Asociación de Egresados y Graduados.</p>
+            </div>
+            <a class="btn lg" href="https://aeg.pucp.edu.pe/" target="_blank" rel="noopener">Conoce el evento →</a>
+          </div>
+        </div>
+        <div class="rotb-slide">
+          <div class="survey">
+            <div class="stxt">
+              <p class="eyebrow">AEG · Comunidad</p>
+              <h2 class="t" style="font-size:22px;">Almuerzo de Reencuentro 2026: De la PUCP pa'l Perú</h2>
+              <p class="sub" style="margin:0;">La fiesta más grande del año de la comunidad PUCP. Reencuéntrate con tu promoción y celebra con toda la familia de egresados.</p>
+            </div>
+            <a class="btn lg" href="https://aeg.pucp.edu.pe/actividad/almuerzo-de-reencuentro-2026-de-la-pucp-pal-peru/" target="_blank" rel="noopener">Ver el reencuentro →</a>
+          </div>
+        </div>
+        <div class="rotb-dots"><span class="on"></span><span></span><span></span></div>
       </div>
     </section>
 
@@ -578,6 +620,13 @@ body.hdr-open .hdr-burger i:nth-child(3){transform:translateY(-7px) rotate(-45de
         </a>
       </div>
       <div class="ctas" style="margin-top:16px;"><a class="btn ghost sm" href="https://puntoedu.pucp.edu.pe/" target="_blank" rel="noopener">Ver más noticias en PuntoEdu →</a></div>
+      <h2 class="t" style="font-size:20px;margin-top:30px;">Eventos para egresados</h2>
+      <div class="egev">
+        <div class="ev"><div class="d"><b>28</b><span>jun</span></div><div class="in"><b>Almuerzo de Reencuentro 2026: De la PUCP pa'l Perú</b><span>Campus PUCP · AEG</span></div></div>
+        <div class="ev"><div class="d"><b>15</b><span>oct</span></div><div class="in"><b>Alumni Summit PUCP</b><span>Auditorio de Derecho · AEG (fecha referencial)</span></div></div>
+        <div class="ev"><div class="d"><b>12</b><span>set</span></div><div class="in"><b>Networking por facultades</b><span>CCPUCP · AEG (fecha referencial)</span></div></div>
+      </div>
+      <div class="ctas" style="margin-top:14px;"><a class="btn ghost sm" href="https://aeg.pucp.edu.pe/actividades/" target="_blank" rel="noopener">Ver todos los eventos de la AEG →</a></div>
     </section>
 
     <!-- 7 SIGAMOS CONECTADOS -->
@@ -699,6 +748,7 @@ body.hdr-open .hdr-burger i:nth-child(3){transform:translateY(-7px) rotate(-45de
       var blk=document.getElementById(id), ed=blk&&blk.querySelector('.editable');
       if(ed) ed.innerHTML=savedContent[id];
     });
+    if(savedContent['sec-encuesta']!=null && window.initRotb) window.initRotb();
   }
   function saveContentRemote(id){
     var prev=contentIds[id];
@@ -855,6 +905,27 @@ body.hdr-open .hdr-burger i:nth-child(3){transform:translateY(-7px) rotate(-45de
     if(e.key==='Escape'){ document.body.classList.remove('hdr-open'); burger.setAttribute('aria-expanded','false'); }
   });
   upd();
+})();
+</script>
+<script>
+// banner rotativo de la seccion encuesta/AEG
+(function(){
+  window.initRotb = function(){
+    var rb=document.getElementById('rotb'); if(!rb) return;
+    var slides=rb.querySelectorAll('.rotb-slide'), dots=rb.querySelectorAll('.rotb-dots span');
+    var i=0, t=null;
+    function go(n){
+      i=(n+slides.length)%slides.length;
+      slides.forEach(function(x,j){x.classList.toggle('on',j===i);});
+      dots.forEach(function(x,j){x.classList.toggle('on',j===i);});
+    }
+    function auto(){ clearInterval(t); t=setInterval(function(){go(i+1);},6000); }
+    dots.forEach(function(d,j){ d.addEventListener('click',function(){go(j);auto();}); });
+    rb.addEventListener('mouseenter',function(){clearInterval(t);});
+    rb.addEventListener('mouseleave',auto);
+    go(0); auto();
+  };
+  initRotb();
 })();
 </script>
 </body>
