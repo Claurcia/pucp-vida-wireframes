@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wireframe baja — Mapa del campus × Descubre PUCP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --ink:#1f2530; --ink2:#5b6470; --soft:#8a93a0; --line:#e3e6ea; --t2:#eeeeee; --dark:#2b2f36; --map:#e9ebee; --blq:#cfd4da; }
+  *{box-sizing:border-box;}
+  body{margin:0;background:#fff;font-family:'Roboto',Arial,sans-serif;color:var(--ink);line-height:1.5;height:100vh;display:flex;flex-direction:column;}
+  b,h1,h2,h3{font-family:'Montserrat',Arial,sans-serif;}
+  button{font-family:'Roboto',Arial,sans-serif;}
+
+  .note{background:#fff8e1;border-bottom:1px solid #e8dfc0;font-size:12px;color:#7a6a33;padding:7px 20px;text-align:center;flex:none;}
+  .note a{color:inherit;font-weight:700;}
+
+  header.top{background:var(--dark);color:#fff;flex:none;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 22px;flex-wrap:wrap;}
+  .brand{display:flex;align-items:center;gap:14px;min-width:0;}
+  .brand .logo{font-family:'Montserrat';font-weight:800;font-size:18px;letter-spacing:1px;}
+  .brand .sep{border-left:1px solid rgba(255,255,255,.25);padding-left:14px;}
+  .brand .sep b{display:block;font-size:14px;}
+  .brand .sep span{font-size:10px;letter-spacing:1px;color:#aab2bd;}
+  .brand .sep span b{display:inline;font-size:10px;color:#fff;}
+  #btn-app{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:999px;border:1.5px solid rgba(255,255,255,.4);background:none;color:#fff;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s;}
+  #btn-app.on{background:#fff;color:var(--ink);}
+
+  .cols{flex:1;min-height:0;display:grid;grid-template-columns:330px minmax(340px,1fr);}
+  body.app-on .cols{grid-template-columns:290px minmax(340px,1fr) 290px;}
+
+  aside.list{background:#fff;border-right:1.5px solid var(--line);display:flex;flex-direction:column;min-height:0;}
+  .search{margin:14px 14px 10px;display:flex;align-items:center;gap:9px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:10px 13px;}
+  .search input{flex:1;min-width:0;border:0;outline:0;font:inherit;font-size:13px;color:var(--ink);}
+  .chips{display:flex;gap:6px;flex-wrap:wrap;padding:0 14px 10px;}
+  .chip{padding:5px 12px;border-radius:999px;font-size:10.5px;font-weight:600;cursor:pointer;border:1.5px solid var(--line);background:#fff;color:var(--ink);transition:all .2s;}
+  .chip.on{background:var(--dark);border-color:var(--dark);color:#fff;}
+  .rows{flex:1;overflow-y:auto;padding:2px 8px 12px;min-height:0;}
+  .row{display:flex;align-items:center;gap:11px;width:100%;padding:10px 11px;border-radius:12px;border:0;background:none;text-align:left;cursor:pointer;transition:background .18s;}
+  .row:hover{background:var(--t2);}
+  .row.on{background:#dfe3e8;}
+  .row .pinico{width:32px;height:32px;border-radius:50%;flex:none;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--ink2);}
+  .row.on .pinico{background:var(--dark);color:#fff;border-color:var(--dark);}
+  .row b{display:block;font-size:12.5px;line-height:1.3;}
+  .row small{font-size:10.5px;color:var(--ink2);}
+  .row .go{margin-left:auto;opacity:0;font-weight:700;color:var(--ink2);transition:opacity .18s;}
+  .row:hover .go,.row.on .go{opacity:1;}
+  .empty{padding:28px 16px;text-align:center;font-size:12.5px;color:var(--ink2);}
+
+  main.map{position:relative;min-width:0;min-height:0;padding:16px;display:flex;flex-direction:column;gap:12px;background:#f7f8f9;}
+  .mapwrap{flex:1;min-height:0;position:relative;}
+  .mapwrap svg{width:100%;height:100%;display:block;background:var(--map);border-radius:14px;}
+  .maptag{position:absolute;top:12px;left:12px;font-size:9.5px;font-weight:700;letter-spacing:1px;background:rgba(255,255,255,.94);color:var(--ink2);padding:5px 11px;border-radius:999px;box-shadow:0 2px 8px rgba(0,0,0,.12);}
+
+  .card{background:#fff;border-radius:14px;box-shadow:0 8px 26px rgba(0,0,0,.12);padding:14px 18px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;flex:none;max-height:52%;overflow-y:auto;}
+  .card .who{flex:1;min-width:200px;}
+  .card .cat{font-size:9.5px;font-weight:700;letter-spacing:1px;color:var(--ink2);text-transform:uppercase;}
+  .card .nom{display:block;font-size:16px;font-weight:800;margin:2px 0 1px;}
+  .card .ref{font-size:11.5px;color:var(--ink2);}
+  .card .acts{display:flex;gap:8px;flex-wrap:wrap;}
+  .bt{display:inline-flex;align-items:center;gap:7px;padding:11px 18px;border-radius:999px;border:0;font-size:12.5px;font-weight:700;cursor:pointer;}
+  .bt.dark{background:var(--dark);color:#fff;}
+  .bt.line{background:#fff;color:var(--ink);border:1.5px solid var(--line);}
+  .bt.tint{background:var(--t2);color:var(--ink);}
+  .qr{display:flex;align-items:center;gap:10px;padding-left:14px;border-left:1.5px solid var(--line);}
+  .qr small{font-size:10px;line-height:1.45;color:var(--ink2);max-width:145px;}
+  .qr code{font-size:9px;color:var(--ink2);}
+
+  .ficha{border-top:1.5px solid var(--line);margin-top:12px;padding-top:12px;display:grid;grid-template-columns:1.2fr .8fr;gap:18px;width:100%;}
+  .ficha.solo{grid-template-columns:1fr;}
+  .f-lab{font-size:9.5px;font-weight:700;letter-spacing:1.2px;color:var(--ink2);}
+  .f-tabs{display:flex;gap:5px;}
+  .f-tab{padding:3px 11px;border-radius:999px;font-size:10px;font-weight:700;cursor:pointer;border:1.5px solid var(--line);background:#fff;color:var(--ink);}
+  .f-tab.on{background:var(--dark);border-color:var(--dark);color:#fff;}
+  .menus{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:9px;}
+  .menu{background:var(--t2);border-radius:12px;padding:10px 13px;}
+  .menu .mh{display:flex;justify-content:space-between;gap:8px;margin-bottom:4px;font-size:11px;font-weight:800;}
+  .menu ul{margin:0;padding:0;list-style:none;font-size:11px;line-height:1.45;color:var(--ink2);}
+  .f-meta{display:flex;flex-direction:column;gap:10px;font-size:11.5px;}
+  .f-meta b{display:block;font-size:11.5px;}
+  .f-meta p{margin:4px 0 0;font-size:11.5px;line-height:1.55;color:var(--ink2);}
+  .f-src{display:block;margin-top:7px;font-size:9.5px;color:var(--soft);}
+
+  aside.phone{padding:16px 16px 16px 0;display:flex;flex-direction:column;gap:8px;align-items:center;overflow:hidden;min-width:0;display:none;}
+  body.app-on aside.phone{display:flex;}
+  .ph-lab{font-size:9.5px;font-weight:700;letter-spacing:1.4px;color:var(--ink2);}
+  .device{width:250px;background:var(--dark);border-radius:26px;padding:10px 8px 12px;box-shadow:0 18px 40px rgba(0,0,0,.3);flex:none;}
+  .device .cam{width:56px;height:5px;border-radius:3px;background:rgba(255,255,255,.25);margin:0 auto 8px;}
+  .screen{background:#fff;border-radius:16px;overflow:hidden;height:430px;display:flex;flex-direction:column;}
+  .scr-top{background:var(--dark);color:#fff;font-size:10.5px;font-weight:700;padding:7px 12px;display:flex;justify-content:space-between;}
+  .modes{padding:8px 10px;display:flex;gap:6px;}
+  .mode{flex:1;padding:7px 0;border-radius:999px;font-size:10.5px;font-weight:700;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--ink2);}
+  .mode.on{background:var(--dark);border-color:var(--dark);color:#fff;}
+  .scr-body{flex:1;min-height:0;padding:0 10px;}
+  .scr-body svg{width:100%;height:100%;display:block;background:var(--map);border-radius:12px;}
+  .ra{position:relative;height:100%;border-radius:12px;overflow:hidden;background:linear-gradient(180deg,#b6bcc4 0%,#cdd2d9 45%,#b9bfb2 78%,#a4ab99 100%);}
+  .ra .bx1{position:absolute;left:14%;top:26%;width:30%;height:48%;background:rgba(31,37,48,.28);border-radius:4px;}
+  .ra .bx2{position:absolute;right:12%;top:20%;width:24%;height:54%;background:rgba(31,37,48,.2);border-radius:4px;}
+  .ra .mid{position:absolute;left:50%;top:32%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;}
+  .ra .pilln{background:rgba(255,255,255,.95);border-radius:999px;padding:5px 13px;font-size:10.5px;font-weight:800;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.25);}
+  .ra .dist{font-size:9.5px;font-weight:700;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.5);}
+  .ra .flecha{font-size:38px;color:#fff;text-shadow:0 3px 6px rgba(0,0,0,.4);animation:raflota 1.6s ease-in-out infinite;}
+  @keyframes raflota{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+  .ra .foot{position:absolute;left:10%;right:10%;bottom:7%;display:flex;justify-content:space-between;align-items:center;}
+  .ra .shutter{width:38px;height:38px;border-radius:50%;border:2px solid rgba(255,255,255,.9);}
+  .ra .camlab{font-size:8px;font-weight:700;letter-spacing:1px;color:rgba(255,255,255,.9);}
+  .scr-foot{padding:9px 12px 12px;display:flex;gap:9px;align-items:center;}
+  .scr-foot .ico{width:30px;height:30px;border-radius:50%;flex:none;background:var(--t2);display:flex;align-items:center;justify-content:center;font-size:12px;}
+  .scr-foot b{display:block;font-size:11px;line-height:1.25;}
+  .scr-foot small{font-size:9.5px;color:var(--ink2);}
+
+  @media(max-width:980px){
+    .cols,body.app-on .cols{grid-template-columns:1fr;grid-auto-rows:auto;overflow-y:auto;}
+    body{height:auto;}
+    aside.list{max-height:50vh;}
+    .mapwrap{min-height:320px;}
+    aside.phone{padding:16px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="note">WIREFRAME DE BAJA — Propuesta «Mapa del campus × Descubre PUCP» (un solo mapa; la app como navegador) · <a href="home-grises.html">← volver al home</a></div>
+
+<header class="top">
+  <div class="brand">
+    <span class="logo">PUCP</span>
+    <div class="sep">
+      <b>Mapa del campus</b>
+      <span>CON LA NAVEGACIÓN DE <b>DESCUBRE PUCP</b></span>
+    </div>
+  </div>
+  <button id="btn-app" type="button">📱 Ver cómo sigue en la app</button>
+</header>
+
+<div class="cols">
+  <aside class="list">
+    <div class="search">🔍<input id="q" placeholder="Busca un lugar: biblioteca, comedor, laboratorio…"></div>
+    <div class="chips" id="chips"></div>
+    <div class="rows" id="rows"></div>
+  </aside>
+
+  <main class="map">
+    <div class="mapwrap">
+      <svg id="mapa" viewBox="0 0 100 74" preserveAspectRatio="xMidYMid meet"></svg>
+      <span class="maptag">RUTA A PIE DESDE EL INGRESO PRINCIPAL · MAPA REFERENCIAL</span>
+    </div>
+    <div class="card" id="card"></div>
+  </main>
+
+  <aside class="phone">
+    <span class="ph-lab">ASÍ CONTINÚA EN EL TELÉFONO</span>
+    <div class="device"><div class="cam"></div>
+      <div class="screen">
+        <div class="scr-top"><span>Descubre PUCP</span><span>▂ ▄ ▆</span></div>
+        <div class="modes">
+          <button class="mode on" id="m-ruta" type="button">Ruta en mapa</button>
+          <button class="mode" id="m-ra" type="button">Realidad aumentada</button>
+        </div>
+        <div class="scr-body" id="scr-body"></div>
+        <div class="scr-foot" id="scr-foot"></div>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<script>
+// ====== datos (port de la propuesta de Claude Design) ======
+var CATS=['Espacios para compartir','Laboratorios e innovación','Espacios deportivos','Comedores PUCP','Espacios de estudio','Espacios culturales','Bienestar','Lugares favoritos'];
+var LUGARES=[
+ {id:'rotonda',nombre:'Rotonda de Generales Letras',cat:'Espacios para compartir',desc:'Punto de encuentro clásico entre clases, rodeado de jardines.',ref:'Entre EE.GG. Letras y la Biblioteca Central',x:36,y:44,min:6},
+ {id:'jardines-hh',nombre:'Jardines de Humanidades',cat:'Espacios para compartir',desc:'Áreas verdes para descansar y reunirte al aire libre.',ref:'Frente al pabellón de Humanidades',x:52,y:30,min:8},
+ {id:'pileta-z',nombre:'Pileta del pabellón Z',cat:'Espacios para compartir',desc:'Explanada con mesas junto a la pileta.',ref:'Pabellón Z, lado norte',x:70,y:22,min:10},
+ {id:'open-pucp',nombre:'Open PUCP',cat:'Laboratorios e innovación',desc:'Espacio abierto de innovación, prototipado y trabajo colaborativo.',ref:'Complejo de Innovación Académica',x:78,y:40,min:11},
+ {id:'lab-ing',nombre:'Laboratorios de Ingeniería',cat:'Laboratorios e innovación',desc:'Laboratorios por especialidad de la Facultad de Ciencias e Ingeniería.',ref:'Sección Ingeniería, pabellones A–D',x:84,y:56,min:12},
+ {id:'polideportivo',nombre:'Coliseo Polideportivo',cat:'Espacios deportivos',desc:'Sede de los Interfacultades y del deporte PUCP.',ref:'Zona deportiva, ingreso por la Av. Universitaria',x:16,y:20,min:9},
+ {id:'gimnasio',nombre:'Gimnasio PUCP',cat:'Espacios deportivos',desc:'Gimnasio equipado para la comunidad universitaria.',ref:'Junto al Coliseo Polideportivo',x:22,y:28,min:9},
+ {id:'comedor-central',nombre:'Comedor Central',cat:'Comedores PUCP',desc:'El comedor más grande del campus, con menú y NewGreen.',ref:'Frente a los jardines centrales',x:46,y:52,min:5,horario:'Lun – Vie: 8:00 a.m. – 8:00 p.m.',menus:{'Menú':[{n:'MENÚ NEWREST A',p:'S/.9.8',items:['Ensalada clásica, huevo en crema de pimiento o sopa criollo con pollo','Asado de res, puré de papa, arroz','Fruta picada, gelatina, mazamorra morada o queque de plátano','Limonada']},{n:'MENÚ NEWREST B',p:'S/.9.8',items:['Ensalada clásica, huevo en crema de pimiento o sopa criollo con pollo','Seco de pollo, frijoles panamitos guisados, arroz','Fruta picada, gelatina, mazamorra morada o queque de plátano','Limonada']}],'Vegetariano':[{n:'MENÚ VEGGIE',p:'S/.9.8',items:['Ensalada clásica o huevo en crema de pimiento','Canelones vegetarianos, pan al ajo, verduras salteadas','Fruta picada, mazamorra morada o queque de plátano','Limonada']}]}},
+ {id:'cafe-338',nombre:'338 Café Gourmet',cat:'Comedores PUCP',desc:'338 es el número de distritos cafetaleros del país: un café premium de granos peruanos, orgánico o clásico.',ref:'Frente a CC.SS., al costado de EE.GG. Ciencias',x:60,y:48,min:7,horario:'Lun – Vie: 9:00 a.m. – 8:00 p.m.',enlaces:['Café premium 338','FB 338']},
+ {id:'comedor-letras',nombre:'Comedor de Letras',cat:'Comedores PUCP',desc:'Menú, EcoPlato y NewPlato en el corazón de Letras.',ref:'Pabellón de EE.GG. Letras',x:38,y:38,min:6,horario:'Lun – Vie: 8:00 a.m. – 6:00 p.m.',menus:{'Menú':[{n:'MENÚ NEWGREEN',p:'S/.9.8',items:['Ensalada del día','Seco de pollo, frijoles panamitos guisados, verduras salteadas','Fruta picada','Limonada']},{n:'ECOPLATO',p:'S/.5.7',items:['Omelette de espinaca, frijoles panamitos guisados, arroz','Limonada']},{n:'NEWPLATO LETRAS',p:'S/.8.2',items:['Opción 1: Asado de res, puré de papa, arroz','Opción 2: Pollo a la coca cola, yuca sancochada, arroz','Limonada']}],'Vegetariano':[{n:'MENÚ VEGGIE',p:'S/.9.8',items:['Ensalada clásica o huevo en crema de pimiento','Canelones vegetarianos, pan al ajo, verduras salteadas','Fruta picada, mazamorra morada o queque de plátano','Limonada']}]}},
+ {id:'biblioteca',nombre:'Biblioteca Central',cat:'Espacios de estudio',desc:'Salas de lectura, cubículos grupales y colecciones.',ref:'Eje central del campus',x:42,y:60,min:6,horario:'Lun – Sáb: 8:00 a.m. – 10:00 p.m.'},
+ {id:'tinkuy',nombre:'Tinkuy',cat:'Espacios de estudio',desc:'Espacios de estudio individual y grupal, abiertos hasta la noche.',ref:'Junto a EE.GG. Letras',x:30,y:52,min:7},
+ {id:'ccpucp',nombre:'Galería y teatro (CCPUCP)',cat:'Espacios culturales',desc:'Cine, teatro y exposiciones del Centro Cultural PUCP.',ref:'Av. Camino Real 1075, San Isidro',x:90,y:12,min:35},
+ {id:'anfiteatro',nombre:'Anfiteatro Armando Zolezzi',cat:'Espacios culturales',desc:'Conciertos de mediodía y presentaciones de elencos.',ref:'Facultad de Derecho',x:56,y:62,min:8},
+ {id:'daes',nombre:'Bienestar psicológico (DAES)',cat:'Bienestar',desc:'Acompañamiento psicológico y de salud para estudiantes.',ref:'Edificio DAES, 2.º piso',x:64,y:34,min:9},
+ {id:'jardin-ciencias',nombre:'Jardines de Ciencias',cat:'Lugares favoritos',desc:'Uno de los rincones más queridos por la comunidad PUCP.',ref:'Frente a EE.GG. Ciencias',x:66,y:56,min:9}
+];
+var BLOQUES=[[6,8,18,10],[28,6,16,9],[50,6,14,8],[70,6,12,9],[6,24,14,12],[26,22,12,9],[44,18,16,10],[64,16,10,9],[8,42,16,10],[28,34,14,10],[48,30,12,9],[62,28,10,8],[76,26,12,10],[10,58,18,9],[34,46,10,8],[52,42,12,9],[68,44,14,9],[80,58,14,10],[36,58,12,8],[54,56,10,8]];
+
+// ====== estado ======
+var q='', cat='Todos', sel='biblioteca', modo='ruta', verFicha=true, tabFicha=null;
+
+function visibles(){
+  return LUGARES.filter(function(l){
+    return (cat==='Todos'||l.cat===cat) && (q.trim()===''||(l.nombre+' '+l.cat).toLowerCase().indexOf(q.trim().toLowerCase())>=0);
+  });
+}
+function lugar(){ return LUGARES.filter(function(x){return x.id===sel;})[0]; }
+
+// ====== mapa svg ======
+function svgMapa(pins, activo, conRuta){
+  var lg=null; pins.forEach(function(p){if(p.id===activo)lg=p;});
+  var s='<path d="M0 16 H100 M0 40 H100 M24 0 V74 M48 0 V74 M74 0 V74" stroke="#fff" stroke-width="2.6" fill="none"/>';
+  s+='<path d="M0 68 Q30 62 52 68 T100 66" stroke="#d9dde2" stroke-width="3.4" fill="none"/>';
+  BLOQUES.forEach(function(b){ s+='<rect x="'+b[0]+'" y="'+b[1]+'" width="'+b[2]+'" height="'+b[3]+'" rx="1.4" fill="var(--blq)"/>'; });
+  s+='<ellipse cx="46" cy="52" rx="6" ry="4" fill="#dfe3dd"/><ellipse cx="66" cy="56" rx="5" ry="3.4" fill="#dfe3dd"/>';
+  if(conRuta&&lg){
+    s+='<path d="M12 70 Q '+((12+lg.x)/2)+' '+(lg.y+16)+' '+lg.x+' '+(lg.y+2.2)+'" stroke="#1f2530" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-dasharray="3 2.2"><animate attributeName="stroke-dashoffset" from="52" to="0" dur="1.6s" fill="freeze"/></path>';
+    s+='<circle cx="12" cy="70" r="2.4" fill="#5b6470"/><circle cx="12" cy="70" r="4" fill="none" stroke="#5b6470" stroke-width=".6" opacity=".5"/>';
+  }
+  pins.forEach(function(l,i){
+    var on=l.id===activo;
+    s+='<g transform="translate('+l.x+','+l.y+')" style="cursor:pointer" data-pin="'+l.id+'">'
+     +'<path d="M0 2.4 C -2.6 -0.6 -2.6 -4.4 0 -6.2 C 2.6 -4.4 2.6 -0.6 0 2.4Z" transform="scale(1.15)" fill="'+(on?'#1f2530':'#8a93a0')+'"/>'
+     +'<circle cy="-4.4" r="'+(on?2:1.6)+'" fill="#fff"/>'
+     +'<text y="-3.6" text-anchor="middle" font-size="2.6" font-weight="800" fill="#1f2530">'+(i+1)+'</text></g>';
+  });
+  if(lg){
+    var lx=Math.min(Math.max(lg.x,20),78), ly=Math.max(lg.y-11,6);
+    var nom=lg.nombre.length>26?lg.nombre.slice(0,25)+'…':lg.nombre;
+    s+='<g transform="translate('+lx+','+ly+')"><rect x="-21" y="-4" width="42" height="7" rx="2" fill="#fff"/><text y=".6" text-anchor="middle" font-size="3" font-weight="700" fill="#1f2530">'+nom+'</text></g>';
+  }
+  return s;
+}
+
+// ====== QR fake determinista ======
+function qrFake(size){
+  var cells='', s=13;
+  function rnd(){ s=(s*16807)%2147483647; return s/2147483647; }
+  for(var y=0;y<13;y++)for(var x=0;x<13;x++){
+    var finder=(x<4&&y<4)||(x>8&&y<4)||(x<4&&y>8);
+    if(finder?(x%3!==1||y%3!==1):rnd()>.52) cells+='<rect x="'+x+'" y="'+y+'" width="1" height="1"/>';
+  }
+  return '<svg viewBox="0 0 13 13" width="'+size+'" height="'+size+'" style="display:block;background:#fff;border:1px solid var(--line);border-radius:8px;padding:5px" fill="#1f2530">'+cells+'</svg>';
+}
+
+// ====== render ======
+function esc(t){return String(t).replace(/</g,'&lt;');}
+function render(){
+  var vis=visibles(), l=lugar();
+  if(l && !vis.some(function(v){return v.id===sel;}) && vis[0]){ sel=vis[0].id; l=lugar(); }
+
+  // chips
+  var ch='<span class="chip'+(cat==='Todos'?' on':'')+'" data-cat="Todos">Todos</span>';
+  CATS.forEach(function(c){ ch+='<span class="chip'+(cat===c?' on':'')+'" data-cat="'+esc(c)+'">'+esc(c.replace('Espacios ','').replace('para ',''))+'</span>'; });
+  document.getElementById('chips').innerHTML=ch;
+
+  // filas
+  var rw='';
+  vis.forEach(function(x){
+    rw+='<button type="button" class="row'+(x.id===sel?' on':'')+'" data-id="'+x.id+'"><span class="pinico">📍</span><span style="min-width:0;flex:1"><b>'+esc(x.nombre)+'</b><small>'+esc(x.cat)+' · '+x.min+' min a pie</small></span><span class="go">→</span></button>';
+  });
+  if(!vis.length) rw='<div class="empty">Sin resultados para «'+esc(q)+'».<br>Prueba con otra palabra.</div>';
+  document.getElementById('rows').innerHTML=rw;
+
+  // mapa
+  document.getElementById('mapa').innerHTML=svgMapa(vis,sel,true);
+
+  // card
+  var cd='';
+  if(l){
+    cd='<div class="who"><span class="cat">'+esc(l.cat)+'</span><b class="nom">'+esc(l.nombre)+'</b><span class="ref">'+esc(l.ref)+' · <b>'+l.min+' min a pie</b></span></div>'
+      +'<div class="acts">'
+      +'<button class="bt dark" id="b-llegar" type="button">Cómo llegar ↗</button>'
+      +'<button class="bt line" id="b-ra" type="button">⌞⌝ Realidad aumentada</button>'
+      +'<button class="bt tint" id="b-ficha" type="button">'+(verFicha?'Ocultar ficha':(l.menus?'Ficha y menú de hoy':'Ver ficha'))+' '+(verFicha?'▴':'▾')+'</button>'
+      +'</div>'
+      +'<div class="qr">'+qrFake(58)+'<small>Escanea para llevar la ruta a tu teléfono con <b>Descubre PUCP</b><br><code>descubrepucp://lugar?id='+l.id+'</code></small></div>';
+    if(verFicha){
+      var tabs=l.menus?Object.keys(l.menus):[];
+      if(tabs.length && tabs.indexOf(tabFicha)<0) tabFicha=tabs[0];
+      cd+='<div class="ficha'+(l.menus?'':' solo')+'">';
+      if(l.menus){
+        cd+='<div><div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span class="f-lab">🍽 MENÚ DE HOY · LUN, 24 AGO</span><div class="f-tabs">';
+        tabs.forEach(function(t){ cd+='<span class="f-tab'+(t===tabFicha?' on':'')+'" data-tab="'+esc(t)+'">'+esc(t)+'</span>'; });
+        cd+='</div></div><div class="menus">';
+        (l.menus[tabFicha]||[]).forEach(function(m){
+          cd+='<div class="menu"><div class="mh"><span>'+esc(m.n)+'</span><span>'+esc(m.p)+'</span></div><ul>';
+          m.items.forEach(function(it){ cd+='<li>'+esc(it)+'</li>'; });
+          cd+='</ul></div>';
+        });
+        cd+='</div><span class="f-src">Programación de menús servida por Descubre PUCP · se actualiza cada día.</span></div>';
+      }
+      cd+='<div class="f-meta"><div><span class="f-lab">ACERCA DEL LUGAR</span><p>'+esc(l.desc)+'</p></div>';
+      if(l.horario) cd+='<div>🕐 <b>Horario de atención</b><p>'+esc(l.horario)+'</p></div>';
+      if(l.enlaces) cd+='<div>🔗 <b>Enlaces</b><p>'+l.enlaces.map(esc).join('<br>')+'</p></div>';
+      cd+='</div></div>';
+    }
+  }
+  document.getElementById('card').innerHTML=cd;
+
+  // telefono
+  document.getElementById('m-ruta').className='mode'+(modo==='ruta'?' on':'');
+  document.getElementById('m-ra').className='mode'+(modo==='ra'?' on':'');
+  var body=document.getElementById('scr-body');
+  if(l){
+    if(modo==='ruta'){
+      body.innerHTML='<svg viewBox="0 0 100 74" preserveAspectRatio="xMidYMid meet">'+svgMapa([l],l.id,true)+'</svg>';
+    }else{
+      body.innerHTML='<div class="ra"><div style="position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 2px,transparent 2px 26px)"></div>'
+        +'<div class="bx1"></div><div class="bx2"></div>'
+        +'<div class="mid"><span class="pilln">'+esc(l.nombre)+'</span><span class="dist">a '+l.min+' min caminando</span><span class="flecha">⬆</span></div>'
+        +'<div class="foot"><span class="shutter"></span><span class="camlab">VISTA DE CÁMARA · DEMO</span></div></div>';
+    }
+    document.getElementById('scr-foot').innerHTML='<span class="ico">📍</span><div style="min-width:0"><b>'+esc(l.nombre)+'</b><small>'+esc(l.ref)+' · '+l.min+' min a pie</small></div>';
+  }
+}
+
+// ====== eventos (delegados) ======
+document.getElementById('q').addEventListener('input',function(){ q=this.value; render(); });
+document.getElementById('chips').addEventListener('click',function(e){ var c=e.target.closest('.chip'); if(c){ cat=c.dataset.cat; render(); }});
+document.getElementById('rows').addEventListener('click',function(e){ var r=e.target.closest('.row'); if(r){ sel=r.dataset.id; render(); }});
+document.getElementById('mapa').addEventListener('click',function(e){ var g=e.target.closest('[data-pin]'); if(g){ sel=g.getAttribute('data-pin'); render(); }});
+document.getElementById('card').addEventListener('click',function(e){
+  if(e.target.closest('#b-ficha')){ verFicha=!verFicha; render(); return; }
+  if(e.target.closest('#b-llegar')){ modo='ruta'; document.body.classList.add('app-on'); document.getElementById('btn-app').classList.add('on'); document.getElementById('btn-app').textContent='📱 Ocultar vista de la app'; render(); return; }
+  if(e.target.closest('#b-ra')){ modo='ra'; document.body.classList.add('app-on'); document.getElementById('btn-app').classList.add('on'); document.getElementById('btn-app').textContent='📱 Ocultar vista de la app'; render(); return; }
+  var t=e.target.closest('.f-tab'); if(t){ tabFicha=t.dataset.tab; render(); }
+});
+document.getElementById('btn-app').addEventListener('click',function(){
+  var on=document.body.classList.toggle('app-on');
+  this.classList.toggle('on',on);
+  this.textContent=on?'📱 Ocultar vista de la app':'📱 Ver cómo sigue en la app';
+});
+document.getElementById('m-ruta').addEventListener('click',function(){ modo='ruta'; render(); });
+document.getElementById('m-ra').addEventListener('click',function(){ modo='ra'; render(); });
+
+render();
+</script>
+</body>
+</html>
