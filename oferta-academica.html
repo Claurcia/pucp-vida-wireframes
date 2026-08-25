@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oferta Académica · 3 opciones (Claude Design)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Source+Serif+Pro:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+/* ===== tokens Home PUCP v1.0 (home-pucp-tokens.css, Claude Design) ===== */
+:root {
+  --pucp-azul: #042354; --pucp-azul-medio: #004EA8; --pucp-celeste: #0A7BC2; --pucp-celeste-suave: #9fd8ff;
+  --pucp-tinta: #1a2b4a; --pucp-gris: #8b95a7; --pucp-linea: #e6e9ef; --pucp-suave: #f6f8fb;
+  --pucp-azul-tenue: #e5eff9; --pucp-azul-nube: #f2f8fd; --pucp-blanco: #ffffff;
+  --ff-sans: 'Montserrat', sans-serif; --ff-serif: 'Source Serif Pro', serif;
+  --fs-eyebrow: 11px; --ls-eyebrow: 0.22em;
+  --fs-h2: clamp(26px, 3.6vw, 38px);
+  --fs-body: 13.5px;
+  --maxw: 1160px; --pad-x: clamp(20px, 4vw, 48px); --sec-y: clamp(40px, 5vw, 64px);
+  --gap-grid: 20px; --gap-head: clamp(26px, 3.5vw, 40px);
+  --r-card: 16px; --r-pill: 999px;
+  --sh-rest: 0 0 0 1px rgba(4,35,84,0.06); --sh-hover: 0 18px 44px rgba(4,35,84,0.22);
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1); --dur-micro: 0.15s; --dur-hover: 0.45s;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--ff-sans);color:var(--pucp-tinta);background:#e9edf3}
+a{color:var(--pucp-celeste);text-decoration:none}a:hover{color:var(--pucp-azul-medio)}
+.note{background:#fff8e1;border-bottom:1px solid #e8dfc0;font-size:12px;color:#7a6a33;padding:8px 20px;text-align:center;font-family:var(--ff-sans);}
+.note a{color:inherit;font-weight:700;}
+.flabel{max-width:1280px;margin:44px auto 10px;padding:0 16px;font:700 13px/1 var(--ff-sans);color:#5a6a77}
+.frame{position:relative;background:var(--pucp-blanco);border-radius:8px;overflow:hidden;box-shadow:0 2px 24px rgba(4,35,84,.10);max-width:1280px;margin:0 auto 26px}
+.eyebrow{font-size:var(--fs-eyebrow);letter-spacing:var(--ls-eyebrow);font-weight:700;text-transform:uppercase;color:var(--pucp-celeste)}
+h2{font-size:var(--fs-h2);font-weight:800;color:var(--pucp-azul);line-height:1.15;margin-top:14px}
+h2 em{font-family:var(--ff-serif);font-style:italic;font-weight:400;font-size:1.12em;line-height:1}
+.sec{padding:var(--sec-y) var(--pad-x);max-width:var(--maxw);margin:0 auto}
+.desc{font-size:var(--fs-body);line-height:1.65;color:var(--pucp-tinta)}
+.arrow{width:38px;height:38px;border-radius:var(--r-pill);border:1.5px solid #cfe0ef;display:flex;align-items:center;justify-content:center;color:var(--pucp-azul);background:var(--pucp-blanco);transition:all var(--dur-micro) var(--ease-out);flex:none}
+.arrow svg{width:14px;height:14px}
+/* ---------- A · Tríptico de bloques ---------- */
+.a-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap-grid);margin-top:var(--gap-head)}
+.a-card{background:var(--pucp-blanco);border-radius:var(--r-card);box-shadow:var(--sh-rest);padding:28px 28px 0;display:flex;flex-direction:column;transition:box-shadow var(--dur-hover) var(--ease-out),transform var(--dur-hover) var(--ease-out);cursor:pointer;overflow:hidden}
+.a-card h3{font-size:22px;font-weight:700;color:var(--pucp-azul);margin-bottom:12px}
+.a-card .desc{min-height:66px}
+.a-card .arrow{margin:16px 0 22px}
+.a-photo{position:relative;margin:auto -28px 0;height:250px;background:var(--pucp-azul-tenue);border-radius:var(--r-card) var(--r-card) 0 0;overflow:hidden}
+.a-photo img{position:absolute;bottom:0;left:50%;transform:translateX(-50%);height:250px;transition:transform var(--dur-hover) var(--ease-out)}
+.a-card:hover{box-shadow:var(--sh-hover);transform:translateY(-4px)}
+.a-card:hover .a-photo img{transform:translateX(-50%) scale(1.05);transform-origin:bottom center}
+.a-card:hover .arrow{border-color:var(--pucp-azul-medio);background:var(--pucp-azul-medio);color:#fff}
+/* ---------- B · Explorador (fondo claro) ---------- */
+.b-wrap{background:linear-gradient(180deg,#f2f8fd,#e5eff9);padding:52px 60px;position:relative;overflow:hidden}
+.b-cols{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;margin-top:34px;align-items:center}
+.b-item{border-top:1px solid #cfe0ef;padding:20px 4px;cursor:pointer}
+.b-item:last-child{border-bottom:1px solid #cfe0ef}
+.b-item h3{font-size:27px;font-weight:700;color:#8fa8c4;transition:color var(--dur-hover) var(--ease-out)}
+.b-more{display:grid;grid-template-rows:0fr;transition:grid-template-rows var(--dur-hover) var(--ease-out)}
+.b-more>div{overflow:hidden}
+.b-item .desc{max-width:400px;padding:10px 0 4px}
+.b-item .b-link{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--pucp-celeste);display:inline-block;margin:6px 0 4px}
+.b-item.on h3{color:var(--pucp-azul)}
+.b-item.on .b-more{grid-template-rows:1fr}
+.b-stage{position:relative;height:420px;display:flex;align-items:center;justify-content:center}
+.b-stage::after{content:"";position:absolute;width:400px;height:400px;border-radius:50%;border:1px dashed rgba(10,123,194,.28)}
+.b-disc{position:relative;width:330px;height:330px;border-radius:50%;overflow:hidden;background:radial-gradient(circle at 50% 30%,#d3e7f7,#bcd9ee);box-shadow:0 20px 50px rgba(4,35,84,.14)}
+.b-disc img{position:absolute;left:50%;bottom:0;transform:translateX(-50%) translateY(10px);height:330px;opacity:0;transition:opacity .45s var(--ease-out),transform .55s var(--ease-out)}
+.b-disc img.on{opacity:1;transform:translateX(-50%) translateY(0)}
+/* ---------- C · Podio editorial ---------- */
+.c-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px}
+.c-cta{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--pucp-azul);border:1.5px solid #cfe0ef;border-radius:var(--r-pill);padding:12px 22px;white-space:nowrap;transition:all var(--dur-micro) var(--ease-out)}
+.c-cta:hover{border-color:var(--pucp-azul-medio);color:var(--pucp-azul-medio)}
+.c-band{position:relative;margin-top:340px;background:var(--pucp-azul-tenue);border-radius:var(--r-card);display:grid;grid-template-columns:repeat(3,1fr)}
+.c-col{position:relative;padding:26px 32px 30px;cursor:pointer}
+.c-col+.c-col{border-left:1px solid rgba(4,35,84,.09)}
+.c-fig{position:absolute;left:0;right:0;bottom:100%;height:300px;display:flex;justify-content:center;align-items:flex-end;pointer-events:none}
+.c-fig img{max-width:96%;max-height:300px;filter:drop-shadow(0 18px 26px rgba(4,35,84,.16));transform-origin:bottom center;transition:transform var(--dur-hover) var(--ease-out)}
+.c-col:hover .c-fig img{transform:scale(1.09) translateY(-4px)}
+.c-col h3{font-size:21px;font-weight:700;color:var(--pucp-azul);margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.c-col h3 .arrow{width:32px;height:32px}
+.c-col:hover h3 .arrow{border-color:var(--pucp-azul-medio);background:var(--pucp-azul-medio);color:#fff}
+.c-col::after{content:"";position:absolute;left:0;bottom:0;height:3px;width:0;background:var(--pucp-celeste);transition:width var(--dur-hover) var(--ease-out)}
+.c-col:hover::after{width:100%}
+@media(max-width:900px){
+  .a-grid,.c-band{grid-template-columns:1fr}
+  .b-cols{grid-template-columns:1fr}
+  .b-wrap{padding:32px 22px}
+  .c-band{margin-top:40px}
+  .c-fig{position:relative;bottom:auto;height:220px;margin-bottom:-10px}
+  .c-col+.c-col{border-left:none;border-top:1px solid rgba(4,35,84,.09)}
+}
+</style>
+</head>
+<body>
+
+<div class="note">PROPUESTAS — Sección «Oferta académica» en 3 opciones (import de Claude Design, fotos caladas reales) · <a href="home-grises.html">← volver al home</a></div>
+
+<div class="flabel">Opción A · Tríptico de bloques</div>
+<section class="frame">
+<div class="sec">
+<p class="eyebrow">Oferta académica</p>
+<h2>Encuentra el <em>camino</em> para alcanzar tus metas</h2>
+<div class="a-grid">
+<article class="a-card"><h3>Pregrado</h3><p class="desc">Encuentra tu lugar en el mundo, aprende haciendo y construye el futuro que imaginas.</p><span class="arrow"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12 12 2M4 2h8v8"></path></svg></span><div class="a-photo"><img src="uploads/foto-pregrado.png" alt="Estudiante de pregrado"></div></article>
+<article class="a-card"><h3>Posgrado</h3><p class="desc">Maestrías y doctorados para profundizar tu especialidad e impulsar tu carrera.</p><span class="arrow"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12 12 2M4 2h8v8"></path></svg></span><div class="a-photo"><img src="uploads/foto-posgrado-grad.png" alt="Graduado de posgrado" style="height:235px"></div></article>
+<article class="a-card"><h3>Educación continua</h3><p class="desc">Diplomados, cursos y certificaciones para seguir aprendiendo a tu ritmo.</p><span class="arrow"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12 12 2M4 2h8v8"></path></svg></span><div class="a-photo"><img src="uploads/foto-continua.png" alt="Profesional en educación continua" style="height:240px"></div></article>
+</div>
+</div>
+</section>
+
+<div class="flabel">Opción B · Explorador claro (hover en la lista · Pregrado por defecto)</div>
+<section class="frame">
+<div class="b-wrap">
+<p class="eyebrow">Oferta académica</p>
+<h2>Encuentra el <em>camino</em> para alcanzar tus metas</h2>
+<div class="b-cols">
+<div class="b-list">
+<div class="b-item on" data-img="bi1"><h3>Pregrado</h3><div class="b-more"><div><p class="desc">Encuentra tu lugar en el mundo, aprende haciendo y construye el futuro que imaginas.</p><a class="b-link" href="#">Explorar programas →</a></div></div></div>
+<div class="b-item" data-img="bi2"><h3>Posgrado</h3><div class="b-more"><div><p class="desc">Maestrías y doctorados para profundizar tu especialidad e impulsar tu carrera.</p><a class="b-link" href="#">Explorar programas →</a></div></div></div>
+<div class="b-item" data-img="bi3"><h3>Educación continua</h3><div class="b-more"><div><p class="desc">Diplomados, cursos y certificaciones para seguir aprendiendo a tu ritmo.</p><a class="b-link" href="#">Explorar programas →</a></div></div></div>
+</div>
+<div class="b-stage"><div class="b-disc">
+<img id="bi1" class="on" src="uploads/foto-pregrado.png" alt="Estudiante de pregrado">
+<img id="bi2" src="uploads/foto-posgrado-grad.png" alt="Graduado de posgrado" style="height:300px">
+<img id="bi3" src="uploads/foto-continua.png" alt="Profesional en educación continua" style="height:315px">
+</div></div>
+</div>
+</div>
+</section>
+
+<div class="flabel">Opción C · Podio editorial</div>
+<section class="frame" style="margin-bottom:60px">
+<div class="sec">
+<div class="c-head">
+<div><p class="eyebrow">Oferta académica</p><h2>Encuentra el <em>camino</em> para alcanzar tus metas</h2></div>
+<a class="c-cta" href="#">Ver toda la oferta</a>
+</div>
+<div class="c-band">
+<div class="c-col"><div class="c-fig"><img src="uploads/foto-pregrado.png" alt="Estudiante de pregrado"></div><h3>Pregrado <span class="arrow"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12 12 2M4 2h8v8"></path></svg></span></h3><p class="desc">Encuentra tu lugar en el mundo, aprende haciendo y construye el futuro que imaginas.</p></div>
+<div class="c-col"><div class="c-fig"><img src="uploads/foto-posgrado-grad.png" alt="Graduado de posgrado"></div><h3>Posgrado <span class="arrow"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12 12 2M4 2h8v8"></path></svg></span></h3><p class="desc">Maestrías y doctorados para profundizar tu especialidad e impulsar tu carrera.</p></div>
+<div class="c-col"><div class="c-fig"><img src="uploads/foto-continua.png" alt="Profesional en educación continua"></div><h3>Educación continua <span class="arrow"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12 12 2M4 2h8v8"></path></svg></span></h3><p class="desc">Diplomados, cursos y certificaciones para seguir aprendiendo a tu ritmo.</p></div>
+</div>
+</div>
+</section>
+
+<script>
+document.querySelectorAll('.b-item').forEach(function(it){
+  it.addEventListener('mouseenter',function(){
+    document.querySelectorAll('.b-item').forEach(function(x){x.classList.remove('on')});
+    document.querySelectorAll('.b-disc img').forEach(function(x){x.classList.remove('on')});
+    it.classList.add('on');
+    document.getElementById(it.dataset.img).classList.add('on');
+  });
+  it.addEventListener('click',function(){ it.dispatchEvent(new Event('mouseenter')); });
+});
+</script>
+</body>
+</html>
