@@ -137,6 +137,29 @@
   .chip{flex:none;font-size:11px;font-weight:700;border-radius:999px;padding:4px 12px;background:var(--tint);color:var(--ink-soft);border:1px solid var(--line);}
   .fchip{cursor:pointer;}
   .fchip.on{background:var(--azul);color:#fff;border-color:var(--azul);}
+  /* --- Espacios del campus: integración Descubre PUCP --- */
+  .dsc-q{width:100%;max-width:430px;padding:9px 16px;border:1.5px solid var(--line);border-radius:999px;font:inherit;font-size:13px;background:#fff;margin:2px 0 12px;display:block;}
+  .dsc-q:focus{outline:none;border-color:var(--azul);}
+  #dsc-chips .tab small{font-weight:400;opacity:.65;margin-left:4px;}
+  .dsc-list{border:1px solid var(--line);border-radius:10px;background:#fff;overflow:hidden;max-height:430px;overflow-y:auto;}
+  .dsc-row{display:flex;align-items:center;gap:10px;padding:9px 12px;border-bottom:1px solid var(--line);cursor:pointer;}
+  .dsc-row:last-child{border-bottom:none;}
+  .dsc-row:hover,.dsc-row.on{background:var(--tint);}
+  .dsc-row .num{flex:none;width:20px;height:20px;border-radius:50%;background:var(--azul);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+  .dsc-row .num.min{background:#9aa2ac;}
+  .dsc-row .tx{flex:1;min-width:0;}
+  .dsc-row .tx b{display:block;font-size:13px;font-weight:600;line-height:1.3;}
+  .dsc-row .tx span{display:block;font-size:11px;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .dsc-row .bdg{flex:none;font-size:10px;font-weight:700;border-radius:999px;padding:2px 8px;background:var(--tint);color:var(--ink-soft);border:1px solid var(--line);}
+  .dsc-fav{flex:none;background:none;border:none;cursor:pointer;font-size:15px;color:#c4cad2;padding:2px;line-height:1;}
+  .dsc-fav.on{color:#e2a400;}
+  .dsc-more{display:block;width:100%;margin-top:8px;padding:8px;border:1.5px dashed var(--line);border-radius:999px;background:none;font:inherit;font-size:12px;font-weight:700;color:var(--azul);cursor:pointer;}
+  .dsc-empty{padding:18px 14px;font-size:12.5px;color:var(--ink-soft);}
+  #dsc-pins circle,#dsc-pins g{cursor:pointer;}
+  .dsc-card{margin-top:10px;border:1px solid var(--line);border-radius:10px;background:#fff;padding:12px 14px;font-size:12.5px;line-height:1.5;}
+  .dsc-card h4{margin:0 0 2px;font-size:14px;}
+  .dsc-card .meta{color:var(--ink-soft);font-size:11.5px;margin-bottom:6px;}
+  .dsc-card .lnk{font-size:11.5px;font-weight:700;color:var(--azul);}
   /* slider */
   .slider{position:relative;overflow:hidden;border-radius:10px;}
   .slider .track{display:flex;gap:12px;transition:transform .35s ease;}
@@ -678,38 +701,18 @@ body.hdr-open .hdr-burger i:nth-child(3){transform:translateY(-7px) rotate(-45de
     <section id="z-espacios" data-title="Espacios del campus">
       <p class="eyebrow">Infraestructura</p>
       <h2 class="t">Encuentra tu lugar en el campus</h2>
-      <p class="sub">Salas de estudio, bibliotecas, comedores, laboratorios y espacios para compartir: descubre dónde estudiar, comer, entrenar y reunirte, y ubica cada lugar en el mapa del campus.</p>
-      <div class="tabs" data-group="espacios">
-        <span class="tab on">Espacios para compartir</span>
-        <span class="tab">Laboratorios e innovación</span>
-        <span class="tab">Espacios deportivos</span>
-        <span class="tab">Comedores PUCP</span>
-        <span class="tab">Espacios de estudio</span>
-        <span class="tab">Espacios culturales</span>
-        <span class="tab">Bienestar</span>
-        <span class="tab">Lugares favoritos</span>
-      </div>
+      <p class="sub">Bibliotecas, comedores, canchas, trámites y los rincones del campus: busca un lugar o explora por categoría, márcalo como favorito y ubícalo en el mapa. Integrado con <b>Descubre PUCP</b> (DTI).</p>
+      <p class="note" style="margin:0 0 10px;">🔌 Datos reales del API de Descubre PUCP (DTI) · <b id="dsc-total"></b> lugares · actualizado al <b id="dsc-date"></b> · las categorías son una propuesta de agrupación del Home (los filtros originales del API son 14 categorías técnicas).</p>
+      <input id="dsc-q" class="dsc-q" type="search" placeholder="Busca un lugar: biblioteca, comedor, tesorería, huaca…">
+      <div class="tabs" id="dsc-chips" style="margin-bottom:12px;"></div>
       <div class="split">
         <div class="col">
-          <div class="slider" id="slider-espacios">
-            <button class="s-nav prev" type="button" aria-label="Anterior">‹</button>
-            <div class="track">
-              <div class="slide"><div class="photo p1"><span class="ic">VIDEO</span><span class="cap">Rotonda de Generales Letras</span></div></div>
-              <div class="slide"><div class="photo p2"><span class="ic">FOTO</span><span class="cap">Jardines de Humanidades</span></div></div>
-              <div class="slide"><div class="photo p4"><span class="ic">FOTO</span><span class="cap">Pileta del pabellón Z</span></div></div>
-              <div class="slide"><div class="photo p3"><span class="ic">VIDEO</span><span class="cap">Primer piso de GG.CC.</span></div></div>
-              <div class="slide"><div class="photo p6"><span class="ic">FOTO</span><span class="cap">Mesas por Digimundo</span></div></div>
-              <div class="slide"><div class="photo p5"><span class="ic">FOTO</span><span class="cap">Mesas junto al Diodo</span></div></div>
-              <div class="slide"><div class="photo p1"><span class="ic">FOTO</span><span class="cap">Bienestar — atención psicológica (DAES)</span></div></div>
-            </div>
-            <button class="s-nav next" type="button" aria-label="Siguiente">›</button>
-          </div>
-          <div class="dots" id="dots-espacios"></div>
-          <p class="note" style="margin:10px 0 0;">Laboratorios e innovación → laboratorios por facultad · Open PUCP &nbsp;·&nbsp; Deportivos → polideportivo, gimnasio y campos &nbsp;·&nbsp; Comedores → Central · Arte · Letras &nbsp;·&nbsp; Estudio → bibliotecas y salas &nbsp;·&nbsp; Culturales → DACU y CCPUCP &nbsp;·&nbsp; Bienestar → acompañamiento psicológico y de salud (DAES) &nbsp;·&nbsp; Lugares favoritos → los rincones más queridos por la comunidad PUCP.</p>
+          <div class="dsc-list" id="dsc-list"></div>
+          <button class="dsc-more" id="dsc-more" type="button"></button>
         </div>
         <div class="colmap">
-          <div class="maptitle">📍 MAPA DEL CAMPUS — los pines cambian según la categoría</div>
-          <svg viewBox="0 0 400 290" aria-hidden="true">
+          <div class="maptitle">📍 MAPA DEL CAMPUS — pins con las coordenadas reales del API (lat/lng)</div>
+          <svg viewBox="0 0 400 290" id="dsc-map">
             <rect x="0" y="0" width="400" height="290" rx="8" fill="#eef1f7"/>
             <path d="M0 150 h400 M180 0 v290 M70 60 h240 M300 60 v170" stroke="#fff" stroke-width="10" fill="none"/>
             <rect x="20" y="20" width="70" height="34" rx="3" fill="#c3cde5"/>
@@ -726,15 +729,9 @@ body.hdr-open .hdr-burger i:nth-child(3){transform:translateY(-7px) rotate(-45de
             <rect x="320" y="170" width="60" height="90" rx="3" fill="#c3cde5"/>
             <rect x="20" y="230" width="140" height="36" rx="3" fill="#ccd5ea"/>
             <rect x="200" y="230" width="80" height="36" rx="3" fill="#d3dbee"/>
-            <g font-size="10" font-weight="700" fill="#fff" text-anchor="middle">
-              <g><circle cx="135" cy="100" r="11" fill="#042354"/><text x="135" y="104">1</text></g>
-              <g><circle cx="240" cy="100" r="11" fill="#042354"/><text x="240" y="104">2</text></g>
-              <g><circle cx="55" cy="105" r="11" fill="#042354"/><text x="55" y="109">3</text></g>
-              <g><circle cx="140" cy="195" r="11" fill="#042354"/><text x="140" y="199">4</text></g>
-              <g><circle cx="350" cy="210" r="11" fill="#042354"/><text x="350" y="214">5</text></g>
-              <g><circle cx="240" cy="245" r="11" fill="#042354"/><text x="240" y="249">6</text></g>
-            </g>
+            <g id="dsc-pins"></g>
           </svg>
+          <div class="dsc-card" id="dsc-card" hidden></div>
         </div>
       </div>
     </section>
@@ -857,6 +854,142 @@ body.hdr-open .hdr-burger i:nth-child(3){transform:translateY(-7px) rotate(-45de
   </div>
   <div class="toast" id="toast"></div>
 
+<script src="descubre-data.js"></script>
+<script>
+/* Espacios del campus — integración con el API de Descubre PUCP (DTI).
+   El API (descubre.pucp.edu.pe/poi/todos) no expone CORS, por eso el wireframe
+   usa un snapshot (descubre-data.js) con la data real. */
+(function(){
+  var D=window.DESCUBRE; if(!D) return;
+  var CATS=[
+    ['todos','Todos'],['comer','🍽 Comer y café'],['estudiar','📚 Estudiar'],
+    ['facultades','🎓 Facultades y aulas'],['cultura','🎭 Cultura'],
+    ['deporte','⚽ Deporte y bienestar'],['tramites','🧾 Trámites y servicios'],
+    ['movilidad','🚲 Movilidad'],['emergencia','🆘 Emergencia'],
+    ['campus','🌳 Campus y jardines'],['favs','★ Favoritos']
+  ];
+  var LBL={}; CATS.forEach(function(c){LBL[c[0]]=c[1];});
+  var favs={}; try{favs=JSON.parse(localStorage.getItem('dscFavs')||'{}');}catch(e){}
+  var cat='todos', q='', expanded=false, sel=-1;
+  var elQ=document.getElementById('dsc-q'), elChips=document.getElementById('dsc-chips'),
+      elList=document.getElementById('dsc-list'), elMore=document.getElementById('dsc-more'),
+      elPins=document.getElementById('dsc-pins'), elCard=document.getElementById('dsc-card');
+  document.getElementById('dsc-total').textContent=D.total;
+  document.getElementById('dsc-date').textContent=D.date;
+  // proyección lat/lng reales -> viewBox 400x290 del mapa estilizado
+  var LA1=-12.0779,LA2=-12.0648,LN1=-77.0854,LN2=-77.0773;
+  function px(it){return 14+(it.ln-LN1)/(LN2-LN1)*372;}
+  function py(it){return 14+(LA2-it.la)/(LA2-LA1)*262;}
+  function norm(s){return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');}
+  function match(it){
+    if(q && norm(it.t+' '+(it.u||'')+' '+(it.p||'')).indexOf(q)===-1) return false;
+    if(cat==='todos') return true;
+    if(cat==='favs') return !!favs[it.t];
+    return it.c===cat;
+  }
+  function count(k){
+    if(k==='todos') return D.items.length;
+    if(k==='favs') return D.items.filter(function(it){return favs[it.t];}).length;
+    return D.items.filter(function(it){return it.c===k;}).length;
+  }
+  function esc(s){var d=document.createElement('div');d.textContent=(s==null?'':s);return d.innerHTML;}
+  function renderChips(){
+    elChips.innerHTML='';
+    CATS.forEach(function(c){
+      var s=document.createElement('span'); s.className='tab'+(cat===c[0]?' on':'');
+      s.innerHTML=esc(c[1])+' <small>'+count(c[0])+'</small>';
+      s.addEventListener('click',function(){cat=c[0];expanded=false;sel=-1;render();});
+      elChips.appendChild(s);
+    });
+  }
+  function visibles(){
+    var m=D.items.filter(match);
+    // sin búsqueda ni expandir: primero los destacados (curaduría), sin puntos menores
+    if(!q && !expanded){
+      var top=m.filter(function(it){return it.s;});
+      if(!top.length) top=m.filter(function(it){return !it.d;});
+      return {list:top.slice(0,8), all:m};
+    }
+    m.sort(function(a,b){return (b.s||0)-(a.s||0) || (a.d||0)-(b.d||0);});
+    return {list:m, all:m};
+  }
+  function render(){
+    renderChips();
+    var v=visibles();
+    elList.innerHTML='';
+    if(!v.list.length){elList.innerHTML='<div class="dsc-empty">'+(cat==='favs'?'Aún no marcas favoritos: usa la estrella ☆ en cualquier lugar.':'Sin resultados para esta búsqueda.')+'</div>';}
+    v.list.forEach(function(it,i){
+      var idx=D.items.indexOf(it);
+      var row=document.createElement('div'); row.className='dsc-row'+(sel===idx?' on':'');
+      var meta=it.p?('Dentro de: '+it.p):(it.u||LBL[it.c].replace(/^\S+\s/,''));
+      var bdg='';
+      if(it.f) bdg='<span class="bdg">Fuera del campus</span>';
+      else if(it.h) bdg='<span class="bdg">⏰ horario</span>';
+      else if(it.k) bdg='<span class="bdg">'+it.k+' espacios</span>';
+      row.innerHTML='<span class="num'+(it.d?' min':'')+'">'+(i+1)+'</span><span class="tx"><b>'+esc(it.t)+'</b><span>'+esc(meta)+'</span></span>'+bdg+
+        '<button class="dsc-fav'+(favs[it.t]?' on':'')+'" title="Favorito" type="button">'+(favs[it.t]?'★':'☆')+'</button>';
+      row.addEventListener('click',function(){sel=idx;render();});
+      row.querySelector('.dsc-fav').addEventListener('click',function(ev){
+        ev.stopPropagation();
+        if(favs[it.t])delete favs[it.t];else favs[it.t]=1;
+        try{localStorage.setItem('dscFavs',JSON.stringify(favs));}catch(e){}
+        render();
+      });
+      elList.appendChild(row);
+    });
+    var rest=v.all.length-v.list.length;
+    elMore.style.display=(q||!rest)?'none':'block';
+    elMore.textContent=expanded?'Ver menos':'Ver los '+v.all.length+' lugares de esta categoría';
+    renderPins(v);
+    renderCard();
+    if(window.dispatchEvent)window.dispatchEvent(new Event('resize')); // re-posiciona hilos de comentarios
+  }
+  function renderPins(v){
+    elPins.innerHTML='';
+    var listSet=v.list, ns='http://www.w3.org/2000/svg';
+    // capa base: todos los que matchean, como puntitos
+    v.all.forEach(function(it){
+      if(it.f||it.la==null) return;
+      var c=document.createElementNS(ns,'circle');
+      c.setAttribute('cx',px(it));c.setAttribute('cy',py(it));
+      c.setAttribute('r',it.d?2.2:3);c.setAttribute('fill','#042354');c.setAttribute('opacity',it.d?0.28:0.38);
+      var idx=D.items.indexOf(it);
+      c.addEventListener('click',function(){sel=idx;render();});
+      elPins.appendChild(c);
+    });
+    // capa destacada: numerados según la lista visible
+    listSet.forEach(function(it,i){
+      if(it.f||it.la==null) return;
+      var idx=D.items.indexOf(it);
+      var g=document.createElementNS(ns,'g');
+      var c=document.createElementNS(ns,'circle');
+      c.setAttribute('cx',px(it));c.setAttribute('cy',py(it));c.setAttribute('r',sel===idx?12:10);
+      c.setAttribute('fill',sel===idx?'#0A7BC2':'#042354');c.setAttribute('stroke','#fff');c.setAttribute('stroke-width','1.5');
+      var t=document.createElementNS(ns,'text');
+      t.setAttribute('x',px(it));t.setAttribute('y',py(it)+3.5);
+      t.setAttribute('font-size','10');t.setAttribute('font-weight','700');t.setAttribute('fill','#fff');t.setAttribute('text-anchor','middle');
+      t.textContent=(i+1);
+      g.appendChild(c);g.appendChild(t);
+      g.addEventListener('click',function(){sel=idx;render();});
+      elPins.appendChild(g);
+    });
+  }
+  function renderCard(){
+    var it=D.items[sel];
+    if(!it){elCard.hidden=true;return;}
+    elCard.hidden=false;
+    var h='<h4>'+esc(it.t)+'</h4><div class="meta">'+esc(LBL[it.c])+(it.p?' · Dentro de: '+esc(it.p):'')+(it.f?' · Sede fuera del campus':'')+'</div>';
+    if(it.u)h+='<div>📍 '+esc(it.u)+'</div>';
+    if(it.h)h+='<div>⏰ '+esc(it.h)+'</div>';
+    if(it.k)h+='<div>🏛 Contiene '+it.k+' espacio'+(it.k>1?'s':'')+' (jerarquía padre/hijos del API)</div>';
+    h+='<div style="margin-top:6px;"><a class="lnk" href="https://descubre.pucp.edu.pe/" target="_blank" rel="noopener">Ver en Descubre PUCP ↗</a> · <a class="lnk" href="mapa-campus.html">Cómo llegar (mapa del campus) →</a></div>';
+    elCard.innerHTML=h;
+  }
+  elQ.addEventListener('input',function(){q=norm(elQ.value.trim());sel=-1;render();});
+  elMore.addEventListener('click',function(){expanded=!expanded;render();});
+  render();
+})();
+</script>
 <script>
 (function(){
   var WF='vida-media', API='https://comentarios.ludik.pe';
@@ -906,6 +1039,7 @@ body.hdr-open .hdr-burger i:nth-child(3){transform:translateY(-7px) rotate(-45de
       savedContent[id]=latest.body; contentIds[id]=latest.id;
     });
     Object.keys(savedContent).forEach(function(id){
+      if(id==='z-espacios') return; // seccion construida por JS (Descubre PUCP): un snapshot truncado a 4KB la rompería
       var blk=document.getElementById(id), ed=blk&&blk.querySelector('.editable');
       if(ed) ed.innerHTML=savedContent[id];
     });
@@ -917,6 +1051,7 @@ body.hdr-open .hdr-burger i:nth-child(3){transform:translateY(-7px) rotate(-45de
       .catch(function(){notify('No se pudo guardar el texto (sin conexión)');});
   }
   function saveContent(blk){
+    if(blk.id==='z-espacios') return; // no snapshotear la seccion JS (excede el limite de 4KB)
     var ed=blk.querySelector('.editable'); if(!ed)return;
     savedContent[blk.id]=ed.innerHTML;
     saveContentRemote(blk.id);
